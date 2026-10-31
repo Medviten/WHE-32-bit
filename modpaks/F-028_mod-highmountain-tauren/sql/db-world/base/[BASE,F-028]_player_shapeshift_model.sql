@@ -21,7 +21,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@DireBearForm,    @HighmountainTauren,      2,        2, @DruidBearHighmountainTaurenSilverDisplay), -- dark brown fur
 (@DireBearForm,    @HighmountainTauren,      3,        2, @DruidBearHighmountainTaurenWhiteDisplay), -- white and brown fur
 (@DireBearForm,    @HighmountainTauren,      4,        2, @DruidBearHighmountainTaurenYellowDisplay), -- unknown fur
-(@TreeForm,        @HighmountainTauren,    255,        2, @DruidTreeFormGreenDisplay),
 (@MoonkinForm,     @HighmountainTauren,    255,        2, @DruidMoonkinHighmountainTaurenDisplay),
 (@FlightForm,      @HighmountainTauren,    255,        2, @DruidFlightHighmountainTaurenDisplay),
 (@SwiftFlightForm, @HighmountainTauren,    255,        2, @DruidFlightHighmountainTaurenDisplay),

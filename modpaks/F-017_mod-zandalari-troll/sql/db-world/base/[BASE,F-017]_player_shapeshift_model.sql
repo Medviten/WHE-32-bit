@@ -30,7 +30,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@DireBearForm,    @ZandalariTroll,      5,        2, @DruidBearZandalariTrollWhiteDisplay),    -- white hair: druidbearzandalaritroll_white
 (@DireBearForm,    @ZandalariTroll,      6,        2, @DruidBearZandalariTrollWhiteDisplay),    -- yellow hair: druidbearzandalaritroll_white
 (@DireBearForm,    @ZandalariTroll,    255,        2, @DruidBearZandalariTrollGreenDisplay),    -- default: druidbearzandalaritroll_green
-(@TreeForm,        @ZandalariTroll,    255,        2, @DruidTreeZandalariTrollDisplay),         -- ModelID: DruidTreeFormZandalari
 (@MoonkinForm,     @ZandalariTroll,    255,        2, @DruidMoonkinZandalariTrollDisplay),      -- ModelID: druidowlbearzandalariepic2_body, druidowlbearzandalariepic2_armor, armorreflectgold5
 (@FlightForm,      @ZandalariTroll,    255,        2, @DruidFlightZandalariTrollDisplay),       -- ModelID: druidflightzandalaritroll
 (@SwiftFlightForm, @ZandalariTroll,    255,        2, @DruidFlightZandalariTrollDisplay),       -- ModelID: druidflightzandalaritroll

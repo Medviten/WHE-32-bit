@@ -5,9 +5,6 @@ REPLACE INTO `player_shapeshift_model` (
     `GenderID`, -- 0: male, 1: female, 2: both
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
-/* Cataclysm Druid forms */
-/* Worgen Druid forms */
-(@TreeForm,   @Worgen, 255, 2, @DruidTreeFormRedDisplay), -- ModelID: 37164 (DruidTreeFormRed)
 (@TravelForm, @Worgen, 255, 2, @AllianceTravelForm), -- ModelID: 40816 (DruidTravelAlliance)
 
 /* Goblin Druid forms */

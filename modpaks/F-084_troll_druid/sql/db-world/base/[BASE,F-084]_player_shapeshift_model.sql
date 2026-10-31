@@ -37,7 +37,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@DireBearForm,    @Troll,      7,        2, @DruidBearTrollBlueDisplay), -- purple hair: DruidBearTrollBlue
 (@DireBearForm,    @Troll,      8,        2, @DruidBearTrollWhiteDisplay), -- gray hair: DruidBearTrollWhite
 (@DireBearForm,    @Troll,      9,        2, @DruidBearTrollWhiteDisplay), -- white hair: DruidBearTrollWhite
-(@TreeForm,        @Troll,    255,        2, @DruidTreeFormOrangeDisplay), -- ModelID: DruidTreeFormOrange
 (@MoonkinForm,     @Troll,    255,        2, @DruidOwlBearRedSkinDisplay), -- ModelID: DruidOwlBearRedSkin, DruidOwlBearRedSkin2
 (@FlightForm,      @Troll,    255,        2, @DruidFlightTrollDisplay), -- ModelID: DruidFlightTroll1, DruidFlightTroll2
 (@SwiftFlightForm, @Troll,    255,        2, @EpicDruidFlightTrollDisplay); -- ModelID: EpicDruidFlightTroll1, EpicDruidFlightTroll2

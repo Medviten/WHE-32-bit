@@ -61,5 +61,4 @@ REPLACE INTO `player_shapeshift_model` (
 (@AquaticForm,     @KulTiran,   3, 2, @DruidAquaticKulTiranGreenDisplay), -- light brown hair: druidaquatickultiran_green
 (@AquaticForm,     @KulTiran,   4, 2, @DruidAquaticKulTiranLightDisplay), -- grey hair: druidaquatickultiran_light
 (@AquaticForm,     @KulTiran,   5, 2, @DruidAquaticKulTiranLightDisplay), -- light blonde hair: druidaquatickultiran_light
-(@AquaticForm,     @KulTiran,   6, 2, @DruidAquaticKulTiranLightDisplay), -- dark blonde hair: druidaquatickultiran_light
-(@TreeForm,        @KulTiran, 255, 2, @DruidTreeKulTiranDisplay); -- Model ID: druidtreeformkultiran
+(@AquaticForm,     @KulTiran,   6, 2, @DruidAquaticKulTiranLightDisplay); -- dark blonde hair: druidaquatickultiran_light

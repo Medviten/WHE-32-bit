@@ -25,7 +25,3 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidCatHighmountainTaurenWhiteDisplay,    @DruidCatHighmountainTaurenModel,        0,                                     0,   1, 255, 'druidcathmtauren_1white',     'druidcathmtauren_2hornswhite',   '',                  '', -1, 0, 0, 0, 0, 0),
 (@DruidMoonkinHighmountainTaurenDisplay,     @DruidMoonkinHighmountainTaurenModel,  204,                                     0, 0.9, 255, 'druidowlbear2_hmt',           'druidowlbear2_hmt_horns',        'druidowlbear2_ta',  '', -1, 0, 0, 0, 0, 0);
 
-/* Druid form rows that other modpaks (e.g. F-011_mod-druid-forms) insert too, identically: this modpak needs them without F-011 */
-DELETE FROM `creaturedisplayinfo` WHERE `id` IN (@DruidTreeFormGreenDisplay);
-INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
-(@DruidTreeFormGreenDisplay,    3805,   0, 0, 1.5, 255, 'DruidTreeFormGreen',    '',                       '', '', -1, 0, 0, 599, 0, 0);

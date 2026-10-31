@@ -25,8 +25,7 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 
 /* Shared with F-011_mod-druid-forms, which inserts the same rows */
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
-    @DruidTreeFormOrangeDisplay, @DruidOwlBearRedSkinDisplay
+    @DruidOwlBearRedSkinDisplay
 );
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
-(@DruidTreeFormOrangeDisplay,   3805,   0, 0, 1.5, 255, 'DruidTreeFormOrange',   '',                       '', '', -1, 0, 0, 602, 0, 0),
 (@DruidOwlBearRedSkinDisplay,   2199, 204, 0, 0.9, 255, 'DruidOwlBearRedSkin',   'DruidOwlBearRedSkin2',   '', '', -1, 0, 0,   0, 0, 0);
