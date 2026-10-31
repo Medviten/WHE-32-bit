@@ -90,4 +90,5 @@ F-026_custom-race-support # required for any custom race to function correctly
 #F-002_mod-arac # Off by default
 #F-003_mod-faction-free # Off by default
 #F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
+#F-076_mod-individual-progression_extras # Off by default (mod-individual-progression's optional SQL and DBCs; one file per feature, delete the ones you don't want, see its readme)
 # END ADDITIONAL MODS #
