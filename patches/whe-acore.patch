@@ -1,7 +1,29 @@
-diff -ruN a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
---- a/src/server/game/Entities/Player/Player.cpp	2026-06-29 14:54:51.338569100 +0200
-+++ b/src/server/game/Entities/Player/Player.cpp	2026-08-12 19:54:27.950993000 +0200
-@@ -828,7 +828,7 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 94e787747..a7397c4bd 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -4569,6 +4569,16 @@ AllowTwoSide.Interaction.Arena = 0
+ 
+ AllowTwoSide.Interaction.Auction = 0
+ 
++#
++#    AllowTwoSide.EnemyTerritory
++#        Description: Faction Free: do not treat the other faction's zones as hostile territory,
++#                     so entering an enemy capital (or, on PvP realms, any enemy zone) does not
++#                     flag players for PvP.
++#        Default:     0 - (Disabled, stock behaviour)
++#                     1 - (Enabled)
++
++AllowTwoSide.EnemyTerritory = 0
++
+ #
+ #    TalentsInspecting
+ #        Description: Allow inspecting characters from the opposing faction.
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 324b3d2fe..ed73bb109 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -874,7 +874,7 @@ int32 Player::getMaxTimer(MirrorTimerType timer)
      switch (timer)
      {
          case FATIGUE_TIMER:
@@ -10,10 +32,11 @@ diff -ruN a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entitie
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
---- a/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-06-29 15:12:32.439405200 +0200
-+++ b/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-09-30 17:30:30.027761900 +0200
-@@ -51,7 +51,7 @@
+diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
+index 6cf62c95d..586585cd9 100644
+--- a/src/server/game/Entities/Player/PlayerTaxi.cpp
++++ b/src/server/game/Entities/Player/PlayerTaxi.cpp
+@@ -51,7 +51,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
              break;     // Night Elf
          case RACE_UNDEAD_PLAYER:
              SetTaximaskNode(11);
@@ -22,7 +45,7 @@ diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Ent
          case RACE_TAUREN:
              SetTaximaskNode(22);
              break;     // Tauren
-@@ -67,6 +67,37 @@
+@@ -67,6 +67,37 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
          case RACE_DRAENEI:
              SetTaximaskNode(94);
              break;     // Draenei
@@ -60,31 +83,32 @@ diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Ent
      }
  
      // new continent starting masks (It will be accessible only at new map)
-diff -ruN a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
---- a/src/server/game/Entities/Player/PlayerUpdates.cpp	2026-06-29 14:54:51.343569400 +0200
-+++ b/src/server/game/Entities/Player/PlayerUpdates.cpp	2026-09-06 17:25:19.895274500 +0200
-@@ -1301,6 +1301,8 @@
+diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
+index 481a18266..6571e3d50 100644
+--- a/src/server/game/Entities/Player/PlayerUpdates.cpp
++++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
+@@ -1321,13 +1321,16 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
      // in PvE, only opposition team capital
      switch (zone->team)
      {
-+    /* FACTION FREE MOD by GITDALISAR
-+    ---- START COMMENTING OUT FACTIONAL CHECK FOR CITIES ----
++    // Faction Free (by Gitdalisar): with AllowTwoSide.EnemyTerritory, faction zones are never hostile
      case AREATEAM_ALLY:
          pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
              GetTeamId(true) != TEAM_ALLIANCE &&
-@@ -1311,6 +1313,8 @@
+             (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
+         break;
+     case AREATEAM_HORDE:
+         pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
              GetTeamId(true) != TEAM_HORDE &&
              (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
          break;
-+    ---- STOP COMMENTING OUT FACTIONAL CHECK FOR CITITES ----
-+    END CHANGES FOR FACTION FREE MOD by GITDALISAR */
-     case AREATEAM_NONE:
-         // overwrite for battlegrounds, maybe batter some zone flags but current
-         // known not 100% fit to this
-diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
---- a/src/server/game/Globals/ObjectMgr.cpp	2026-06-29 14:54:51.353569400 +0200
-+++ b/src/server/game/Globals/ObjectMgr.cpp	2026-09-30 17:34:08.796489900 +0200
-@@ -1890,10 +1890,10 @@
+diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
+index 1c76aa1bd..8d6a0360a 100644
+--- a/src/server/game/Globals/ObjectMgr.cpp
++++ b/src/server/game/Globals/ObjectMgr.cpp
+@@ -1890,10 +1890,10 @@ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) con
  {
      uint8 customizationID;
  
@@ -98,7 +122,7 @@ diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/Obje
  
      // getGender() tracks the active display model; real gender lives in PLAYER_BYTES_3
      uint8 gender = player->GetByteValue(PLAYER_BYTES_3, PLAYER_BYTES_3_OFFSET_GENDER);
-@@ -4867,7 +4867,7 @@
+@@ -4868,7 +4868,7 @@ void ObjectMgr::LoadPlayerInfo()
                      continue;
  
                  // skip expansion races if not playing with expansion
@@ -107,7 +131,7 @@ diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/Obje
                      continue;
  
                  // skip expansion classes if not playing with expansion
-@@ -8443,7 +8443,7 @@
+@@ -8348,7 +8348,7 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
  
      _repSpilloverTemplateStore.clear();                      // for reload case
  
@@ -116,7 +140,7 @@ diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/Obje
      QueryResult result = WorldDatabase.Query("SELECT faction, faction1, rate_1, rank_1, faction2, rate_2, rank_2, faction3, rate_3, rank_3, faction4, rate_4, rank_4, faction5, rate_5, rank_5, faction6, rate_6, rank_6 FROM reputation_spillover_template");
  
      if (!result)
-@@ -8479,6 +8479,24 @@
+@@ -8384,6 +8384,24 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
          repTemplate.faction[5]          = fields[16].Get<uint16>();
          repTemplate.faction_rate[5]     = fields[17].Get<float>();
          repTemplate.faction_rank[5]     = fields[18].Get<uint8>();
@@ -141,10 +165,11 @@ diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/Obje
  
          FactionEntry const* factionEntry = sFactionStore.LookupEntry(factionId);
  
-diff -ruN a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
---- a/src/server/game/Handlers/CharacterHandler.cpp	2026-06-26 17:27:34.202487200 +0200
-+++ b/src/server/game/Handlers/CharacterHandler.cpp	2026-09-06 21:55:11.719586100 +0200
-@@ -2219,6 +2219,12 @@
+diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
+index 9170e24fe..df3180ede 100644
+--- a/src/server/game/Handlers/CharacterHandler.cpp
++++ b/src/server/game/Handlers/CharacterHandler.cpp
+@@ -2226,6 +2226,12 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
              case RACE_BLOODELF:
                  stmt->SetData(1, 137);
                  break;
@@ -157,10 +182,11 @@ diff -ruN a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Hand
              }
  
              trans->Append(stmt);
-diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
---- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-06-29 15:28:25.877191500 +0200
-+++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-09-30 17:47:16.213510100 +0200
-@@ -2311,18 +2311,46 @@
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index e3e36f820..dd4aed553 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -2306,18 +2306,46 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_BLOODELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 17829 : 17830);
                                      break;
@@ -207,7 +233,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Undead
                                  case RACE_UNDEAD_PLAYER:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10146 : 10145);
-@@ -2335,6 +2363,10 @@
+@@ -2330,6 +2358,10 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_DWARF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10141 : 10142);
                                      break;
@@ -218,7 +244,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Gnome
                                  case RACE_GNOME:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10148 : 10149);
-@@ -2343,6 +2375,14 @@
+@@ -2338,6 +2370,14 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_HUMAN:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10137 : 10138);
                                      break;
@@ -233,7 +259,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Night Elf
                                  case RACE_NIGHTELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10143 : 10144);
-@@ -2370,18 +2410,46 @@
+@@ -2365,18 +2405,46 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_BLOODELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25032 : 25043);
                                      break;
@@ -280,7 +306,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Undead
                                  case RACE_UNDEAD_PLAYER:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25042 : 25053);
-@@ -2394,6 +2462,10 @@
+@@ -2389,6 +2457,10 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_DWARF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25034 : 25045);
                                      break;
@@ -291,7 +317,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Gnome
                                  case RACE_GNOME:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25035 : 25046);
-@@ -2402,6 +2474,14 @@
+@@ -2397,6 +2469,14 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                  case RACE_HUMAN:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25037 : 25048);
                                      break;
@@ -306,7 +332,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Night Elf
                                  case RACE_NIGHTELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25038 : 25049);
-@@ -2426,24 +2506,30 @@
+@@ -2421,24 +2501,30 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -337,7 +363,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21869 : 21871);
                                      else
-@@ -2462,6 +2548,7 @@
+@@ -2457,6 +2543,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21845 : 21843);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -345,7 +371,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21846 : 21848);
                                      else
-@@ -2474,6 +2561,8 @@
+@@ -2469,6 +2556,8 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21853 : 21852);
                                      break;
                                  case DisplayRace::Human:
@@ -354,7 +380,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21859 : 21858);
                                      else
-@@ -2514,15 +2603,21 @@
+@@ -2509,15 +2598,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -376,7 +402,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18807 : 18806);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2532,12 +2627,15 @@
+@@ -2527,12 +2622,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18795 : 18794);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -392,7 +418,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18801 : 18800);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2556,15 +2654,21 @@
+@@ -2551,15 +2649,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -414,7 +440,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19184 : 19183);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2574,12 +2678,15 @@
+@@ -2569,12 +2673,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19172 : 19171);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -430,7 +456,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19178 : 19177);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2598,15 +2705,21 @@
+@@ -2593,15 +2700,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -452,7 +478,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18872 : 18871);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2616,12 +2729,15 @@
+@@ -2611,12 +2724,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18843 : 18842);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -468,7 +494,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18860 : 18858);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2640,15 +2756,21 @@
+@@ -2635,15 +2751,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -490,7 +516,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22377 : 22376);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2658,12 +2780,15 @@
+@@ -2653,12 +2775,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22363 : 22362);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -506,7 +532,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22371 : 22370);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2682,15 +2807,21 @@
+@@ -2677,15 +2802,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -528,7 +554,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 16432 : 16442);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2700,12 +2831,15 @@
+@@ -2695,12 +2826,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 21083 : 21084);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -544,7 +570,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 16433 : 16412);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2724,15 +2858,21 @@
+@@ -2719,15 +2853,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -566,7 +592,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24516 : 24527);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2742,12 +2882,15 @@
+@@ -2737,12 +2877,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24509 : 24520);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -582,7 +608,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24513 : 24524);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2766,15 +2909,21 @@
+@@ -2761,15 +2904,21 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -604,7 +630,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25040 : 25051);
                                      break;
                                  case DisplayRace::Undead:
-@@ -2784,12 +2933,15 @@
+@@ -2779,12 +2928,15 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25033 : 25044);
                                      break;
                                  case DisplayRace::Dwarf:
@@ -620,10 +646,35 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25037 : 25048);
                                      break;
                                  case DisplayRace::NightElf:
-diff -ruN a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
---- a/src/server/scripts/Commands/cs_misc.cpp	2026-06-29 14:54:51.387777300 +0200
-+++ b/src/server/scripts/Commands/cs_misc.cpp	2026-09-30 17:49:14.269725900 +0200
-@@ -2326,6 +2326,36 @@
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index fc8e7c93b..9d7f5a2e8 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -210,6 +210,7 @@ void WorldConfig::BuildConfigCache()
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD, "AllowTwoSide.Interaction.Guild", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA, "AllowTwoSide.Interaction.Arena", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION, "AllowTwoSide.Interaction.Auction", false);
++    SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY, "AllowTwoSide.EnemyTerritory", false);
+ 
+     SetConfigValue<uint32>(CONFIG_MIN_PLAYER_NAME, "MinPlayerName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_PLAYER_NAME; }, "> 0 && <= MAX_PLAYER_NAME");
+     SetConfigValue<uint32>(CONFIG_MIN_CHARTER_NAME, "MinCharterName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_CHARTER_NAME; }, "> 0 && <= MAX_CHARTER_NAME");
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf0075..94066d518 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -36,6 +36,7 @@ enum ServerConfigs
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION,
++    CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY,
+     CONFIG_ALL_TAXI_PATHS,
+     CONFIG_TAXI_FLIGHT_SPEED,
+     CONFIG_INSTANCE_IGNORE_LEVEL,
+diff --git a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
+index 647a38069..3caa9e721 100644
+--- a/src/server/scripts/Commands/cs_misc.cpp
++++ b/src/server/scripts/Commands/cs_misc.cpp
+@@ -2407,6 +2407,36 @@ public:
              case RACE_DRAENEI:
                  raceStr = "Draenei";
                  break;
@@ -660,10 +711,11 @@ diff -ruN a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Command
          }
  
          switch (classid)
-diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
---- a/src/server/scripts/Commands/cs_modify.cpp	2026-06-26 17:27:34.466097000 +0200
-+++ b/src/server/scripts/Commands/cs_modify.cpp	2026-08-28 15:00:07.947267700 +0200
-@@ -415,7 +415,7 @@
+diff --git a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
+index 058ca793e..a293959a5 100644
+--- a/src/server/scripts/Commands/cs_modify.cpp
++++ b/src/server/scripts/Commands/cs_modify.cpp
+@@ -415,7 +415,7 @@ public:
      static bool HandleModifyASpeedCommand(ChatHandler* handler, float allSpeed)
      {
          Player* target = handler->getSelectedPlayerOrSelf();
@@ -672,7 +724,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              NotifyModification(handler, target, LANG_YOU_CHANGE_ASPEED, LANG_YOURS_ASPEED_CHANGED, allSpeed);
              target->SetSpeed(MOVE_WALK, allSpeed, true);
-@@ -432,7 +432,7 @@
+@@ -432,7 +432,7 @@ public:
      static bool HandleModifySpeedCommand(ChatHandler* handler, float speed)
      {
          Player* target = handler->getSelectedPlayerOrSelf();
@@ -681,7 +733,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              NotifyModification(handler, target, LANG_YOU_CHANGE_SPEED, LANG_YOURS_SPEED_CHANGED, speed);
              target->SetSpeedRate(MOVE_RUN, speed);
-@@ -446,7 +446,7 @@
+@@ -446,7 +446,7 @@ public:
      static bool HandleModifySwimCommand(ChatHandler* handler, float swimSpeed)
      {
          Player* target = handler->getSelectedPlayerOrSelf();
@@ -690,7 +742,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              NotifyModification(handler, target, LANG_YOU_CHANGE_SWIM_SPEED, LANG_YOURS_SWIM_SPEED_CHANGED, swimSpeed);
              target->SetSpeedRate(MOVE_SWIM, swimSpeed);
-@@ -460,7 +460,7 @@
+@@ -460,7 +460,7 @@ public:
      static bool HandleModifyBWalkCommand(ChatHandler* handler, float backSpeed)
      {
          Player* target = handler->getSelectedPlayerOrSelf();
@@ -699,7 +751,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              NotifyModification(handler, target, LANG_YOU_CHANGE_BACK_SPEED, LANG_YOURS_BACK_SPEED_CHANGED, backSpeed);
              target->SetSpeedRate(MOVE_RUN_BACK, backSpeed);
-@@ -474,7 +474,7 @@
+@@ -474,7 +474,7 @@ public:
      static bool HandleModifyFlyCommand(ChatHandler* handler, float flySpeed)
      {
          Player* target = handler->getSelectedPlayerOrSelf();
@@ -708,7 +760,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              NotifyModification(handler, target, LANG_YOU_CHANGE_FLY_SPEED, LANG_YOURS_FLY_SPEED_CHANGED, flySpeed);
              target->SetSpeedRate(MOVE_FLIGHT, flySpeed);
-@@ -487,7 +487,7 @@
+@@ -487,7 +487,7 @@ public:
      //Edit Player or Creature Scale
      static bool HandleModifyScaleCommand(ChatHandler* handler, float scale)
      {
@@ -717,7 +769,7 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              handler->SendErrorMessage(LANG_BAD_VALUE);
              return false;
-@@ -540,7 +540,7 @@
+@@ -540,7 +540,7 @@ public:
  
          float _speed = speed ? *speed : 1.0f;
  
@@ -726,10 +778,11 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              return false;
          }
-diff -ruN a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_generic.cpp
---- a/src/server/scripts/Pet/pet_generic.cpp	2026-06-26 17:27:34.825000300 +0200
-+++ b/src/server/scripts/Pet/pet_generic.cpp	2026-09-30 17:53:18.266867800 +0200
-@@ -132,16 +132,26 @@
+diff --git a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_generic.cpp
+index 5212282a4..21de7fdaa 100644
+--- a/src/server/scripts/Pet/pet_generic.cpp
++++ b/src/server/scripts/Pet/pet_generic.cpp
+@@ -136,16 +136,26 @@ struct argentPonyBanner
  };
  
  static std::unordered_map<uint8, argentPonyBanner> argentBanners = {
@@ -766,64 +819,11 @@ diff -ruN a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_
  };
  
  struct npc_pet_gen_argent_pony_bridle : public ScriptedAI
-diff -ruN a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enuminfo_SharedDefines.cpp
---- a/src/server/shared/enuminfo_SharedDefines.cpp	2026-06-29 15:46:46.380132200 +0200
-+++ b/src/server/shared/enuminfo_SharedDefines.cpp	2026-09-30 17:56:45.972651900 +0200
-@@ -42,6 +42,16 @@
-         case RACE_TROLL: return { "RACE_TROLL", "Troll", "" };
-         case RACE_BLOODELF: return { "RACE_BLOODELF", "Blood Elf", "" };
-         case RACE_DRAENEI: return { "RACE_DRAENEI", "Draenei", "" };
-+        case RACE_GOBLIN: return { "RACE_GOBLIN", "Goblin", "" };
-+        case RACE_WORGEN: return { "RACE_WORGEN", "Worgen", "" };
-+        case RACE_HIGHELF: return { "RACE_HIGHELF", "High Elf", "" };
-+        case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
-+        case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
-+        case RACE_DARKIRONDWARF: return { "RACE_DARKIRONDWARF", "Dark Iron Dwarf", "" };
-+        case RACE_ZANDALARITROLL: return { "RACE_ZANDALARITROLL", "Zandalari Troll", "" };
-+        case RACE_VULPERA: return { "RACE_VULPERA", "Vulpera", "" };
-+        case RACE_ALLIANCEPANDAREN: return { "RACE_ALLIANCEPANDAREN", "Pandaren", "" };
-+        case RACE_HORDEPANDAREN: return { "RACE_HORDEPANDAREN", "Pandaren", "" };
-         default: throw std::out_of_range("value");
-     }
- }
-@@ -64,6 +74,16 @@
-         case 7: return RACE_TROLL;
-         case 8: return RACE_BLOODELF;
-         case 9: return RACE_DRAENEI;
-+        case 10: return RACE_GOBLIN;
-+        case 11: return RACE_WORGEN;
-+        case 12: return RACE_HIGHELF;
-+        case 13: return RACE_MAGHARORC;
-+        case 14: return RACE_OGRE;
-+        case 15: return RACE_DARKIRONDWARF;
-+        case 16: return RACE_ZANDALARITROLL;
-+        case 17: return RACE_VULPERA;
-+        case 18: return RACE_ALLIANCEPANDAREN;
-+        case 19: return RACE_HORDEPANDAREN;
-         default: throw std::out_of_range("index");
-     }
- }
-@@ -83,6 +103,16 @@
-         case RACE_TROLL: return 7;
-         case RACE_BLOODELF: return 8;
-         case RACE_DRAENEI: return 9;
-+        case RACE_GOBLIN: return 10;
-+        case RACE_WORGEN: return 11;
-+        case RACE_HIGHELF: return 12;
-+        case RACE_MAGHARORC: return 13;
-+        case RACE_OGRE: return 14;
-+        case RACE_DARKIRONDWARF: return 15;
-+        case RACE_ZANDALARITROLL: return 16;
-+        case RACE_VULPERA: return 17;
-+        case RACE_ALLIANCEPANDAREN: return 18;
-+        case RACE_HORDEPANDAREN: return 19;
-         default: throw std::out_of_range("value");
-     }
- }
-diff -ruN a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
---- a/src/server/shared/SharedDefines.h	2026-06-26 17:27:34.863277500 +0200
-+++ b/src/server/shared/SharedDefines.h	2026-09-30 18:05:12.403175900 +0200
-@@ -76,19 +76,40 @@
+diff --git a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
+index 502a8a743..77fcdf90f 100644
+--- a/src/server/shared/SharedDefines.h
++++ b/src/server/shared/SharedDefines.h
+@@ -76,19 +76,40 @@ enum Races
      RACE_TAUREN             = 6,  // TITLE Tauren
      RACE_GNOME              = 7,  // TITLE Gnome
      RACE_TROLL              = 8,  // TITLE Troll
@@ -876,7 +876,7 @@ diff -ruN a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.
  };
  
  // DisplayRace values from CreatureDisplayInfoExtra.dbc
-@@ -106,16 +127,37 @@
+@@ -106,16 +127,37 @@ enum class DisplayRace : uint8
      Goblin            = 9,
      BloodElf          = 10,
      Draenei           = 11,
@@ -924,10 +924,66 @@ diff -ruN a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.
  };
  
  // Class value is index in ChrClasses.dbc
-diff -ruN a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator/MapBuilder.cpp
---- a/src/tools/mmaps_generator/MapBuilder.cpp	2026-06-26 17:27:34.914277500 +0200
-+++ b/src/tools/mmaps_generator/MapBuilder.cpp	2026-08-08 00:18:49.553121200 +0200
-@@ -98,7 +98,7 @@
+diff --git a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enuminfo_SharedDefines.cpp
+index bb68abfb0..b73fc0b7e 100644
+--- a/src/server/shared/enuminfo_SharedDefines.cpp
++++ b/src/server/shared/enuminfo_SharedDefines.cpp
+@@ -42,6 +42,16 @@ AC_API_EXPORT EnumText EnumUtils<Races>::ToString(Races value)
+         case RACE_TROLL: return { "RACE_TROLL", "Troll", "" };
+         case RACE_BLOODELF: return { "RACE_BLOODELF", "Blood Elf", "" };
+         case RACE_DRAENEI: return { "RACE_DRAENEI", "Draenei", "" };
++        case RACE_GOBLIN: return { "RACE_GOBLIN", "Goblin", "" };
++        case RACE_WORGEN: return { "RACE_WORGEN", "Worgen", "" };
++        case RACE_HIGHELF: return { "RACE_HIGHELF", "High Elf", "" };
++        case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
++        case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
++        case RACE_DARKIRONDWARF: return { "RACE_DARKIRONDWARF", "Dark Iron Dwarf", "" };
++        case RACE_ZANDALARITROLL: return { "RACE_ZANDALARITROLL", "Zandalari Troll", "" };
++        case RACE_VULPERA: return { "RACE_VULPERA", "Vulpera", "" };
++        case RACE_ALLIANCEPANDAREN: return { "RACE_ALLIANCEPANDAREN", "Pandaren", "" };
++        case RACE_HORDEPANDAREN: return { "RACE_HORDEPANDAREN", "Pandaren", "" };
+         default: throw std::out_of_range("value");
+     }
+ }
+@@ -64,6 +74,16 @@ AC_API_EXPORT Races EnumUtils<Races>::FromIndex(std::size_t index)
+         case 7: return RACE_TROLL;
+         case 8: return RACE_BLOODELF;
+         case 9: return RACE_DRAENEI;
++        case 10: return RACE_GOBLIN;
++        case 11: return RACE_WORGEN;
++        case 12: return RACE_HIGHELF;
++        case 13: return RACE_MAGHARORC;
++        case 14: return RACE_OGRE;
++        case 15: return RACE_DARKIRONDWARF;
++        case 16: return RACE_ZANDALARITROLL;
++        case 17: return RACE_VULPERA;
++        case 18: return RACE_ALLIANCEPANDAREN;
++        case 19: return RACE_HORDEPANDAREN;
+         default: throw std::out_of_range("index");
+     }
+ }
+@@ -83,6 +103,16 @@ AC_API_EXPORT std::size_t EnumUtils<Races>::ToIndex(Races value)
+         case RACE_TROLL: return 7;
+         case RACE_BLOODELF: return 8;
+         case RACE_DRAENEI: return 9;
++        case RACE_GOBLIN: return 10;
++        case RACE_WORGEN: return 11;
++        case RACE_HIGHELF: return 12;
++        case RACE_MAGHARORC: return 13;
++        case RACE_OGRE: return 14;
++        case RACE_DARKIRONDWARF: return 15;
++        case RACE_ZANDALARITROLL: return 16;
++        case RACE_VULPERA: return 17;
++        case RACE_ALLIANCEPANDAREN: return 18;
++        case RACE_HORDEPANDAREN: return 19;
+         default: throw std::out_of_range("value");
+     }
+ }
+diff --git a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator/MapBuilder.cpp
+index ab82cd6e2..55485178a 100644
+--- a/src/tools/mmaps_generator/MapBuilder.cpp
++++ b/src/tools/mmaps_generator/MapBuilder.cpp
+@@ -124,7 +124,7 @@ namespace MMAP
      {
          std::vector<std::string> files;
          uint32 mapID, tileX, tileY, tileID, count = 0, fsize = 0;
@@ -936,7 +992,7 @@ diff -ruN a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator
  
          printf("Discovering maps... ");
          getDirContents(files, m_config->MapsPath());
-@@ -132,7 +132,7 @@
+@@ -158,7 +158,7 @@ namespace MMAP
              std::set<uint32>* tiles = m_tile.m_tiles;
              mapID = m_tile.m_mapId;
  
@@ -945,7 +1001,7 @@ diff -ruN a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator
              files.clear();
              getDirContents(files, m_config->VMapsPath(), filter);
              for (auto & file : files)
-@@ -147,7 +147,7 @@
+@@ -173,7 +173,7 @@ namespace MMAP
                  count++;
              }
  
@@ -954,7 +1010,7 @@ diff -ruN a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator
              files.clear();
              getDirContents(files, m_config->MapsPath(), filter);
              for (auto & file : files)
-@@ -590,8 +590,8 @@
+@@ -615,8 +615,8 @@ namespace MMAP
                                        dtNavMesh* navMesh)
      {
          // console output

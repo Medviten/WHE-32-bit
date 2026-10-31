@@ -94,7 +94,7 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply whe-acore.patch (and optionally playerbots patch)
 
-Copy WHE-32-bit/integration/whe-acore.patch into your AzerothCore root directory. Apply it like this:
+Copy WHE-32-bit/patches/whe-acore.patch into your AzerothCore root directory. Apply it like this:
 
 ```text
 git apply --ignore-space-change --ignore-whitespace whe-acore.patch
@@ -102,7 +102,7 @@ git add .
 git commit -m "Add whe-acore patch"
 ```
 
-If you want playerbots, also copy WHE-32-bit/integration/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
+If you want playerbots, also copy WHE-32-bit/patches/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
 
 ```text
 git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch

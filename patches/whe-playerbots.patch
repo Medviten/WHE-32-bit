@@ -1,6 +1,7 @@
-diff -ruN a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/base/0000_playerbots_rpg_races.sql
---- a/data/sql/world/base/0000_playerbots_rpg_races.sql	2026-06-25 00:27:27.320598400 +0200
-+++ b/data/sql/world/base/0000_playerbots_rpg_races.sql	2026-10-01 00:08:47.172949700 +0200
+diff --git a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/base/0000_playerbots_rpg_races.sql
+index 83817b39..ff2a8f93 100644
+--- a/data/sql/world/base/0000_playerbots_rpg_races.sql
++++ b/data/sql/world/base/0000_playerbots_rpg_races.sql
 @@ -1,3 +1,25 @@
 +SET @Human            =    1;
 +SET @Orc              =    2;
@@ -27,7 +28,7 @@ diff -ruN a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/b
  DROP TABLE IF EXISTS `playerbots_rpg_races`;
  CREATE TABLE `playerbots_rpg_races`
  (
-@@ -19,335 +41,499 @@
+@@ -19,335 +41,499 @@ INSERT INTO `playerbots_rpg_races` VALUES
  --       DRAENEI
  --
  -- Draenei Azumeryst Isle
@@ -736,7 +737,7 @@ diff -ruN a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/b
  --
  --       ALLIANCE MOUNT VENDORS
  --
-@@ -363,343 +549,605 @@
+@@ -363,343 +549,605 @@ INSERT INTO `playerbots_rpg_races` VALUES
  --
  --       HORDE
  --
@@ -1558,7 +1559,7 @@ diff -ruN a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/b
  -- Innkeeper Fizzgrimble, Tanaris 7733 (Neutral)
  (NULL, 7733, 0, 40, 50),
  -- Master Smith Burninate, Searing Gorge
-@@ -728,7 +1176,7 @@
+@@ -728,7 +1176,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
  (NULL, 19531, 0, 67, 70),
  -- Innkeeper Remi Dodoso, Area 52, Netherstorm
  (NULL, 19571, 0, 67, 70),
@@ -1567,17 +1568,18 @@ diff -ruN a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/b
  (NULL, 25036, 0, 69, 70),
  --
  --           NORTHREND
-@@ -778,5 +1226,5 @@
+@@ -778,5 +1226,5 @@ INSERT INTO `playerbots_rpg_races` VALUES
  -- (NULL, 12384, 5),
  --
  -- ENDING PLACEHOLDER
 -(NULL, 6807, 15, 90, 90)
 +(NULL, 6807, 35, 90, 90)
  ;
-diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteAction.cpp
---- a/src/Ai/Base/Actions/EmoteAction.cpp	2026-06-25 00:29:46.435141700 +0200
-+++ b/src/Ai/Base/Actions/EmoteAction.cpp	2026-09-30 19:07:54.698695900 +0200
-@@ -881,9 +881,11 @@
+diff --git a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteAction.cpp
+index 915179fd..b4fd0b95 100644
+--- a/src/Ai/Base/Actions/EmoteAction.cpp
++++ b/src/Ai/Base/Actions/EmoteAction.cpp
+@@ -881,9 +881,11 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1589,7 +1591,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -891,6 +893,9 @@
+@@ -891,6 +893,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_GNOME:
@@ -1599,7 +1601,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 1;
-@@ -898,6 +903,8 @@
+@@ -898,6 +903,8 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 1;
              }
              case RACE_ORC:
@@ -1608,7 +1610,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -905,6 +912,9 @@
+@@ -905,6 +912,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_TAUREN:
@@ -1618,7 +1620,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -919,8 +929,10 @@
+@@ -919,8 +929,10 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1629,7 +1631,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -936,6 +948,9 @@
+@@ -936,6 +948,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              }
              case RACE_GNOME:
              case RACE_TAUREN:
@@ -1639,7 +1641,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -943,12 +958,28 @@
+@@ -943,12 +958,28 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_ORC:
@@ -1668,7 +1670,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
      else if (emote == 306)
-@@ -960,7 +991,13 @@
+@@ -960,7 +991,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1682,7 +1684,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -968,6 +1005,7 @@
+@@ -968,6 +1005,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_DWARF:
@@ -1690,7 +1692,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -975,6 +1013,8 @@
+@@ -975,6 +1013,8 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_GNOME:
@@ -1699,7 +1701,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -989,6 +1029,7 @@
+@@ -989,6 +1029,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1707,7 +1709,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              case RACE_GNOME:
              {
                  if (Gender == GENDER_MALE)
-@@ -1006,13 +1047,27 @@
+@@ -1006,13 +1047,27 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1735,7 +1737,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
      else if (emote == 323)
-@@ -1028,7 +1083,13 @@
+@@ -1028,7 +1083,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1749,7 +1751,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -1036,6 +1097,7 @@
+@@ -1036,6 +1097,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_DWARF:
@@ -1757,7 +1759,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1049,6 +1111,14 @@
+@@ -1049,6 +1111,14 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
  
                  return 1;
              }
@@ -1772,7 +1774,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
      else if (emote == 325)
-@@ -1057,6 +1127,7 @@
+@@ -1057,6 +1127,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_TROLL:
@@ -1780,7 +1782,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1064,7 +1135,11 @@
+@@ -1064,7 +1135,11 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_DWARF:
@@ -1792,7 +1794,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1075,6 +1150,10 @@
+@@ -1075,6 +1150,10 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_GNOME:
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
@@ -1803,7 +1805,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -1093,6 +1172,13 @@
+@@ -1093,6 +1172,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1817,7 +1819,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -1100,7 +1186,9 @@
+@@ -1100,7 +1186,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_DWARF:
@@ -1827,7 +1829,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1119,6 +1207,13 @@
+@@ -1119,6 +1207,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1841,7 +1843,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -1126,7 +1221,9 @@
+@@ -1126,7 +1221,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 2;
              }
              case RACE_DWARF:
@@ -1851,7 +1853,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1141,15 +1238,24 @@
+@@ -1141,15 +1238,24 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1876,7 +1878,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 2;
-@@ -1164,11 +1270,18 @@
+@@ -1164,11 +1270,18 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1895,7 +1897,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1176,6 +1289,8 @@
+@@ -1176,6 +1289,8 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_GNOME:
@@ -1904,7 +1906,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1193,6 +1308,9 @@
+@@ -1193,6 +1308,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_GNOME:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1914,7 +1916,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1200,7 +1318,9 @@
+@@ -1200,7 +1318,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_DWARF:
@@ -1924,7 +1926,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1208,12 +1328,28 @@
+@@ -1208,12 +1328,28 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_ORC:
@@ -1953,7 +1955,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
      else if (emote == TEXT_EMOTE_NO)
-@@ -1222,7 +1358,9 @@
+@@ -1222,7 +1358,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -1963,7 +1965,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1234,6 +1372,13 @@
+@@ -1234,6 +1372,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TAUREN:
@@ -1977,7 +1979,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1252,6 +1397,11 @@
+@@ -1252,6 +1397,11 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
              case RACE_TROLL:
@@ -1989,7 +1991,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1259,6 +1409,7 @@
+@@ -1259,6 +1409,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_DWARF:
@@ -1997,7 +1999,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1266,6 +1417,9 @@
+@@ -1266,6 +1417,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 4;
              }
              case RACE_TAUREN:
@@ -2007,7 +2009,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1280,11 +1434,18 @@
+@@ -1280,11 +1434,18 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
          {
              case RACE_HUMAN:
              case RACE_DWARF:
@@ -2026,7 +2028,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1306,7 +1467,13 @@
+@@ -1306,7 +1467,13 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              case RACE_NIGHTELF:
              case RACE_ORC:
              case RACE_TAUREN:
@@ -2040,7 +2042,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 3;
-@@ -1314,6 +1481,7 @@
+@@ -1314,6 +1481,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_DWARF:
@@ -2048,7 +2050,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 5;
-@@ -1341,7 +1509,11 @@
+@@ -1341,7 +1509,11 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_DWARF:
@@ -2060,7 +2062,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 6;
-@@ -1357,6 +1529,7 @@
+@@ -1357,6 +1529,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              }
              case RACE_GNOME:
              case RACE_TROLL:
@@ -2068,7 +2070,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1365,12 +1538,28 @@
+@@ -1365,12 +1538,28 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
              }
              case RACE_ORC:
              case RACE_UNDEAD_PLAYER:
@@ -2097,7 +2099,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
      else if (emote == TEXT_EMOTE_JOKE)
-@@ -1385,6 +1574,7 @@
+@@ -1385,6 +1574,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 6;
              }
              case RACE_DWARF:
@@ -2105,7 +2107,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 6;
-@@ -1406,6 +1596,8 @@
+@@ -1406,6 +1596,8 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_ORC:
@@ -2114,7 +2116,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 5;
-@@ -1413,6 +1605,9 @@
+@@ -1413,6 +1605,9 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 5;
              }
              case RACE_TAUREN:
@@ -2124,7 +2126,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 4;
-@@ -1420,6 +1615,7 @@
+@@ -1420,6 +1615,7 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
                  return 3;
              }
              case RACE_TROLL:
@@ -2132,7 +2134,7 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
              {
                  if (Gender == GENDER_MALE)
                      return 5;
-@@ -1433,6 +1629,20 @@
+@@ -1433,6 +1629,20 @@ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, u
  
                  return 7;
              }
@@ -2153,10 +2155,11 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteActio
          }
      }
  
-diff -ruN a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
---- a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp	2026-06-25 00:30:20.486201100 +0200
-+++ b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp	2026-09-30 19:11:09.365819700 +0200
-@@ -252,9 +252,9 @@
+diff --git a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
+index 9b3c5fbf..b99861db 100644
+--- a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
++++ b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
+@@ -261,9 +261,9 @@ GraveyardStruct const* SpiritHealerAction::GetGrave(bool startZone)
      std::vector<uint32> races;
  
      if (bot->GetTeamId() == TEAM_ALLIANCE)
@@ -2168,10 +2171,11 @@ diff -ruN a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/src/Ai/Base/Actions
  
      float graveDistance = -1;
  
-diff -ruN a/src/Bot/Cmd/ChatHelper.cpp b/src/Bot/Cmd/ChatHelper.cpp
---- a/src/Bot/Cmd/ChatHelper.cpp	2026-06-25 00:31:00.898342300 +0200
-+++ b/src/Bot/Cmd/ChatHelper.cpp	2026-09-30 19:46:39.046431600 +0200
-@@ -181,6 +181,16 @@
+diff --git a/src/Bot/Cmd/ChatHelper.cpp b/src/Bot/Cmd/ChatHelper.cpp
+index c4739c5a..2bb356ee 100644
+--- a/src/Bot/Cmd/ChatHelper.cpp
++++ b/src/Bot/Cmd/ChatHelper.cpp
+@@ -187,6 +187,16 @@ ChatHelper::ChatHelper(PlayerbotAI* botAI) : PlayerbotAIAware(botAI)
      races[RACE_UNDEAD_PLAYER] = "Undead";
      races[RACE_BLOODELF] = "Blood Elf";
      races[RACE_DRAENEI] = "Draenei";
@@ -2188,10 +2192,11 @@ diff -ruN a/src/Bot/Cmd/ChatHelper.cpp b/src/Bot/Cmd/ChatHelper.cpp
  }
  
  std::string const ChatHelper::formatMoney(uint32 copper)
-diff -ruN a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFactory.cpp
---- a/src/Bot/Factory/PlayerbotFactory.cpp	2026-06-25 00:31:34.168169300 +0200
-+++ b/src/Bot/Factory/PlayerbotFactory.cpp	2026-10-01 01:50:14.634257300 +0200
-@@ -3737,6 +3737,46 @@
+diff --git a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFactory.cpp
+index f6d579d6..01735bd9 100644
+--- a/src/Bot/Factory/PlayerbotFactory.cpp
++++ b/src/Bot/Factory/PlayerbotFactory.cpp
+@@ -4149,6 +4149,46 @@ void PlayerbotFactory::InitMounts()
              slow = {33660, 35020, 35022, 35018};
              fast = {35025, 35025, 35027};
              break;
@@ -2238,10 +2243,11 @@ diff -ruN a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFact
          default:
              if (bot->GetTeamId() == TEAM_HORDE)
              { // Orc mounts
-diff -ruN a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomPlayerbotFactory.cpp
---- a/src/Bot/Factory/RandomPlayerbotFactory.cpp	2026-06-25 00:43:38.059201100 +0200
-+++ b/src/Bot/Factory/RandomPlayerbotFactory.cpp	2026-10-01 00:13:43.628379800 +0200
-@@ -22,16 +22,26 @@
+diff --git a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+index 295fba0c..58fb177f 100644
+--- a/src/Bot/Factory/RandomPlayerbotFactory.cpp
++++ b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+@@ -75,16 +75,26 @@ constexpr RandomPlayerbotFactory::NameRaceAndGender RandomPlayerbotFactory::Comb
      NameRaceAndGender baseIndex;
      switch (race)
      {
@@ -2276,10 +2282,11 @@ diff -ruN a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomP
          default:
              baseIndex = NameRaceAndGender::GenericMale;
              break;
-diff -ruN a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
---- a/src/Bot/RandomPlayerbotMgr.cpp	2026-06-29 14:54:19.446469100 +0200
-+++ b/src/Bot/RandomPlayerbotMgr.cpp	2026-10-01 01:48:55.180542100 +0200
-@@ -1742,7 +1742,7 @@
+diff --git a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
+index 8f60b4f5..8fe06d76 100644
+--- a/src/Bot/RandomPlayerbotMgr.cpp
++++ b/src/Bot/RandomPlayerbotMgr.cpp
+@@ -1802,7 +1802,7 @@ void RandomPlayerbotMgr::PrepareAddclassCache()
                      Field* fields = results->Fetch();
                      ObjectGuid guid = ObjectGuid(HighGuid::Player, fields[0].Get<uint32>());
                      uint32 race = fields[1].Get<uint32>();
@@ -2288,10 +2295,11 @@ diff -ruN a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
                      addclassCache[GetTeamClassIdx(isAlliance, claz)].insert(guid);
                      collected++;
                  } while (results->NextRow());
-diff -ruN a/src/Mgr/Travel/TravelNode.cpp b/src/Mgr/Travel/TravelNode.cpp
---- a/src/Mgr/Travel/TravelNode.cpp	2026-06-29 14:54:19.458461600 +0200
-+++ b/src/Mgr/Travel/TravelNode.cpp	2026-10-01 01:53:21.915899400 +0200
-@@ -1653,14 +1653,23 @@
+diff --git a/src/Mgr/Travel/TravelNode.cpp b/src/Mgr/Travel/TravelNode.cpp
+index 8afb1435..a99e807d 100644
+--- a/src/Mgr/Travel/TravelNode.cpp
++++ b/src/Mgr/Travel/TravelNode.cpp
+@@ -1652,14 +1652,23 @@ void TravelNodeMap::generateNpcNodes()
  void TravelNodeMap::generateStartNodes()
  {
      std::map<uint8, std::string> startNames;
