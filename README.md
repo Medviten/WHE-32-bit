@@ -92,25 +92,33 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ---
 
-## 2. Apply whe-acore.patch (and optionally playerbots patch)
+## 2. Apply the core patch (and optionally the playerbots patch)
 
-Copy WHE-32-bit/patches/whe-acore.patch into your AzerothCore root directory. Apply it like this:
+Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines WHE's own patches in `patches/` with the patches of the modpaks in your manifest, in manifest order, into one file per repo in tools/scripts/:
+
+| File | Contains | Apply from |
+| --- | --- | --- |
+| `combined-core.patch` | whe-acore.patch + modpak `patches/core/` | AzerothCore root |
+| `combined-playerbots.patch` | whe-playerbots.patch + modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
+| `combined-<target>.patch` | any other modpak `patches/<target>/`, e.g. `individual-progression` | that repo's root |
+
+Copy combined-core.patch into your AzerothCore root directory. Apply it like this:
 
 ```text
-git apply --ignore-space-change --ignore-whitespace whe-acore.patch
+git apply --ignore-space-change --ignore-whitespace combined-core.patch
 git add .
-git commit -m "Add whe-acore patch"
+git commit -m "Add WHE core patch"
 ```
 
-If you want playerbots, also copy WHE-32-bit/patches/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
+If you want playerbots, also copy combined-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
 
 ```text
-git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
+git apply --ignore-space-change --ignore-whitespace combined-playerbots.patch
 git add .
-git commit -m "Add whe-playerbots patch"
+git commit -m "Add WHE playerbots patch"
 ```
 
-Some modpaks ship patches of their own, in `modpaks/<modpak>/patches/<target>/` (`core` for AzerothCore, `individual-progression` for mod-individual-progression, ...). Apply the ones of the modpaks you use the same way, from that repository's root. They are not combined at build time yet.
+Without the script, WHE-32-bit/patches/whe-acore.patch and whe-playerbots.patch apply the same way, just without any modpak patches.
 
 ## 3. Set up the DBC-SQL pipeline
 

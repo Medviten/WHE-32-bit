@@ -28,21 +28,14 @@ source "$CONFIG_FILE"
 # true for a one-off run without editing build-dbc.conf.
 SKIP_DBC_BUILD="${SKIP_DBC_BUILD:-false}"
 
-# When true, the script does nothing except generate the core patch(es)
-# and exit -- no DBC build, no extra SQL targets, no mysql/dbctool needed.
-CORE_PATCH_MODE=false
-
 for arg in "$@"; do
     case "$arg" in
         --skip-dbc)
             SKIP_DBC_BUILD=true
             ;;
-        --core-patch)
-            CORE_PATCH_MODE=true
-            ;;
         -h|--help)
             cat << USAGE
-Usage: $(basename "$0") [--skip-dbc] [--core-patch]
+Usage: $(basename "$0") [--skip-dbc]
 
   --skip-dbc    Skip the DBC build entirely (no database recreate, dump
                 load, table detection, export, or deploy) and go straight
@@ -50,13 +43,8 @@ Usage: $(basename "$0") [--skip-dbc] [--core-patch]
                 quickly testing world-only changes. Same effect as
                 setting SKIP_DBC_BUILD=true in $CONFIG_FILE.
 
-  --core-patch  For each name in CORE_PATCH_TARGETS, diff
-                integration/originals/<name>/ against
-                integration/merged/<name>/ and write
-                combined-core-<name>.patch, ready to apply with
-                `git apply` or `patch -p1` from that target's own repo
-                root. Does nothing else -- no database work, no modpak
-                scanning, no dbctool/mysql required.
+Patches for AzerothCore, mod-playerbots, the client etc. are combined by
+build-patch.sh instead.
 USAGE
             exit 0
             ;;
@@ -86,30 +74,6 @@ DBC_DUMP="${DBC_DUMP:-}"
 # -- anything else under $MODPAKS is left alone and just noted as
 # skipped.
 MANIFEST_FILE="${MANIFEST_FILE:-$SCRIPT_DIR/build-dbc.manifest}"
-
-# --core-patch: relative find -path glob (same syntax as EXTRA_SQL_PATTERNS)
-# for locating core-patch files inside each modpak, and where to write the
-# combined result.
-# --core-patch: integration/ is expected as a sister folder to $MODPAKS,
-# containing originals/<target>/ (pristine copies of only the files that
-# get edited, at their real relative path) and merged/<target>/ (the
-# edited versions, same relative paths). Every file under
-# originals/<target>/ is diffed against merged/<target>/, using a/ and b/
-# path prefixes (not the integration/originals/... prefix), so the result
-# applies with `patch -p1` or `git apply` from that target's own repo
-# root. One patch file is written per target (they're typically separate
-# repos with different roots, e.g. azerothcore-wotlk vs mod-playerbots),
-# named combined-core-<target>.patch next to this script.
-#
-# Empty by default (disabled) -- list the target subdirectory names you
-# actually have, e.g.:
-#
-#   CORE_PATCH_TARGETS=("azerothcore-wotlk")
-#
-INTEGRATION_DIR="${INTEGRATION_DIR:-$(dirname "$MODPAKS")/integration}"
-if ! declare -p CORE_PATCH_TARGETS &>/dev/null; then
-    CORE_PATCH_TARGETS=()
-fi
 
 # Optional file of session variables (e.g. SET @Goblin = ...), expected
 # directly inside $MODPAKS (not inside any modpak folder). If present,
@@ -412,87 +376,6 @@ load_modpak_manifest() {
     done < "$MANIFEST_FILE"
 }
 
-# For one core-patch target: diffs every file under
-# integration/originals/<target>/ against the file at the same relative
-# path under integration/merged/<target>/, using a/<relpath> and
-# b/<relpath> labels, and writes the result to
-# $SCRIPT_DIR/combined-core-<target>.patch.
-#
-# This works by symlinking the two roots as literal "a" and "b" inside a
-# scratch dir and running one recursive `diff -ruN a b` -- that's what
-# produces a/<relpath> and b/<relpath> headers (rather than the
-# integration/originals/... path) and gets new-file handling for free
-# (via -N, a file that only exists on the merged side is diffed against
-# an empty file, producing a proper "new file" hunk).
-generate_core_patch_for_target() {
-    local target="$1"
-    local originals_root="$INTEGRATION_DIR/originals/$target"
-    local merged_root="$INTEGRATION_DIR/merged/$target"
-    local output="$SCRIPT_DIR/combined-core-$target.patch"
-
-    echo
-    echo "============================================================"
-    echo "Core patch target: $target"
-    echo "============================================================"
-
-    if [[ ! -d "$originals_root" ]]; then
-        echo "ERROR: originals dir not found: $originals_root" >&2
-        return 1
-    fi
-    if [[ ! -d "$merged_root" ]]; then
-        echo "ERROR: merged dir not found: $merged_root" >&2
-        return 1
-    fi
-
-    local pair_dir="$TMP_DIR/corepatch-$target"
-    mkdir -p "$pair_dir"
-    ln -s "$originals_root" "$pair_dir/a"
-    ln -s "$merged_root" "$pair_dir/b"
-
-    local status
-    if (cd "$pair_dir" && diff -ruN a b) > "$output"; then
-        status=0
-    else
-        status=$?
-    fi
-
-    if (( status > 1 )); then
-        echo "ERROR: diff failed for target '$target' (exit $status)." >&2
-        echo "       See above for diff's own error output." >&2
-        rm -f "$output"
-        return 1
-    fi
-
-    if (( status == 0 )); then
-        echo "No differences found between originals and merged. Nothing to do."
-        rm -f "$output"
-        return 0
-    fi
-
-    echo "Combined patch written to: $output"
-    echo
-    echo "Apply it from the $target repo root with one of:"
-    echo "  git apply '$output'"
-    echo "  patch -p1 < '$output'"
-}
-
-# Runs generate_core_patch_for_target for every entry in
-# $CORE_PATCH_TARGETS. Empty CORE_PATCH_TARGETS is not an error -- it just
-# means the feature isn't configured.
-generate_core_patch() {
-    if (( ${#CORE_PATCH_TARGETS[@]} == 0 )); then
-        echo
-        echo "CORE_PATCH_TARGETS is empty in $CONFIG_FILE -- nothing to do."
-        echo "Add target names, e.g.: CORE_PATCH_TARGETS=(\"azerothcore-wotlk\")"
-        return 0
-    fi
-
-    local target
-    for target in "${CORE_PATCH_TARGETS[@]}"; do
-        generate_core_patch_for_target "$target"
-    done
-}
-
 # Prints $1's content with every occurrence of $DBC_DB_PLACEHOLDER, and
 # (if WORLD_DATABASE is set) $WORLD_DB_PLACEHOLDER, replaced by their
 # real database names. Plain substring replacement, not regex.
@@ -760,41 +643,28 @@ SQL
 
 echo "Checking configuration..."
 
-if [[ "$CORE_PATCH_MODE" != true ]]; then
-    [[ -d "$MODPAKS" ]] \
-        || { echo "ERROR: MODPAKS does not exist: $MODPAKS" >&2; exit 1; }
+[[ -d "$MODPAKS" ]] \
+    || { echo "ERROR: MODPAKS does not exist: $MODPAKS" >&2; exit 1; }
 
-    if [[ "$SKIP_DBC_BUILD" != true ]]; then
-        [[ -d "$DBCTOOL" ]] \
-            || { echo "ERROR: DBCTOOL does not exist: $DBCTOOL" >&2; exit 1; }
+if [[ "$SKIP_DBC_BUILD" != true ]]; then
+    [[ -d "$DBCTOOL" ]] \
+        || { echo "ERROR: DBCTOOL does not exist: $DBCTOOL" >&2; exit 1; }
 
-        [[ -x "$DBCTOOL/dbctool" ]] \
-            || { echo "ERROR: dbctool executable not found: $DBCTOOL/dbctool" >&2; exit 1; }
+    [[ -x "$DBCTOOL/dbctool" ]] \
+        || { echo "ERROR: dbctool executable not found: $DBCTOOL/dbctool" >&2; exit 1; }
 
-        [[ -d "$ORIGINAL_DBC" ]] \
-            || { echo "ERROR: ORIGINAL_DBC does not exist: $ORIGINAL_DBC" >&2; exit 1; }
+    [[ -d "$ORIGINAL_DBC" ]] \
+        || { echo "ERROR: ORIGINAL_DBC does not exist: $ORIGINAL_DBC" >&2; exit 1; }
 
-        [[ -d "$SERVER_DBC" ]] \
-            || { echo "ERROR: SERVER_DBC does not exist: $SERVER_DBC" >&2; exit 1; }
+    [[ -d "$SERVER_DBC" ]] \
+        || { echo "ERROR: SERVER_DBC does not exist: $SERVER_DBC" >&2; exit 1; }
 
-        command -v rsync >/dev/null \
-            || { echo "ERROR: rsync command not found." >&2; exit 1; }
-    fi
-
-    command -v mysql >/dev/null \
-        || { echo "ERROR: mysql command not found." >&2; exit 1; }
+    command -v rsync >/dev/null \
+        || { echo "ERROR: rsync command not found." >&2; exit 1; }
 fi
 
-###############################################################################
-# --core-patch mode: generate the combined patch(es) and stop here. Doesn't
-# touch modpaks/ or the manifest at all -- it only diffs
-# integration/originals/<target>/ against integration/merged/<target>/.
-###############################################################################
-
-if [[ "$CORE_PATCH_MODE" == true ]]; then
-    generate_core_patch
-    exit 0
-fi
+command -v mysql >/dev/null \
+    || { echo "ERROR: mysql command not found." >&2; exit 1; }
 
 ###############################################################################
 # Load modpak manifest (definitive whitelist + processing order)

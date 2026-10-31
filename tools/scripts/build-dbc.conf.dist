@@ -22,3 +22,8 @@ REMOTE_SOURCE_DIR="/home/youruser/wow"
 
 # Clean baseline database dump instead of reimporting DBCs every time
 DBC_BASELINE="/path/to/dbc-baseline.sql"
+
+# Where build-patch.sh writes combined-<target>.patch: whe-*.patch plus the
+# patches/<target>/ folders of the modpaks in the manifest (see README).
+# Defaults to this directory.
+#PATCH_OUTPUT_DIR="/path/to/combined/patches"
