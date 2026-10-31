@@ -425,43 +425,41 @@ INSERT IGNORE INTO `playercreateinfo_action` VALUES
 (@Human,    @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Human,    @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Human,    @Druid,       @Row1Button12,     @SpellEveryManForHimself,      @ActionbarSpell),
-(@Human,    @Druid,       @SpecialAButton2,  @SpellAutoAttack,              @ActionbarSpell),
+(@Human,    @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Human,    @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Orc,      @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Orc,      @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Orc,      @Druid,       @Row1Button3,      @SpellBloodFuryShaman,         @ActionbarSpell),
-(@Orc,      @Druid,       @SpecialBButton2,  @SpellAutoAttack,              @ActionbarSpell),
-(@Dwarf,    @Druid,       @SpecialCButton2,  @SpellAutoAttack,              @ActionbarSpell),
+(@Orc,      @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Orc,      @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
+(@Dwarf,    @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Dwarf,    @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Dwarf,    @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Dwarf,    @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Dwarf,    @Druid,       @Row1Button11,     @SpellFindTreasure,            @ActionbarSpell),
 (@Dwarf,    @Druid,       @Row1Button12,     @SpellStoneform,               @ActionbarSpell),
-(@NightElf, @Druid,       @SpecialDButton2,  @SpellAutoAttack,              @ActionbarSpell),
-(@NightElf, @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
-(@NightElf, @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
-(@NightElf, @Druid,       @Row1Button12,     @SpellShadowmeld,              @ActionbarSpell),
-(@NightElf, @Druid,       @SpecialAButton3,  @SpellShadowmeld,              @ActionbarSpell),
-(@Undead,   @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell),
+(@Undead,   @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Undead,   @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Undead,   @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Undead,   @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Undead,   @Druid,       @Row1Button12,     @SpellCannibalize,             @ActionbarSpell),
-(@Tauren,   @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell),
-(@Tauren,   @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
-(@Tauren,   @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
-(@Tauren,   @Druid,       @Row1Button3,      @SpellWarStomp,                @ActionbarSpell),
-(@Tauren,   @Druid,       @SpecialAButton4,  @SpellWarStomp,                @ActionbarSpell),
-(@Gnome,    @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell),
+(@Gnome,    @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Gnome,    @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Gnome,    @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Gnome,    @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Gnome,    @Druid,       @Row1Button12,     @SpellEscapeArtist,            @ActionbarSpell),
-(@Troll,    @Druid,       @SpecialAButton2,  @SpellAutoAttack,              @ActionbarSpell),
+(@Troll,    @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Troll,    @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Troll,    @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Troll,    @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Troll,    @Druid,       @Row1Button12,     @SpellBerserking,              @ActionbarSpell),
-(@BloodElf, @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell),
+(@BloodElf, @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@BloodElf, @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@BloodElf, @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@BloodElf, @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@BloodElf, @Druid,       @Row1Button11,     @SpellArcaneTorrentDruid2,     @ActionbarSpell),
-(@Draenei,  @Druid,       @SpecialCButton2,  @SpellAutoAttack,              @ActionbarSpell),
+(@Draenei,  @Druid,       @SpecialAButton1,  @SpellAutoAttack,              @ActionbarSpell), -- cat form bar, as stock druids
+(@Draenei,  @Druid,       @SpecialCButton1,  @SpellAutoAttack,              @ActionbarSpell), -- bear form bar, as stock druids
 (@Draenei,  @Druid,       @Row1Button1,      @SpellWrath1,                  @ActionbarSpell),
 (@Draenei,  @Druid,       @Row1Button2,      @SpellHealingTouch1,           @ActionbarSpell),
 (@Draenei,  @Druid,       @Row1Button12,     @SpellGiftOfTheNaaruDruid,     @ActionbarSpell);

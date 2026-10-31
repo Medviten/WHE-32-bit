@@ -1,5 +1,11 @@
--- Start positions of @ArakkoaHome
+-- Start positions of @ArakkoaHome for every class the race offers (charbaseinfo, ARAC's included). Classes @ArakkoaHome lacks
+-- start where its first class does; Death Knights start where its Death Knights do
 DELETE FROM `playercreateinfo` WHERE `race` = @Arakkoa;
 INSERT INTO `playercreateinfo` (`race`, `class`, `map`, `zone`, `position_x`, `position_y`, `position_z`, `orientation`)
-SELECT @Arakkoa, `class`, `map`, `zone`, `position_x`, `position_y`, `position_z`, `orientation`
-FROM (SELECT * FROM `playercreateinfo` WHERE `race` = @ArakkoaHome) AS `home`;
+SELECT @Arakkoa, `c`.`class`, `p`.`map`, `p`.`zone`, `p`.`position_x`, `p`.`position_y`, `p`.`position_z`, `p`.`orientation`
+FROM (SELECT DISTINCT `class` FROM `dbc_db`.`charbaseinfo` WHERE `race` = @Arakkoa) AS `c`
+JOIN `playercreateinfo` AS `p` ON `p`.`race` = @ArakkoaHome AND `p`.`class` = COALESCE(
+    (SELECT `h`.`class` FROM `playercreateinfo` AS `h` WHERE `h`.`race` = @ArakkoaHome AND `h`.`class` = `c`.`class`),
+    IF(`c`.`class` = @DeathKnight, NULL,
+       (SELECT MIN(`h`.`class`) FROM `playercreateinfo` AS `h` WHERE `h`.`race` = @ArakkoaHome AND `h`.`class` <> @DeathKnight))
+);

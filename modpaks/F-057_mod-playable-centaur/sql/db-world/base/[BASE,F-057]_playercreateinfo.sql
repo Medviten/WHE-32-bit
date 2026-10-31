@@ -1,5 +1,11 @@
--- Start positions of @CentaurHome
+-- Start positions of @CentaurHome for every class the race offers (charbaseinfo, ARAC's included). Classes @CentaurHome lacks
+-- start where its first class does; Death Knights start where its Death Knights do
 DELETE FROM `playercreateinfo` WHERE `race` = @Centaur;
 INSERT INTO `playercreateinfo` (`race`, `class`, `map`, `zone`, `position_x`, `position_y`, `position_z`, `orientation`)
-SELECT @Centaur, `class`, `map`, `zone`, `position_x`, `position_y`, `position_z`, `orientation`
-FROM (SELECT * FROM `playercreateinfo` WHERE `race` = @CentaurHome) AS `home`;
+SELECT @Centaur, `c`.`class`, `p`.`map`, `p`.`zone`, `p`.`position_x`, `p`.`position_y`, `p`.`position_z`, `p`.`orientation`
+FROM (SELECT DISTINCT `class` FROM `dbc_db`.`charbaseinfo` WHERE `race` = @Centaur) AS `c`
+JOIN `playercreateinfo` AS `p` ON `p`.`race` = @CentaurHome AND `p`.`class` = COALESCE(
+    (SELECT `h`.`class` FROM `playercreateinfo` AS `h` WHERE `h`.`race` = @CentaurHome AND `h`.`class` = `c`.`class`),
+    IF(`c`.`class` = @DeathKnight, NULL,
+       (SELECT MIN(`h`.`class`) FROM `playercreateinfo` AS `h` WHERE `h`.`race` = @CentaurHome AND `h`.`class` <> @DeathKnight))
+);
