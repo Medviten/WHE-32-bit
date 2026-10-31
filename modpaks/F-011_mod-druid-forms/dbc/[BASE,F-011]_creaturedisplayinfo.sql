@@ -1,25 +1,9 @@
--- [F-011] mod-druid-forms: creaturedisplayinfo: 28 inserts, 0 updates, 0 deletes
+-- [F-011] mod-druid-forms: creaturedisplayinfo: 21 inserts, 0 updates, 0 deletes
 
 -- New entries
-/* Cataclysm Druid forms: Troll (Worgen ones are in F-024) */
+/* Cataclysm Druid forms (Troll ones are in F-084, Worgen ones in F-024) */
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
-    @DruidBearTrollBlueDisplay, @DruidBearTrollPurpleDisplay, @DruidBearTrollRedDisplay, @DruidBearTrollWhiteDisplay, @DruidBearTrollYellowDisplay, @DruidCatTrollSkinBlackDisplay, @DruidCatTrollSkinBlueDisplay, @DruidCatTrollSkinGreenDisplay, @DruidCatTrollSkinRedDisplay, @DruidCatTrollSkinWhiteDisplay
-);
-INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
-(@DruidBearTrollBlueDisplay,       @DruidBearTrollModel,  0, 0, 1,  255, 'DruidBearTrollBlue',       '', '', '',  1, 0, 0, 0, 0, 0),
-(@DruidBearTrollPurpleDisplay,     @DruidBearTrollModel,  0, 0, 1,  255, 'DruidBearTrollPurple',     '', '', '',  1, 0, 0, 0, 0, 0),
-(@DruidBearTrollRedDisplay,        @DruidBearTrollModel,  0, 0, 1,  255, 'DruidBearTrollRed',        '', '', '',  1, 0, 0, 0, 0, 0),
-(@DruidBearTrollWhiteDisplay,      @DruidBearTrollModel,  0, 0, 1,  255, 'DruidBearTrollWhite',      '', '', '',  1, 0, 0, 0, 0, 0),
-(@DruidBearTrollYellowDisplay,     @DruidBearTrollModel,  0, 0, 1,  255, 'DruidBearTrollYellow',     '', '', '',  1, 0, 0, 0, 0, 0),
-(@DruidCatTrollSkinBlackDisplay,   @DruidCatTrollModel,   0, 0, 1,  255, 'DruidCatTrollSkinBlack',   '', '', '', -1, 0, 0, 0, 0, 0),
-(@DruidCatTrollSkinBlueDisplay,    @DruidCatTrollModel,   0, 0, 1,  255, 'DruidCatTrollSkinBlue',    '', '', '', -1, 0, 0, 0, 0, 0),
-(@DruidCatTrollSkinGreenDisplay,   @DruidCatTrollModel,   0, 0, 1,  255, 'DruidCatTrollSkinGreen',   '', '', '', -1, 0, 0, 0, 0, 0),
-(@DruidCatTrollSkinRedDisplay,     @DruidCatTrollModel,   0, 0, 1,  255, 'DruidCatTrollSkinRed',     '', '', '', -1, 0, 0, 0, 0, 0),
-(@DruidCatTrollSkinWhiteDisplay,   @DruidCatTrollModel,   0, 0, 1,  255, 'DruidCatTrollSkinWhite',   '', '', '', -1, 0, 0, 0, 0, 0);
-
-/* Cataclysm Druid forms (not conflicting) */
-DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
-    @DruidCatSkinPurpleDisplay, @DruidTreeFormGreenDisplay, @DruidTreeFormRedDisplay, @DruidTreeFormPurpleDisplay, @DruidTreeFormOrangeDisplay, @DruidOwlBearBlackSkinDisplay, @DruidOwlBearRedSkinDisplay, @StormCrowDruidSkinDisplay, @EpicDruidFlightTrollDisplay, @DruidFlightTrollDisplay
+    @DruidCatSkinPurpleDisplay, @DruidTreeFormGreenDisplay, @DruidTreeFormRedDisplay, @DruidTreeFormPurpleDisplay, @DruidTreeFormOrangeDisplay, @DruidOwlBearBlackSkinDisplay, @DruidOwlBearRedSkinDisplay, @StormCrowDruidSkinDisplay
 );
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
 (@DruidCatSkinPurpleDisplay,    1231,   0, 0, 0.9, 255, 'DruidCatSkinPurple',    'DruidCatSkinPurple',     '', '',  1, 1, 0,   0, 0, 0),
@@ -29,9 +13,7 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidTreeFormOrangeDisplay,   3805,   0, 0, 1.5, 255, 'DruidTreeFormOrange',   '',                       '', '', -1, 0, 0, 602, 0, 0),
 (@DruidOwlBearBlackSkinDisplay, 2199, 204, 0, 0.9, 255, 'DruidOwlBearBlackSkin', 'DruidOwlBearBlackSkin2', '', '', -1, 0, 0,   0, 0, 0),
 (@DruidOwlBearRedSkinDisplay,   2199, 204, 0, 0.9, 255, 'DruidOwlBearRedSkin',   'DruidOwlBearRedSkin2',   '', '', -1, 0, 0,   0, 0, 0),
-(@StormCrowDruidSkinDisplay,    2540,   0, 0,   1, 255, 'StormCrowDruidSkin',    '',                       '', '',  1, 0, 0,   0, 0, 0),
-(@EpicDruidFlightTrollDisplay,  3846,   0, 0,   1, 255, 'EpicDruidFlightTroll1', 'EpicDruidFlightTroll2',  '', '',  1, 0, 0,   0, 0, 0),
-(@DruidFlightTrollDisplay,      3846,   0, 0,   1, 255, 'DruidFlightTroll1',     'DruidFlightTroll2',      '', '',  1, 0, 0,   0, 0, 0);
+(@StormCrowDruidSkinDisplay,    2540,   0, 0,   1, 255, 'StormCrowDruidSkin',    '',                       '', '',  1, 0, 0,   0, 0, 0);
 
 /* Mists of Pandaria Druid forms */
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (@DruidTravelAllianceDisplay, @DruidTravelHordeDisplay); -- New travel forms

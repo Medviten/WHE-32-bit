@@ -90,7 +90,8 @@ F-022_mod-playable-broken
 #F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
 #F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended)
 #F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
-#F-011_mod-druid-forms # Off by default
+#F-011_mod-druid-forms # Off by default (pseudo-druid forms for ARAC druids; Troll forms are in F-084)
+#F-084_troll_druid # Off by default (playable Troll druids with their Cataclysm forms, without the rest of ARAC)
 #F-012_mod-extra-models # Off by default
 #F-015_mod-instamount # Off by default
 F-026_custom-race-support # required for any custom race to function correctly
