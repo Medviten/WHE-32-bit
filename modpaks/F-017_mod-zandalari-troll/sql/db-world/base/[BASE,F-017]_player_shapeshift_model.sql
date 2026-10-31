@@ -33,7 +33,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@MoonkinForm,     @ZandalariTroll,    255,        2, @DruidMoonkinZandalariTrollDisplay),      -- ModelID: druidowlbearzandalariepic2_body, druidowlbearzandalariepic2_armor, armorreflectgold5
 (@FlightForm,      @ZandalariTroll,    255,        2, @DruidFlightZandalariTrollDisplay),       -- ModelID: druidflightzandalaritroll
 (@SwiftFlightForm, @ZandalariTroll,    255,        2, @DruidFlightZandalariTrollDisplay),       -- ModelID: druidflightzandalaritroll
-(@TravelForm,      @ZandalariTroll,    255,        2, @DruidTravelZandalariTrollDisplay),       -- ModelID: druidtravelzandalaritroll
 (@AquaticForm,     @ZandalariTroll,      0,        2, @DruidAquaticZandalariTrollDarkDisplay),  -- dark blue hair: druidaquaticzandalari_dark
 (@AquaticForm,     @ZandalariTroll,      1,        2, @DruidAquaticZandalariTrollTealDisplay),  -- blue hair: druidaquaticzandalari_teal
 (@AquaticForm,     @ZandalariTroll,      2,        2, @DruidAquaticZandalariTrollGreenDisplay), -- green hair: druidaquaticzandalari_green

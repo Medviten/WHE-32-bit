@@ -48,13 +48,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@FlightForm,      @KulTiran,   4, 2, @DruidFlightKulTiranLightDisplay), -- grey hair: druidflightkultiran_light
 (@FlightForm,      @KulTiran,   5, 2, @DruidFlightKulTiranLightDisplay), -- light blonde hair: druidflightkultiran_light
 (@FlightForm,      @KulTiran,   6, 2, @DruidFlightKulTiranLightDisplay), -- dark blonde hair: druidflightkultiran_light
-(@TravelForm,      @KulTiran,   0, 2, @DruidTravelKulTiranBlueDisplay),  -- dark brown hair: druidtravelkultiranblue
-(@TravelForm,      @KulTiran,   1, 2, @DruidTravelKulTiranBrownDisplay), -- black hair: druidtravelkultiranbrown
-(@TravelForm,      @KulTiran,   2, 2, @DruidTravelKulTiranGreenDisplay), -- red hair: druidtravelkultirangreen
-(@TravelForm,      @KulTiran,   3, 2, @DruidTravelKulTiranGreenDisplay), -- light brown hair: druidtravelkultirangreen
-(@TravelForm,      @KulTiran,   4, 2, @DruidTravelKulTiranWhiteDisplay), -- grey hair: druidtravelkultiranwhite
-(@TravelForm,      @KulTiran,   5, 2, @DruidTravelKulTiranWhiteDisplay), -- light blonde hair: druidtravelkultiranwhite
-(@TravelForm,      @KulTiran,   6, 2, @DruidTravelKulTiranWhiteDisplay), -- dark blonde hair: druidtravelkultiranwhite
 (@AquaticForm,     @KulTiran,   0, 2, @DruidAquaticKulTiranBrownDisplay), -- dark brown hair: druidaquatickultiran_brown
 (@AquaticForm,     @KulTiran,   1, 2, @DruidAquaticKulTiranDarkDisplay),  -- black hair: druidaquatickultiran_dark
 (@AquaticForm,     @KulTiran,   2, 2, @DruidAquaticKulTiranGreenDisplay), -- red hair: druidaquatickultiran_green

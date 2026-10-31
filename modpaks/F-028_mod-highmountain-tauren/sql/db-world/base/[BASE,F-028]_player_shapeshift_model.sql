@@ -23,5 +23,4 @@ REPLACE INTO `player_shapeshift_model` (
 (@DireBearForm,    @HighmountainTauren,      4,        2, @DruidBearHighmountainTaurenYellowDisplay), -- unknown fur
 (@MoonkinForm,     @HighmountainTauren,    255,        2, @DruidMoonkinHighmountainTaurenDisplay),
 (@FlightForm,      @HighmountainTauren,    255,        2, @DruidFlightHighmountainTaurenDisplay),
-(@SwiftFlightForm, @HighmountainTauren,    255,        2, @DruidFlightHighmountainTaurenDisplay),
-(@TravelForm,      @HighmountainTauren,    255,        2, @HordeTravelForm); -- placeholder
+(@SwiftFlightForm, @HighmountainTauren,    255,        2, @DruidFlightHighmountainTaurenDisplay);

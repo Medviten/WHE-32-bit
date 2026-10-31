@@ -2318,8 +2318,8 @@ SET @SwiftFlightForm                                           =          27;
 SET @FlightForm                                                =          29;
 SET @MoonkinForm                                               =          31;
 
-SET @AllianceTravelForm                                        =       40816;
-SET @HordeTravelForm                                           =       45339;
+SET @AllianceTravelForm                                        =       @DruidTravelAllianceDisplay; -- F-086 (was the High Elf DBC ID 40816)
+SET @HordeTravelForm                                           =       @DruidTravelHordeDisplay; -- F-086 (was the High Elf DBC ID 45339)
 
 -- Orc totems
 SET @OrcFireTotem                                              =       30758;

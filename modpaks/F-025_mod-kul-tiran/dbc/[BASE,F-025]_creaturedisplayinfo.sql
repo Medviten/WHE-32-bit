@@ -8,7 +8,6 @@ DELETE FROM `creaturedisplayinfo` WHERE `id` IN
     @DruidCatKulTiranBrownDisplay,     @DruidCatKulTiranDarkDisplay,      @DruidCatKulTiranGreenDisplay,     @DruidCatKulTiranLightDisplay,
     @DruidFlightKulTiranBrownDisplay,  @DruidFlightKulTiranDarkDisplay,   @DruidFlightKulTiranGreenDisplay,  @DruidFlightKulTiranLightDisplay,
     @DruidMoonkinKulTiranDisplay,      @DruidMoonkinKulTiranBlackDisplay, @DruidMoonkinKulTiranPaleDisplay,  @DruidMoonkinKulTiranRedDisplay,
-    @DruidTravelKulTiranBlueDisplay,   @DruidTravelKulTiranBrownDisplay,  @DruidTravelKulTiranGreenDisplay,  @DruidTravelKulTiranWhiteDisplay,
     @DruidAquaticKulTiranBrownDisplay, @DruidAquaticKulTiranDarkDisplay,  @DruidAquaticKulTiranGreenDisplay, @DruidAquaticKulTiranLightDisplay
 );
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
@@ -30,10 +29,6 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidMoonkinKulTiranBlackDisplay, @DruidMoonkinKulTiranModel, 204,                           0,                  0.9, 255, 'kultiranmoonkin_black',      '',                      '', '', -1, 0, 0, 0, 0, 0),
 (@DruidMoonkinKulTiranPaleDisplay,  @DruidMoonkinKulTiranModel, 204,                           0,                  0.9, 255, 'kultiranmoonkin_pale',       '',                      '', '', -1, 0, 0, 0, 0, 0),
 (@DruidMoonkinKulTiranRedDisplay,   @DruidMoonkinKulTiranModel, 204,                           0,                  0.9, 255, 'kultiranmoonkin_red',        '',                      '', '', -1, 0, 0, 0, 0, 0),
-(@DruidTravelKulTiranBlueDisplay,   @DruidTravelKulTiranModel,    0,                           0,                    1, 255, 'druidtravelkultiran_blue',    '',                      '', '',  1, 0, 0, 0, 0, 0),
-(@DruidTravelKulTiranBrownDisplay,  @DruidTravelKulTiranModel,    0,                           0,                    1, 255, 'druidtravelkultiran_brown',   '',                      '', '',  1, 0, 0, 0, 0, 0),
-(@DruidTravelKulTiranGreenDisplay,  @DruidTravelKulTiranModel,    0,                           0,                    1, 255, 'druidtravelkultiran_green',   '',                      '', '',  1, 0, 0, 0, 0, 0),
-(@DruidTravelKulTiranWhiteDisplay,  @DruidTravelKulTiranModel,    0,                           0,                    1, 255, 'druidtravelkultiran_white',   '',                      '', '',  1, 0, 0, 0, 0, 0),
 (@DruidAquaticKulTiranBrownDisplay, @DruidAquaticKulTiranModel,   0,                           0,                    1, 255, 'druidaquatickultiran_brown', '',                      '', '',  0, 0, 0, 0, 0, 0),
 (@DruidAquaticKulTiranDarkDisplay,  @DruidAquaticKulTiranModel,   0,                           0,                    1, 255, 'druidaquatickultiran_dark',  '',                      '', '',  0, 0, 0, 0, 0, 0),
 (@DruidAquaticKulTiranGreenDisplay, @DruidAquaticKulTiranModel,   0,                           0,                    1, 255, 'druidaquatickultiran_green', '',                      '', '',  0, 0, 0, 0, 0, 0),

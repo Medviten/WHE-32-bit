@@ -10,5 +10,4 @@ REPLACE INTO `player_shapeshift_model` (
 (@BearForm, @Taunka, 255,	2, 2289), -- ModelID
 (@DireBearForm, @Taunka, 255, 2, 2289), -- ModelID
 (@SwiftFlightForm, @Taunka, 255, 2, 21244), -- ModelID
-(@FlightForm, @Taunka, 255, 2, 20872), -- ModelID
-(@TravelForm, @Taunka, 255, 2, 45339); -- ModelID: DruidTravelHorde
+(@FlightForm, @Taunka, 255, 2, 20872); -- ModelID

@@ -15,7 +15,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@AquaticForm,     @Undead,    255,       2, @DruidSharkSkinPurple), -- ModelID: SharkSkinPurple
 (@FlightForm,      @Undead,    255,       2, @DragonWhelpSkinDiseasedDisplay), -- ModelID: DragonWhelpSkinDiseased
 (@SwiftFlightForm, @Undead,    255,       2, @DragonWhelpSkinDiseasedDisplay), -- ModelID: DragonWhelpSkinDiseased
-(@TravelForm,      @Undead,    255,       2, @HordeTravelForm), -- ModelID: DruidTravelHorde
 
 /* Gnome Druid Forms */
 (@TreeForm,        @Gnome,      1,        2, @DruidLasherOrchidSkinBrown), -- brown hair: LasherOrchidSkinBrown
@@ -28,77 +27,4 @@ REPLACE INTO `player_shapeshift_model` (
 (@TreeForm,        @Gnome,    255,        2, @DruidLasherOrchidSkinGreen), -- ModelID: LasherOrchidSkinGreen
 (@BearForm,        @Gnome,    255,        2, @PolarBearCubSkinDisplay), -- ModelID: PolarBearCubSkin
 (@DireBearForm,    @Gnome,    255,        2, @PolarBearCubSkinDisplay), -- ModelID: PolarBearCubSkin
-(@MoonkinForm,     @Gnome,    255,        2, @NorthrendPenguin01Display), -- ModelID: NorthrendPenguin01
-(@TravelForm,      @Gnome,    255,        2, @AllianceTravelForm); -- ModelID: DruidTravelAlliance
-
--- Default Alliance travel form
--- Side and playability come from ChrRaces (playable: no 0x01 flag, as in the core's RaceMgr, and `alliance` 0 is
--- Alliance, 1 Horde) rather than @AllianceMask/@HordeMask, which only hold races 1-64.
-INSERT INTO `player_shapeshift_model` (
-    `ShapeshiftID`,
-    `RaceID`,
-    `CustomizationID`,
-    `GenderID`,
-    `ModelID`
-)
-SELECT
-    @TravelForm,
-    r.`race`,
-    255,
-    2,
-    @AllianceTravelForm
-FROM (
-    SELECT DISTINCT `race`
-    FROM `dbc_db`.`charbaseinfo`
-    WHERE `race` IS NOT NULL
-) AS r
-WHERE EXISTS (
-      SELECT 1
-      FROM `dbc_db`.`chrraces` c
-      WHERE c.`id` = r.`race`
-        AND (c.`flags` & 1) = 0
-        AND c.`alliance` = 0
-  )
-  AND NOT EXISTS (
-      SELECT 1
-      FROM `player_shapeshift_model` psm
-      WHERE psm.`ShapeshiftID` = @TravelForm
-        AND psm.`RaceID` = r.`race`
-        AND psm.`CustomizationID` = 255
-        AND psm.`GenderID` = 2
-  );
-
--- Default Horde travel form
-INSERT INTO `player_shapeshift_model` (
-    `ShapeshiftID`,
-    `RaceID`,
-    `CustomizationID`,
-    `GenderID`,
-    `ModelID`
-)
-SELECT
-    @TravelForm,
-    r.`race`,
-    255,
-    2,
-    @HordeTravelForm
-FROM (
-    SELECT DISTINCT `race`
-    FROM `dbc_db`.`charbaseinfo`
-    WHERE `race` IS NOT NULL
-) AS r
-WHERE EXISTS (
-      SELECT 1
-      FROM `dbc_db`.`chrraces` c
-      WHERE c.`id` = r.`race`
-        AND (c.`flags` & 1) = 0
-        AND c.`alliance` = 1
-  )
-  AND NOT EXISTS (
-      SELECT 1
-      FROM `player_shapeshift_model` psm
-      WHERE psm.`ShapeshiftID` = @TravelForm
-        AND psm.`RaceID` = r.`race`
-        AND psm.`CustomizationID` = 255
-        AND psm.`GenderID` = 2
-  );
+(@MoonkinForm,     @Gnome,    255,        2, @NorthrendPenguin01Display); -- ModelID: NorthrendPenguin01
