@@ -32,3 +32,13 @@ UPDATE `skilllineability` SET `required_races` = `required_races` | @OgreMask WH
 UPDATE `skilllineability` SET `required_races` = `required_races` | @OgreMask WHERE `id` = 21723; -- Assassination SkillLine, Spell 75460 (N/A)
 UPDATE `skilllineability` SET `required_races` = `required_races` | @OgreMask WHERE `id` = @FlameShockPassiveSkillLineAbility;
 */
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- The Ogre racials, learned with the racial skill line
+DELETE FROM `skilllineability` WHERE `id` IN (@CoAOgreSkillLineAbility1, @CoAOgreSkillLineAbility2, @CoAOgreSkillLineAbility3, @CoAOgreSkillLineAbility4);
+INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`, `required_classes`, `excluded_races`, `excluded_classes`, `min_skill_value`, `spell_parent_id`, `acquire_method`, `skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`) VALUES
+(@CoAOgreSkillLineAbility1, @OgreRacials, @CoAOgreRacial1, @OgreMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- Ogre Slam
+(@CoAOgreSkillLineAbility2, @OgreRacials, @CoAOgreRacial2, @OgreMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- Two Heads Are Better
+(@CoAOgreSkillLineAbility3, @OgreRacials, @CoAOgreRacial3, @OgreMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- Thick Skull
+(@CoAOgreSkillLineAbility4, @OgreRacials, @CoAOgreRacial4, @OgreMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0); -- Club Mastery
+-- <<< CoA Custom 1.9 racials <<<

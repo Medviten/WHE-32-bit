@@ -349,7 +349,7 @@ SET @UndeadMask                                                =   1 << (@Undead
 SET @TaurenMask                                                =   1 << (@Tauren           - 1);  -- race ID 6  → 32
 SET @GnomeMask                                                 =   1 << (@Gnome            - 1);  -- race ID 7  → 64
 SET @TrollMask                                                 =   1 << (@Troll            - 1);  -- race ID 8  → 128
--- SET @GoblinMask                                                =   1 << (@Goblin           - 1);  -- race ID 9  → 256
+SET @GoblinMask                                                =   0; -- set by F-004/F-023 (race ID 9 → 256); 0 when neither is built
 SET @BloodElfMask                                              =   1 << (@BloodElf         - 1);  -- race ID 10 → 512
 SET @DraeneiMask                                               =   1 << (@Draenei          - 1);  -- race ID 11 → 1024
 
@@ -362,9 +362,120 @@ SET @UndeadHelmetMask                                          =      1 << @Unde
 SET @TaurenHelmetMask                                          =      1 << @Tauren;           -- race ID 6  → 64
 SET @GnomeHelmetMask                                           =      1 << @Gnome;            -- race ID 7  → 128
 SET @TrollHelmetMask                                           =      1 << @Troll;            -- race ID 8  → 256
--- SET @GoblinHelmetMask                                          =      1 << @Goblin;           -- race ID 9  → 512
+SET @GoblinHelmetMask                                          =   0; -- set by F-004/F-023 (race ID 9 → 512)
 SET @BloodElfHelmetMask                                        =      1 << @BloodElf;         -- race ID 10 → 1024
 SET @DraeneiHelmetMask                                         =      1 << @Draenei;          -- race ID 11 → 2048
+
+-- Custom race masks: 0 unless the race's modpak is built (its variables.sql sets the real values), so SQL
+-- naming a race whose modpak is left out adds no bits instead of failing on a NULL mask
+SET @WorgenMask                                                =   0; -- F-004, F-024
+SET @WorgenHelmetMask                                          =   0;
+SET @GilneanMask                                               =   0; -- F-004, F-027
+SET @GilneanHelmetMask                                         =   0;
+SET @HighElfMask                                               =   0; -- F-005
+SET @HighElfHelmetMask                                         =   0;
+SET @MagharOrcMask                                             =   0; -- F-007
+SET @MagharOrcHelmetMask                                       =   0;
+SET @OgreMask                                                  =   0; -- F-014, F-031
+SET @OgreHelmetMask                                            =   0;
+SET @DarkIronDwarfMask                                         =   0; -- F-016
+SET @DarkIronDwarfHelmetMask                                   =   0;
+SET @ZandalariTrollMask                                        =   0; -- F-017
+SET @ZandalariTrollHelmetMask                                  =   0;
+SET @VulperaMask                                               =   0; -- F-019
+SET @VulperaHelmetMask                                         =   0;
+SET @AlliancePandarenMask                                      =   0; -- F-020
+SET @AlliancePandarenHelmetMask                                =   0;
+SET @HordePandarenMask                                         =   0; -- F-021
+SET @HordePandarenHelmetMask                                   =   0;
+SET @BrokenMask                                                =   0; -- F-022
+SET @BrokenHelmetMask                                          =   0;
+SET @KulTiranMask                                              =   0; -- F-025
+SET @KulTiranHelmetMask                                        =   0;
+SET @HighmountainTaurenMask                                    =   0; -- F-028
+SET @HighmountainTaurenHelmetMask                              =   0;
+SET @NagaMask                                                  =   0; -- F-030
+SET @NagaHelmetMask                                            =   0;
+SET @TaunkaMask                                                =   0; -- F-032
+SET @TaunkaHelmetMask                                          =   0;
+SET @LightforgedDraeneiMask                                    =   0; -- F-033
+SET @LightforgedDraeneiHelmetMask                              =   0;
+SET @NightborneMask                                            =   0; -- F-034
+SET @NightborneHelmetMask                                      =   0;
+SET @VoidElfMask                                               =   0; -- F-035
+SET @VoidElfHelmetMask                                         =   0;
+SET @VrykulMask                                                =   0; -- F-036
+SET @VrykulHelmetMask                                          =   0;
+SET @AllianceEarthenMask                                       =   0; -- F-038
+SET @AllianceEarthenHelmetMask                                 =   0;
+SET @HordeEarthenMask                                          =   0; -- F-039
+SET @HordeEarthenHelmetMask                                    =   0;
+SET @MechagnomeMask                                            =   0; -- F-040
+SET @MechagnomeHelmetMask                                      =   0;
+SET @ThinHumanMask                                             =   0; -- F-041
+SET @ThinHumanHelmetMask                                       =   0;
+SET @TuskarrMask                                               =   0; -- F-042
+SET @TuskarrHelmetMask                                         =   0;
+SET @DarkfallenMask                                            =   0; -- F-043
+SET @DarkfallenHelmetMask                                      =   0;
+SET @MurlocMask                                                =   0; -- F-044
+SET @MurlocHelmetMask                                          =   0;
+SET @FurbolgMask                                               =   0; -- F-045
+SET @FurbolgHelmetMask                                         =   0;
+SET @SlimeGiantMask                                            =   0; -- F-046
+SET @SlimeGiantHelmetMask                                      =   0;
+SET @FelOrcMask                                                =   0; -- F-047
+SET @FelOrcHelmetMask                                          =   0;
+SET @SkeletonMask                                              =   0; -- F-048
+SET @SkeletonHelmetMask                                        =   0;
+SET @ForestTrollMask                                           =   0; -- F-049
+SET @ForestTrollHelmetMask                                     =   0;
+SET @NorthrendSkeletonMask                                     =   0; -- F-050
+SET @NorthrendSkeletonHelmetMask                               =   0;
+SET @IceTrollMask                                              =   0; -- F-051
+SET @IceTrollHelmetMask                                        =   0;
+SET @QirajiMask                                                =   0; -- F-052
+SET @QirajiHelmetMask                                          =   0;
+SET @EredarMask                                                =   0; -- F-053
+SET @EredarHelmetMask                                          =   0;
+SET @ArakkoaMask                                               =   0; -- F-054
+SET @ArakkoaHelmetMask                                         =   0;
+SET @FelElfMask                                                =   0; -- F-055
+SET @FelElfHelmetMask                                          =   0;
+SET @QuillboarMask                                             =   0; -- F-056
+SET @QuillboarHelmetMask                                       =   0;
+SET @CentaurMask                                               =   0; -- F-057
+SET @CentaurHelmetMask                                         =   0;
+SET @DemonMask                                                 =   0; -- F-058
+SET @DemonHelmetMask                                           =   0;
+SET @SatyrMask                                                 =   0; -- F-059
+SET @SatyrHelmetMask                                           =   0;
+SET @GnollMask                                                 =   0; -- F-060
+SET @GnollHelmetMask                                           =   0;
+SET @BeholderMask                                              =   0; -- F-061
+SET @BeholderHelmetMask                                        =   0;
+SET @ShivanMask                                                =   0; -- F-062
+SET @ShivanHelmetMask                                          =   0;
+SET @HozenMask                                                 =   0; -- F-064
+SET @HozenHelmetMask                                           =   0;
+SET @SylvariMask                                               =   0; -- F-065
+SET @SylvariHelmetMask                                         =   0;
+SET @MantidMask                                                =   0; -- F-066
+SET @MantidHelmetMask                                          =   0;
+SET @EtherealMask                                              =   0; -- F-067
+SET @EtherealHelmetMask                                        =   0;
+SET @KyrianMask                                                =   0; -- F-068
+SET @KyrianHelmetMask                                          =   0;
+SET @VenthyrMask                                               =   0; -- F-069
+SET @VenthyrHelmetMask                                         =   0;
+SET @BansheeMask                                               =   0; -- F-070
+SET @BansheeHelmetMask                                         =   0;
+SET @FacelessOneMask                                           =   0; -- F-071
+SET @FacelessOneHelmetMask                                     =   0;
+SET @AllianceDracthyrMask                                      =   0; -- F-073
+SET @AllianceDracthyrHelmetMask                                =   0;
+SET @HordeDracthyrMask                                         =   0; -- F-074
+SET @HordeDracthyrHelmetMask                                   =   0;
 
 -- New Race Models
 SET @NextModelID                                               =    39999;
@@ -421,6 +532,48 @@ SET @MurlocMaleModel                                           =    @NextModelID
 SET @MurlocFemaleModel                                         =    @NextModelID := @NextModelID +1;
 SET @FurbolgMaleModel                                          =    @NextModelID := @NextModelID +1;
 SET @FurbolgFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @SlimeGiantMaleModel                                       =    @NextModelID := @NextModelID +1; -- male only
+SET @FelOrcMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @FelOrcFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @SkeletonMaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @SkeletonFemaleModel                                       =    @NextModelID := @NextModelID +1;
+SET @ForestTrollMaleModel                                      =    @NextModelID := @NextModelID +1; -- male only
+SET @NorthrendSkeletonMaleModel                                =    @NextModelID := @NextModelID +1; -- male only
+SET @IceTrollMaleModel                                         =    @NextModelID := @NextModelID +1; -- male only
+SET @QirajiMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @QirajiFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @EredarMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @EredarFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @ArakkoaMaleModel                                          =    @NextModelID := @NextModelID +1; -- male only
+SET @FelElfMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @FelElfFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @QuillboarMaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @QuillboarFemaleModel                                      =    @NextModelID := @NextModelID +1;
+SET @CentaurMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @CentaurFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @DemonMaleModel                                            =    @NextModelID := @NextModelID +1; -- male only
+SET @SatyrMaleModel                                            =    @NextModelID := @NextModelID +1;
+SET @SatyrFemaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @GnollMaleModel                                            =    @NextModelID := @NextModelID +1;
+SET @GnollFemaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @BeholderMaleModel                                         =    @NextModelID := @NextModelID +1; -- male only
+SET @ShivanMaleModel                                           =    @NextModelID := @NextModelID +1; -- male only
+SET @HozenMaleModel                                            =    @NextModelID := @NextModelID +1; -- male only
+SET @SylvariMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @SylvariFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @MantidMaleModel                                           =    @NextModelID := @NextModelID +1; -- male only
+SET @EtherealMaleModel                                         =    @NextModelID := @NextModelID +1; -- male only
+SET @KyrianMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @KyrianFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @VenthyrMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @VenthyrFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @BansheeMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @BansheeFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @FacelessOneMaleModel                                      =    @NextModelID := @NextModelID +1; -- male only
+SET @AllianceDracthyrMaleModel                                 =    @NextModelID := @NextModelID +1;
+SET @AllianceDracthyrFemaleModel                               =    @NextModelID := @NextModelID +1;
+SET @HordeDracthyrMaleModel                                    =    @NextModelID := @NextModelID +1;
+SET @HordeDracthyrFemaleModel                                  =    @NextModelID := @NextModelID +1;
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -485,6 +638,60 @@ SET @MurlocMaleDisplay                                         =    @NextDisplay
 SET @MurlocFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 SET @FurbolgMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
 SET @FurbolgFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @SlimeGiantMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @SlimeGiantFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @FelOrcMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @FelOrcFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @SkeletonMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @SkeletonFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @ForestTrollMaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @ForestTrollFemaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @NorthrendSkeletonMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @NorthrendSkeletonFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1;
+SET @IceTrollMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @IceTrollFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @QirajiMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @QirajiFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @EredarMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @EredarFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @ArakkoaMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @ArakkoaFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @FelElfMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @FelElfFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @QuillboarMaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @QuillboarFemaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @CentaurMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @CentaurFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @DemonMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @DemonFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @SatyrMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @SatyrFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @GnollMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @GnollFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @BeholderMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @BeholderFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @ShivanMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @ShivanFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @HozenMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @HozenFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @SylvariMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @SylvariFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @MantidMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @MantidFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @EtherealMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @EtherealFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @KyrianMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @KyrianFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @VenthyrMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @VenthyrFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @BansheeMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @BansheeFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @FacelessOneMaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @FacelessOneFemaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @AllianceDracthyrMaleDisplay                               =    @NextDisplayID := @NextDisplayID +1;
+SET @AllianceDracthyrFemaleDisplay                             =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeDracthyrMaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeDracthyrFemaleDisplay                                =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -546,6 +753,60 @@ SET @MurlocMaleDisplayExtra                                    =    @NextDisplay
 SET @MurlocFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @FurbolgMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @FurbolgFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SlimeGiantMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SlimeGiantFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelOrcMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelOrcFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SkeletonMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SkeletonFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ForestTrollMaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ForestTrollFemaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NorthrendSkeletonMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NorthrendSkeletonFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @IceTrollMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @IceTrollFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QirajiMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QirajiFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EredarMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EredarFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ArakkoaMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ArakkoaFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelElfMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelElfFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QuillboarMaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QuillboarFemaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CentaurMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CentaurFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DemonMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DemonFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SatyrMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SatyrFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @GnollMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @GnollFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BeholderMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BeholderFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ShivanMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ShivanFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HozenMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HozenFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SylvariMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SylvariFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MantidMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MantidFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EtherealMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EtherealFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @KyrianMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @KyrianFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @VenthyrMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @VenthyrFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BansheeMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BansheeFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FacelessOneMaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FacelessOneFemaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceDracthyrMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceDracthyrFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeDracthyrMaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeDracthyrFemaleDisplayExtra                           =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -636,6 +897,33 @@ SET @DarkfallenRacials                                         =      811;
 SET @NightborneRacials                                         =      812;
 SET @MurlocRacials                                             =      813;
 SET @FurbolgRacials                                            =      814;
+SET @SlimeGiantRacials                                         =      815;
+SET @FelOrcRacials                                             =      816;
+SET @SkeletonRacials                                           =      817;
+SET @ForestTrollRacials                                        =      818;
+SET @NorthrendSkeletonRacials                                  =      819;
+SET @IceTrollRacials                                           =      820;
+SET @QirajiRacials                                             =      821;
+SET @EredarRacials                                             =      822;
+SET @ArakkoaRacials                                            =      823;
+SET @FelElfRacials                                             =      824;
+SET @QuillboarRacials                                          =      825;
+SET @CentaurRacials                                            =      826;
+SET @DemonRacials                                              =      827;
+SET @SatyrRacials                                              =      828;
+SET @GnollRacials                                              =      829;
+SET @BeholderRacials                                           =      830;
+SET @ShivanRacials                                             =      831;
+SET @HozenRacials                                              =      832;
+SET @SylvariRacials                                            =      833;
+SET @MantidRacials                                             =      834;
+SET @EtherealRacials                                           =      835;
+SET @KyrianRacials                                             =      836;
+SET @VenthyrRacials                                            =      837;
+SET @BansheeRacials                                            =      838;
+SET @FacelessOneRacials                                        =      839;
+SET @AllianceDracthyrRacials                                   =      840;
+SET @HordeDracthyrRacials                                      =      841;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1125,6 +1413,33 @@ SET @BrokenRacialSkillRaceClass                                =     1152;
 SET @PandarenRacialSkillRaceClass                              =     1153;
 SET @DarkfallenRacialSkillRaceClass                            =     1154;
 SET @MurlocRacialSkillRaceClass                                =     1155;
+SET @SlimeGiantRacialSkillRaceClass                            =     1156;
+SET @FelOrcRacialSkillRaceClass                                =     1157;
+SET @SkeletonRacialSkillRaceClass                              =     1158;
+SET @ForestTrollRacialSkillRaceClass                           =     1159;
+SET @NorthrendSkeletonRacialSkillRaceClass                     =     1160;
+SET @IceTrollRacialSkillRaceClass                              =     1161;
+SET @QirajiRacialSkillRaceClass                                =     1162;
+SET @EredarRacialSkillRaceClass                                =     1163;
+SET @ArakkoaRacialSkillRaceClass                               =     1164;
+SET @FelElfRacialSkillRaceClass                                =     1165;
+SET @QuillboarRacialSkillRaceClass                             =     1166;
+SET @CentaurRacialSkillRaceClass                               =     1167;
+SET @DemonRacialSkillRaceClass                                 =     1168;
+SET @SatyrRacialSkillRaceClass                                 =     1169;
+SET @GnollRacialSkillRaceClass                                 =     1170;
+SET @BeholderRacialSkillRaceClass                              =     1171;
+SET @ShivanRacialSkillRaceClass                                =     1172;
+SET @HozenRacialSkillRaceClass                                 =     1173;
+SET @SylvariRacialSkillRaceClass                               =     1174;
+SET @MantidRacialSkillRaceClass                                =     1175;
+SET @EtherealRacialSkillRaceClass                              =     1176;
+SET @KyrianRacialSkillRaceClass                                =     1177;
+SET @VenthyrRacialSkillRaceClass                               =     1178;
+SET @BansheeRacialSkillRaceClass                               =     1179;
+SET @FacelessOneRacialSkillRaceClass                           =     1180;
+SET @AllianceDracthyrRacialSkillRaceClass                      =     1183;
+SET @HordeDracthyrRacialSkillRaceClass                         =     1189; -- 1184-1188 are taken
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1577,6 +1892,33 @@ SET @DarkfallenFactionTemplate                                 =     2261; -- Re
 SET @NightborneFactionTemplate                                 =     2262; -- References @NightbornePlayer
 SET @MurlocFactionTemplate                                     =     2263; -- References @MurlocPlayer
 SET @FurbolgFactionTemplate                                    =     2264; -- References @FurbolgPlayer
+SET @SlimeGiantFactionTemplate                                 =     2265; -- References @SlimeGiantPlayer
+SET @FelOrcFactionTemplate                                     =     2266; -- References @FelOrcPlayer
+SET @SkeletonFactionTemplate                                   =     2267; -- References @SkeletonPlayer
+SET @ForestTrollFactionTemplate                                =     2268; -- References @ForestTrollPlayer
+SET @NorthrendSkeletonFactionTemplate                          =     2269; -- References @NorthrendSkeletonPlayer
+SET @IceTrollFactionTemplate                                   =     2270; -- References @IceTrollPlayer
+SET @QirajiFactionTemplate                                     =     2271; -- References @QirajiPlayer
+SET @EredarFactionTemplate                                     =     2272; -- References @EredarPlayer
+SET @ArakkoaFactionTemplate                                    =     2273; -- References @ArakkoaPlayer
+SET @FelElfFactionTemplate                                     =     2274; -- References @FelElfPlayer
+SET @QuillboarFactionTemplate                                  =     2275; -- References @QuillboarPlayer
+SET @CentaurFactionTemplate                                    =     2276; -- References @CentaurPlayer
+SET @DemonFactionTemplate                                      =     2277; -- References @DemonPlayer
+SET @SatyrFactionTemplate                                      =     2278; -- References @SatyrPlayer
+SET @GnollFactionTemplate                                      =     2279; -- References @GnollPlayer
+SET @BeholderFactionTemplate                                   =     2280; -- References @BeholderPlayer
+SET @ShivanFactionTemplate                                     =     2281; -- References @ShivanPlayer
+SET @HozenFactionTemplate                                      =     2282; -- References @HozenPlayer
+SET @SylvariFactionTemplate                                    =     2283; -- References @SylvariPlayer
+SET @MantidFactionTemplate                                     =     2284; -- References @MantidPlayer
+SET @EtherealFactionTemplate                                   =     2285; -- References @EtherealPlayer
+SET @KyrianFactionTemplate                                     =     2286; -- References @KyrianPlayer
+SET @VenthyrFactionTemplate                                    =     2287; -- References @VenthyrPlayer
+SET @BansheeFactionTemplate                                    =     2288; -- References @BansheePlayer
+SET @FacelessOneFactionTemplate                                =     2289; -- References @FacelessOnePlayer
+SET @AllianceDracthyrFactionTemplate                           =     2290; -- References @AllianceDracthyrPlayer
+SET @HordeDracthyrFactionTemplate                              =     2291; -- References @HordeDracthyrPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1607,6 +1949,33 @@ SET @DarkfallenFactionRepIndex                                 =    129;
 SET @NightborneFactionRepIndex                                 =    130;
 SET @MurlocFactionRepIndex                                     =    131;
 SET @FurbolgFactionRepIndex                                    =    132;
+SET @SlimeGiantFactionRepIndex                                 =    133;
+SET @FelOrcFactionRepIndex                                     =    134;
+SET @SkeletonFactionRepIndex                                   =    135;
+SET @ForestTrollFactionRepIndex                                =    136;
+SET @NorthrendSkeletonFactionRepIndex                          =    137;
+SET @IceTrollFactionRepIndex                                   =    138;
+SET @QirajiFactionRepIndex                                     =    139;
+SET @EredarFactionRepIndex                                     =    140;
+SET @ArakkoaFactionRepIndex                                    =    141;
+SET @FelElfFactionRepIndex                                     =    142;
+SET @QuillboarFactionRepIndex                                  =    143;
+SET @CentaurFactionRepIndex                                    =    144;
+SET @DemonFactionRepIndex                                      =    145;
+SET @SatyrFactionRepIndex                                      =    146;
+SET @GnollFactionRepIndex                                      =    147;
+SET @BeholderFactionRepIndex                                   =    148;
+SET @ShivanFactionRepIndex                                     =    149;
+SET @HozenFactionRepIndex                                      =    150;
+SET @SylvariFactionRepIndex                                    =    151;
+SET @MantidFactionRepIndex                                     =    152;
+SET @EtherealFactionRepIndex                                   =    153;
+SET @KyrianFactionRepIndex                                     =    154;
+SET @VenthyrFactionRepIndex                                    =    155;
+SET @BansheeFactionRepIndex                                    =    156;
+SET @FacelessOneFactionRepIndex                                =    157;
+SET @AllianceDracthyrFactionRepIndex                           =    158;
+SET @HordeDracthyrFactionRepIndex                              =    159;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1640,7 +2009,34 @@ SET @TuskarrAchievement                                        =    1452;
 SET @DarkfallenAchievement                                     =    1453;
 SET @NightborneAchievement                                     =    1454;
 SET @MurlocAchievement                                         =    1455;
-SET @FurbolgAchievement                                        =    1456;
+SET @FurbolgAchievement                                        =    1459; -- 1456-1458 are stock achievements
+SET @SlimeGiantAchievement                                     =    1460;
+SET @FelOrcAchievement                                         =    1461; -- 1462-1467 are stock achievements
+SET @SkeletonAchievement                                       =    1468;
+SET @ForestTrollAchievement                                    =    1469;
+SET @NorthrendSkeletonAchievement                              =    1470;
+SET @IceTrollAchievement                                       =    1471;
+SET @QirajiAchievement                                         =    1472;
+SET @EredarAchievement                                         =    1473;
+SET @ArakkoaAchievement                                        =    1474;
+SET @FelElfAchievement                                         =    1475;
+SET @QuillboarAchievement                                      =    1476;
+SET @CentaurAchievement                                        =    1477;
+SET @DemonAchievement                                          =    1478;
+SET @SatyrAchievement                                          =    1479;
+SET @GnollAchievement                                          =    1480;
+SET @BeholderAchievement                                       =    1481;
+SET @ShivanAchievement                                         =    1482;
+SET @HozenAchievement                                          =    1483;
+SET @SylvariAchievement                                        =    1484;
+SET @MantidAchievement                                         =    1503;
+SET @EtherealAchievement                                       =    1520;
+SET @KyrianAchievement                                         =    1521;
+SET @VenthyrAchievement                                        =    1522;
+SET @BansheeAchievement                                        =    1523;
+SET @FacelessOneAchievement                                    =    1528;
+SET @AllianceDracthyrAchievement                               =     1529;
+SET @HordeDracthyrAchievement                                  =     1530;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1772,6 +2168,114 @@ SET @FurbolgCriteria1                                          =    19310; -- Ac
 SET @FurbolgCriteria2                                          =    19311; -- Achievement 2422: Shake Your Bunny-Maker
 SET @FurbolgCriteria3                                          =    19312; -- Achievement 291: Check Your Head
 SET @FurbolgCriteria4                                          =    19313; -- @FurbolgAchievement: Realm First! Level 80 Furbolg
+SET @SlimeGiantCriteria1                                       =    19314; -- Achievement 1005: Know Thy Enemy
+SET @SlimeGiantCriteria2                                       =    19315; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SlimeGiantCriteria3                                       =    19316; -- Achievement 291: Check Your Head
+SET @SlimeGiantCriteria4                                       =    19317; -- @SlimeGiantAchievement: Realm First! Level 80 Slime Giant
+SET @FelOrcCriteria1                                           =    19318; -- Achievement 1005: Know Thy Enemy
+SET @FelOrcCriteria2                                           =    19319; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FelOrcCriteria3                                           =    19320; -- Achievement 291: Check Your Head
+SET @FelOrcCriteria4                                           =    19321; -- @FelOrcAchievement: Realm First! Level 80 Fel Orc
+SET @SkeletonCriteria1                                         =    19322; -- Achievement 1005: Know Thy Enemy
+SET @SkeletonCriteria2                                         =    19323; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SkeletonCriteria3                                         =    19324; -- Achievement 291: Check Your Head
+SET @SkeletonCriteria4                                         =    19325; -- @SkeletonAchievement: Realm First! Level 80 Skeleton
+SET @ForestTrollCriteria1                                      =    19326; -- Achievement 1005: Know Thy Enemy
+SET @ForestTrollCriteria2                                      =    19327; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ForestTrollCriteria3                                      =    19328; -- Achievement 291: Check Your Head
+SET @ForestTrollCriteria4                                      =    19329; -- @ForestTrollAchievement: Realm First! Level 80 Forest Troll
+SET @NorthrendSkeletonCriteria1                                =    19330; -- Achievement 1005: Know Thy Enemy
+SET @NorthrendSkeletonCriteria2                                =    19331; -- Achievement 2422: Shake Your Bunny-Maker
+SET @NorthrendSkeletonCriteria3                                =    19332; -- Achievement 291: Check Your Head
+SET @NorthrendSkeletonCriteria4                                =    19333; -- @NorthrendSkeletonAchievement: Realm First! Level 80 Northrend Skeleton
+SET @IceTrollCriteria1                                         =    19334; -- Achievement 1005: Know Thy Enemy
+SET @IceTrollCriteria2                                         =    19335; -- Achievement 2422: Shake Your Bunny-Maker
+SET @IceTrollCriteria3                                         =    19336; -- Achievement 291: Check Your Head
+SET @IceTrollCriteria4                                         =    19337; -- @IceTrollAchievement: Realm First! Level 80 Ice Troll
+SET @QirajiCriteria1                                           =    19338; -- Achievement 1005: Know Thy Enemy
+SET @QirajiCriteria2                                           =    19339; -- Achievement 2422: Shake Your Bunny-Maker
+SET @QirajiCriteria3                                           =    19340; -- Achievement 291: Check Your Head
+SET @QirajiCriteria4                                           =    19341; -- @QirajiAchievement: Realm First! Level 80 Qiraji
+SET @EredarCriteria1                                           =    19342; -- Achievement 246: Know Thy Enemy
+SET @EredarCriteria2                                           =    19343; -- Achievement 2422: Shake Your Bunny-Maker
+SET @EredarCriteria3                                           =    19344; -- Achievement 291: Check Your Head
+SET @EredarCriteria4                                           =    19345; -- @EredarAchievement: Realm First! Level 80 Eredar
+SET @ArakkoaCriteria1                                          =    19346; -- Achievement 246: Know Thy Enemy
+SET @ArakkoaCriteria2                                          =    19347; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ArakkoaCriteria3                                          =    19348; -- Achievement 291: Check Your Head
+SET @ArakkoaCriteria4                                          =    19349; -- @ArakkoaAchievement: Realm First! Level 80 Arakkoa
+SET @FelElfCriteria1                                           =    19350; -- Achievement 1005: Know Thy Enemy
+SET @FelElfCriteria2                                           =    19351; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FelElfCriteria3                                           =    19352; -- Achievement 291: Check Your Head
+SET @FelElfCriteria4                                           =    19353; -- @FelElfAchievement: Realm First! Level 80 Fel Elf
+SET @QuillboarCriteria1                                        =    19354; -- Achievement 1005: Know Thy Enemy
+SET @QuillboarCriteria2                                        =    19355; -- Achievement 2422: Shake Your Bunny-Maker
+SET @QuillboarCriteria3                                        =    19356; -- Achievement 291: Check Your Head
+SET @QuillboarCriteria4                                        =    19357; -- @QuillboarAchievement: Realm First! Level 80 Quillboar
+SET @CentaurCriteria1                                          =    19358; -- Achievement 1005: Know Thy Enemy
+SET @CentaurCriteria2                                          =    19359; -- Achievement 2422: Shake Your Bunny-Maker
+SET @CentaurCriteria3                                          =    19360; -- Achievement 291: Check Your Head
+SET @CentaurCriteria4                                          =    19361; -- @CentaurAchievement: Realm First! Level 80 Centaur
+SET @DemonCriteria1                                            =    19362; -- Achievement 1005: Know Thy Enemy
+SET @DemonCriteria2                                            =    19363; -- Achievement 2422: Shake Your Bunny-Maker
+SET @DemonCriteria3                                            =    19364; -- Achievement 291: Check Your Head
+SET @DemonCriteria4                                            =    19365; -- @DemonAchievement: Realm First! Level 80 Demon
+SET @SatyrCriteria1                                            =    19366; -- Achievement 246: Know Thy Enemy
+SET @SatyrCriteria2                                            =    19367; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SatyrCriteria3                                            =    19368; -- Achievement 291: Check Your Head
+SET @SatyrCriteria4                                            =    19369; -- @SatyrAchievement: Realm First! Level 80 Satyr
+SET @GnollCriteria1                                            =    19370; -- Achievement 246: Know Thy Enemy
+SET @GnollCriteria2                                            =    19371; -- Achievement 2422: Shake Your Bunny-Maker
+SET @GnollCriteria3                                            =    19372; -- Achievement 291: Check Your Head
+SET @GnollCriteria4                                            =    19373; -- @GnollAchievement: Realm First! Level 80 Gnoll
+SET @BeholderCriteria1                                         =    19374; -- Achievement 246: Know Thy Enemy
+SET @BeholderCriteria2                                         =    19375; -- Achievement 2422: Shake Your Bunny-Maker
+SET @BeholderCriteria3                                         =    19376; -- Achievement 291: Check Your Head
+SET @BeholderCriteria4                                         =    19377; -- @BeholderAchievement: Realm First! Level 80 Beholder
+SET @ShivanCriteria1                                           =    19378; -- Achievement 246: Know Thy Enemy
+SET @ShivanCriteria2                                           =    19379; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ShivanCriteria3                                           =    19380; -- Achievement 291: Check Your Head
+SET @ShivanCriteria4                                           =    19381; -- @ShivanAchievement: Realm First! Level 80 Shivan
+SET @HozenCriteria1                                            =    19382; -- Achievement 246: Know Thy Enemy
+SET @HozenCriteria2                                            =    19383; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HozenCriteria3                                            =    19384; -- Achievement 291: Check Your Head
+SET @HozenCriteria4                                            =    19385; -- @HozenAchievement: Realm First! Level 80 Hozen
+SET @SylvariCriteria1                                          =    19386; -- Achievement 246: Know Thy Enemy
+SET @SylvariCriteria2                                          =    19387; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SylvariCriteria3                                          =    19388; -- Achievement 291: Check Your Head
+SET @SylvariCriteria4                                          =    19389; -- @SylvariAchievement: Realm First! Level 80 Sylvari
+SET @MantidCriteria1                                           =    19390; -- Achievement 1005: Know Thy Enemy
+SET @MantidCriteria2                                           =    19391; -- Achievement 2422: Shake Your Bunny-Maker
+SET @MantidCriteria3                                           =    19392; -- Achievement 291: Check Your Head
+SET @MantidCriteria4                                           =    19393; -- @MantidAchievement: Realm First! Level 80 Mantid
+SET @EtherealCriteria1                                         =    19394; -- Achievement 246: Know Thy Enemy
+SET @EtherealCriteria2                                         =    19395; -- Achievement 2422: Shake Your Bunny-Maker
+SET @EtherealCriteria3                                         =    19396; -- Achievement 291: Check Your Head
+SET @EtherealCriteria4                                         =    19397; -- @EtherealAchievement: Realm First! Level 80 Ethereal
+SET @KyrianCriteria1                                           =    19398; -- Achievement 246: Know Thy Enemy
+SET @KyrianCriteria2                                           =    19399; -- Achievement 2422: Shake Your Bunny-Maker
+SET @KyrianCriteria3                                           =    19400; -- Achievement 291: Check Your Head
+SET @KyrianCriteria4                                           =    19401; -- @KyrianAchievement: Realm First! Level 80 Kyrian
+SET @VenthyrCriteria1                                          =    19402; -- Achievement 1005: Know Thy Enemy
+SET @VenthyrCriteria2                                          =    19403; -- Achievement 2422: Shake Your Bunny-Maker
+SET @VenthyrCriteria3                                          =    19404; -- Achievement 291: Check Your Head
+SET @VenthyrCriteria4                                          =    19405; -- @VenthyrAchievement: Realm First! Level 80 Venthyr
+SET @BansheeCriteria1                                          =    19406; -- Achievement 1005: Know Thy Enemy
+SET @BansheeCriteria2                                          =    19407; -- Achievement 2422: Shake Your Bunny-Maker
+SET @BansheeCriteria3                                          =    19408; -- Achievement 291: Check Your Head
+SET @BansheeCriteria4                                          =    19409; -- @BansheeAchievement: Realm First! Level 80 Banshee
+SET @FacelessOneCriteria1                                      =    19410; -- Achievement 1005: Know Thy Enemy
+SET @FacelessOneCriteria2                                      =    19411; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FacelessOneCriteria3                                      =    19412; -- Achievement 291: Check Your Head
+SET @FacelessOneCriteria4                                      =    19413; -- @FacelessOneAchievement: Realm First! Level 80 Faceless One
+SET @AllianceDracthyrCriteria1                                 =    19414; -- Achievement 246: Know Thy Enemy
+SET @AllianceDracthyrCriteria2                                 =    19415; -- Achievement 2422: Shake Your Bunny-Maker
+SET @AllianceDracthyrCriteria3                                 =    19416; -- Achievement 291: Check Your Head
+SET @AllianceDracthyrCriteria4                                 =    19417; -- @AllianceDracthyrAchievement: Realm First! Level 80 Dracthyr
+SET @HordeDracthyrCriteria1                                    =    19418; -- Achievement 1005: Know Thy Enemy
+SET @HordeDracthyrCriteria2                                    =    19419; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HordeDracthyrCriteria3                                    =    19420; -- Achievement 291: Check Your Head
+SET @HordeDracthyrCriteria4                                    =    19421; -- @HordeDracthyrAchievement: Realm First! Level 80 Dracthyr
 
 -- Classes
 SET @Warrior                                                   =      1;
@@ -2792,6 +3296,12 @@ SET @EmoteMourn                                                =         65;
 SET @EmoteRoar                                                 =         75;
 SET @EmoteRofl                                                 =         76;
 SET @EmoteTaunt                                                =        136;
+SET @EmoteAgree                                                =          1;
+SET @EmoteGreet                                                =         48;
+SET @EmoteHail                                                 =         53;
+SET @EmoteTired                                                =         99;
+SET @EmoteVictory                                              =        100;
+SET @EmoteIntroduce                                            =        114;
 SET @EmoteViolin                                               =        143;
 
 -- Vocal UI Sounds
@@ -2982,3 +3492,425 @@ SET @SPELL_ATTR4_FORCE_DISPLAY_CASTBAR                         =  134217728;
 
 SET @SPELL_ATTR6_ALLOW_WHILE_RIDING_VEHICLE                    =       4096;
 SET @SPELL_ATTR6_ALLOW_EQUIP_WHILE_CASTING                     =     131072;
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- CoA Custom 1.9 racials (Ilusixn's CoA race files): spells in vacant slots from 81000, SkillLineAbility from 31600,
+-- spell icons from 4400. The comment gives the CoA spell id.
+SET @CoAHelperSlowAndRootDispel                                =    81000; -- Slow and Root dispel effect (CoA 801044)
+SET @CoAHelperEscapeArtist                                     =    81001; -- Escape Artist (CoA 820589)
+SET @CoAHelperArcaneTorrent                                    =    81002; -- Arcane Torrent (CoA 828730)
+SET @CoAZandalariTrollRacial1                                  =    81003; -- Embrace of the Loa (CoA 14000121)
+SET @CoAZandalariTrollRacial2                                  =    81004; -- Pterrordax Swoop (CoA 14000122)
+SET @CoAZandalariTrollRacial3                                  =    81005; -- City of Gold (CoA 14000123)
+SET @CoAZandalariTrollRacial4                                  =    81006; -- Da Voodoo Shuffle (CoA 14000124)
+SET @CoAWorgenRacial1                                          =    81007; -- Darkflight (CoA 14000131)
+SET @CoAWorgenRacial2                                          =    81008; -- Two Forms (CoA 14000132)
+SET @CoAWorgenRacial3                                          =    81009; -- Viciousness (CoA 14000133)
+SET @CoAWorgenRacial4                                          =    81010; -- Aberration (CoA 14000134)
+SET @CoAHighElfRacial1                                         =    81011; -- Quel'dorei Torrent (CoA 14000141)
+SET @CoAHighElfRacial2                                         =    81012; -- Farstrider's Step (CoA 14000142)
+SET @CoAHighElfRacial3                                         =    81013; -- Arcane Acuity (CoA 14000143)
+SET @CoAHighElfRacial4                                         =    81014; -- Magic Resistance (CoA 14000144)
+SET @CoATuskarrRacial1                                         =    81015; -- Harpoon Charge (CoA 14000151)
+SET @CoATuskarrRacial2                                         =    81016; -- Rime of the Ancient Mariner (CoA 14000152)
+SET @CoATuskarrRacial3                                         =    81017; -- Fisherman's Patience (CoA 14000153)
+SET @CoATuskarrRacial4                                         =    81018; -- Harpooner (CoA 14000154)
+SET @CoAKulTiranRacial1                                        =    81019; -- Haymaker (CoA 14000161)
+SET @CoAKulTiranRacial2                                        =    81020; -- Brush It Off (CoA 14000162)
+SET @CoAKulTiranRacial3                                        =    81021; -- Child of the Sea (CoA 14000163)
+SET @CoAKulTiranRacial4                                        =    81022; -- Rime of the Ancient Mariner (CoA 14000164)
+SET @CoATaunkaRacial1                                          =    81023; -- Thunderhoof (CoA 14000171)
+SET @CoATaunkaRacial2                                          =    81024; -- Hardened by Northrend (CoA 14000172)
+SET @CoATaunkaRacial3                                          =    81025; -- Taunka Endurance (CoA 14000173)
+SET @CoATaunkaRacial4                                          =    81026; -- Hunter of the Tundra (CoA 14000174)
+SET @CoAVrykulRacial1                                          =    81027; -- Fury of the Val'kyr (CoA 14000181)
+SET @CoAVrykulRacial2                                          =    81028; -- Titan Blood (CoA 14000182)
+SET @CoAVrykulRacial3                                          =    81029; -- Born in the Cold (CoA 14000183)
+SET @CoAVrykulRacial4                                          =    81030; -- Axe of the Fjord (CoA 14000184)
+SET @CoAHordePandarenRacial1                                   =    81031; -- Quaking Palm (CoA 14000201)
+SET @CoAHordePandarenRacial2                                   =    81032; -- Inner Peace (CoA 14000202)
+SET @CoAHordePandarenRacial3                                   =    81033; -- Bouncy (CoA 14000203)
+SET @CoAHordePandarenRacial4                                   =    81034; -- Gourmand (CoA 14000204)
+SET @CoANagaRacial1                                            =    81035; -- Tidal Surge (CoA 14000211)
+SET @CoANagaRacial2                                            =    81036; -- Siren Song (CoA 14000212)
+SET @CoANagaRacial3                                            =    81037; -- Serpent Scales (CoA 14000213)
+SET @CoANagaRacial4                                            =    81038; -- Gills (CoA 14000214)
+SET @CoABrokenRacial1                                          =    81039; -- Shattered Light (CoA 14000221)
+SET @CoABrokenRacial2                                          =    81040; -- Exile's Will (CoA 14000222)
+SET @CoABrokenRacial3                                          =    81041; -- Exile's Resolve (CoA 14000223)
+SET @CoABrokenRacial4                                          =    81042; -- Shamanic Bond (CoA 14000224)
+SET @CoAFelOrcRacial1                                          =    81043; -- Fel Rage (CoA 14000231)
+SET @CoAFelOrcRacial2                                          =    81044; -- Demonic Endurance (CoA 14000232)
+SET @CoAFelOrcRacial3                                          =    81045; -- Fel-Hardened (CoA 14000233)
+SET @CoAFelOrcRacial4                                          =    81046; -- Axe of the Horde (CoA 14000234)
+SET @CoAForestTrollRacial1                                     =    81047; -- Headhunter's Frenzy (CoA 14000241)
+SET @CoAForestTrollRacial2                                     =    81048; -- Jungle Stalker (CoA 14000242)
+SET @CoAForestTrollRacial3                                     =    81049; -- Troll Regeneration (CoA 14000243)
+SET @CoAForestTrollRacial4                                     =    81050; -- Headhunter (CoA 14000244)
+SET @CoAIceTrollRacial1                                        =    81051; -- Frostmane Frenzy (CoA 14000251)
+SET @CoAIceTrollRacial2                                        =    81052; -- Winter's Blood (CoA 14000252)
+SET @CoAIceTrollRacial3                                        =    81053; -- Troll Regeneration (CoA 14000253)
+SET @CoAIceTrollRacial4                                        =    81054; -- Ice Hunter (CoA 14000254)
+SET @CoASkeletonRacial1                                        =    81055; -- Bone Shield (CoA 14000261)
+SET @CoASkeletonRacial2                                        =    81056; -- Bone Pile (CoA 14000262)
+SET @CoASkeletonRacial3                                        =    81057; -- Unliving (CoA 14000263)
+SET @CoASkeletonRacial4                                        =    81058; -- No Lungs (CoA 14000264)
+SET @CoAAlliancePandarenRacial1                                =    81059; -- Quaking Palm (CoA 14000291)
+SET @CoAAlliancePandarenRacial2                                =    81060; -- Inner Peace (CoA 14000292)
+SET @CoAAlliancePandarenRacial3                                =    81061; -- Bouncy (CoA 14000293)
+SET @CoAAlliancePandarenRacial4                                =    81062; -- Gourmand (CoA 14000294)
+SET @CoAMurlocRacial1                                          =    81063; -- Mrgglrrgl! (CoA 14000311)
+SET @CoAMurlocRacial2                                          =    81064; -- Murloc Swarm (CoA 14000312)
+SET @CoAMurlocRacial3                                          =    81065; -- Amphibious (CoA 14000313)
+SET @CoAMurlocRacial4                                          =    81066; -- Born in the Shallows (CoA 14000314)
+SET @CoAThinHumanRacial1                                       =    81067; -- Survivor's Will (CoA 14000321)
+SET @CoAThinHumanRacial2                                       =    81068; -- Light Step (CoA 14000322)
+SET @CoAThinHumanRacial3                                       =    81069; -- Human Spirit (CoA 14000323)
+SET @CoAThinHumanRacial4                                       =    81070; -- Diplomacy (CoA 14000324)
+SET @CoADarkIronDwarfRacial1                                   =    81071; -- Fireblood (CoA 14000481)
+SET @CoADarkIronDwarfRacial2                                   =    81072; -- Forged in Flames (CoA 14000482)
+SET @CoADarkIronDwarfRacial3                                   =    81073; -- Mole Machine (CoA 14000483)
+SET @CoADarkIronDwarfRacial4                                   =    81074; -- Mace of the Forge (CoA 14000484)
+SET @CoAMagharOrcRacial1                                       =    81075; -- Ancestral Call (CoA 14000491)
+SET @CoAMagharOrcRacial2                                       =    81076; -- Open Skies (CoA 14000492)
+SET @CoAMagharOrcRacial3                                       =    81077; -- Savage Blood (CoA 14000493)
+SET @CoAMagharOrcRacial4                                       =    81078; -- Command (CoA 14000494)
+SET @CoAFurbolgRacial1                                         =    81079; -- Ursine Fury (CoA 14000501)
+SET @CoAFurbolgRacial2                                         =    81080; -- Thick Fur (CoA 14000502)
+SET @CoAFurbolgRacial3                                         =    81081; -- Furbolg Endurance (CoA 14000503)
+SET @CoAFurbolgRacial4                                         =    81082; -- Gift of the Grove (CoA 14000504)
+SET @CoAOgreRacial1                                            =    81083; -- Ogre Slam (CoA 14000531)
+SET @CoAOgreRacial2                                            =    81084; -- Two Heads Are Better (CoA 14000532)
+SET @CoAOgreRacial3                                            =    81085; -- Thick Skull (CoA 14000533)
+SET @CoAOgreRacial4                                            =    81086; -- Club Mastery (CoA 14000534)
+SET @CoAEredarRacial1                                          =    81087; -- Fel Torrent (CoA 14000551)
+SET @CoAEredarRacial2                                          =    81088; -- Sargeras' Gift (CoA 14000552)
+SET @CoAEredarRacial3                                          =    81089; -- Man'ari Mind (CoA 14000553)
+SET @CoAEredarRacial4                                          =    81090; -- Demonic Hide (CoA 14000554)
+SET @CoAVoidElfRacial1                                         =    81091; -- Spatial Rift (CoA 14000591)
+SET @CoAVoidElfRacial2                                         =    81092; -- Void Torrent (CoA 14000592)
+SET @CoAVoidElfRacial3                                         =    81093; -- Entropic Embrace (CoA 14000593)
+SET @CoAVoidElfRacial4                                         =    81094; -- Ethereal Connection (CoA 14000594)
+SET @CoAFelElfRacial1                                          =    81095; -- Spectral Sight (CoA 14000601)
+SET @CoAFelElfRacial2                                          =    81096; -- Fel Rush (CoA 14000602)
+SET @CoAFelElfRacial3                                          =    81097; -- Demon Hunter's Resolve (CoA 14000603)
+SET @CoAFelElfRacial4                                          =    81098; -- Felblood (CoA 14000604)
+SET @CoALightforgedDraeneiRacial1                              =    81099; -- Light's Reckoning (CoA 14000621)
+SET @CoALightforgedDraeneiRacial2                              =    81100; -- Forge of Light (CoA 14000622)
+SET @CoALightforgedDraeneiRacial3                              =    81101; -- Holy Resistance (CoA 14000623)
+SET @CoALightforgedDraeneiRacial4                              =    81102; -- Lightforged Resolve (CoA 14000624)
+SET @CoANightborneRacial1                                      =    81103; -- Arcane Pulse (CoA 14000631)
+SET @CoANightborneRacial2                                      =    81104; -- Cantrips (CoA 14000632)
+SET @CoANightborneRacial3                                      =    81105; -- Ancient History (CoA 14000633)
+SET @CoANightborneRacial4                                      =    81106; -- Magical Affinity (CoA 14000634)
+SET @CoAHighmountainTaurenRacial1                              =    81107; -- Bull Rush (CoA 14000661)
+SET @CoAHighmountainTaurenRacial2                              =    81108; -- Mountaineer (CoA 14000662)
+SET @CoAHighmountainTaurenRacial3                              =    81109; -- Pride of Ironhorn (CoA 14000663)
+SET @CoAHighmountainTaurenRacial4                              =    81110; -- Rugged Tenacity (CoA 14000664)
+SET @CoAMechagnomeRacial1                                      =    81111; -- Combat Analysis (CoA 14000671)
+SET @CoAMechagnomeRacial2                                      =    81112; -- Emergency Failsafe (CoA 14000672)
+SET @CoAMechagnomeRacial3                                      =    81113; -- Re-Origination (CoA 14000673)
+SET @CoAMechagnomeRacial4                                      =    81114; -- Mechanical Mastery (CoA 14000674)
+SET @CoAAllianceEarthenRacial1                                 =    81115; -- Azerite Surge (CoA 14000681)
+SET @CoAAllianceEarthenRacial2                                 =    81116; -- Titan-Forged (CoA 14000682)
+SET @CoAAllianceEarthenRacial3                                 =    81117; -- Stoneskin (CoA 14000683)
+SET @CoAAllianceEarthenRacial4                                 =    81118; -- Gemcutting (CoA 14000684)
+SET @CoAHordeEarthenRacial1                                    =    81119; -- Azerite Surge (CoA 14000691)
+SET @CoAHordeEarthenRacial2                                    =    81120; -- Titan-Forged (CoA 14000692)
+SET @CoAHordeEarthenRacial3                                    =    81121; -- Stoneskin (CoA 14000693)
+SET @CoAHordeEarthenRacial4                                    =    81122; -- Gemcutting (CoA 14000694)
+SET @CoAVulperaRacial1                                         =    81123; -- Bag of Tricks (CoA 14000741)
+SET @CoAVulperaRacial2                                         =    81124; -- Make Camp (CoA 14000742)
+SET @CoAVulperaRacial3                                         =    81125; -- Nose for Trouble (CoA 14000743)
+SET @CoAVulperaRacial4                                         =    81126; -- Desert Hardened (CoA 14000744)
+SET @CoADarkfallenRacial1                                      =    81127; -- Blood Siphon (CoA 14000811)
+SET @CoADarkfallenRacial2                                      =    81128; -- Mist Form (CoA 14000812)
+SET @CoADarkfallenRacial3                                      =    81129; -- Undying Hunger (CoA 14000813)
+SET @CoADarkfallenRacial4                                      =    81130; -- Grave Chill (CoA 14000814)
+SET @CoAGnollRacial1                                           =    81131; -- Pack Howl (CoA 14000831)
+SET @CoAGnollRacial2                                           =    81132; -- Bone Gnaw (CoA 14000832)
+SET @CoAGnollRacial3                                           =    81133; -- Scavenger (CoA 14000833)
+SET @CoAGnollRacial4                                           =    81134; -- Thick Hide (CoA 14000834)
+SET @CoACentaurRacial5                                         =    81135; -- Plains Charge (CoA 14001005)
+SET @CoACentaurRacial6                                         =    81136; -- Gallop (CoA 14001006)
+SET @CoAVenthyrRacial5                                         =    81137; -- Anima Frenzy (CoA 14001015)
+SET @CoASlimeGiantRacial5                                      =    81138; -- Gooey Slam (CoA 14001045)
+SET @CoAKyrianRacial5                                          =    81139; -- Steward's Resolve (CoA 14001075)
+SET @CoAHozenRacial1                                           =    81140; -- Prehensile Tail (CoA 14001121)
+SET @CoAHozenRacial2                                           =    81141; -- Nimble Climber (CoA 14001122)
+SET @CoAHozenRacial3                                           =    81142; -- Bristling Fur (CoA 14001123)
+SET @CoAHozenRacial4                                           =    81143; -- Monkey Business (CoA 14001124)
+SET @CoAHozenRacial5                                           =    81144; -- Nimble Escape (CoA 14001125)
+SET @CoASylvariRacial1                                         =    81145; -- Thornhide (CoA 14001141)
+SET @CoASylvariRacial2                                         =    81146; -- Fleet of Hoof (CoA 14001142)
+SET @CoASylvariRacial3                                         =    81147; -- Fey Grace (CoA 14001143)
+SET @CoASylvariRacial4                                         =    81148; -- Moonlit Sight (CoA 14001144)
+SET @CoASylvariRacial5                                         =    81149; -- Verdant Renewal (CoA 14001145)
+SET @CoAMantidRacial1                                          =    81150; -- Chitin Carapace (CoA 14001151)
+SET @CoAMantidRacial2                                          =    81151; -- Mantis Strike (CoA 14001152)
+SET @CoAMantidRacial3                                          =    81152; -- Skittering Reflexes (CoA 14001153)
+SET @CoAMantidRacial4                                          =    81153; -- Swarm Stride (CoA 14001154)
+SET @CoAMantidRacial5                                          =    81154; -- Chitin Hardening (CoA 14001155)
+SET @CoAEtherealRacial1                                        =    81155; -- Ethereal Warding (CoA 14001161)
+SET @CoAEtherealRacial2                                        =    81156; -- Wisp Step (CoA 14001162)
+SET @CoAEtherealRacial3                                        =    81157; -- Phase Shift (CoA 14001163)
+SET @CoAEtherealRacial4                                        =    81158; -- Void Insight (CoA 14001164)
+SET @CoAEtherealRacial5                                        =    81159; -- Ethereal Torrent (CoA 14001165)
+SET @CoABansheeRacial1                                         =    81160; -- Deathless Shroud (CoA 14001201)
+SET @CoABansheeRacial2                                         =    81161; -- Wailing Gale (CoA 14001202)
+SET @CoABansheeRacial3                                         =    81162; -- Spectral Sway (CoA 14001203)
+SET @CoABansheeRacial4                                         =    81163; -- Banshee Wail (CoA 14001204)
+SET @CoABansheeRacial5                                         =    81164; -- Spectral Glide (CoA 14001205)
+SET @CoAFacelessOneRacial1                                     =    81165; -- Faceless Hide (CoA 14001221)
+SET @CoAFacelessOneRacial2                                     =    81166; -- Creeping Dread (CoA 14001222)
+SET @CoAFacelessOneRacial3                                     =    81167; -- Formless (CoA 14001223)
+SET @CoAFacelessOneRacial4                                     =    81168; -- Shapeless Squirm (CoA 14001224)
+SET @CoAFacelessOneRacial5                                     =    81169; -- Mind Rot (CoA 14001225)
+SET @CoAQirajiRacial1                                          =    81170; -- Chitin Plate (CoA 14001231)
+SET @CoAQirajiRacial2                                          =    81171; -- Burrower (CoA 14001232)
+SET @CoAQirajiRacial3                                          =    81172; -- Hive Reflexes (CoA 14001233)
+SET @CoAQirajiRacial4                                          =    81173; -- Swarm Frenzy (CoA 14001234)
+SET @CoAQirajiRacial5                                          =    81174; -- Wings of the Swarm (CoA 14001235)
+SET @CoAAllianceDracthyrRacial1                                =    81175; -- Wing Buffet (CoA 14000541)
+SET @CoAAllianceDracthyrRacial2                                =    81176; -- Soar (CoA 14000542)
+SET @CoAAllianceDracthyrRacial3                                =    81177; -- Draconic Mind (CoA 14000543)
+SET @CoAAllianceDracthyrRacial4                                =    81178; -- Scales of the Aspects (CoA 14000544)
+SET @CoAHordeDracthyrRacial1                                   =    81179; -- Wing Buffet (CoA 14000581)
+SET @CoAHordeDracthyrRacial2                                   =    81180; -- Soar (CoA 14000582)
+SET @CoAHordeDracthyrRacial3                                   =    81181; -- Draconic Mind (CoA 14000583)
+SET @CoAHordeDracthyrRacial4                                   =    81182; -- Scales of the Aspects (CoA 14000584)
+SET @CoAZandalariTrollSkillLineAbility1                        =    31600; -- Embrace of the Loa
+SET @CoAZandalariTrollSkillLineAbility2                        =    31601; -- Pterrordax Swoop
+SET @CoAZandalariTrollSkillLineAbility3                        =    31602; -- City of Gold
+SET @CoAZandalariTrollSkillLineAbility4                        =    31603; -- Da Voodoo Shuffle
+SET @CoAWorgenSkillLineAbility1                                =    31604; -- Darkflight
+SET @CoAWorgenSkillLineAbility2                                =    31605; -- Two Forms
+SET @CoAWorgenSkillLineAbility3                                =    31606; -- Viciousness
+SET @CoAWorgenSkillLineAbility4                                =    31607; -- Aberration
+SET @CoAHighElfSkillLineAbility1                               =    31608; -- Quel'dorei Torrent
+SET @CoAHighElfSkillLineAbility2                               =    31609; -- Farstrider's Step
+SET @CoAHighElfSkillLineAbility3                               =    31610; -- Arcane Acuity
+SET @CoAHighElfSkillLineAbility4                               =    31611; -- Magic Resistance
+SET @CoATuskarrSkillLineAbility1                               =    31612; -- Harpoon Charge
+SET @CoATuskarrSkillLineAbility2                               =    31613; -- Rime of the Ancient Mariner
+SET @CoATuskarrSkillLineAbility3                               =    31614; -- Fisherman's Patience
+SET @CoATuskarrSkillLineAbility4                               =    31615; -- Harpooner
+SET @CoAKulTiranSkillLineAbility1                              =    31616; -- Haymaker
+SET @CoAKulTiranSkillLineAbility2                              =    31617; -- Brush It Off
+SET @CoAKulTiranSkillLineAbility3                              =    31618; -- Child of the Sea
+SET @CoAKulTiranSkillLineAbility4                              =    31619; -- Rime of the Ancient Mariner
+SET @CoATaunkaSkillLineAbility1                                =    31620; -- Thunderhoof
+SET @CoATaunkaSkillLineAbility2                                =    31621; -- Hardened by Northrend
+SET @CoATaunkaSkillLineAbility3                                =    31622; -- Taunka Endurance
+SET @CoATaunkaSkillLineAbility4                                =    31623; -- Hunter of the Tundra
+SET @CoAVrykulSkillLineAbility1                                =    31624; -- Fury of the Val'kyr
+SET @CoAVrykulSkillLineAbility2                                =    31625; -- Titan Blood
+SET @CoAVrykulSkillLineAbility3                                =    31626; -- Born in the Cold
+SET @CoAVrykulSkillLineAbility4                                =    31627; -- Axe of the Fjord
+SET @CoAHordePandarenSkillLineAbility1                         =    31628; -- Quaking Palm
+SET @CoAHordePandarenSkillLineAbility2                         =    31629; -- Inner Peace
+SET @CoAHordePandarenSkillLineAbility3                         =    31630; -- Bouncy
+SET @CoAHordePandarenSkillLineAbility4                         =    31631; -- Gourmand
+SET @CoANagaSkillLineAbility1                                  =    31632; -- Tidal Surge
+SET @CoANagaSkillLineAbility2                                  =    31633; -- Siren Song
+SET @CoANagaSkillLineAbility3                                  =    31634; -- Serpent Scales
+SET @CoANagaSkillLineAbility4                                  =    31635; -- Gills
+SET @CoABrokenSkillLineAbility1                                =    31636; -- Shattered Light
+SET @CoABrokenSkillLineAbility2                                =    31637; -- Exile's Will
+SET @CoABrokenSkillLineAbility3                                =    31638; -- Exile's Resolve
+SET @CoABrokenSkillLineAbility4                                =    31639; -- Shamanic Bond
+SET @CoAFelOrcSkillLineAbility1                                =    31640; -- Fel Rage
+SET @CoAFelOrcSkillLineAbility2                                =    31641; -- Demonic Endurance
+SET @CoAFelOrcSkillLineAbility3                                =    31642; -- Fel-Hardened
+SET @CoAFelOrcSkillLineAbility4                                =    31643; -- Axe of the Horde
+SET @CoAForestTrollSkillLineAbility1                           =    31644; -- Headhunter's Frenzy
+SET @CoAForestTrollSkillLineAbility2                           =    31645; -- Jungle Stalker
+SET @CoAForestTrollSkillLineAbility3                           =    31646; -- Troll Regeneration
+SET @CoAForestTrollSkillLineAbility4                           =    31647; -- Headhunter
+SET @CoAIceTrollSkillLineAbility1                              =    31648; -- Frostmane Frenzy
+SET @CoAIceTrollSkillLineAbility2                              =    31649; -- Winter's Blood
+SET @CoAIceTrollSkillLineAbility3                              =    31650; -- Troll Regeneration
+SET @CoAIceTrollSkillLineAbility4                              =    31651; -- Ice Hunter
+SET @CoASkeletonSkillLineAbility1                              =    31652; -- Bone Shield
+SET @CoASkeletonSkillLineAbility2                              =    31653; -- Bone Pile
+SET @CoASkeletonSkillLineAbility3                              =    31654; -- Unliving
+SET @CoASkeletonSkillLineAbility4                              =    31655; -- No Lungs
+SET @CoAAlliancePandarenSkillLineAbility1                      =    31656; -- Quaking Palm
+SET @CoAAlliancePandarenSkillLineAbility2                      =    31657; -- Inner Peace
+SET @CoAAlliancePandarenSkillLineAbility3                      =    31658; -- Bouncy
+SET @CoAAlliancePandarenSkillLineAbility4                      =    31659; -- Gourmand
+SET @CoAMurlocSkillLineAbility1                                =    31660; -- Mrgglrrgl!
+SET @CoAMurlocSkillLineAbility2                                =    31661; -- Murloc Swarm
+SET @CoAMurlocSkillLineAbility3                                =    31662; -- Amphibious
+SET @CoAMurlocSkillLineAbility4                                =    31663; -- Born in the Shallows
+SET @CoAThinHumanSkillLineAbility1                             =    31664; -- Survivor's Will
+SET @CoAThinHumanSkillLineAbility2                             =    31665; -- Light Step
+SET @CoAThinHumanSkillLineAbility3                             =    31666; -- Human Spirit
+SET @CoAThinHumanSkillLineAbility4                             =    31667; -- Diplomacy
+SET @CoADarkIronDwarfSkillLineAbility1                         =    31668; -- Fireblood
+SET @CoADarkIronDwarfSkillLineAbility2                         =    31669; -- Forged in Flames
+SET @CoADarkIronDwarfSkillLineAbility3                         =    31670; -- Mole Machine
+SET @CoADarkIronDwarfSkillLineAbility4                         =    31671; -- Mace of the Forge
+SET @CoAMagharOrcSkillLineAbility1                             =    31672; -- Ancestral Call
+SET @CoAMagharOrcSkillLineAbility2                             =    31673; -- Open Skies
+SET @CoAMagharOrcSkillLineAbility3                             =    31674; -- Savage Blood
+SET @CoAMagharOrcSkillLineAbility4                             =    31675; -- Command
+SET @CoAFurbolgSkillLineAbility1                               =    31676; -- Ursine Fury
+SET @CoAFurbolgSkillLineAbility2                               =    31677; -- Thick Fur
+SET @CoAFurbolgSkillLineAbility3                               =    31678; -- Furbolg Endurance
+SET @CoAFurbolgSkillLineAbility4                               =    31679; -- Gift of the Grove
+SET @CoAOgreSkillLineAbility1                                  =    31680; -- Ogre Slam
+SET @CoAOgreSkillLineAbility2                                  =    31681; -- Two Heads Are Better
+SET @CoAOgreSkillLineAbility3                                  =    31682; -- Thick Skull
+SET @CoAOgreSkillLineAbility4                                  =    31683; -- Club Mastery
+SET @CoAEredarSkillLineAbility1                                =    31684; -- Fel Torrent
+SET @CoAEredarSkillLineAbility2                                =    31685; -- Sargeras' Gift
+SET @CoAEredarSkillLineAbility3                                =    31686; -- Man'ari Mind
+SET @CoAEredarSkillLineAbility4                                =    31687; -- Demonic Hide
+SET @CoAVoidElfSkillLineAbility1                               =    31688; -- Spatial Rift
+SET @CoAVoidElfSkillLineAbility2                               =    31689; -- Void Torrent
+SET @CoAVoidElfSkillLineAbility3                               =    31690; -- Entropic Embrace
+SET @CoAVoidElfSkillLineAbility4                               =    31691; -- Ethereal Connection
+SET @CoAFelElfSkillLineAbility1                                =    31692; -- Spectral Sight
+SET @CoAFelElfSkillLineAbility2                                =    31693; -- Fel Rush
+SET @CoAFelElfSkillLineAbility3                                =    31694; -- Demon Hunter's Resolve
+SET @CoAFelElfSkillLineAbility4                                =    31695; -- Felblood
+SET @CoALightforgedDraeneiSkillLineAbility1                    =    31696; -- Light's Reckoning
+SET @CoALightforgedDraeneiSkillLineAbility2                    =    31697; -- Forge of Light
+SET @CoALightforgedDraeneiSkillLineAbility3                    =    31698; -- Holy Resistance
+SET @CoALightforgedDraeneiSkillLineAbility4                    =    31699; -- Lightforged Resolve
+SET @CoANightborneSkillLineAbility1                            =    31700; -- Arcane Pulse
+SET @CoANightborneSkillLineAbility2                            =    31701; -- Cantrips
+SET @CoANightborneSkillLineAbility3                            =    31702; -- Ancient History
+SET @CoANightborneSkillLineAbility4                            =    31703; -- Magical Affinity
+SET @CoAHighmountainTaurenSkillLineAbility1                    =    31704; -- Bull Rush
+SET @CoAHighmountainTaurenSkillLineAbility2                    =    31705; -- Mountaineer
+SET @CoAHighmountainTaurenSkillLineAbility3                    =    31706; -- Pride of Ironhorn
+SET @CoAHighmountainTaurenSkillLineAbility4                    =    31707; -- Rugged Tenacity
+SET @CoAMechagnomeSkillLineAbility1                            =    31708; -- Combat Analysis
+SET @CoAMechagnomeSkillLineAbility2                            =    31709; -- Emergency Failsafe
+SET @CoAMechagnomeSkillLineAbility3                            =    31710; -- Re-Origination
+SET @CoAMechagnomeSkillLineAbility4                            =    31711; -- Mechanical Mastery
+SET @CoAAllianceEarthenSkillLineAbility1                       =    31712; -- Azerite Surge
+SET @CoAAllianceEarthenSkillLineAbility2                       =    31713; -- Titan-Forged
+SET @CoAAllianceEarthenSkillLineAbility3                       =    31714; -- Stoneskin
+SET @CoAAllianceEarthenSkillLineAbility4                       =    31715; -- Gemcutting
+SET @CoAHordeEarthenSkillLineAbility1                          =    31716; -- Azerite Surge
+SET @CoAHordeEarthenSkillLineAbility2                          =    31717; -- Titan-Forged
+SET @CoAHordeEarthenSkillLineAbility3                          =    31718; -- Stoneskin
+SET @CoAHordeEarthenSkillLineAbility4                          =    31719; -- Gemcutting
+SET @CoAVulperaSkillLineAbility1                               =    31720; -- Bag of Tricks
+SET @CoAVulperaSkillLineAbility2                               =    31721; -- Make Camp
+SET @CoAVulperaSkillLineAbility3                               =    31722; -- Nose for Trouble
+SET @CoAVulperaSkillLineAbility4                               =    31723; -- Desert Hardened
+SET @CoADarkfallenSkillLineAbility1                            =    31724; -- Blood Siphon
+SET @CoADarkfallenSkillLineAbility2                            =    31725; -- Mist Form
+SET @CoADarkfallenSkillLineAbility3                            =    31726; -- Undying Hunger
+SET @CoADarkfallenSkillLineAbility4                            =    31727; -- Grave Chill
+SET @CoAGnollSkillLineAbility1                                 =    31728; -- Pack Howl
+SET @CoAGnollSkillLineAbility2                                 =    31729; -- Bone Gnaw
+SET @CoAGnollSkillLineAbility3                                 =    31730; -- Scavenger
+SET @CoAGnollSkillLineAbility4                                 =    31731; -- Thick Hide
+SET @CoACentaurSkillLineAbility5                               =    31732; -- Plains Charge
+SET @CoACentaurSkillLineAbility6                               =    31733; -- Gallop
+SET @CoAVenthyrSkillLineAbility5                               =    31734; -- Anima Frenzy
+SET @CoASlimeGiantSkillLineAbility5                            =    31735; -- Gooey Slam
+SET @CoAKyrianSkillLineAbility5                                =    31736; -- Steward's Resolve
+SET @CoAHozenSkillLineAbility1                                 =    31737; -- Prehensile Tail
+SET @CoAHozenSkillLineAbility2                                 =    31738; -- Nimble Climber
+SET @CoAHozenSkillLineAbility3                                 =    31739; -- Bristling Fur
+SET @CoAHozenSkillLineAbility4                                 =    31740; -- Monkey Business
+SET @CoAHozenSkillLineAbility5                                 =    31741; -- Nimble Escape
+SET @CoASylvariSkillLineAbility1                               =    31742; -- Thornhide
+SET @CoASylvariSkillLineAbility2                               =    31743; -- Fleet of Hoof
+SET @CoASylvariSkillLineAbility3                               =    31744; -- Fey Grace
+SET @CoASylvariSkillLineAbility4                               =    31745; -- Moonlit Sight
+SET @CoASylvariSkillLineAbility5                               =    31746; -- Verdant Renewal
+SET @CoAMantidSkillLineAbility1                                =    31747; -- Chitin Carapace
+SET @CoAMantidSkillLineAbility2                                =    31748; -- Mantis Strike
+SET @CoAMantidSkillLineAbility3                                =    31749; -- Skittering Reflexes
+SET @CoAMantidSkillLineAbility4                                =    31750; -- Swarm Stride
+SET @CoAMantidSkillLineAbility5                                =    31751; -- Chitin Hardening
+SET @CoAEtherealSkillLineAbility1                              =    31752; -- Ethereal Warding
+SET @CoAEtherealSkillLineAbility2                              =    31753; -- Wisp Step
+SET @CoAEtherealSkillLineAbility3                              =    31754; -- Phase Shift
+SET @CoAEtherealSkillLineAbility4                              =    31755; -- Void Insight
+SET @CoAEtherealSkillLineAbility5                              =    31756; -- Ethereal Torrent
+SET @CoABansheeSkillLineAbility1                               =    31757; -- Deathless Shroud
+SET @CoABansheeSkillLineAbility2                               =    31758; -- Wailing Gale
+SET @CoABansheeSkillLineAbility3                               =    31759; -- Spectral Sway
+SET @CoABansheeSkillLineAbility4                               =    31760; -- Banshee Wail
+SET @CoABansheeSkillLineAbility5                               =    31761; -- Spectral Glide
+SET @CoAFacelessOneSkillLineAbility1                           =    31762; -- Faceless Hide
+SET @CoAFacelessOneSkillLineAbility2                           =    31763; -- Creeping Dread
+SET @CoAFacelessOneSkillLineAbility3                           =    31764; -- Formless
+SET @CoAFacelessOneSkillLineAbility4                           =    31765; -- Shapeless Squirm
+SET @CoAFacelessOneSkillLineAbility5                           =    31766; -- Mind Rot
+SET @CoAQirajiSkillLineAbility1                                =    31767; -- Chitin Plate
+SET @CoAQirajiSkillLineAbility2                                =    31768; -- Burrower
+SET @CoAQirajiSkillLineAbility3                                =    31769; -- Hive Reflexes
+SET @CoAQirajiSkillLineAbility4                                =    31770; -- Swarm Frenzy
+SET @CoAQirajiSkillLineAbility5                                =    31771; -- Wings of the Swarm
+SET @CoAAllianceDracthyrSkillLineAbility1                      =    31772; -- Wing Buffet
+SET @CoAAllianceDracthyrSkillLineAbility2                      =    31773; -- Soar
+SET @CoAAllianceDracthyrSkillLineAbility3                      =    31774; -- Draconic Mind
+SET @CoAAllianceDracthyrSkillLineAbility4                      =    31775; -- Scales of the Aspects
+SET @CoAHordeDracthyrSkillLineAbility1                         =    31776; -- Wing Buffet
+SET @CoAHordeDracthyrSkillLineAbility2                         =    31777; -- Soar
+SET @CoAHordeDracthyrSkillLineAbility3                         =    31778; -- Draconic Mind
+SET @CoAHordeDracthyrSkillLineAbility4                         =    31779; -- Scales of the Aspects
+SET @IconCoAAbilityRacialAncestralcall                         =     4400; -- Interface\Icons\ability_racial_ancestralcall
+SET @IconCoAAbilityRacialBestdealsanywhere                     =     4401; -- Interface\Icons\ability_racial_bestdealsanywhere
+SET @IconCoAAbilityRacialBetterlivingthroughchemistry          =     4402; -- Interface\Icons\ability_racial_betterlivingthroughchemistry
+SET @IconCoAAbilityRacialBrushitoff                            =     4403; -- Interface\Icons\ability_racial_brushitoff
+SET @IconCoAAbilityRacialBullrush                              =     4404; -- Interface\Icons\ability_racial_bullrush
+SET @IconCoAAbilityRacialChildofthesea                         =     4405; -- Interface\Icons\ability_racial_childofthesea
+SET @IconCoAAbilityRacialChillofnight                          =     4406; -- Interface\Icons\ability_racial_chillofnight
+SET @IconCoAAbilityRacialCityofgold                            =     4407; -- Interface\Icons\ability_racial_cityofgold
+SET @IconCoAAbilityRacialDemonbane                             =     4408; -- Interface\Icons\Ability_Racial_Demonbane
+SET @IconCoAAbilityRacialDungeondelver                         =     4409; -- Interface\Icons\ability_racial_dungeondelver
+SET @IconCoAAbilityRacialEmbracetheloa                         =     4410; -- Interface\Icons\ability_racial_embracetheloa
+SET @IconCoAAbilityRacialEntropicembrace                       =     4411; -- Interface\Icons\ability_racial_entropicembrace
+SET @IconCoAAbilityRacialEtherealconnection                    =     4412; -- Interface\Icons\ability_racial_etherealconnection
+SET @IconCoAAbilityRacialFinalverdict                          =     4413; -- Interface\Icons\ability_racial_finalverdict
+SET @IconCoAAbilityRacialFireblood                             =     4414; -- Interface\Icons\ability_racial_fireblood
+SET @IconCoAAbilityRacialForegedinflames                       =     4415; -- Interface\Icons\ability_racial_foregedinflames
+SET @IconCoAAbilityRacialForgeoflight                          =     4416; -- Interface\Icons\ability_racial_forgeoflight
+SET @IconCoAAbilityRacialHaymaker                              =     4417; -- Interface\Icons\ability_racial_haymaker
+SET @IconCoAAbilityRacialHolyresistance                        =     4418; -- Interface\Icons\ability_racial_holyresistance
+SET @IconCoAAbilityRacialJackofalltrades                       =     4419; -- Interface\Icons\ability_racial_jackofalltrades
+SET @IconCoAAbilityRacialMakecamp                              =     4420; -- Interface\Icons\ability_racial_makecamp
+SET @IconCoAAbilityRacialMassproduction                        =     4421; -- Interface\Icons\ability_racial_massproduction
+SET @IconCoAAbilityRacialMountaineer                           =     4422; -- Interface\Icons\Ability_Racial_Mountaineer
+SET @IconCoAAbilityRacialOpenskies                             =     4423; -- Interface\Icons\ability_racial_openskies
+SET @IconCoAAbilityRacialPrideofironhorn                       =     4424; -- Interface\Icons\ability_racial_prideofironhorn
+SET @IconCoAAbilityRacialPterrordaxswoop                       =     4425; -- Interface\Icons\ability_racial_pterrordaxswoop
+SET @IconCoAAbilityRacialPureblood                             =     4426; -- Interface\Icons\ability_racial_pureblood
+SET @IconCoAAbilityRacialReturntocamp                          =     4427; -- Interface\Icons\ability_racial_returntocamp
+SET @IconCoAAbilityRacialRimeoftheancientmariner               =     4428; -- Interface\Icons\ability_racial_rimeoftheancientmariner
+SET @IconCoAAbilityRacialRocketbarrage                         =     4429; -- Interface\Icons\ability_racial_rocketbarrage
+SET @IconCoAAbilityRacialRocketjump                            =     4430; -- Interface\Icons\ability_racial_rocketjump
+SET @IconCoAAbilityRacialRunningwild                           =     4431; -- Interface\Icons\ability_racial_runningwild
+SET @IconCoAAbilityRacialSpatialrift                           =     4432; -- Interface\Icons\ability_racial_spatialrift
+SET @IconCoAAbilityRacialTimeismoney                           =     4433; -- Interface\Icons\ability_racial_timeismoney
+SET @IconCoAAbilityWorgenDarkflight                            =     4434; -- Interface\Icons\ability_worgen_darkflight
+-- <<< CoA Custom 1.9 racials <<<
+
+-- >>> Aetheria racials (tools/races/aetheria_racials.py) >>>
+-- Aetheria racials (Kyrian/Venthyr package kyrian-venthyr-20261027-1): spells at Aetheria's ids 111100-111113 and 111200-111212 (fixed: the C++ scripts use them), SkillLineAbility from 31780
+SET @AetheriaKyrianSkillLineAbility1                           =    31780; -- Ascended Hover
+SET @AetheriaKyrianSkillLineAbility2                           =    31781; -- Ascended Wings
+SET @AetheriaKyrianSkillLineAbility3                           =    31782; -- Purity of Bastion
+SET @AetheriaKyrianSkillLineAbility4                           =    31783; -- Virtue of Courage
+SET @AetheriaKyrianSkillLineAbility5                           =    31784; -- Soul Guide
+SET @AetheriaKyrianSkillLineAbility6                           =    31785; -- Steward's Craft
+SET @AetheriaKyrianSkillLineAbility7                           =    31786; -- Ascendant Charge
+SET @AetheriaVenthyrSkillLineAbility1                          =    31787; -- Crimson Feast
+SET @AetheriaVenthyrSkillLineAbility2                          =    31788; -- Blood Scent
+SET @AetheriaVenthyrSkillLineAbility3                          =    31789; -- Children of Revendreth
+SET @AetheriaVenthyrSkillLineAbility4                          =    31790; -- Anima Hunger
+SET @AetheriaVenthyrSkillLineAbility5                          =    31791; -- Courtly Artifice
+SET @AetheriaVenthyrSkillLineAbility6                          =    31792; -- Sanguine Hover
+SET @AetheriaVenthyrSkillLineAbility7                          =    31793; -- Vampire Bat Form
+SET @VenthyrBatCreature                                        =    16175; -- Vampiric Shadowbat, Vampire Bat Form's creature (any creature with a bat model)
+-- <<< Aetheria racials <<<

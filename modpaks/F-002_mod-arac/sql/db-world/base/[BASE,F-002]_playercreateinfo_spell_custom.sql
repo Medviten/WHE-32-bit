@@ -1,4 +1,4 @@
-INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
+INSERT IGNORE INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
 
 -- Everyone
 (0, 0,    '81', 'Dodge'),

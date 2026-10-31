@@ -1,0 +1,10 @@
+-- creaturemodeldata: 1 inserts, 0 updates, 0 deletes
+-- Size, collision and sounds of the Human models, with the player model flags (0x804); size, collision and bounds
+-- from CoA's rows for these models (below). Male-only race: one model for both displays
+
+DELETE FROM `creaturemodeldata` WHERE `id` IN (@HozenMaleModel);
+INSERT INTO `creaturemodeldata` (`id`, `flags`, `model_path`, `size_class`, `model_scale`, `blood_id`, `footprint_texture_id`, `footprint_texture_length`, `footprint_texture_width`, `footprint_particle_scale`, `foley_material_id`, `footstep_shake_size`, `death_thud_shake_size`, `sound_data`, `collision_width`, `collision_height`, `mount_height`, `geo_box_min_x`, `geo_box_min_y`, `geo_box_min_z`, `geo_box_max_x`, `geo_box_max_y`, `geo_box_max_z`, `world_effect_scale`, `attached_effect_scale`, `missile_collision_radius`, `missile_collision_push`, `missile_collision_raise`)
+SELECT @HozenMaleModel, 2052, @HozenMaleModelPath, `size_class`, `model_scale`, `blood_id`, `footprint_texture_id`, `footprint_texture_length`, `footprint_texture_width`, `footprint_particle_scale`, `foley_material_id`, `footstep_shake_size`, `death_thud_shake_size`, `sound_data`, `collision_width`, `collision_height`, `mount_height`, `geo_box_min_x`, `geo_box_min_y`, `geo_box_min_z`, `geo_box_max_x`, `geo_box_max_y`, `geo_box_max_z`, `world_effect_scale`, `attached_effect_scale`, `missile_collision_radius`, `missile_collision_push`, `missile_collision_raise` FROM `creaturemodeldata` WHERE `id` = 49 /* Human male model 49 */;
+
+-- Model scale, collision and bounds of CoA's rows
+UPDATE `creaturemodeldata` SET `size_class` = 1, `model_scale` = 1, `collision_width` = 0.6, `collision_height` = 1.9, `mount_height` = 1.5, `geo_box_min_x` = -1.2, `geo_box_min_y` = -0.5, `geo_box_min_z` = 0, `geo_box_max_x` = 0.5, `geo_box_max_y` = 0.5, `geo_box_max_z` = 1.8, `world_effect_scale` = 1.2, `attached_effect_scale` = 1, `missile_collision_radius` = 0, `missile_collision_push` = 0, `missile_collision_raise` = 0 WHERE `id` = @HozenMaleModel;

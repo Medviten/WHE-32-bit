@@ -12,9 +12,16 @@
     - Kin: Tauren (voice, emotes and names copied at build time, model data, helmet prefix)
 
 ### Known Issues
-- No racial abilities yet
 - No racial mount
 - No hair or facial styles (the model has no geosets)
 - No "no accessories" option (Project Reforged's transparent accessory texture is not available)
 - Racial faction name and description are placeholders
 - Uses Tauren helmet models (client prefix 'Ta'); helmet geosets are not adjusted
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 50 (Furbolg), renumbered; blocks at the end of `[BASE,F-045]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Ursine Fury: Increases your attack and casting speed by $s1% for $d. Does not stack with other similar cast speed increasing effects.
+    - Thick Fur: Reduces the damage taken by Nature spells by $s1%.
+    - Furbolg Endurance: Base Health increased by $s1%.
+    - Gift of the Grove: Herbalism skill increased by $s1.

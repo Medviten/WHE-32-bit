@@ -110,6 +110,8 @@ git add .
 git commit -m "Add whe-playerbots patch"
 ```
 
+Some modpaks ship patches of their own, in `modpaks/<modpak>/patches/<target>/` (`core` for AzerothCore, `individual-progression` for mod-individual-progression, ...). Apply the ones of the modpaks you use the same way, from that repository's root. They are not combined at build time yet.
+
 ## 3. Set up the DBC-SQL pipeline
 
 Edit the config in [DBCTool](https://github.com/Medviten/DBCTool-32-bit) and point it to a disposable database (e.g. `dbc`). It will **drop and recreate** it, which requires the proper permissions, and backing up your DB first is a very good idea. SQL dumps are cheap.

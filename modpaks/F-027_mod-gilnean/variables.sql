@@ -1,5 +1,5 @@
 -- Race ID
-SET @Gilnean                           := @Worgen + 1;               -- 13: reserved in config.sql, so the client's alteredFormRaces is "12=13"
+SET @Gilnean                           := 255;               -- 13: reserved in config.sql, so the client's alteredFormRaces is "12=13"
 SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- 4096
 SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- 8192
 

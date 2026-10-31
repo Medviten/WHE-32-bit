@@ -1,0 +1,15 @@
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index f2b3207..68da5a1 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -14016,6 +14016,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
+                 if (HasAura(SPELL_DIVINE_PROTECTION))
+                     damage /= 2;
+ 
++                // Kyrian racial Ascended Wings (spell 111104, WHE's F-068 from Aetheria's package) halves fall damage
++                if (HasAura(111104))
++                    damage /= 2;
++
+                 final_damage = EnvironmentalDamage(DAMAGE_FALL, damage);
+             }
+ 

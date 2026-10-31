@@ -20,7 +20,7 @@ SET @Points_of_Interest_list = JSON_ARRAY('Silvermoon City, Weapon Master', 'Sil
         'Falconwing Square, Priest Trainer', 'Falconwing Square, Paladin Trainer', 'Falconwing Square, Mage Trainer',
         'Falconwing Square, Jewelcrafter', 'Falconwing Square, Innkeeper', 'Falconwing Square, Hunter Trainer',
         'Falconwing Square, First Aid Trainer', 'Falconwing Square, Cook', 'Eversong Woods, Skinner',
-        'Eversong Woods, Leatherworker');
+        'Eversong Woods, Leatherworker', 'Silvermoon City, Shaman Trainer', 'Silvermoon City, Warrior Trainer');
 
 SET @adtdimensions = 533.33333;
 SET @adt_xshift = -4;

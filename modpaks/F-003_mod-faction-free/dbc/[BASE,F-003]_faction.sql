@@ -22,7 +22,19 @@ UPDATE `faction` SET `reputation_base_2` = 3100, `reputation_flags_2` = 273 WHER
     @FurbolgFaction,            @MurlocFaction,
     @GilneanFaction,            @VrykulFaction,
     @ThinHumanFaction,          @TuskarrFaction,
-    @DarkfallenFaction
+    @DarkfallenFaction,
+    @FelOrcFaction,             @SkeletonFaction,
+    @ForestTrollFaction,        @NorthrendSkeletonFaction,
+    @IceTrollFaction,           @QirajiFaction,
+    @EredarFaction,             @ArakkoaFaction,
+    @FelElfFaction,             @QuillboarFaction,
+    @CentaurFaction,            @DemonFaction,
+    @SatyrFaction,              @GnollFaction,
+    @BeholderFaction,           @ShivanFaction,
+    @HozenFaction,              @SylvariFaction,
+    @MantidFaction,             @EtherealFaction,
+    @KyrianFaction,             @VenthyrFaction,
+    @BansheeFaction,            @FacelessOneFaction
 );
 UPDATE `faction` SET `reputation_base_2` = 400, `reputation_flags_2` = 273  WHERE `id` = @BloodElfFaction; -- Silvermoon City
 UPDATE `faction` SET `reputation_base_2` = 3000, `reputation_flags_2` = 273 WHERE `id` = @DraeneiFaction; -- Exodar

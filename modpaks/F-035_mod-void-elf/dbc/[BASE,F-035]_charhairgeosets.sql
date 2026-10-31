@@ -1,4 +1,4 @@
--- charhairgeosets: 24 inserts, 0 updates, 0 deletes
+-- charhairgeosets: 24 inserts, 0 updates, 0 deletes (from Kalibro's races package (Kalibros_Races_20261012, race 19))
 
 -- New entries
 DELETE FROM `charhairgeosets` WHERE `race` = @VoidElf;
@@ -17,7 +17,7 @@ INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `s
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Male,   10, 11, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Male,   11, 12, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Male,   12, 13, 0),
-(@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Female,  0,  1, 1),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Female,  0,  0, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Female,  1,  2, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Female,  2,  3, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @VoidElf, @Female,  3,  4, 0),

@@ -1,0 +1,24 @@
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index f2b3207..3ad4edc 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -532,6 +532,19 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
+         return false;
+     }
+ 
++    // WHE: races without a female model (ChrRaces gives them a female display that uses the male display's model) are
++    // always created male; a client without male-only support still offers both genders
++    if (createInfo->Gender == GENDER_FEMALE)
++    {
++        if (ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(createInfo->Race))
++        {
++            CreatureDisplayInfoEntry const* maleDisplay = sCreatureDisplayInfoStore.LookupEntry(raceEntry->model_m);
++            CreatureDisplayInfoEntry const* femaleDisplay = sCreatureDisplayInfoStore.LookupEntry(raceEntry->model_f);
++            if (maleDisplay && femaleDisplay && maleDisplay->ModelId == femaleDisplay->ModelId)
++                createInfo->Gender = GENDER_MALE;
++        }
++    }
++
+     uint32 RaceClassGender = (createInfo->Race) | (createInfo->Class << 8) | (createInfo->Gender << 16);
+ 
+     SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));

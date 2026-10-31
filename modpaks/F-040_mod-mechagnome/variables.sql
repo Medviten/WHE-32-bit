@@ -118,7 +118,7 @@ SET @MechagnomePlayerUnk2                 = '';
 SET @MechagnomePlayerUnk3                 = '';
 SET @MechagnomePlayerUnk4                 = '';
 
-SET @MechagnomeFactionNameenUS            = 'Mechagnome';
+SET @MechagnomeFactionNameenUS            = 'Mechagon';
 SET @MechagnomeFactionNamekoKR            = '';
 SET @MechagnomeFactionNamefrFR            = '';
 SET @MechagnomeFactionNamedeDE            = '';
@@ -135,7 +135,7 @@ SET @MechagnomeFactionNameUnk2            = '';
 SET @MechagnomeFactionNameUnk3            = '';
 SET @MechagnomeFactionNameUnk4            = '';
 
-SET @MechagnomeFactionDescriptionenUS     = 'Mechagnomes of Mechagon who have joined the Alliance.';
+SET @MechagnomeFactionDescriptionenUS     = 'The island of the mechagnomes.';
 SET @MechagnomeFactionDescriptionkoKR     = '';
 SET @MechagnomeFactionDescriptionfrFR     = '';
 SET @MechagnomeFactionDescriptiondeDE     = '';

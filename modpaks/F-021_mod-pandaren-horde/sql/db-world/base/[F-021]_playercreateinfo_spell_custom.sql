@@ -1,5 +1,5 @@
 /*
-INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
+INSERT IGNORE INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
 -- Horde Pandaren Paladin
 (@HordePandarenMask, @PaladinMask, '68975', 'Viciousness'),
 (@HordePandarenMask, @PaladinMask, '68976', 'Aberration'),

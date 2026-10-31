@@ -1,0 +1,47 @@
+-- charsections: 40 inserts, 0 updates, 0 deletes
+-- From the skin colours (option 0) of CoA's appearance catalog EsteriaBanshee.bin, flagged for character creation (17, faces 1)
+
+-- New entries
+DELETE FROM `charsections` WHERE `race` = @Banshee;
+SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
+INSERT INTO `charsections` (`id`, `race`, `gender`, `base_section`, `texture_1`, `texture_2`, `texture_3`, `flags`, `type`, `color_index`) VALUES
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Spectral.blp', 'Creature\\Banshee\\BansheePlayerFace_Spectral.blp', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Frost.blp', 'Creature\\Banshee\\BansheePlayerFace_Frost.blp', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Void.blp', 'Creature\\Banshee\\BansheePlayerFace_Void.blp', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Ember.blp', 'Creature\\Banshee\\BansheePlayerFace_Ember.blp', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Radiant.blp', 'Creature\\Banshee\\BansheePlayerFace_Radiant.blp', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Blood.blp', 'Creature\\Banshee\\BansheePlayerFace_Blood.blp', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Face,       '', '', '', 1, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @FacialHair, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Hair,       '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Male,  @Underwear,  '', '', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Spectral.blp', 'Creature\\Banshee\\BansheePlayerFace_Spectral.blp', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Frost.blp', 'Creature\\Banshee\\BansheePlayerFace_Frost.blp', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Void.blp', 'Creature\\Banshee\\BansheePlayerFace_Void.blp', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Ember.blp', 'Creature\\Banshee\\BansheePlayerFace_Ember.blp', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Radiant.blp', 'Creature\\Banshee\\BansheePlayerFace_Radiant.blp', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Skin,       'Creature\\Banshee\\BansheePlayerSkin_Blood.blp', 'Creature\\Banshee\\BansheePlayerFace_Blood.blp', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Face,       '', '', '', 1, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @FacialHair, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Hair,       '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Banshee, @Female, @Underwear,  '', '', '', 17, 0, 5);

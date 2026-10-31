@@ -14,3 +14,15 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 DELETE FROM `spellicon` WHERE `id` IN (@ZandalariTrollMount1IconID);
 INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@ZandalariTrollMount1IconID, @ZandalariTrollMount1IconPath);
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- Retail icons of the Zandalari Troll racials (the client needs the icon files)
+-- Commented out: the race already gets the Troll racials. Remove the comment markers to give the race CoA's racials instead.
+/*
+DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialCityofgold, @IconCoAAbilityRacialEmbracetheloa, @IconCoAAbilityRacialPterrordaxswoop);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@IconCoAAbilityRacialCityofgold, 'Interface\\Icons\\ability_racial_cityofgold'),
+(@IconCoAAbilityRacialEmbracetheloa, 'Interface\\Icons\\ability_racial_embracetheloa'),
+(@IconCoAAbilityRacialPterrordaxswoop, 'Interface\\Icons\\ability_racial_pterrordaxswoop');
+*/
+-- <<< CoA Custom 1.9 racials <<<

@@ -16,6 +16,7 @@
 # INITIAL SETUP #
 #F-001_localization # Turn this on if you need it
 F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
+#F-072_patch-reforged-a-hd # Off by default (enable only if you use that patch – rename patches so these DBCs load after it)
 #F-018_squished_client # Off by default (most people don't use squished client)
 F-008_move-npc-races # Not strictly necessary if you increase race limit, but highly recommended to avoid conflicts
 F-009_morph-with-gear
@@ -47,9 +48,39 @@ F-022_mod-playable-broken
 #F-043_mod-darkfallen # Off by default (WIP – not ready)
 #F-044_mod-playable-murloc # Off by default (WIP – not ready)
 #F-045_mod-playable-furbolg # Off by default (WIP – not ready)
+# Race IDs are handed out in this order (Worgen 12, Gilnean 13, then 14 up), and 32-bit race masks only hold races
+# 1-31 (helmet masks use bit <race>): enable no more races than fit. The modpaks below are ported from WHE-256-bit.
+#F-046_mod-playable-slime-giant # Off by default (tentative, untested; needs client assets in patch-A)
+#F-047_mod-playable-fel-orc # Off by default (tentative, untested)
+#F-048_mod-playable-skeleton # Off by default (tentative, untested)
+#F-049_mod-playable-forest-troll # Off by default (tentative, untested)
+#F-050_mod-playable-northrend-skeleton # Off by default (tentative, untested)
+#F-051_mod-playable-ice-troll # Off by default (tentative, untested)
+#F-052_mod-playable-qiraji # Off by default (tentative, untested; needs client assets in patch-A)
+#F-053_mod-playable-eredar # Off by default (tentative, untested; needs client assets in patch-A)
+#F-054_mod-playable-arakkoa # Off by default (tentative, untested; needs client assets in patch-A)
+#F-055_mod-playable-fel-elf # Off by default (tentative, untested; needs client assets in patch-A)
+#F-056_mod-playable-quillboar # Off by default (tentative, untested; needs client assets in patch-A)
+#F-057_mod-playable-centaur # Off by default (tentative, untested; needs client assets in patch-A)
+#F-058_mod-playable-demon # Off by default (tentative, untested; needs client assets in patch-A)
+#F-059_mod-playable-satyr # Off by default (tentative, untested; needs client assets in patch-A)
+#F-060_mod-playable-gnoll # Off by default (tentative, untested; needs client assets in patch-A)
+#F-061_mod-playable-beholder # Off by default (tentative, untested; needs client assets in patch-A)
+#F-062_mod-playable-shivan # Off by default (tentative, untested; needs client assets in patch-A)
+#F-064_mod-playable-hozen # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-065_mod-playable-sylvari # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-066_mod-playable-mantid # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-067_mod-playable-ethereal # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-068_mod-playable-kyrian # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A; core patch in patches/core)
+#F-069_mod-playable-venthyr # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A; core patch in patches/core)
+#F-070_mod-playable-banshee # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-071_mod-playable-faceless-one # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-073_mod-playable-dracthyr-alliance # Off by default (tentative, untested; the stock client shows the Human model)
+#F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; the stock client shows the Orc model)
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #
+#F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
 #F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended)
 #F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
 #F-011_mod-druid-forms # Off by default
@@ -58,4 +89,5 @@ F-022_mod-playable-broken
 F-026_custom-race-support # required for any custom race to function correctly
 #F-002_mod-arac # Off by default
 #F-003_mod-faction-free # Off by default
+#F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
 # END ADDITIONAL MODS #

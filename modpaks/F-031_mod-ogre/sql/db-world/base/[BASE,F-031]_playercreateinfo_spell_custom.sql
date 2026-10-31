@@ -1,5 +1,5 @@
 /*
-INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
+INSERT IGNORE INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
 -- Ogre Warrior
 (@OgreMask, @WarriorMask, '78', 'Heroic Strike'),
 (@OgreMask, @WarriorMask, '81', 'Dodge'),

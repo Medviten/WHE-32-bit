@@ -38,6 +38,20 @@ namespace WHE
 
         return false;
     }
+
+    // The race whose SkillLineAbility row gives the spell (its racial skill line in the race's modpak), 0 if none, for
+    // scripts that check one race (WHE-256-bit's RacialRace.h, with 32-bit race masks).
+    inline uint8 RaceTeaching(uint32 spellId)
+    {
+        SkillLineAbilityMapBounds bounds = sSpellMgr->GetSkillLineAbilityMapBounds(spellId);
+
+        for (auto itr = bounds.first; itr != bounds.second; ++itr)
+            for (uint8 race = 1; race <= 32; ++race)
+                if (itr->second->RaceMask & (1u << (race - 1)))
+                    return race;
+
+        return 0;
+    }
 }
 
 #endif

@@ -13,7 +13,8 @@ SET @Points_of_Interest_list =  JSON_ARRAY('Exodar, Auctioneer','Exodar, bank','
     'Azure Watch, Hunter Trainer','Azure Watch, Mage Trainer','Azure Watch, Paladin Trainer','Azure Watch, Priest Trainer','Azure Watch, Shaman Trainer',
     'Azure Watch, Warrior Trainer','Azure Watch, Alchemist','Odesyus'' Landing, Blacksmith','Odesyus'' Landing, Cook','Azure Watch, Engineering Trainer',
     'Azure Watch, First Aid Trainer','Ammen Ford, Fisherwoman','Azure Watch, Herbalist','Stillpine Hold, Leatherworker','Azure Watch, Mining Trainer',
-    'Stillpine Hold, Skinner','Odesyus'' Landing, Tailor','Exodar, Battlemasters','Arena Battlemaster Exodar');
+    'Stillpine Hold, Skinner','Odesyus'' Landing, Tailor','Exodar, Battlemasters','Arena Battlemaster Exodar',
+    'Exodar, Warlock Trainer','Exodar, Rogue Trainer');
 
 SET @adtdimensions = 533.33333;
 SET @adt_xshift = 18;

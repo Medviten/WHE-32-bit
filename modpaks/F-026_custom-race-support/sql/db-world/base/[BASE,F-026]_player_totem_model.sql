@@ -1,5 +1,7 @@
 -- Add Alliance defaults only to races which currently have no
 -- player_totem_model entries at all.
+-- Side and playability come from ChrRaces (playable: no 0x01 flag, as in the core's RaceMgr, and `alliance` 0 is
+-- Alliance, 1 Horde) rather than @AllianceMask/@HordeMask, which only hold races 1-64.
 INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`)
 SELECT
     t.`TotemID`,
@@ -13,10 +15,16 @@ FROM (
 ) AS t
 CROSS JOIN (
     SELECT DISTINCT `race`
-    FROM `dbc`.`charbaseinfo`
+    FROM `dbc_db`.`charbaseinfo`
     WHERE `race` IS NOT NULL
 ) AS r
-WHERE (@AllianceMask & (1 << (r.`race` - 1))) <> 0
+WHERE EXISTS (
+      SELECT 1
+      FROM `dbc_db`.`chrraces` c
+      WHERE c.`id` = r.`race`
+        AND (c.`flags` & 1) = 0
+        AND c.`alliance` = 0
+  )
   AND NOT EXISTS (
       SELECT 1
       FROM `player_totem_model` ptm
@@ -38,10 +46,16 @@ FROM (
 ) AS t
 CROSS JOIN (
     SELECT DISTINCT `race`
-    FROM `dbc`.`charbaseinfo`
+    FROM `dbc_db`.`charbaseinfo`
     WHERE `race` IS NOT NULL
 ) AS r
-WHERE (@HordeMask & (1 << (r.`race` - 1))) <> 0
+WHERE EXISTS (
+      SELECT 1
+      FROM `dbc_db`.`chrraces` c
+      WHERE c.`id` = r.`race`
+        AND (c.`flags` & 1) = 0
+        AND c.`alliance` = 1
+  )
   AND NOT EXISTS (
       SELECT 1
       FROM `player_totem_model` ptm

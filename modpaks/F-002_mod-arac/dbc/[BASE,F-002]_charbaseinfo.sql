@@ -48,6 +48,30 @@ FROM (
     UNION ALL SELECT @ThinHuman
     UNION ALL SELECT @Tuskarr
     UNION ALL SELECT @Darkfallen
+    UNION ALL SELECT @FelOrc
+    UNION ALL SELECT @Skeleton
+    UNION ALL SELECT @ForestTroll
+    UNION ALL SELECT @NorthrendSkeleton
+    UNION ALL SELECT @IceTroll
+    UNION ALL SELECT @Qiraji
+    UNION ALL SELECT @Eredar
+    UNION ALL SELECT @Arakkoa
+    UNION ALL SELECT @FelElf
+    UNION ALL SELECT @Quillboar
+    UNION ALL SELECT @Centaur
+    UNION ALL SELECT @Demon
+    UNION ALL SELECT @Satyr
+    UNION ALL SELECT @Gnoll
+    UNION ALL SELECT @Beholder
+    UNION ALL SELECT @Shivan
+    UNION ALL SELECT @Hozen
+    UNION ALL SELECT @Sylvari
+    UNION ALL SELECT @Mantid
+    UNION ALL SELECT @Ethereal
+    UNION ALL SELECT @Kyrian
+    UNION ALL SELECT @Venthyr
+    UNION ALL SELECT @Banshee
+    UNION ALL SELECT @FacelessOne
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`

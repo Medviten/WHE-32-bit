@@ -15,3 +15,12 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@LightforgedDraeneiRacialIcon4,  @LightforgedDraeneiRacialIcon4Path),
 (@LightforgedDraeneiRacialIcon5,  @LightforgedDraeneiRacialIcon5Path),
 (@LightforgedDraeneiRacialIcon6,  @LightforgedDraeneiRacialIcon6Path);
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- Retail icons of the Lightforged Draenei racials (the client needs the icon files)
+DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialFinalverdict, @IconCoAAbilityRacialForgeoflight, @IconCoAAbilityRacialHolyresistance);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@IconCoAAbilityRacialFinalverdict, 'Interface\\Icons\\ability_racial_finalverdict'),
+(@IconCoAAbilityRacialForgeoflight, 'Interface\\Icons\\ability_racial_forgeoflight'),
+(@IconCoAAbilityRacialHolyresistance, 'Interface\\Icons\\ability_racial_holyresistance');
+-- <<< CoA Custom 1.9 racials <<<

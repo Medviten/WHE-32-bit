@@ -12,3 +12,12 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconPrideOfIronhorn, 'Interface\\Icons\\ability_racial_prideofironhorn'),
 (@IconRuggedTenacity,  'Interface\\Icons\\ability_racial_ruggedtenacity'),
 (@IconWasteNotWantNot, 'Interface\\Icons\\ability_racial_wastenotwantnot');
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- Retail icons of the Highmountain Tauren racials (the client needs the icon files)
+DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialBullrush, @IconCoAAbilityRacialMountaineer, @IconCoAAbilityRacialPrideofironhorn);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@IconCoAAbilityRacialBullrush, 'Interface\\Icons\\ability_racial_bullrush'),
+(@IconCoAAbilityRacialMountaineer, 'Interface\\Icons\\Ability_Racial_Mountaineer'),
+(@IconCoAAbilityRacialPrideofironhorn, 'Interface\\Icons\\ability_racial_prideofironhorn');
+-- <<< CoA Custom 1.9 racials <<<

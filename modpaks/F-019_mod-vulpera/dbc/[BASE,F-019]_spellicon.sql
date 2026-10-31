@@ -14,3 +14,11 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconNoseForTrouble,   'Interface\\Icons\\ability_racial_nosefortrouble'),
 (@IconReturnToCamp,     'Interface\\Icons\\ability_racial_returntocamp'),
 (@IconRummageYourBag,   'Interface\\Icons\\ability_racial_vulperasurvivalkit');
+
+-- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
+-- Retail icons of the Vulpera racials (the client needs the icon files)
+DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialMakecamp, @IconCoAAbilityRacialReturntocamp);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@IconCoAAbilityRacialMakecamp, 'Interface\\Icons\\ability_racial_makecamp'),
+(@IconCoAAbilityRacialReturntocamp, 'Interface\\Icons\\ability_racial_returntocamp');
+-- <<< CoA Custom 1.9 racials <<<

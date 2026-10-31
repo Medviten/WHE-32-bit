@@ -45,5 +45,17 @@ WHERE `id` IN (
     @FurbolgFaction,            @MurlocFaction,
     @GilneanFaction,            @VrykulFaction,
     @ThinHumanFaction,          @TuskarrFaction,
-    @DarkfallenFaction
+    @DarkfallenFaction,
+    @FelOrcFaction,             @SkeletonFaction,
+    @ForestTrollFaction,        @NorthrendSkeletonFaction,
+    @IceTrollFaction,           @QirajiFaction,
+    @EredarFaction,             @ArakkoaFaction,
+    @FelElfFaction,             @QuillboarFaction,
+    @CentaurFaction,            @DemonFaction,
+    @SatyrFaction,              @GnollFaction,
+    @BeholderFaction,           @ShivanFaction,
+    @HozenFaction,              @SylvariFaction,
+    @MantidFaction,             @EtherealFaction,
+    @KyrianFaction,             @VenthyrFaction,
+    @BansheeFaction,            @FacelessOneFaction
 );

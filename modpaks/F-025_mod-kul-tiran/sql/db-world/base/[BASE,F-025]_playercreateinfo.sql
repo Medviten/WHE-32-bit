@@ -9,4 +9,4 @@ INSERT IGNORE INTO `playercreateinfo` VALUES
 (@KulTiran, @Mage,        @EasternKingdoms,  @ElwynnForest,   @HumanStartX,  @HumanStartY, @HumanStartZ, @HumanStartO),
 (@KulTiran, @Warlock,     @EasternKingdoms,  @ElwynnForest,   @HumanStartX,  @HumanStartY, @HumanStartZ, @HumanStartO), -- ARAC
 (@KulTiran, @Druid,       @EasternKingdoms,  @ElwynnForest,   @HumanStartX,  @HumanStartY, @HumanStartZ, @HumanStartO),
-(@KulTiran, @DeathKnight, @Northrend,        @ScarletEnclave, @DKStartX,     @DKStartY,    @DKStartZ,    @DKStartO);
+(@KulTiran, @DeathKnight, @Northrend,        @ScarletEnclave, @DKStartX,     @DKStartY,    @DKStartZ,    @DKStartZ);

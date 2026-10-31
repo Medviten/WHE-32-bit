@@ -1,4 +1,4 @@
-INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
+INSERT IGNORE INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
 -- Goblin Paladin
 (@GoblinMask, @PaladinMask, '669', 'Language Orcish'),
 (@GoblinMask, @PaladinMask, '69041', 'Rocket Barrage'),

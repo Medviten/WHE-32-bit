@@ -1,0 +1,35 @@
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index 9c4fa8f..2938ed5 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -6526,7 +6526,17 @@ void AuraEffect::HandlePeriodicHealthLeechAuraTick(Unit* target, Unit* caster) c
+ 
+     float gainMultiplier = GetSpellInfo()->Effects[GetEffIndex()].CalcValueMultiplier(caster);
+ 
+-    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), uint32(new_damage * gainMultiplier), DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
++    uint32 baseHeal = uint32(new_damage * gainMultiplier);
++    // Venthyr racial Crimson Feast (spell 111200, WHE's F-069 from Aetheria's package) heals half its damage: keep
++    // the fraction between ticks, or one-damage ticks at low level would never heal
++    if (GetId() == 111200)
++    {
++        double const exactHeal = double(new_damage) * gainMultiplier + m_leechRemainder;
++        baseHeal = uint32(exactHeal);
++        m_leechRemainder = exactHeal - baseHeal;
++    }
++
++    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), baseHeal, DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
+     heal = uint32(caster->SpellHealingBonusTaken(caster, GetSpellInfo(), heal, DOT, GetBase()->GetStackAmount()));
+ 
+     HealInfo healInfo(caster, caster, heal, GetSpellInfo(), GetSpellInfo()->GetSchoolMask());
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.h b/src/server/game/Spells/Auras/SpellAuraEffects.h
+index 0a419e5..5f0b561 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.h
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.h
+@@ -141,6 +141,7 @@ private:
+     int32 m_periodicTimer;
+     int32 m_amplitude;
+     uint32 m_tickNumber;
++    mutable double m_leechRemainder = 0.0; // heal fraction carried between periodic leech ticks (Crimson Feast)
+ 
+     uint8 const m_effIndex;
+     bool m_canBeRecalculated;

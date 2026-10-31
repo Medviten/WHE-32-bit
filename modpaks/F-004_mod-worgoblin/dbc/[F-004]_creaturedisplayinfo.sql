@@ -2,7 +2,6 @@
 DELETE FROM `creaturedisplayinfo` WHERE `id` BETWEEN 92600 AND 92605;
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
     @WorgenWildMaleDisplay,         @WorgenWildFemaleDisplay,
-    @GilneanMaleDisplay,            @GilneanFemaleDisplay,
     @DruidBearWorgenDisplay,        @DruidBearWorgenBlackDisplay,    @DruidBearWorgenBrownDisplay,    @DruidBearWorgenTanDisplay,      @DruidBearWorgenWhiteDisplay,
     @DruidBearTrollBlueDisplay,     @DruidBearTrollPurpleDisplay,    @DruidBearTrollRedDisplay,       @DruidBearTrollWhiteDisplay,     @DruidBearTrollYellowDisplay,
     @DruidCatSkinWorgenDisplay,     @DruidCatSkinWorgenBlackDisplay, @DruidCatSkinWorgenBrownDisplay, @DruidCatSkinWorgenWhiteDisplay, @DruidCatSkinWorgenYellowDisplay,
@@ -20,8 +19,6 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 -- Worgen racial support
 (@WorgenWildMaleDisplay,   @WorgenWildMaleModel,   0, @WorgenMaleDisplayExtra,    1, 255, '', '', '', '', 3, 0, 0, 0, 0, 0),
 (@WorgenWildFemaleDisplay, @WorgenWildFemaleModel, 0, @WorgenFemaleDisplayExtra,  1, 255, '', '', '', '', 3, 0, 0, 0, 0, 0),
-(@GilneanMaleDisplay,      @GilneanMaleModel,      0, @GilneanMaleDisplayExtra,   1, 255, '', '', '', '', 1, 0, 0, 0, 0, 0),
-(@GilneanFemaleDisplay,    @GilneanFemaleModel,    0, @GilneanFemaleDisplayExtra, 1, 255, '', '', '', '', 1, 0, 0, 0, 0, 0),
 
 -- Cataclysm druid forms
 (@DruidBearWorgenDisplay,          @DruidBearWorgenModel, 0, 0, '1.0000000000000000', 255, 'DruidBearWorgen', '', '', '', 1, 0, 0, 0, 0, 0),
