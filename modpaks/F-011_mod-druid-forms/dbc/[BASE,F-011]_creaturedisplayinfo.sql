@@ -43,7 +43,7 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 -- IDs from config.sql ("Pseudo-druid Forms"); the trailing comments are the IDs these rows had in High Elf's DBCs
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
     @DruidBearSkinBlackDiseased, @DruidBearSkinDrkBrownDiseased, @DruidBearSkinBrownDiseased, @DruidBearSkinWhiteDiseased, @DruidEntSkinDiseased, @DruidBearSkinBlackDiseased2,
-    @DruidSharkSkinPurple, @DruidEntSkinDead, @DruidLasherOrchidSkinGreen, @DruidLasherOrchidSkinBrown, @DruidLasherOrchidSkinPurple, @UnusedFelOrcFemaleDisplay
+    @DruidSharkSkinPurple, @DruidEntSkinDead, @DruidLasherOrchidSkinGreen, @DruidLasherOrchidSkinBrown, @DruidLasherOrchidSkinPurple
 );
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
 (@DruidBearSkinBlackDiseased, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBlackDiseased', '', '', '', 2, 0, 0, 0, 0, 0), -- 94137
@@ -56,5 +56,4 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidEntSkinDead, 141, 0, 0, '1.0000000000000000', 255, 'EntSkinDead', '', '', '', 2, 0, 0, 0, 0, 0), -- 94144
 (@DruidLasherOrchidSkinGreen, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinGreen', '', '', '', -1, 0, 0, 0, 0, 0), -- 94145
 (@DruidLasherOrchidSkinBrown, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinBrown', '', '', '', -1, 0, 0, 0, 0, 0), -- 94146
-(@DruidLasherOrchidSkinPurple, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinPurple', '', '', '', -1, 0, 0, 0, 0, 0), -- 94147
-(@UnusedFelOrcFemaleDisplay, 2298, 0, 14488, '1.0000000000000000', 255, '', '', '', '', 1, 0, 0, 0, 0, 0); -- 94228
+(@DruidLasherOrchidSkinPurple, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinPurple', '', '', '', -1, 0, 0, 0, 0, 0); -- 94147
