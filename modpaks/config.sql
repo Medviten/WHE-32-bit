@@ -1574,6 +1574,8 @@ SET @HighmountainThunderhoofModel                              =     @NextModelI
 SET @LightforgedFelcrusherModel                                =     @NextModelID := @NextModelID +1;
 SET @NightborneManasaberModel                                  =     @NextModelID := @NextModelID +1;
 SET @StarcursedVoidstriderModel                                =     @NextModelID := @NextModelID +1;
+SET @ForsakenWarhorseModel                                      =     @NextModelID := @NextModelID +1; -- F-087
+SET @ForsakenChargerModel                                       =     @NextModelID := @NextModelID +1; -- F-087
 
 -- Mount Display IDs
 SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
@@ -1616,6 +1618,8 @@ SET @AvengingFelcrusherDisplay                                 =    @NextDisplay
 SET @GloriousFelcrusherDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
 SET @NightborneManasaberDisplay                                =    @NextDisplayID := @NextDisplayID +1;
 SET @StarcursedVoidstriderDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @ForsakenWarhorseDisplay                                    =    @NextDisplayID := @NextDisplayID +1; -- F-087
+SET @ForsakenChargerDisplay                                     =    @NextDisplayID := @NextDisplayID +1; -- F-087
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
@@ -1658,6 +1662,8 @@ SET @AvengingFelcrusherCreatureID                              =   @NextCreature
 SET @GloriousFelcrusherCreatureID                              =   @NextCreatureID := @NextCreatureID +1;
 SET @NightborneManasaberCreatureID                             =   @NextCreatureID := @NextCreatureID +1;
 SET @StarcursedVoidstriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
+SET @ForsakenWarhorseCreatureID                                 =   @NextCreatureID := @NextCreatureID +1; -- F-087
+SET @ForsakenChargerCreatureID                                  =   @NextCreatureID := @NextCreatureID +1; -- F-087
 
 -- Mount Items
 SET @MechagonMechanostriderItem                                =   174067; -- BfA ID
@@ -1780,6 +1786,9 @@ SET @SpellDarkIronCoreHound                                    =   271646; -- Bf
 SET @SpellZandalariDirehorn                                    =   263707; -- BfA spell ID
 SET @SpellPalehideDirehorn                                     =   279474; -- BfA spell ID
 SET @SpellKulTiranCharger                                      =   282682; -- BfA spell ID
+SET @SpellForsakenCharger                                       =  1296534; -- retail spell ID (Summon Forsaken Charger, 100%)
+SET @SpellForsakenWarhorse                                      =  1296537; -- retail spell ID (Summon Forsaken Charger's second ID; here the 60% one)
+SET @SpellLearnForsakenWarhorse                                 =  1296538; -- WHE-only trainer spell (learns the 60% mount and Apprentice Riding)
 SET @SpellHighmountainThunderhoof                              =   258060; -- Legion spell ID
 SET @SpellLightforgedFelcrusher                                =   258022; -- Legion spell ID
 SET @SpellBlessedFelcrusher                                    =   254258; -- Legion spell ID
@@ -3912,5 +3921,13 @@ SET @AetheriaVenthyrSkillLineAbility4                          =    31790; -- An
 SET @AetheriaVenthyrSkillLineAbility5                          =    31791; -- Courtly Artifice
 SET @AetheriaVenthyrSkillLineAbility6                          =    31792; -- Sanguine Hover
 SET @AetheriaVenthyrSkillLineAbility7                          =    31793; -- Vampire Bat Form
+
+-- F-087 Undead paladin mounts
+SET @ForsakenWarhorseSkillLineAbility1                          =    31794; -- Paladin skill line
+SET @ForsakenWarhorseSkillLineAbility2                          =    31795; -- Mounts skill line
+SET @ForsakenChargerSkillLineAbility1                           =    31796; -- Paladin skill line
+SET @ForsakenChargerSkillLineAbility2                           =    31797; -- Mounts skill line
+SET @LearnSummonWarhorseSkillLineAbility                        =    31798; -- Blood Elf trainer spell 34768, so trainers hide it from Undead
+SET @LearnForsakenWarhorseSkillLineAbility                      =    31799; -- Forsaken trainer spell, Undead only
 SET @VenthyrBatCreature                                        =    16175; -- Vampiric Shadowbat, Vampire Bat Form's creature (any creature with a bat model)
 -- <<< Aetheria racials <<<

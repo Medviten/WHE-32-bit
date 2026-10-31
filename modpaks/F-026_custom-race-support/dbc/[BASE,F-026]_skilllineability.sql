@@ -53,8 +53,10 @@ UPDATE `skilllineability` SET `required_races` = `required_races` | @HordeMask W
     @JudgementofCorruptionSkillLineAbility, -- Spell: 53733 (Judgement of Corruption) [Paladin]
     @SealofCorruptionSkillLineAbility, -- Spell: 53736 (Seal of Corruption) [Paladin]
     @BloodCorruptionSkillLineAbility, -- Spell: 53742 (Blood Corruption) [Paladin]
-    @SummonChargerSkillLineAbility, -- Spell: 34767 (Summon Charger) [Paladin]
-    @SummonWarhorseSkillLineAbility, -- Spell: 34769 (Summon Warhorse) [Paladin]
+    @SummonChargerSkillLineAbility1, -- Spell: 34767 (Summon Charger) [Paladin]
+    @SummonChargerSkillLineAbility2, -- Spell: 34767 (Summon Charger) [Paladin]
+    @SummonWarhorseSkillLineAbility1, -- Spell: 34769 (Summon Warhorse) [Paladin]
+    @SummonWarhorseSkillLineAbility2, -- Spell: 34769 (Summon Warhorse) [Paladin]
     @BloodlustSkillLineAbility -- Spell: 2825 (Bloodlust) [Shaman]
 );
 
