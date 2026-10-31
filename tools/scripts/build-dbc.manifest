@@ -17,6 +17,13 @@
 #F-001_localization # Turn this on if you need it
 F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-072_patch-reforged-a-hd # Off by default (enable only if you use that patch – rename patches so these DBCs load after it)
+#F-077_patch-reforged-c # Off by default (Project Reforged patch C; race modpaks override its creature model 3141 and displays 32755-32763)
+#F-078_patch-reforged-e # Off by default (Project Reforged patch E)
+#F-081_patch-reforged-n # Off by default (Project Reforged patch N; keep it after F-078, it overrides E's lightintband colours)
+#F-079_patch-reforged-g # Off by default (Project Reforged patch G)
+#F-080_patch-reforged-m # Off by default (Project Reforged patch M; overlaps Open Azeroth's maps)
+#F-082_patch-reforged-p # Off by default (Project Reforged patch P; soundentries 20000+ clash with Open Azeroth's)
+#F-083_patch-reforged-s # Off by default (Project Reforged patch S, standalone version; works with or without F-080)
 #F-018_squished_client # Off by default (most people don't use squished client)
 F-008_move-npc-races # Not strictly necessary if you increase race limit, but highly recommended to avoid conflicts
 F-009_morph-with-gear

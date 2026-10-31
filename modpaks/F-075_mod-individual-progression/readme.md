@@ -10,6 +10,16 @@ its master, 4933d45). List it after every race modpak in the manifest.
   modpaks that are not applied are left out
 - Drops the all-classes weapon skill rows that F-002 (ARAC) makes out of Individual Progression's one-class dagger and
   2H mace rows
+- The rows Individual Progression's SQL puts into AzerothCore's `*_dbc` tables (which override the DBCs on the server
+  only) are in the DBCs instead (`dbc/`), for the server and the client alike, and
+  `sql/db-world/base/[F-075]_dbc_overrides.sql` deletes them from those tables again:
+    - `[F-075]_spells.sql`: its own server-side spells (adjustment auras, Naxxramas 40, Onyxia 40) and the stock
+      spells it changes (spell restorations, quest item samples)
+    - `[F-075]_raids.sql`: Naxxramas 40 and Onyxia 40 (map difficulty, boss encounters, LFG entries) and the level 60
+      Kel'Thuzad achievement
+    - `[F-075]_items.sql`: two quest items' displays
+    - `[F-075]_charstartoutfit.sql`: its Vanilla start outfits (weapons, food, water). Custom races whose outfit is a
+      copy of a stock race's get the outfit Individual Progression gives that race, too
 - `patches/individual-progression/tbc-races.patch`: custom races that start in the Draenei or Blood Elf zones (on
   Outland's map, e.g. Naga, Nightborne, Eredar) count as TBC races, like Draenei and Blood Elves: the
   `TbcRacesUnlockProgression` and `tbcRacesStartingProgression` settings apply to them, and they can enter their
@@ -23,5 +33,7 @@ its master, 4933d45). List it after every race modpak in the manifest.
 
 ### Known Issues
 - Untested in game
+- `pvp_brackets.sql`'s battleground level brackets stay in `pvpdifficulty_dbc` (server only): DBCTool has no meta file
+  for PvpDifficulty.dbc yet
 - Action bars are not handled here: the race modpaks copy their Home race's, which are Individual Progression's when
   its SQL ran first (older modpaks with their own action bars keep them)
