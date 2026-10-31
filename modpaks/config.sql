@@ -1196,18 +1196,18 @@ SET @DruidAquaticKulTiranLightDisplay                          =   @NextDisplayI
 SET @DruidTreeKulTiranDisplay                                  =   @NextDisplayID := @NextDisplayID +1; -- 94214;
 
 -- Pseudo-druid Forms
-SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94137;
-SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94138;
+SET @DruidBearSkinBlackDiseased                                =   @NextDisplayID := @NextDisplayID +1; -- 94137;
+SET @DruidBearSkinDrkBrownDiseased                             =   @NextDisplayID := @NextDisplayID +1; -- 94138;
 SET @DruidBearSkinBrownDiseased                                =   @NextDisplayID := @NextDisplayID +1; -- 94139;
 SET @DruidBearSkinWhiteDiseased                                =   @NextDisplayID := @NextDisplayID +1; -- 94140;
 SET @DruidEntSkinDiseased                                      =   @NextDisplayID := @NextDisplayID +1; -- 94141;
-SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94142;
+SET @DruidBearSkinBlackDiseased2                               =   @NextDisplayID := @NextDisplayID +1; -- 94142;
 SET @DruidSharkSkinPurple                                      =   @NextDisplayID := @NextDisplayID +1; -- 94143;
 SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94144;
 SET @DruidLasherOrchidSkinGreen                                =   @NextDisplayID := @NextDisplayID +1; -- 94145;
 SET @DruidLasherOrchidSkinBrown                                =   @NextDisplayID := @NextDisplayID +1; -- 94146;
 SET @DruidLasherOrchidSkinPurple                               =   @NextDisplayID := @NextDisplayID +1; -- 94147;
-SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94228;
+SET @UnusedFelOrcFemaleDisplay                                 =   @NextDisplayID := @NextDisplayID +1; -- 94228; FelOrcFemale model (High Elf DBC leftover), not used by any form
 SET @DragonWhelpSkinDiseasedDisplay                            =    10007;
 SET @PolarBearCubSkinDisplay                                   =    23946;
 SET @NorthrendPenguin01Display                                 =    24978;
