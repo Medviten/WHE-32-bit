@@ -27,3 +27,10 @@ DBC_BASELINE="/path/to/dbc-baseline.sql"
 # patches/<target>/ folders of the modpaks in the manifest (see README).
 # Defaults to this directory.
 #PATCH_OUTPUT_DIR="/path/to/combined/patches"
+
+# The world database (one of EXTRA_SQL_DATABASES). Needed for the world_db
+# placeholder and for exporting player_shapeshift_model as
+# PlayerShapeshiftModel.csv (the client's druid form preview), which goes
+# with the DBCs in SERVER_DBC unless SHAPESHIFT_MODEL_CSV says otherwise.
+#WORLD_DATABASE="test_world"
+#SHAPESHIFT_MODEL_CSV="/path/to/server/data/dbc/PlayerShapeshiftModel.csv"

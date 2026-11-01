@@ -113,6 +113,13 @@ DBC_DB_PLACEHOLDER="${DBC_DB_PLACEHOLDER:-dbc_db}"
 WORLD_DATABASE="${WORLD_DATABASE:-}"
 WORLD_DB_PLACEHOLDER="${WORLD_DB_PLACEHOLDER:-world_db}"
 
+# Where the world DB's player_shapeshift_model is exported as CSV after the
+# build (needs WORLD_DATABASE). The client's druid form preview reads it as
+# DBFilesClient\PlayerShapeshiftModel.csv, so by default it goes with the
+# DBCs in $SERVER_DBC, which deploy-dbc.sh syncs to the client's
+# DBFilesClient (the server ignores it).
+SHAPESHIFT_MODEL_CSV="${SHAPESHIFT_MODEL_CSV:-$SERVER_DBC/PlayerShapeshiftModel.csv}"
+
 # Optional: apply extra per-modpak SQL to additional databases (e.g. your
 # worldserver DB), using the same single-connection + config.sql approach
 # as the DBC build. EXTRA_SQL_DATABASES and EXTRA_SQL_PATTERNS are
@@ -926,6 +933,23 @@ if (( ${#EXTRA_SQL_DATABASES[@]} > 0 )); then
             "${EXTRA_SQL_PATTERNS[$i]}" \
             "${EXTRA_SQL_DUMPS[$i]:-}"
     done
+fi
+
+###############################################################################
+# Export player_shapeshift_model as CSV (for the client's druid form preview)
+###############################################################################
+
+if [[ -n "$WORLD_DATABASE" ]]; then
+    echo
+    echo "Exporting player_shapeshift_model to $SHAPESHIFT_MODEL_CSV..."
+
+    # Header line plus "ShapeshiftID,RaceID,CustomizationID,GenderID,ModelID"
+    # rows, the column order the client reads (it skips the header).
+    mysql_cmd -B "$WORLD_DATABASE" -e "SELECT ShapeshiftID, RaceID, CustomizationID, GenderID, ModelID FROM player_shapeshift_model ORDER BY ShapeshiftID, RaceID, CustomizationID, GenderID" \
+        | tr '\t' ',' > "$SHAPESHIFT_MODEL_CSV"
+else
+    echo
+    echo "Skipping player_shapeshift_model CSV export: WORLD_DATABASE is not set."
 fi
 
 ###############################################################################
