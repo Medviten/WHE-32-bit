@@ -12,10 +12,9 @@
 # build-dbc.manifest (or point MANIFEST_FILE at your own path in
 # build-dbc.conf) and list your modpaks in the order you want them
 # applied.
-#
+
 # INITIAL SETUP #
 #F-001_localization # Turn this on if you need it
-F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-072_patch-reforged-a-hd # Off by default (enable only if you use that patch – rename patches so these DBCs load after it)
 #F-077_patch-reforged-c # Off by default (Project Reforged patch C; race modpaks override its creature model 3141 and displays 32755-32763)
 #F-078_patch-reforged-e # Off by default (Project Reforged patch E)
@@ -24,50 +23,71 @@ F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-080_patch-reforged-m # Off by default (Project Reforged patch M; overlaps Open Azeroth's maps)
 #F-082_patch-reforged-p # Off by default (Project Reforged patch P; soundentries 20000+ clash with Open Azeroth's)
 #F-083_patch-reforged-s # Off by default (Project Reforged patch S, standalone version; works with or without F-080)
+F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-018_squished_client # Off by default (most people don't use squished client)
 F-008_move-npc-races # Not strictly necessary if you increase race limit, but highly recommended to avoid conflicts
 F-009_morph-with-gear
 # END INITIAL SETUP #
 
-# CUSTOM RACES #
+# RETAIL RACES #
 #F-004_mod-worgoblin # Legacy (requires recompile for some racials to function)
 F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
 F-027_mod-gilnean # requires F-024
 F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched client: Running Wild as a mount on oneself, Two Forms as altered form
-F-005_mod-azerothcore-high-elf
-F-007_mod-maghar
-#F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
-F-014_mod-playable-ogres
-F-016_mod-dark-iron-dwarf
-F-017_mod-zandalari-troll
-F-019_mod-vulpera
 F-020_mod-pandaren-alliance
 F-021_mod-pandaren-horde
-F-022_mod-playable-broken
-#F-025_mod-kul-tiran # Off by default (WIP – not ready)
-#F-036_mod-playable-vrykul # Off by default (WIP – not ready)
+F-034_mod-nightborne
+F-028_mod-highmountain-tauren
+F-035_mod-void-elf
+F-033_mod-lightforged-draenei
+F-017_mod-zandalari-troll
+F-025_mod-kul-tiran
+#F-041_mod-thin-human # Off by default (WIP – not ready)
+F-019_mod-vulpera
+F-016_mod-dark-iron-dwarf
+F-007_mod-maghar
+F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
+#F-040_mod-mechagnome # Off by default (WIP – not ready)
+#F-073_mod-playable-dracthyr-alliance # Off by default (tentative, untested; the stock client shows the Human model)
+#F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; the stock client shows the Orc model)
 #F-038_mod-earthen-alliance # Off by default (WIP – not ready)
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
-#F-040_mod-mechagnome # Off by default (WIP – not ready)
-#F-041_mod-thin-human # Off by default (WIP – not ready)
-#F-042_mod-playable-tuskarr # Off by default (WIP – not ready)
-#F-043_mod-darkfallen # Off by default (WIP – not ready)
+# Haranir Alliance
+# Haranir Horde
+# Skyborne Alliance
+# Skyborne Horde
+# END RETAIL RACES #
+
+# NPC RACES #
+#F-047_mod-playable-fel-orc # Off by default (WIP – female bugged)
+F-030_mod-playable-naga
+F-022_mod-playable-broken
+F-036_mod-playable-vrykul
+F-042_mod-playable-tuskarr
+F-032_mod-taunka
+F-048_mod-playable-skeleton
+F-049_mod-playable-forest-troll
+#F-050_mod-playable-northrend-skeleton # Off by default (very big)
+F-051_mod-playable-ice-troll
+# END NPC RACES #
+
+# EXTRA RACES #
+# Race IDs are handed out in this order (Goblin is 9, Worgen 12, then 13 up; Gilnean is NPC-only at 213, F-027), and
+# 32-bit race masks only hold races 1-31 (helmet masks use bit <race>). F-051 above is race 31, so enable no more
+# races here without turning another one off.
+#F-005_mod-azerothcore-high-elf # Off in 32-bit (over the cap: race masks stop at 31)
+#F-014_mod-playable-ogres # Off in 32-bit (over the cap: race masks stop at 31)
+#F-031_mod-ogre # Off by default (Nightelf-skeleton female)
+#F-043_mod-darkfallen # Off in 32-bit (over the cap: race masks stop at 31)
 #F-044_mod-playable-murloc # Off by default (WIP – not ready)
 #F-045_mod-playable-furbolg # Off by default (WIP – not ready)
-# Race IDs are handed out in this order (Worgen 12, Gilnean 13, then 14 up), and 32-bit race masks only hold races
-# 1-31 (helmet masks use bit <race>): enable no more races than fit. The modpaks below are ported from WHE-256-bit.
-#F-046_mod-playable-slime-giant # Off by default (tentative, untested; needs client assets in patch-A)
-#F-047_mod-playable-fel-orc # Off by default (tentative, untested)
-#F-048_mod-playable-skeleton # Off by default (tentative, untested)
-#F-049_mod-playable-forest-troll # Off by default (tentative, untested)
-#F-050_mod-playable-northrend-skeleton # Off by default (tentative, untested)
-#F-051_mod-playable-ice-troll # Off by default (tentative, untested)
 #F-052_mod-playable-qiraji # Off by default (tentative, untested; needs client assets in patch-A)
 #F-053_mod-playable-eredar # Off by default (tentative, untested; needs client assets in patch-A)
 #F-054_mod-playable-arakkoa # Off by default (tentative, untested; needs client assets in patch-A)
 #F-055_mod-playable-fel-elf # Off by default (tentative, untested; needs client assets in patch-A)
 #F-056_mod-playable-quillboar # Off by default (tentative, untested; needs client assets in patch-A)
+#F-046_mod-playable-slime-giant # Off in 32-bit (over the cap: race masks stop at 31)
 #F-057_mod-playable-centaur # Off by default (tentative, untested; needs client assets in patch-A)
 #F-058_mod-playable-demon # Off by default (tentative, untested; needs client assets in patch-A)
 #F-059_mod-playable-satyr # Off by default (tentative, untested; needs client assets in patch-A)
@@ -82,9 +102,7 @@ F-022_mod-playable-broken
 #F-069_mod-playable-venthyr # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A; core patch in patches/core)
 #F-070_mod-playable-banshee # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
 #F-071_mod-playable-faceless-one # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
-#F-073_mod-playable-dracthyr-alliance # Off by default (tentative, untested; the stock client shows the Human model)
-#F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; the stock client shows the Orc model)
-# END CUSTOM RACES #
+# END EXTRA RACES #
 
 # ADDITIONAL MODS #
 #F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
