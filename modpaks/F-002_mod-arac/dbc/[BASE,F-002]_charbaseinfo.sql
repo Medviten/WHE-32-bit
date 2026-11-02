@@ -43,7 +43,6 @@ FROM (
     UNION ALL SELECT @Naga
     UNION ALL SELECT @Murloc
     UNION ALL SELECT @Furbolg
-    UNION ALL SELECT @Gilnean
     UNION ALL SELECT @Vrykul
     UNION ALL SELECT @ThinHuman
     UNION ALL SELECT @Tuskarr

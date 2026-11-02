@@ -1,9 +1,41 @@
--- factiontemplate: 0 inserts, 6 updates, 0 deletes
+-- factiontemplate: 0 inserts, 7 updates, 0 deletes
 
 -- Changed values
 UPDATE `factiontemplate` SET `enemy_group` = 0 WHERE `id` IN (101, 102, 151, 1034, 1274, 1275, 1414, 1415, 1621, 1622, 1685, 1803, 1804, 1920, 1926, 1927, 1928, 1929, 1978, 1979, 1980, 1981, 2023, 2024, 2034);
 UPDATE `factiontemplate` SET `enemy_group` = 1 WHERE `id` IN (554, 655, 1630, 1701, 1702, 1714, 1752, 1753, 1754, 1762, 1763, 1764, 1765, 1789, 1793, 1883, 1975, 1988, 1991, 2005, 2018, 2035, 2042, 2043, 2068, 2069, 2080, 2145, 2209, 2212);
 UPDATE `factiontemplate` SET `friend_group` = 6 WHERE `id` IN (10, 33, 96, 149, 208, 209, 231, 232, 534, 714, 774, 775, 1554, 1600, 1755, 1756, 1757, 1758, 1759, 1760, 1933, 1948, 2031, 2046);
-UPDATE `factiontemplate` SET `friend_group` = 6, `enemy_group` = 0 WHERE `id` IN (12, 23, 29, 64, 68, 76, 80, 83, 84, 88, 104, 118, 122, 123, 124, 125, 126, 371, 412, 694, 874, 875, 876, 894, 995, 1055, 1074, 1075, 1076, 1077, 1078, 1097, 1174, 1215, 1217, 1314, 1315, 1334, 1335, 1494, 1496, 1514, 1515, 1534, 1576, 1577, 1598, 1599, 1602, 1604, 1606, 1607, 1611, 1612, 1623, 1627, 1628, 1636, 1637, 1638, 1640, 1641, 1642, 1644, 1646, 1648, 1649, 1651, 1652, 1653, 1654, 1655, 1657, 1658, 1667, 1669, 1670, 1671, 1686, 1694, 1695, 1698, 1699, 1700, 1722, 1723, 1724, 1729, 1732, 1733, 1734, 1735, 1737, 1745, 1891, 1892, 1893, 1897, 1898, 1899, 1900, 1901, 1918, 1921, 1922, 1923, 1934, 1935, 1973, 1974, 1976, 1977, 1993, 1994, 2004, 2019, 2020, 2021, 2025, 2026, 2027, 2032, 2037, 2040, 2044, 2045, 2055, 2056, 2121, 2122, 2123, 2132, 2143, 2155, 2176, 2178);
+UPDATE `factiontemplate` SET `friend_group` = 6, `enemy_group` = 0 WHERE `id` IN (12, 23, 29, 55, 64, 68, 76, 80, 83, 84, 88, 104, 118, 122, 123, 124, 125, 126, 371, 412, 694, 874, 875, 876, 894, 995, 1055, 1074, 1075, 1076, 1077, 1078, 1097, 1174, 1215, 1217, 1314, 1315, 1334, 1335, 1494, 1496, 1514, 1515, 1534, 1576, 1577, 1598, 1599, 1602, 1604, 1606, 1607, 1611, 1612, 1623, 1627, 1628, 1636, 1637, 1638, 1640, 1641, 1642, 1644, 1646, 1648, 1649, 1651, 1652, 1653, 1654, 1655, 1657, 1658, 1667, 1669, 1670, 1671, 1686, 1694, 1695, 1698, 1699, 1700, 1722, 1723, 1724, 1729, 1732, 1733, 1734, 1735, 1737, 1745, 1891, 1892, 1893, 1897, 1898, 1899, 1900, 1901, 1918, 1921, 1922, 1923, 1934, 1935, 1973, 1974, 1976, 1977, 1993, 1994, 2004, 2019, 2020, 2021, 2025, 2026, 2027, 2032, 2037, 2040, 2044, 2045, 2055, 2056, 2121, 2122, 2123, 2132, 2143, 2155, 2176, 2178);
 UPDATE `factiontemplate` SET `friend_group` = 6, `enemy_group` = 8 WHERE `id` IN (1, 2, 3, 4, 5, 6, 11, 53, 56, 57, 71, 79, 85, 98, 105, 106, 115, 116, 150, 210, 877, 1054, 1096, 1134, 1154, 1214, 1216, 1495, 1575, 1594, 1595, 1596, 1597, 1603, 1610, 1618, 1619, 1629, 1639, 1645, 1647, 1650, 1656, 1666, 1668, 1721, 1801, 1802, 1819, 1835, 1951, 2129, 2130, 2142);
 UPDATE `factiontemplate` SET `friend_group` = 7, `enemy_group` = 0 WHERE `id` IN (1995, 1997, 2235, 2236);
+
+-- custom race players, same as the stock player templates above
+UPDATE `factiontemplate` SET `friend_group` = 6, `enemy_group` = 8 WHERE `id` IN (
+    @GoblinFactionTemplate,  @WorgenFactionTemplate,
+    @HighElfFactionTemplate,  @MagharOrcFactionTemplate,
+    @OgreFactionTemplate,  @DarkIronDwarfFactionTemplate,
+    @ZandalariTrollFactionTemplate,  @VulperaFactionTemplate,
+    @AlliancePandarenFactionTemplate,  @HordePandarenFactionTemplate,
+    @BrokenFactionTemplate,  @KulTiranFactionTemplate,
+    @GilneanFactionTemplate,  @HighmountainTaurenFactionTemplate,
+    @NagaFactionTemplate,  @TaunkaFactionTemplate,
+    @VoidElfFactionTemplate,  @LightforgedDraeneiFactionTemplate,
+    @VrykulFactionTemplate,  @AllianceEarthenFactionTemplate,
+    @HordeEarthenFactionTemplate,  @MechagnomeFactionTemplate,
+    @ThinHumanFactionTemplate,  @TuskarrFactionTemplate,
+    @DarkfallenFactionTemplate,  @NightborneFactionTemplate,
+    @MurlocFactionTemplate,  @FurbolgFactionTemplate,
+    @SlimeGiantFactionTemplate,  @FelOrcFactionTemplate,
+    @SkeletonFactionTemplate,  @ForestTrollFactionTemplate,
+    @NorthrendSkeletonFactionTemplate,  @IceTrollFactionTemplate,
+    @QirajiFactionTemplate,  @EredarFactionTemplate,
+    @ArakkoaFactionTemplate,  @FelElfFactionTemplate,
+    @QuillboarFactionTemplate,  @CentaurFactionTemplate,
+    @DemonFactionTemplate,  @SatyrFactionTemplate,
+    @GnollFactionTemplate,  @BeholderFactionTemplate,
+    @ShivanFactionTemplate,  @HozenFactionTemplate,
+    @SylvariFactionTemplate,  @MantidFactionTemplate,
+    @EtherealFactionTemplate,  @KyrianFactionTemplate,
+    @VenthyrFactionTemplate,  @BansheeFactionTemplate,
+    @FacelessOneFactionTemplate,  @AllianceDracthyrFactionTemplate,
+    @HordeDracthyrFactionTemplate
+);

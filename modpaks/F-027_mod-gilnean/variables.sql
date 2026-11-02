@@ -1,16 +1,9 @@
 -- Race ID
-SET @Gilnean                           := 213;               -- 13: reserved in config.sql, so the client's alteredFormRaces is "12=13"
-SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- 4096
-SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- 8192
+SET @Gilnean                           := 213;               -- Altered form of Worgen only (NPC-style: not playable, no race mask); the client's alteredFormRaces is "12=213"
 
--- Important variable updates (Alliance vs. Horde)
-SET @AllianceMask                      = @AllianceMask     | @GilneanMask;
-SET @BarrensBros                       = @HordeMask    & ~@UndercityMask; -- important if Horde
-SET @PlayableRaceMask                  = @PlayableRaceMask | @GilneanMask;
-SET @GunHunters                        = @GunHunters       | @GilneanMask;
+-- ChrRaces
 SET @GilneanLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @GilneanAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @GilneanKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @GilneanExplorationSound           = @HumanExplorationSound;

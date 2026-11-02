@@ -5,9 +5,11 @@
 - Enables cross-faction questing
 - Opt-in mechanism
 - No PvP flagging in enemy capitals (core patch; `AllowTwoSide.EnemyTerritory = 0` turns it off)
-
-### Known Issues
-- Can't earn reputation from opposing factions
+- Quests reward reputation with opposing factions (core patch; `AllowTwoSide.QuestReputation = 0` turns it off)
+- Team-dependent kills reward both teams' factions (core patch; `AllowTwoSide.KillReputation = 0` turns it off)
 
 ### Core patch
-`patches/core/enemy-territory.patch` adds the worldserver.conf setting `AllowTwoSide.EnemyTerritory` (default 1), which stops the other faction's zones from counting as hostile territory, so entering an enemy capital (or, on PvP realms, any enemy zone) no longer flags players for PvP. Set it to 0 for stock PvP flagging. build-patch.sh includes the patch in combined-core.patch while F-003 is in the manifest.
+`patches/core/faction-free.patch` adds three worldserver.conf settings, all with default 1. Set one to 0 for stock behaviour. build-patch.sh includes the patch in combined-core.patch while F-003 is in the manifest.
+- `AllowTwoSide.EnemyTerritory` stops the other faction's zones from counting as hostile territory, so entering an enemy capital (or, on PvP realms, any enemy zone) no longer flags players for PvP.
+- `AllowTwoSide.QuestReputation` skips the core's check that withholds quest reputation from factions hostile to the player's team.
+- `AllowTwoSide.KillReputation` makes kills that reward reputation by team (`TeamDependent` rows in `creature_onkill_reputation`, e.g. Honor Hold/Thrallmar) reward both teams' factions. While championing a faction, kills keep rewarding it once.

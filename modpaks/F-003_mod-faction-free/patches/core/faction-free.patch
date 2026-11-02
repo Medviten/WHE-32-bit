@@ -1,0 +1,125 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 17d37c6e7..93ebdb973 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -4578,6 +4578,35 @@ AllowTwoSide.Interaction.Arena = 0
+ 
+ AllowTwoSide.Interaction.Auction = 0
+ 
++#
++#    AllowTwoSide.EnemyTerritory
++#        Description: Faction Free: do not treat the other faction's zones as hostile territory,
++#                     so entering an enemy capital (or, on PvP realms, any enemy zone) does not
++#                     flag players for PvP.
++#        Default:     1 - (Enabled)
++#                     0 - (Disabled, stock behaviour)
++
++AllowTwoSide.EnemyTerritory = 1
++
++#
++#    AllowTwoSide.QuestReputation
++#        Description: Faction Free: let quests reward reputation with factions that are hostile to
++#                     the player's team, so the other faction's reputations can be earned.
++#        Default:     1 - (Enabled)
++#                     0 - (Disabled, stock behaviour)
++
++AllowTwoSide.QuestReputation = 1
++
++#
++#    AllowTwoSide.KillReputation
++#        Description: Faction Free: let kills that normally reward reputation by team (e.g. Honor
++#                     Hold or Thrallmar) reward both teams' factions. While championing a faction,
++#                     kills keep rewarding it once.
++#        Default:     1 - (Enabled)
++#                     0 - (Disabled, stock behaviour)
++
++AllowTwoSide.KillReputation = 1
++
+ #
+ #    TalentsInspecting
+ #        Description: Allow inspecting characters from the opposing faction.
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index ed73bb109..955c59610 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -6152,7 +6152,11 @@ void Player::RewardReputation(Unit* victim)
+ 
+     TeamId teamId = GetTeamId(true); // Always check player original reputation when rewarding
+ 
+-    if (Rep->RepFaction1 && (!Rep->TeamDependent || teamId == TEAM_ALLIANCE))
++    // Faction Free: with AllowTwoSide.KillReputation, team-dependent kills reward both teams' factions.
++    // Not while championing, since both rewards would then go to the championed faction.
++    bool allTeams = !Rep->TeamDependent || (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_KILL_REPUTATION) && !ChampioningFaction);
++
++    if (Rep->RepFaction1 && (allTeams || teamId == TEAM_ALLIANCE))
+     {
+         float donerep1 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->GetLevel(), static_cast<float>(Rep->RepValue1), ChampioningFaction ? ChampioningFaction : Rep->RepFaction1);
+         sScriptMgr->OnPlayerGiveReputation(this, Rep->RepFaction1, donerep1, REPUTATION_SOURCE_KILL);
+@@ -6164,7 +6168,7 @@ void Player::RewardReputation(Unit* victim)
+         }
+     }
+ 
+-    if (Rep->RepFaction2 && (!Rep->TeamDependent || teamId == TEAM_HORDE))
++    if (Rep->RepFaction2 && (allTeams || teamId == TEAM_HORDE))
+     {
+         float donerep2 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->GetLevel(), static_cast<float>(Rep->RepValue2), ChampioningFaction ? ChampioningFaction : Rep->RepFaction2);
+         sScriptMgr->OnPlayerGiveReputation(this, Rep->RepFaction2, donerep2, REPUTATION_SOURCE_KILL);
+@@ -6247,7 +6251,8 @@ void Player::RewardReputation(Quest const* quest)
+         if (!factionEntry)
+             continue;
+ 
+-        FactionTemplateEntry const* templateEntry = GetAnyFactionTemplateForFaction(factionEntry->ID);
++        // Faction Free: with AllowTwoSide.QuestReputation, quests can reward reputation with the other faction
++        FactionTemplateEntry const* templateEntry = sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_QUEST_REPUTATION) ? nullptr : GetAnyFactionTemplateForFaction(factionEntry->ID);
+         if (templateEntry)
+         {
+             bool hostile = (GetTeamId() == TEAM_ALLIANCE) ? templateEntry->IsHostileToAlliancePlayers()
+diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
+index 481a18266..6571e3d50 100644
+--- a/src/server/game/Entities/Player/PlayerUpdates.cpp
++++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
+@@ -1321,13 +1321,16 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
+     // in PvE, only opposition team capital
+     switch (zone->team)
+     {
++    // Faction Free (by Gitdalisar): with AllowTwoSide.EnemyTerritory, faction zones are never hostile
+     case AREATEAM_ALLY:
+         pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
+             GetTeamId(true) != TEAM_ALLIANCE &&
+             (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
+         break;
+     case AREATEAM_HORDE:
+         pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
+             GetTeamId(true) != TEAM_HORDE &&
+             (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
+         break;
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index fc8e7c93b..ab0d8ca06 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -210,6 +210,9 @@ void WorldConfig::BuildConfigCache()
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD, "AllowTwoSide.Interaction.Guild", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA, "AllowTwoSide.Interaction.Arena", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION, "AllowTwoSide.Interaction.Auction", false);
++    SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY, "AllowTwoSide.EnemyTerritory", true);
++    SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_QUEST_REPUTATION, "AllowTwoSide.QuestReputation", true);
++    SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_KILL_REPUTATION, "AllowTwoSide.KillReputation", true);
+ 
+     SetConfigValue<uint32>(CONFIG_MIN_PLAYER_NAME, "MinPlayerName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_PLAYER_NAME; }, "> 0 && <= MAX_PLAYER_NAME");
+     SetConfigValue<uint32>(CONFIG_MIN_CHARTER_NAME, "MinCharterName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_CHARTER_NAME; }, "> 0 && <= MAX_CHARTER_NAME");
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf0075..efbf54a88 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -36,6 +36,9 @@ enum ServerConfigs
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION,
++    CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY,
++    CONFIG_ALLOW_TWO_SIDE_QUEST_REPUTATION,
++    CONFIG_ALLOW_TWO_SIDE_KILL_REPUTATION,
+     CONFIG_ALL_TAXI_PATHS,
+     CONFIG_TAXI_FLIGHT_SPEED,
+     CONFIG_INSTANCE_IGNORE_LEVEL,

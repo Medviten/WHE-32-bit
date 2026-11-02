@@ -6,7 +6,9 @@
     - Models and baked textures from the RetroPorter native set (custom\mechagnome\...)
     - Classes, start outfits, start position, action bars and stats copied from Gnome
     - Customization: 8 skin colours, 14 faces, 7 (male) / 9 (female) hair styles, 7 hair colours, 6 facial styles (male)
-    - Arm/leg upgrades, modifications, paint, eye colour and eye style are not available
+    - Full Retail model and customization (arm and leg upgrades, modifications, paint, eye colour, eyesight and eye style) in a client that maps race 37 in its `retailRaces` setting: wowdecomp-256-bit does by default, built with `WOWDECOMP_RETAIL_ASSETS=ON` and given the Retail files (a `pack=` folder or the Blizzard CDN). The server keeps the look with the Retail look tables of azerothcore-wotlk-256-bit
+    - Any other client shows the native model with a fixed look: arm upgrade 0, leg upgrade 0, default paint, green eyes
+    - Eye slot and paint file set up by `tools/models/mechagnome_prep.py`
     - Male facial hair is geometry only (the retail facial hair textures are not mapped)
 
 ### Known Issues

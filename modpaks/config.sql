@@ -325,7 +325,7 @@ SET @Troll                                                     =    8;
 SET @Goblin                                                    =    9;
 SET @BloodElf                                                  =   10;
 SET @Draenei                                                   =   11;
-SET @NextRace                                                  =   13; -- Reserved for Worgen (12) and Gilnean (13, Worgen + 1 for the client's alteredFormRaces) – increments before assignment
+SET @NextRace                                                  =   12; -- Reserved for Worgen (12). Gilnean is not playable (213, F-027), so the first auto-assigned race is 13
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -370,7 +370,7 @@ SET @DraeneiHelmetMask                                         =      1 << @Drae
 -- naming a race whose modpak is left out adds no bits instead of failing on a NULL mask
 SET @WorgenMask                                                =   0; -- F-004, F-024
 SET @WorgenHelmetMask                                          =   0;
-SET @GilneanMask                                               =   0; -- F-004, F-027
+SET @GilneanMask                                               =   0; -- F-004 (F-027's Gilnean is an altered form, it has no mask)
 SET @GilneanHelmetMask                                         =   0;
 SET @HighElfMask                                               =   0; -- F-005
 SET @HighElfHelmetMask                                         =   0;
@@ -502,8 +502,8 @@ SET @BrokenMaleModel                                           =     2367;
 SET @BrokenFemaleModel                                         =     2368;
 SET @KulTiranMaleModel                                         =    @NextModelID := @NextModelID +1; -- 40008;
 SET @KulTiranFemaleModel                                       =    @NextModelID := @NextModelID +1; -- 40009;
-SET @GilneanMaleModel                                          =    @NextModelID := @NextModelID +1; -- 40010; -- human copy
-SET @GilneanFemaleModel                                        =    @NextModelID := @NextModelID +1; -- 40011; -- human copy
+SET @GilneanMaleModel                                          =    @NextModelID := @NextModelID +1; -- 40010; -- Cataclysm human
+SET @GilneanFemaleModel                                        =    @NextModelID := @NextModelID +1; -- 40011; -- Cataclysm human
 SET @HighmountainTaurenMaleModel                               =    @NextModelID := @NextModelID +1; -- 40012;
 SET @HighmountainTaurenFemaleModel                             =    @NextModelID := @NextModelID +1; -- 40013;
 SET @NagaMaleModel                                             =    @NextModelID := @NextModelID +1; -- 40014;
@@ -1865,7 +1865,7 @@ SET @BrokenFaction                                             =     1181;
 SET @BrokenPlayer                                              =     1182; -- Broken of the Alliance
 SET @OgreFaction                                               =     1170; -- Stonemaul Clan
 SET @OgrePlayer                                                =     1169;
-SET @GilneanFaction                                            =     1185;
+SET @GilneanFaction                                            =     @WorgenFaction; -- 1185
 SET @GilneanPlayer                                             =     1186;
 SET @NagaFaction                                               =     1187;
 SET @NagaPlayer                                                =     1188;
@@ -1885,7 +1885,7 @@ SET @AlliancePandarenFactionTemplate                           =     2245; -- Re
 SET @HordePandarenFactionTemplate                              =     2246; -- References @HordePandarenPlayer
 SET @BrokenFactionTemplate                                     =     2247; -- References @BrokenPlayer
 SET @KulTiranFactionTemplate                                   =     2248; -- References @KulTiranPlayer
-SET @GilneanFactionTemplate                                    =     2249; -- References @GilneanPlayer
+SET @GilneanFactionTemplate                                    =     @WorgenFactionTemplate; -- 2249; ChrRaces needs one, but Gilnean is only Worgen's altered form
 SET @HighmountainTaurenFactionTemplate                         =     2250; -- References @HighmountainTaurenPlayer
 SET @NagaFactionTemplate                                       =     2251; -- References @NagaPlayer
 SET @TaunkaFactionTemplate                                     =     2252; -- References @TaunkaPlayer

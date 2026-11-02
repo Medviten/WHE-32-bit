@@ -34,7 +34,8 @@ UPDATE `faction` SET `reputation_base_2` = 3100, `reputation_flags_2` = 273 WHER
     @HozenFaction,              @SylvariFaction,
     @MantidFaction,             @EtherealFaction,
     @KyrianFaction,             @VenthyrFaction,
-    @BansheeFaction,            @FacelessOneFaction
+    @BansheeFaction,            @FacelessOneFaction,
+    @TaunkaFaction,             @SlimeGiantFaction
 );
 UPDATE `faction` SET `reputation_base_2` = 400, `reputation_flags_2` = 273  WHERE `id` = @BloodElfFaction; -- Silvermoon City
 UPDATE `faction` SET `reputation_base_2` = 3000, `reputation_flags_2` = 273 WHERE `id` = @DraeneiFaction; -- Exodar
