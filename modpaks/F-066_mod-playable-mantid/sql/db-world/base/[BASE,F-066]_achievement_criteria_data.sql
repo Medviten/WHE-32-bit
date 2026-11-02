@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@MantidCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@MantidCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@MantidCriteria3,  2,  0, @Mantid, ''), -- Achievement  291 (Check Your Head)
-(@MantidCriteria4,  2,  0, @Mantid, ''); -- Achievement 1430* (Realm First! Level 80 Mantid)
+(@MantidCriteria4, 21,  0, @Mantid, ''); -- Achievement 1430* (Realm First! Level 80 Mantid)

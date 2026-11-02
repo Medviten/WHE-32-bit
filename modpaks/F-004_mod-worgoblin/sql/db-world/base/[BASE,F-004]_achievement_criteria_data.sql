@@ -56,13 +56,13 @@ REPLACE INTO `achievement_criteria_data` (
 	'' -- ScriptName
 ), (
 	@GoblinCriteria4, -- criteria_id (Achievement 1429 (Realm First! Level 80 Goblin))
-	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	21, -- type: TYPE_S_PLAYER_CLASS_RACE
 	0, -- value1: Make instance script call for check current criteria requirements fit.
 	@Goblin, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName
 ), (
 	@WorgenCriteria4, -- criteria_id (Achievement 1430 (Realm First! Level 80 Worgen))
-	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	21, -- type: TYPE_S_PLAYER_CLASS_RACE
 	0, -- value1
 	@Worgen, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName

@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@NorthrendSkeletonCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@NorthrendSkeletonCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@NorthrendSkeletonCriteria3,  2,  0, @NorthrendSkeleton, ''), -- Achievement  291 (Check Your Head)
-(@NorthrendSkeletonCriteria4,  2,  0, @NorthrendSkeleton, ''); -- Achievement 1430* (Realm First! Level 80 Northrend Skeleton)
+(@NorthrendSkeletonCriteria4, 21,  0, @NorthrendSkeleton, ''); -- Achievement 1430* (Realm First! Level 80 Northrend Skeleton)

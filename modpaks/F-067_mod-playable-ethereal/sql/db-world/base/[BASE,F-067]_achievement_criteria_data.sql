@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@EtherealCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@EtherealCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@EtherealCriteria3,  2,  0, @Ethereal, ''), -- Achievement  291 (Check Your Head)
-(@EtherealCriteria4,  2,  0, @Ethereal, ''); -- Achievement 1430* (Realm First! Level 80 Ethereal)
+(@EtherealCriteria4, 21,  0, @Ethereal, ''); -- Achievement 1430* (Realm First! Level 80 Ethereal)

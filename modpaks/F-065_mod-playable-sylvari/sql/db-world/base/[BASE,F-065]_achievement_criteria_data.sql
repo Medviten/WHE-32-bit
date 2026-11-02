@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@SylvariCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@SylvariCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@SylvariCriteria3,  2,  0, @Sylvari, ''), -- Achievement  291 (Check Your Head)
-(@SylvariCriteria4,  2,  0, @Sylvari, ''); -- Achievement 1430* (Realm First! Level 80 Sylvari)
+(@SylvariCriteria4, 21,  0, @Sylvari, ''); -- Achievement 1430* (Realm First! Level 80 Sylvari)

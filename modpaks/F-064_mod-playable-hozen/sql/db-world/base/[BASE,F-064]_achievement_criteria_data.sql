@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@HozenCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@HozenCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@HozenCriteria3,  2,  0, @Hozen, ''), -- Achievement  291 (Check Your Head)
-(@HozenCriteria4,  2,  0, @Hozen, ''); -- Achievement 1430* (Realm First! Level 80 Hozen)
+(@HozenCriteria4, 21,  0, @Hozen, ''); -- Achievement 1430* (Realm First! Level 80 Hozen)

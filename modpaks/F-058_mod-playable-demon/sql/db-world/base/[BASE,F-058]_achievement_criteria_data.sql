@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@DemonCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@DemonCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@DemonCriteria3,  2,  0, @Demon, ''), -- Achievement  291 (Check Your Head)
-(@DemonCriteria4,  2,  0, @Demon, ''); -- Achievement 1430* (Realm First! Level 80 Demon)
+(@DemonCriteria4, 21,  0, @Demon, ''); -- Achievement 1430* (Realm First! Level 80 Demon)

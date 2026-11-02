@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@KyrianCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@KyrianCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@KyrianCriteria3,  2,  0, @Kyrian, ''), -- Achievement  291 (Check Your Head)
-(@KyrianCriteria4,  2,  0, @Kyrian, ''); -- Achievement 1430* (Realm First! Level 80 Kyrian)
+(@KyrianCriteria4, 21,  0, @Kyrian, ''); -- Achievement 1430* (Realm First! Level 80 Kyrian)

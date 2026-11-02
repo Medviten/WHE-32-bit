@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@ShivanCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ShivanCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ShivanCriteria3,  2,  0, @Shivan, ''), -- Achievement  291 (Check Your Head)
-(@ShivanCriteria4,  2,  0, @Shivan, ''); -- Achievement 1430* (Realm First! Level 80 Shivan)
+(@ShivanCriteria4, 21,  0, @Shivan, ''); -- Achievement 1430* (Realm First! Level 80 Shivan)

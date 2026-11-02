@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@VrykulCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@VrykulCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@VrykulCriteria3,  2,  0, @Vrykul, ''), -- Achievement  291 (Check Your Head)
-(@VrykulCriteria4,  2,  0, @Vrykul, ''); -- Achievement 1430* (Realm First! Level 80 Vrykul)
+(@VrykulCriteria4, 21,  0, @Vrykul, ''); -- Achievement 1430* (Realm First! Level 80 Vrykul)

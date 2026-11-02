@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@BansheeCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@BansheeCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@BansheeCriteria3,  2,  0, @Banshee, ''), -- Achievement  291 (Check Your Head)
-(@BansheeCriteria4,  2,  0, @Banshee, ''); -- Achievement 1430* (Realm First! Level 80 Banshee)
+(@BansheeCriteria4, 21,  0, @Banshee, ''); -- Achievement 1430* (Realm First! Level 80 Banshee)

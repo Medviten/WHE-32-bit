@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@HordeDracthyrCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@HordeDracthyrCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@HordeDracthyrCriteria3,  2,  0, @HordeDracthyr, ''), -- Achievement  291 (Check Your Head)
-(@HordeDracthyrCriteria4,  2,  0, @HordeDracthyr, ''); -- Achievement 1430* (Realm First! Level 80 Dracthyr)
+(@HordeDracthyrCriteria4, 21,  0, @HordeDracthyr, ''); -- Achievement 1430* (Realm First! Level 80 Dracthyr)

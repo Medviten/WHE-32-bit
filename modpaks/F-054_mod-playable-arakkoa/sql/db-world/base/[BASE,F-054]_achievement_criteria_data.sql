@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@ArakkoaCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ArakkoaCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ArakkoaCriteria3,  2,  0, @Arakkoa, ''), -- Achievement  291 (Check Your Head)
-(@ArakkoaCriteria4,  2,  0, @Arakkoa, ''); -- Achievement 1430* (Realm First! Level 80 Arakkoa)
+(@ArakkoaCriteria4, 21,  0, @Arakkoa, ''); -- Achievement 1430* (Realm First! Level 80 Arakkoa)

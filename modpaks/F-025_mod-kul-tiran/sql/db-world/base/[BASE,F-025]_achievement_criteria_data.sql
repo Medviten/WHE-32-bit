@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@KulTiranCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@KulTiranCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@KulTiranCriteria3,  2,  0, @KulTiran, ''), -- Achievement  291 (Check Your Head)
-(@KulTiranCriteria4,  2,  0, @KulTiran, ''); -- Achievement 1430* (Realm First! Level 80 Kul Tiran)
+(@KulTiranCriteria4, 21,  0, @KulTiran, ''); -- Achievement 1430* (Realm First! Level 80 Kul Tiran)

@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@ForestTrollCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ForestTrollCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ForestTrollCriteria3,  2,  0, @ForestTroll, ''), -- Achievement  291 (Check Your Head)
-(@ForestTrollCriteria4,  2,  0, @ForestTroll, ''); -- Achievement 1430* (Realm First! Level 80 Forest Troll)
+(@ForestTrollCriteria4, 21,  0, @ForestTroll, ''); -- Achievement 1430* (Realm First! Level 80 Forest Troll)

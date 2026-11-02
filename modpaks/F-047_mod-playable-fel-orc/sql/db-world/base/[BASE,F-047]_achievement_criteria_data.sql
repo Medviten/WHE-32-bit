@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@FelOrcCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@FelOrcCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@FelOrcCriteria3,  2,  0, @FelOrc, ''), -- Achievement  291 (Check Your Head)
-(@FelOrcCriteria4,  2,  0, @FelOrc, ''); -- Achievement 1430* (Realm First! Level 80 Fel Orc)
+(@FelOrcCriteria4, 21,  0, @FelOrc, ''); -- Achievement 1430* (Realm First! Level 80 Fel Orc)

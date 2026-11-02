@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@WorgenCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@WorgenCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@WorgenCriteria3,  2,  0, @Worgen, ''), -- Achievement  291 (Check Your Head)
-(@WorgenCriteria4,  2,  0, @Worgen, ''); -- Achievement 1430* (Realm First! Level 80 Worgen)
+(@WorgenCriteria4, 21,  0, @Worgen, ''); -- Achievement 1430* (Realm First! Level 80 Worgen)

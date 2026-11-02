@@ -32,7 +32,7 @@ REPLACE INTO `achievement_criteria_data` (
 	'' -- ScriptName
 ), (
 	@HighElfCriteria4, -- criteria_id (Achievement 1431 (Realm First! Level 80 High Elf))
-	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	21, -- type: TYPE_S_PLAYER_CLASS_RACE
 	0, -- value1
 	@HighElf, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName

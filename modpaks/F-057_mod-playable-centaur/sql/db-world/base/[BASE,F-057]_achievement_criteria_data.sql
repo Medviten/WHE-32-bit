@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@CentaurCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@CentaurCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@CentaurCriteria3,  2,  0, @Centaur, ''), -- Achievement  291 (Check Your Head)
-(@CentaurCriteria4,  2,  0, @Centaur, ''); -- Achievement 1430* (Realm First! Level 80 Centaur)
+(@CentaurCriteria4, 21,  0, @Centaur, ''); -- Achievement 1430* (Realm First! Level 80 Centaur)

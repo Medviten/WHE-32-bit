@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@LightforgedDraeneiCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@LightforgedDraeneiCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@LightforgedDraeneiCriteria3,  2,  0, @LightforgedDraenei, ''), -- Achievement  291 (Check Your Head)
-(@LightforgedDraeneiCriteria4,  2,  0, @LightforgedDraenei, ''); -- Achievement 1430* (Realm First! Level 80 Lightforged Draenei)
+(@LightforgedDraeneiCriteria4, 21,  0, @LightforgedDraenei, ''); -- Achievement 1430* (Realm First! Level 80 Lightforged Draenei)

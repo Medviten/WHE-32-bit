@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@HordePandarenCriteria2, 9, 18, 0, ''),
 (@HordePandarenCriteria2, 10, 1, 0, ''),
 (@HordePandarenCriteria3, 2, 0, @HordePandaren, ''),
-(@HordePandarenCriteria4, 2, 0, @HordePandaren, '');
+(@HordePandarenCriteria4,21, 0, @HordePandaren, '');

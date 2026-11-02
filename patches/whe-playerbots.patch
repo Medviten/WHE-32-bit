@@ -2283,7 +2283,7 @@ index 295fba0c..58fb177f 100644
              baseIndex = NameRaceAndGender::GenericMale;
              break;
 diff --git a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
-index 8f60b4f5..8fe06d76 100644
+index 8f60b4f5..40d1603a 100644
 --- a/src/Bot/RandomPlayerbotMgr.cpp
 +++ b/src/Bot/RandomPlayerbotMgr.cpp
 @@ -1802,7 +1802,7 @@ void RandomPlayerbotMgr::PrepareAddclassCache()
@@ -2291,7 +2291,7 @@ index 8f60b4f5..8fe06d76 100644
                      ObjectGuid guid = ObjectGuid(HighGuid::Player, fields[0].Get<uint32>());
                      uint32 race = fields[1].Get<uint32>();
 -                    bool isAlliance = race == 1 || race == 3 || race == 4 || race == 7 || race == 11;
-+                    bool isAlliance = race == 1 || race == 3 || race == 4 || race == 7 || race == 11 || race == 12 || race == 13 || race == 16 || race == 19;
++                    bool isAlliance = race == 1 || race == 3 || race == 4 || race == 7 || race == 11 || race == 12 || race == 13 || race == 17 || race == 18 || race == 20 || race == 22 || race == 25 || race == 26 || race == 27;
                      addclassCache[GetTeamClassIdx(isAlliance, claz)].insert(guid);
                      collected++;
                  } while (results->NextRow());

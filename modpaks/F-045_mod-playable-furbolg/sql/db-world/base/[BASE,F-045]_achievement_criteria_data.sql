@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@FurbolgCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@FurbolgCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@FurbolgCriteria3,  2,  0, @Furbolg, ''), -- Achievement  291 (Check Your Head)
-(@FurbolgCriteria4,  2,  0, @Furbolg, ''); -- Achievement 1430* (Realm First! Level 80 Furbolg)
+(@FurbolgCriteria4, 21,  0, @Furbolg, ''); -- Achievement 1430* (Realm First! Level 80 Furbolg)

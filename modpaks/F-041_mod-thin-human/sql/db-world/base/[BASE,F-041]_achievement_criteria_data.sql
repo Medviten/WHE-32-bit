@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@ThinHumanCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ThinHumanCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@ThinHumanCriteria3,  2,  0, @ThinHuman, ''), -- Achievement  291 (Check Your Head)
-(@ThinHumanCriteria4,  2,  0, @ThinHuman, ''); -- Achievement 1430* (Realm First! Level 80 ThinHuman)
+(@ThinHumanCriteria4, 21,  0, @ThinHuman, ''); -- Achievement 1430* (Realm First! Level 80 ThinHuman)

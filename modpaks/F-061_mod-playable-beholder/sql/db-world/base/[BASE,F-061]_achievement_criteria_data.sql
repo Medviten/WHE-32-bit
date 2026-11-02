@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@BeholderCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@BeholderCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@BeholderCriteria3,  2,  0, @Beholder, ''), -- Achievement  291 (Check Your Head)
-(@BeholderCriteria4,  2,  0, @Beholder, ''); -- Achievement 1430* (Realm First! Level 80 Beholder)
+(@BeholderCriteria4, 21,  0, @Beholder, ''); -- Achievement 1430* (Realm First! Level 80 Beholder)

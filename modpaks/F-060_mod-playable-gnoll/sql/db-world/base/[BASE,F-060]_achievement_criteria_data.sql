@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@GnollCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@GnollCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@GnollCriteria3,  2,  0, @Gnoll, ''), -- Achievement  291 (Check Your Head)
-(@GnollCriteria4,  2,  0, @Gnoll, ''); -- Achievement 1430* (Realm First! Level 80 Gnoll)
+(@GnollCriteria4, 21,  0, @Gnoll, ''); -- Achievement 1430* (Realm First! Level 80 Gnoll)

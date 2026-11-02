@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@QirajiCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@QirajiCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@QirajiCriteria3,  2,  0, @Qiraji, ''), -- Achievement  291 (Check Your Head)
-(@QirajiCriteria4,  2,  0, @Qiraji, ''); -- Achievement 1430* (Realm First! Level 80 Qiraji)
+(@QirajiCriteria4, 21,  0, @Qiraji, ''); -- Achievement 1430* (Realm First! Level 80 Qiraji)

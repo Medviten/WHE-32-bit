@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@SatyrCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@SatyrCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@SatyrCriteria3,  2,  0, @Satyr, ''), -- Achievement  291 (Check Your Head)
-(@SatyrCriteria4,  2,  0, @Satyr, ''); -- Achievement 1430* (Realm First! Level 80 Satyr)
+(@SatyrCriteria4, 21,  0, @Satyr, ''); -- Achievement 1430* (Realm First! Level 80 Satyr)

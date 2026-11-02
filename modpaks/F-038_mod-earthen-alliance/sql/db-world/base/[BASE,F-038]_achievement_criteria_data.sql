@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@AllianceEarthenCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@AllianceEarthenCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@AllianceEarthenCriteria3,  2,  0, @AllianceEarthen, ''), -- Achievement  291 (Check Your Head)
-(@AllianceEarthenCriteria4,  2,  0, @AllianceEarthen, ''); -- Achievement 1430* (Realm First! Level 80 AllianceEarthen)
+(@AllianceEarthenCriteria4, 21,  0, @AllianceEarthen, ''); -- Achievement 1430* (Realm First! Level 80 AllianceEarthen)

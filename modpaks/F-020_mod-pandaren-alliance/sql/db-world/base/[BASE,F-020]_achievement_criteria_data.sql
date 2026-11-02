@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@AlliancePandarenCriteria2, 9, 18, 0, ''),
 (@AlliancePandarenCriteria2, 10, 1, 0, ''),
 (@AlliancePandarenCriteria3, 2, 0, @AlliancePandaren, ''),
-(@AlliancePandarenCriteria4, 2, 0, @AlliancePandaren, '');
+(@AlliancePandarenCriteria4,21, 0, @AlliancePandaren, '');

@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@TuskarrCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@TuskarrCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@TuskarrCriteria3,  2,  0, @Tuskarr, ''), -- Achievement  291 (Check Your Head)
-(@TuskarrCriteria4,  2,  0, @Tuskarr, ''); -- Achievement 1430* (Realm First! Level 80 Tuskarr)
+(@TuskarrCriteria4, 21,  0, @Tuskarr, ''); -- Achievement 1430* (Realm First! Level 80 Tuskarr)

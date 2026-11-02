@@ -6,4 +6,4 @@ INSERT INTO `achievement_criteria` (`id`, `achievement_id`, `type`, `req_asset_i
 (@TaunkaCriteria1, @KnowThyEnemyHorde, 53, @Taunka, 1, 0, 0, 0, 0, 'Taunka', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 0, 0, 0, 0, 6),
 (@TaunkaCriteria2, @ShakeYourBunnyMaker, 110, 61815, 1, 0, 0, 0, 0, 'Taunka', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 0, 0, 0, 0, 15),
 (@TaunkaCriteria3, @CheckYourHead, 110, 44212, 1, 0, 0, 0, 0, 'Taunka', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 0, 0, 0, 0, 15),
-(@TaunkaCriteria4, @TaunkaAchievement, 5, 80, 0, 0, 0, 0, 0, 'Level to 80', '80 레벨', 'Atteindre le niveau 80', 'Erreicht Stufe 80', '升到80级', '升至80級', 'Alcanza el nivel 80', 'Alcanza el nivel 80', 'Достигнуть 80-го уровня', '', '', '', '', '', '', '', 16712190, 2, 0, 0, 0, 1);
+(@TaunkaCriteria4, @TaunkaAchievement, 5, 0, 80, 0, 0, 0, 0, 'Level to 80', '80 레벨', 'Atteindre le niveau 80', 'Erreicht Stufe 80', '升到80级', '升至80級', 'Alcanza el nivel 80', 'Alcanza el nivel 80', 'Достигнуть 80-го уровня', '', '', '', '', '', '', '', 16712190, 2, 0, 0, 0, 1);
