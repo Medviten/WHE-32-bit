@@ -1,5 +1,4 @@
 SET @GoblinMask = 256;
-SET @BilgewaterCartelFaction = 1164;
 SET @Exalted = 128;
 
 DELETE FROM `gossip_menu` WHERE `MenuID` IN (12439, 25000) AND `TextID` IN (17494, 17495, 100000, 100001);
@@ -45,21 +44,21 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `Source
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
 -- Goblin dealer (12439): "eligible" flavor text — Goblin OR Exalted (OR via different ElseGroups)
 (14, 12439, 17495, 0, 0, 16, 0, @GoblinMask, 0, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Goblin'),
-(14, 12439, 17495, 0, 1, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Exalted with Bilgewater Cartel'),
+(14, 12439, 17495, 0, 1, 5, 0, @GoblinFaction, @Exalted, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Exalted with Bilgewater Cartel'),
 -- "not eligible" flavor text — NOT Goblin AND NOT Exalted (AND via same ElseGroup)
 (14, 12439, 17494, 0, 0, 16, 0, @GoblinMask, 0, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Goblin'),
-(14, 12439, 17494, 0, 0, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Exalted with Bilgewater Cartel'),
+(14, 12439, 17494, 0, 0, 5, 0, @GoblinFaction, @Exalted, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Exalted with Bilgewater Cartel'),
 -- Gossip option — Goblin OR Exalted
 (15, 12439, 0, 0, 0, 16, 0, @GoblinMask, 0, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Goblin'),
-(15, 12439, 0, 0, 1, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Exalted with Bilgewater Cartel'),
+(15, 12439, 0, 0, 1, 5, 0, @GoblinFaction, @Exalted, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Exalted with Bilgewater Cartel'),
 
 -- Riding trainer (25000): same pattern
 (14, 25000, 100000, 0, 0, 16, 0, @GoblinMask, 0, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Goblin'),
-(14, 25000, 100000, 0, 1, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Exalted with Bilgewater Cartel'),
+(14, 25000, 100000, 0, 1, 5, 0, @GoblinFaction, @Exalted, 0, 0, 0, 0, '', 'NPC Text - Show if Player is Exalted with Bilgewater Cartel'),
 (14, 25000, 100001, 0, 0, 16, 0, @GoblinMask, 0, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Goblin'),
-(14, 25000, 100001, 0, 0, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Exalted with Bilgewater Cartel'),
+(14, 25000, 100001, 0, 0, 5, 0, @GoblinFaction, @Exalted, 0, 1, 0, 0, '', 'NPC Text - Show if Player is not Exalted with Bilgewater Cartel'),
 (15, 25000, 0, 0, 0, 16, 0, @GoblinMask, 0, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Goblin'),
-(15, 25000, 0, 0, 1, 5, 0, @BilgewaterCartelFaction, @Exalted, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Exalted with Bilgewater Cartel');
+(15, 25000, 0, 0, 1, 5, 0, @GoblinFaction, @Exalted, 0, 0, 0, 0, '', 'Gossip Option - Show if Player is Exalted with Bilgewater Cartel');
 
 DELETE FROM `npc_vendor` WHERE `entry` = 48510;
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`, `VerifiedBuild`) VALUES

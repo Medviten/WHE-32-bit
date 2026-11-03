@@ -6,5 +6,5 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@GoblinMaleDisplay,       @GoblinMaleModel,       0, @GoblinMaleDisplayExtra,   '1.0000000000000000', 255, '',              '',           '', '', 1, 0, 0, 0, 0, 0),
 (@GoblinFemaleDisplay,     @GoblinFemaleModel,     0, @GoblinFemaleDisplayExtra, '1.0000000000000000', 255, '',              '',           '', '', 0, 0, 0, 0, 0, 0),
 (@HobgoblinDisplay,        @HobgoblinModel,        0,                         0, '0.7500000000000000', 255, 'Hobgoblin1Red', 'Hobgoblin2', '', '', 0, 0, 0, 0, 0, 0),
-(@GoblinMount1Display,      @GoblinMount1Model,      0,                         0, '1.0000000000000000', 255, '',              '',           '', '', 0, 0, 0, 0, 0, 0),
-(@GoblinMount2Display, @GoblinMount2Model, 0,                         0, '1.0000000000000000', 255, '',              '',           '', '', 0, 0, 0, 0, 0, 0);
+(@GoblinMount1Display,      @GoblinMount1Model,    0,                         0, '1.0000000000000000', 255, '',              '',           '', '', 0, 0, 0, 0, 0, 0),
+(@GoblinMount2Display,      @GoblinMount2Model,    0,                         0, '1.0000000000000000', 255, '',              '',           '', '', 0, 0, 0, 0, 0, 0);

@@ -15,7 +15,7 @@ INSERT INTO `player_race_template` (`race`, `home_race`, `kin_race`, `shapeshift
 No core patch or recompile is needed for this.
 - `home_race`: the stock race whose start area it shares, for taxi nodes and the Collector's Edition voucher. Orb of Deception and the Corsair Costume also use it if the race has no `kin_race`.
 - `kin_race`: the race whose looks and language it shares, for holiday costumes, Orb of Deception, the Corsair Costume, the Culling of Stratholme disguise and race change languages. Use 0 for none. `@Goblin` keeps Goblin costumes.
-- `shapeshift_skin_color`: 1 if its shapeshift forms follow skin (fur) color instead of hair color, otherwise 0. build-dbc.sh exports these races to `ShapeshiftSkinColorRaces.csv` next to the DBCs. The client reads it from `DBFilesClient`, unless its `shapeshiftSkinColorRaces` CVar is set.
+- `shapeshift_skin_color`: 1 if its shapeshift forms follow skin (fur) color instead of hair color, otherwise 0. build-dbc.sh exports these races to `ShapeshiftSkinColorRaces.csv` next to the DBCs. The client reads it from `DBFilesClient`, unless its `shapeshiftSkinColorRaces` CVar is set (F-026's client patch adds this to other clients).
 
 ### Bots
 Bots use `home_race` for mounts and `kin_race` for names, and work without anything else. To differ from those, also add `sql/db-world/base/[BASE,F-xxx]_playerbots_race_template.sql`:

@@ -1,0 +1,3008 @@
+diff --git a/WoW/Common/ComponentCore/CharacterComponent.cpp b/WoW/Common/ComponentCore/CharacterComponent.cpp
+index 50768ccb..09f0d062 100644
+--- a/WoW/Common/ComponentCore/CharacterComponent.cpp
++++ b/WoW/Common/ComponentCore/CharacterComponent.cpp
+@@ -1,3 +1,4 @@
++#include <algorithm>
+ #include <cstddef>
+ #include <cstdint>
+ #include <cmath>
+@@ -5,6 +6,7 @@
+ #include <emmintrin.h>
+ #include <new>
+ #include <typeinfo>
++#include <vector>
+ #if defined(_MSC_VER)
+ #include <malloc.h>
+ #else
+@@ -35,6 +37,7 @@
+ #include "Engine/Source/Tempest/CRandom.h"
+ #include "WoW/Common/ComponentCore/ComponentUtils.h"
+ #include "WoW/Common/TextureCache.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/DBClient/DBClient.h"
+ #include "WoW/Source/DB/Rec/CharHairGeosetsRec.h"
+ #include "WoW/Source/DB/Rec/CharSectionsRec.h"
+@@ -167,6 +170,16 @@ int32_t CCharacterComponent::s_bInRenderPrep;
+ // STATIC: 0x00B6B888
+ static CompSectionInfo s_sectionInfo[NUM_COMPONENT_SECTIONS];
+ 
++// Custom: skin painted between the sections, defined with the general paste path below
++namespace {
++void PasteSkinGaps(HTEXTURECACHE skin, MipBits* dstMips);
++void UploadSkinGaps(CGxTex* texture);
++
++// Custom: set while composing a character of a race in creatureSkinRaces (per thread, the component thread composes
++// requests too): skin pastes keep the skin's alpha instead of making it opaque, for models with alpha-keyed parts
++thread_local bool s_keepSkinAlpha = false;
++}
++
+ // STATIC: 0x00B6B928
+ CompSectionInfo CCharacterComponent::s_sectionInfoRaw[NUM_COMPONENT_SECTIONS] = {
+     { { 0, 0 }, { 256, 128 } },
+@@ -236,6 +249,27 @@ void CCharacterComponent::GetPreferences(CharacterPreferences* preferences) {
+     }
+ }
+ 
++// Custom: Cataclysm's CopyChoicesToAlteredFormComponent, generalized to copy toward `other`'s own race and sex: this
++// component's skin/face/hair/facial hair choices are validated for that race and applied, so both forms of a race with
++// an altered form (alteredFormRaces) show the same customization.
++void CCharacterComponent::CopyChoicesToComponent(CCharacterComponent* other, COMPONENT_CONTEXT context) {
++    if (!other || other == this) {
++        return;
++    }
++
++    CharacterPreferences prefs = this->m_data.m_preferences;
++    ComponentData data;
++    data.SetPreferences(&prefs);
++    data.m_preferences.m_raceID = other->m_data.m_preferences.m_raceID;
++    data.m_preferences.m_sexID = other->m_data.m_preferences.m_sexID;
++    CCharacterComponent::ValidateComponentData(&data, context);
++    other->SetSkinColor(data.m_preferences.m_skinID, false, true, nullptr);
++    other->SetHairColor(data.m_preferences.m_hairColorId, false, nullptr);
++    other->SetHairStyle(data.m_preferences.m_hairStyleId, nullptr);
++    other->SetFace(data.m_preferences.m_faceId, false, nullptr);
++    other->SetBeardStyle(data.m_preferences.m_facialHairId, true, nullptr);
++}
++
+ // VERIFY: f0e7f328 manual
+ // OFFSET: 0x004E6F90
+ static int32_t CopyStringToBuffer(const char* src, char* dst) {
+@@ -1418,6 +1452,11 @@ void CCharacterComponent::UpdateSections() {
+             GxTexUpdate(TextureGetGxTex(this->m_baseSkinTexture, 1, nullptr), info.m_pos.x, info.m_pos.y, info.m_pos.x + info.m_size.x, info.m_pos.y + info.m_size.y, 1);
+         }
+     }
++
++    // Custom: the skin between the sections (ProcessComponentRequest painted it)
++    if (this->m_dirtySections && this->m_baseVariation[VARIATION_SKIN].m_texture[0]) {
++        UploadSkinGaps(TextureGetGxTex(this->m_baseSkinTexture, 1, nullptr));
++    }
+ }
+ 
+ // VERIFY: 58d8dc90 manual
+@@ -3543,6 +3582,7 @@ void CCharacterComponent::GeosRenderPrep() {
+ // VERIFY: f3bbc113 manual
+ // OFFSET: 0x004EE0D0
+ void CCharacterComponent::PrepSections() {
++    s_keepSkinAlpha = ClientRaceHidesArmorTextures(this->m_data.m_preferences.m_raceID); // Custom
+     for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS; section++) {
+         if (!((1 << section) & this->m_dirtySections)) {
+             continue;
+@@ -3556,7 +3596,18 @@ void CCharacterComponent::PrepSections() {
+         }
+     }
+ 
++    // Custom: the skin between the sections (see PasteSkinGaps), uploaded like the dirty sections
++    bool skinGaps = this->m_dirtySections && this->m_baseVariation[VARIATION_SKIN].m_texture[0];
++
++    if (skinGaps) {
++        PasteSkinGaps(this->m_baseVariation[VARIATION_SKIN].m_texture[0], CCharacterComponent::s_textureBuffer);
++    }
++
+     if (!(this->m_flags & 0x1) && this->m_gxTexFormat != GxTex_Dxt1) {
++        if (skinGaps) {
++            UploadSkinGaps(TextureGetGxTex(this->m_baseSkinTexture, 1, nullptr));
++        }
++
+         return;
+     }
+ 
+@@ -3575,6 +3626,11 @@ void CCharacterComponent::PrepSections() {
+             GxTexUpdate(TextureGetGxTex(this->m_baseSkinTexture, 1, nullptr), info.m_pos.x, info.m_pos.y, info.m_pos.x + info.m_size.x, info.m_pos.y + info.m_size.y, 1);
+         }
+     }
++
++    // Custom: the skin between the sections
++    if (skinGaps) {
++        UploadSkinGaps(TextureGetGxTex(this->m_baseSkinTexture, 1, nullptr));
++    }
+ }
+ 
+ // VERIFY: bd1b190b manual
+@@ -3607,11 +3663,15 @@ void CCharacterComponent::RenderPrepAll() {
+     this->m_flags &= ~0x8;
+     this->VariationsLoaded(1);
+     this->ItemsLoaded(1);
++    s_keepSkinAlpha = ClientRaceHidesArmorTextures(this->m_data.m_preferences.m_raceID); // Custom
+ 
+     for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS; section++) {
+         (this->*CCharacterComponent::m_prepFunc[section])();
+     }
+ 
++    // Custom: the skin between the sections (see PasteSkinGaps)
++    PasteSkinGaps(this->m_baseVariation[VARIATION_SKIN].m_texture[0], CCharacterComponent::s_textureBuffer);
++
+     if (this->m_gxTexFormat == GxTex_Dxt1) {
+         ComputeMipLevels(CCharacterComponent::s_textureBuffer, s_compressedTextureBuffer);
+     }
+@@ -3646,7 +3706,8 @@ int32_t CCharacterComponent::UpdateTextureSlot(COMPONENT_SECTIONS section, const
+         sectionData.m_layerTex[layer] = nullptr;
+     }
+ 
+-    sectionData.m_layerItemDisplayId[layer] = displayRec->m_id;
++    // Custom: races in creatureSkinRaces get no armour textures (the layer stays empty, so the section shows skin)
++    sectionData.m_layerItemDisplayId[layer] = ClientRaceHidesArmorTextures(this->m_data.m_preferences.m_raceID) ? 0 : displayRec->m_id;
+ 
+     return 1;
+ }
+@@ -3861,7 +3922,10 @@ void CCharacterComponent::AddHelm(int32_t itemVisual) {
+         return;
+     }
+ 
+-    uint32_t raceMask = 1 << this->m_data.m_preferences.m_raceID;
++    // Custom: helmetRaces can pick another race's bit. The masks only have bits 0-31: shifting by a higher race ID would
++    // wrap around onto an unrelated race's bit
++    uint32_t helmetRace = ClientGetHelmetRace(this->m_data.m_preferences.m_raceID);
++    uint32_t raceMask = helmetRace < 32 ? 1u << helmetRace : 0;
+ 
+     if (raceMask & visRec->m_hideGeoset[0]) {
+         this->m_data.m_geosets[CHARGEOSET_HAIR] = 1;
+@@ -4673,6 +4737,412 @@ bool CCharacterComponent::SetPrevHairStyle(COMPONENT_CONTEXT context) {
+     return true;
+ }
+ 
++// Custom: general paste path, no counterpart in the binary. The stock paste functions only handle paletted BLPs whose
++// size is the target's times a power of two (or exactly half of it), with no more mips than the composite texture:
++// they fill other textures with green (PasteCrappyGreen), read past a source mip of another aspect ratio, and write
++// past the composite's mip list for sources with more mips. Textures from later clients (DXT, larger, other aspect
++// ratios) hit all of these. They are decoded to 32-bit pixels instead, resampled into the target rectangle of the
++// composite's top mip and box-filtered into its smaller mips; stock textures keep the stock path.
++namespace {
++
++uint32_t Rgb565ToPixel(uint16_t color) {
++    uint32_t r = (color >> 11) & 0x1F;
++    uint32_t g = (color >> 5) & 0x3F;
++    uint32_t b = color & 0x1F;
++
++    return ((b << 3) | (b >> 2)) | (((g << 2) | (g >> 4)) << 8) | (((r << 3) | (r >> 2)) << 16) | 0xFF000000;
++}
++
++uint32_t BlendChannels(uint32_t a, uint32_t b, uint32_t wa, uint32_t wb, uint32_t div) {
++    uint32_t result = 0;
++
++    for (uint32_t shift = 0; shift < 24; shift += 8) {
++        result |= ((((a >> shift) & 0xFF) * wa + ((b >> shift) & 0xFF) * wb) / div) << shift;
++    }
++
++    return result;
++}
++
++// Pixels of one DXT colour block; DXT1 with color0 <= color1 has transparent black as its fourth colour
++void DecodeDxtColors(const uint8_t* block, bool dxt1, uint32_t* out) {
++    uint16_t c0 = block[0] | (block[1] << 8);
++    uint16_t c1 = block[2] | (block[3] << 8);
++    uint32_t colors[4];
++    colors[0] = Rgb565ToPixel(c0);
++    colors[1] = Rgb565ToPixel(c1);
++
++    if (!dxt1 || c0 > c1) {
++        colors[2] = BlendChannels(colors[0], colors[1], 2, 1, 3) | 0xFF000000;
++        colors[3] = BlendChannels(colors[0], colors[1], 1, 2, 3) | 0xFF000000;
++    } else {
++        colors[2] = BlendChannels(colors[0], colors[1], 1, 1, 2) | 0xFF000000;
++        colors[3] = 0;
++    }
++
++    uint32_t indices = block[4] | (block[5] << 8) | (block[6] << 16) | (static_cast<uint32_t>(block[7]) << 24);
++
++    for (uint32_t i = 0; i < 16; i++) {
++        out[i] = colors[(indices >> (2 * i)) & 3];
++    }
++}
++
++// One mip of a loaded BLP as composite pixels (B, G, R, A bytes); paletted, DXT1/3/5 and uncompressed ARGB
++bool DecodeBlpMip(HTEXTURECACHE texture, uint32_t mip, std::vector<uint32_t>& pixels, uint32_t& width, uint32_t& height) {
++    const BLPHeader* header = TextureCacheGetHeader(texture);
++    const uint8_t* data = static_cast<const uint8_t*>(TextureCacheGetMip(texture, mip));
++
++    if (!header || !data || mip >= 16) {
++        return false;
++    }
++
++    width = (header->m_width >> mip) ? header->m_width >> mip : 1;
++    height = (header->m_height >> mip) ? header->m_height >> mip : 1;
++    size_t count = static_cast<size_t>(width) * height;
++    size_t available = header->m_mipSizes[mip];
++    pixels.assign(count, 0xFF000000);
++
++    switch (header->m_colorEncoding) {
++        case 1: {
++            uint32_t alphaBits = header->m_alphaSize;
++            size_t alphaBytes = (count * alphaBits + 7) / 8;
++
++            if (available < count + alphaBytes) {
++                return false;
++            }
++
++            const uint8_t* alpha = data + count;
++
++            for (size_t i = 0; i < count; i++) {
++                const BlpPalPixel& color = header->m_extended.m_palette[data[i]];
++                uint32_t a = 0xFF;
++
++                if (alphaBits == 1) {
++                    a = ((alpha[i >> 3] >> (i & 7)) & 1) ? 0xFF : 0;
++                } else if (alphaBits == 4) {
++                    a = ((alpha[i >> 1] >> ((i & 1) * 4)) & 0xF) * 17;
++                } else if (alphaBits == 8) {
++                    a = alpha[i];
++                }
++
++                pixels[i] = color.m_b | (color.m_g << 8) | (color.m_r << 16) | (a << 24);
++            }
++
++            return true;
++        }
++
++        case 2: {
++            // m_preferredFormat: 0 DXT1, 1 DXT3, 7 DXT5
++            bool dxt1 = header->m_preferredFormat == 0 || header->m_alphaSize <= 1;
++            bool dxt5 = !dxt1 && header->m_preferredFormat == 7;
++            uint32_t blockBytes = dxt1 ? 8 : 16;
++            uint32_t blocksX = (width + 3) / 4;
++            uint32_t blocksY = (height + 3) / 4;
++
++            if (available < static_cast<size_t>(blocksX) * blocksY * blockBytes) {
++                return false;
++            }
++
++            for (uint32_t by = 0; by < blocksY; by++) {
++                for (uint32_t bx = 0; bx < blocksX; bx++) {
++                    const uint8_t* block = data + (static_cast<size_t>(by) * blocksX + bx) * blockBytes;
++                    uint32_t texels[16];
++                    uint8_t alphas[16];
++
++                    if (dxt1) {
++                        DecodeDxtColors(block, true, texels);
++
++                        for (uint32_t i = 0; i < 16; i++) {
++                            alphas[i] = static_cast<uint8_t>(texels[i] >> 24);
++                        }
++                    } else {
++                        DecodeDxtColors(block + 8, false, texels);
++
++                        if (dxt5) {
++                            uint32_t a0 = block[0];
++                            uint32_t a1 = block[1];
++                            uint64_t bits = 0;
++
++                            for (uint32_t i = 0; i < 6; i++) {
++                                bits |= static_cast<uint64_t>(block[2 + i]) << (8 * i);
++                            }
++
++                            for (uint32_t i = 0; i < 16; i++) {
++                                uint32_t code = (bits >> (3 * i)) & 7;
++                                uint32_t a;
++
++                                if (code == 0) {
++                                    a = a0;
++                                } else if (code == 1) {
++                                    a = a1;
++                                } else if (a0 > a1) {
++                                    a = ((8 - code) * a0 + (code - 1) * a1) / 7;
++                                } else if (code < 6) {
++                                    a = ((6 - code) * a0 + (code - 1) * a1) / 5;
++                                } else {
++                                    a = code == 6 ? 0 : 0xFF;
++                                }
++
++                                alphas[i] = static_cast<uint8_t>(a);
++                            }
++                        } else {
++                            for (uint32_t i = 0; i < 16; i++) {
++                                alphas[i] = static_cast<uint8_t>(((block[i >> 1] >> ((i & 1) * 4)) & 0xF) * 17);
++                            }
++                        }
++                    }
++
++                    for (uint32_t i = 0; i < 16; i++) {
++                        uint32_t x = bx * 4 + (i & 3);
++                        uint32_t y = by * 4 + (i >> 2);
++
++                        if (x < width && y < height) {
++                            pixels[static_cast<size_t>(y) * width + x] = (texels[i] & 0x00FFFFFF) | (static_cast<uint32_t>(header->m_alphaSize ? alphas[i] : 0xFF) << 24);
++                        }
++                    }
++                }
++            }
++
++            return true;
++        }
++
++        case 3: {
++            if (available < count * 4) {
++                return false;
++            }
++
++            for (size_t i = 0; i < count; i++) {
++                uint32_t pixel = data[i * 4] | (data[i * 4 + 1] << 8) | (data[i * 4 + 2] << 16) | (static_cast<uint32_t>(data[i * 4 + 3]) << 24);
++                pixels[i] = header->m_alphaSize ? pixel : (pixel | 0xFF000000);
++            }
++
++            return true;
++        }
++
++        default:
++            return false;
++    }
++}
++
++// Whether the stock paste functions handle this texture for a target of targetWidth x targetHeight
++bool StockPasteFits(HTEXTURECACHE texture, const TCTEXTUREINFO& info, uint32_t targetWidth, uint32_t targetHeight) {
++    const BLPHeader* header = TextureCacheGetHeader(texture);
++
++    if (!header || header->m_colorEncoding != 1 || !TextureCacheGetPal(texture) || !info.m_mipCount) {
++        return false;
++    }
++
++    if (info.m_width < targetWidth && info.m_height < targetHeight) {
++        return info.m_width * 2 == targetWidth && info.m_height * 2 == targetHeight;
++    }
++
++    for (uint32_t k = 0; k < info.m_mipCount; k++) {
++        if ((info.m_width >> k) == targetWidth && (info.m_height >> k) == targetHeight) {
++            // the stock loop writes one composite mip per remaining source mip
++            return info.m_mipCount - k <= CCharacterComponent::s_mipLevels + 1;
++        }
++    }
++
++    return false;
++}
++
++// Pastes the part (u0, v0)-(u1, v1) of the texture (fractions of its size) into the composite rectangle at dstPos of
++// dstSize (top mip coordinates), alpha blended when blend is set (else opaque), then rebuilds that rectangle in the
++// smaller mips
++void PasteGeneral(HTEXTURECACHE texture, const TCTEXTUREINFO& info, MipBits* dstMips, const C2iVector& dstPos, const C2iVector& dstSize, float u0, float v0, float u1, float v1, bool blend) {
++    const BLPHeader* header = TextureCacheGetHeader(texture);
++
++    if (!header || dstSize.x <= 0 || dstSize.y <= 0) {
++        return;
++    }
++
++    // the smallest source mip still covering the target at full resolution
++    uint32_t mip = 0;
++
++    while (mip + 1 < info.m_mipCount && (header->m_width >> (mip + 1)) * (u1 - u0) >= dstSize.x && (header->m_height >> (mip + 1)) * (v1 - v0) >= dstSize.y) {
++        mip++;
++    }
++
++    std::vector<uint32_t> source;
++    uint32_t width;
++    uint32_t height;
++
++    if (!DecodeBlpMip(texture, mip, source, width, height)) {
++        return;
++    }
++
++    float minX = u0 * width;
++    float maxX = u1 * width - 1.0f;
++    float minY = v0 * height;
++    float maxY = v1 * height - 1.0f;
++
++    if (maxX < minX) {
++        maxX = minX;
++    }
++
++    if (maxY < minY) {
++        maxY = minY;
++    }
++
++    uint32_t stride = s_textureSize;
++    uint32_t* top = reinterpret_cast<uint32_t*>(dstMips->m_mip[0]);
++
++    for (int32_t y = 0; y < dstSize.y; y++) {
++        float sy = minY + (y + 0.5f) * (v1 - v0) * height / dstSize.y - 0.5f;
++        sy = sy < minY ? minY : (sy > maxY ? maxY : sy);
++        uint32_t y0 = static_cast<uint32_t>(sy);
++        uint32_t y1 = (y0 + 1 <= static_cast<uint32_t>(maxY)) ? y0 + 1 : y0;
++        uint32_t fy = static_cast<uint32_t>((sy - y0) * 256.0f);
++
++        for (int32_t x = 0; x < dstSize.x; x++) {
++            float sx = minX + (x + 0.5f) * (u1 - u0) * width / dstSize.x - 0.5f;
++            sx = sx < minX ? minX : (sx > maxX ? maxX : sx);
++            uint32_t x0 = static_cast<uint32_t>(sx);
++            uint32_t x1 = (x0 + 1 <= static_cast<uint32_t>(maxX)) ? x0 + 1 : x0;
++            uint32_t fx = static_cast<uint32_t>((sx - x0) * 256.0f);
++
++            uint32_t p00 = source[static_cast<size_t>(y0) * width + x0];
++            uint32_t p01 = source[static_cast<size_t>(y0) * width + x1];
++            uint32_t p10 = source[static_cast<size_t>(y1) * width + x0];
++            uint32_t p11 = source[static_cast<size_t>(y1) * width + x1];
++            uint32_t color = 0;
++
++            for (uint32_t shift = 0; shift < 32; shift += 8) {
++                uint32_t c0 = (((p00 >> shift) & 0xFF) * (256 - fx) + ((p01 >> shift) & 0xFF) * fx) >> 8;
++                uint32_t c1 = (((p10 >> shift) & 0xFF) * (256 - fx) + ((p11 >> shift) & 0xFF) * fx) >> 8;
++                color |= ((c0 * (256 - fy) + c1 * fy) >> 8) << shift;
++            }
++
++            uint32_t& dst = top[static_cast<size_t>(dstPos.y + y) * stride + dstPos.x + x];
++
++            if (blend) {
++                uint32_t a = color >> 24;
++                dst = BlendChannels(dst, color, 255 - a, a, 255) | 0xFF000000;
++            } else {
++                dst = s_keepSkinAlpha ? color : color | 0xFF000000;
++            }
++        }
++    }
++
++    // smaller mips of the rectangle: box filter of the mip above
++    for (uint32_t level = 1; level <= CCharacterComponent::s_mipLevels; level++) {
++        uint32_t aboveStride = (s_textureSize >> (level - 1)) ? s_textureSize >> (level - 1) : 1;
++        uint32_t levelStride = (s_textureSize >> level) ? s_textureSize >> level : 1;
++        const uint32_t* above = reinterpret_cast<const uint32_t*>(dstMips->m_mip[level - 1]);
++        uint32_t* current = reinterpret_cast<uint32_t*>(dstMips->m_mip[level]);
++        int32_t x0 = dstPos.x >> level;
++        int32_t y0 = dstPos.y >> level;
++        int32_t w = (dstSize.x >> level) ? dstSize.x >> level : 1;
++        int32_t h = (dstSize.y >> level) ? dstSize.y >> level : 1;
++
++        for (int32_t y = y0; y < y0 + h && static_cast<uint32_t>(y) < levelStride; y++) {
++            for (int32_t x = x0; x < x0 + w && static_cast<uint32_t>(x) < levelStride; x++) {
++                uint32_t ax = static_cast<uint32_t>(x) * 2;
++                uint32_t ay = static_cast<uint32_t>(y) * 2;
++                uint32_t ax1 = (ax + 1 < aboveStride) ? ax + 1 : ax;
++                uint32_t ay1 = (ay + 1 < aboveStride) ? ay + 1 : ay;
++                uint32_t p00 = above[ay * aboveStride + ax];
++                uint32_t p01 = above[ay * aboveStride + ax1];
++                uint32_t p10 = above[ay1 * aboveStride + ax];
++                uint32_t p11 = above[ay1 * aboveStride + ax1];
++                uint32_t color = 0;
++
++                for (uint32_t shift = 0; shift < 32; shift += 8) {
++                    color |= ((((p00 >> shift) & 0xFF) + ((p01 >> shift) & 0xFF) + ((p10 >> shift) & 0xFF) + ((p11 >> shift) & 0xFF)) >> 2) << shift;
++                }
++
++                current[static_cast<size_t>(y) * levelStride + x] = color;
++            }
++        }
++    }
++}
++
++// Custom: the composite texture outside every section, as rectangles (top mip coordinates): the cells of the grid
++// through all section edges that no section covers, merged along rows. Stock character models only sample inside the
++// sections; models made from creatures (e.g. the murloc) use their skin texture's whole layout.
++void GetSkinGapRects(std::vector<CompSectionInfo>& gaps) {
++    std::vector<int32_t> xs = { 0, static_cast<int32_t>(s_textureSize) };
++    std::vector<int32_t> ys = { 0, static_cast<int32_t>(s_textureSize) };
++
++    for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS; section++) {
++        const CompSectionInfo& info = s_sectionInfo[section];
++        xs.push_back(info.m_pos.x);
++        xs.push_back(info.m_pos.x + info.m_size.x);
++        ys.push_back(info.m_pos.y);
++        ys.push_back(info.m_pos.y + info.m_size.y);
++    }
++
++    std::sort(xs.begin(), xs.end());
++    xs.erase(std::unique(xs.begin(), xs.end()), xs.end());
++    std::sort(ys.begin(), ys.end());
++    ys.erase(std::unique(ys.begin(), ys.end()), ys.end());
++
++    gaps.clear();
++
++    for (size_t j = 0; j + 1 < ys.size(); j++) {
++        for (size_t i = 0; i + 1 < xs.size(); i++) {
++            int32_t cx = (xs[i] + xs[i + 1]) / 2;
++            int32_t cy = (ys[j] + ys[j + 1]) / 2;
++            bool covered = xs[i] < 0 || ys[j] < 0 || xs[i + 1] > static_cast<int32_t>(s_textureSize) || ys[j + 1] > static_cast<int32_t>(s_textureSize);
++
++            for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS && !covered; section++) {
++                const CompSectionInfo& info = s_sectionInfo[section];
++                covered = cx >= info.m_pos.x && cx < info.m_pos.x + info.m_size.x && cy >= info.m_pos.y && cy < info.m_pos.y + info.m_size.y;
++            }
++
++            if (covered) {
++                continue;
++            }
++
++            if (!gaps.empty() && gaps.back().m_pos.y == ys[j] && gaps.back().m_pos.x + gaps.back().m_size.x == xs[i]) {
++                gaps.back().m_size.x += xs[i + 1] - xs[i];
++            } else {
++                CompSectionInfo gap;
++                gap.m_pos.x = xs[i];
++                gap.m_pos.y = ys[j];
++                gap.m_size.x = xs[i + 1] - xs[i];
++                gap.m_size.y = ys[j + 1] - ys[j];
++                gaps.push_back(gap);
++            }
++        }
++    }
++}
++
++// Custom: paints the skin texture into the composite's gaps between sections (see GetSkinGapRects), opaque, with
++// their smaller mips. Called after the sections are pasted; the gaps are uploaded along with the dirty sections.
++void PasteSkinGaps(HTEXTURECACHE skin, MipBits* dstMips) {
++    if (!skin || !TextureCacheHasMips(skin)) {
++        return;
++    }
++
++    TCTEXTUREINFO info;
++    info.m_width = 0;
++    info.m_height = 0;
++    info.m_mipCount = 0;
++    info.m_alphaSize = 0;
++    info.m_opaque = 1;
++    TextureCacheGetInfo(skin, info, 1);
++
++    std::vector<CompSectionInfo> gaps;
++    GetSkinGapRects(gaps);
++    float size = static_cast<float>(s_textureSize);
++
++    for (const CompSectionInfo& gap : gaps) {
++        PasteGeneral(skin, info, dstMips, gap.m_pos, gap.m_size, gap.m_pos.x / size, gap.m_pos.y / size, (gap.m_pos.x + gap.m_size.x) / size, (gap.m_pos.y + gap.m_size.y) / size, false);
++    }
++}
++
++// Custom: uploads the gaps between sections of a character's composite texture (see PasteSkinGaps)
++void UploadSkinGaps(CGxTex* texture) {
++    std::vector<CompSectionInfo> gaps;
++    GetSkinGapRects(gaps);
++
++    for (const CompSectionInfo& gap : gaps) {
++        GxTexUpdate(texture, gap.m_pos.x, gap.m_pos.y, gap.m_pos.x + gap.m_size.x, gap.m_pos.y + gap.m_size.y, 1);
++    }
++}
++
++} // namespace
++
+ // VERIFY: f3be180c auto
+ // OFFSET: 0x004F07D0
+ void CCharacterComponent::PasteFromSkin(COMPONENT_SECTIONS section, HTEXTURECACHE texture, MipBits* dstMips) {
+@@ -4690,6 +5160,15 @@ void CCharacterComponent::PasteFromSkin(COMPONENT_SECTIONS section, HTEXTURECACH
+     uint32_t width = info.m_width;
+     info.m_alphaSize = 0;
+ 
++    // Custom: textures the stock paths cannot take (see PasteGeneral): the section's part of the skin, opaque (alpha
++    // kept for races in creatureSkinRaces, which the stock paths cannot do either)
++    if (s_keepSkinAlpha || !StockPasteFits(texture, info, s_textureSize, s_textureSize)) {
++        const CompSectionInfo& rect = s_sectionInfo[section];
++        float size = static_cast<float>(s_textureSize);
++        PasteGeneral(texture, info, dstMips, rect.m_pos, rect.m_size, rect.m_pos.x / size, rect.m_pos.y / size, (rect.m_pos.x + rect.m_size.x) / size, (rect.m_pos.y + rect.m_size.y) / size, false);
++        return;
++    }
++
+     if (info.m_width < s_textureSize && info.m_height < s_textureSize) {
+         CCharacterComponent::PasteScale(texture, dstMips, s_sectionInfo[section].m_pos, s_sectionInfo[section].m_pos, s_sectionInfo[section].m_size, info);
+         return;
+@@ -4723,6 +5202,12 @@ void CCharacterComponent::PasteToSection(COMPONENT_SECTIONS section, HTEXTURECAC
+     uint32_t sectionWidth = s_sectionInfo[section].m_size.x;
+     C2iVector srcPos;
+ 
++    // Custom: textures the stock paths cannot take (see PasteGeneral): the whole texture, blended if it has alpha
++    if (!StockPasteFits(texture, info, sectionWidth, s_sectionInfo[section].m_size.y)) {
++        PasteGeneral(texture, info, dstMips, s_sectionInfo[section].m_pos, s_sectionInfo[section].m_size, 0.0f, 0.0f, 1.0f, 1.0f, info.m_alphaSize != 0);
++        return;
++    }
++
+     if (info.m_width < sectionWidth && info.m_height < static_cast<uint32_t>(s_sectionInfo[section].m_size.y)) {
+         srcPos.x = 0;
+         srcPos.y = 0;
+@@ -4932,6 +5417,7 @@ void CCharacterComponent::ProcessFinishedRequest() {
+ // OFFSET: 0x004F0EE0
+ void CCharacterComponent::ProcessComponentRequest(CComponentRequest* request) {
+     MipBits* dstMips = request->m_mipBits->m_mipBits;
++    s_keepSkinAlpha = request->m_keepSkinAlpha; // Custom
+ 
+     if (request->m_format == GxTex_Dxt1) {
+         dstMips = s_threadTextureBuffer;
+@@ -4947,6 +5433,14 @@ void CCharacterComponent::ProcessComponentRequest(CComponentRequest* request) {
+         CCharacterComponent::PasteToSection(static_cast<COMPONENT_SECTIONS>(request->m_layerSections[i]), request->m_layerTextures[i], dstMips);
+     }
+ 
++    // Custom: the skin between the sections (see PasteSkinGaps); every section's base texture is the skin
++    for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS; section++) {
++        if (request->m_baseTextures[section]) {
++            PasteSkinGaps(request->m_baseTextures[section], dstMips);
++            break;
++        }
++    }
++
+     if (request->m_format == GxTex_Dxt1) {
+         ComputeMipLevels(dstMips, request->m_mipBits->m_mipBits);
+     }
+@@ -5185,6 +5679,7 @@ int32_t CCharacterComponent::ThreadInitialize() {
+ void CCharacterComponent::CreateComponentRequest() {
+     this->m_request = CCharacterComponent::AllocComponentRequest();
+     this->m_request->m_format = this->m_gxTexFormat;
++    this->m_request->m_keepSkinAlpha = ClientRaceHidesArmorTextures(this->m_data.m_preferences.m_raceID); // Custom
+ 
+     for (int32_t section = 0; section < NUM_COMPONENT_SECTIONS; section++) {
+         if ((1 << section) & this->m_dirtySections) {
+@@ -5533,7 +6028,8 @@ bool CCharacterComponent::Init(ComponentData* data, const char* debug) {
+ 
+     uint32_t dataFlags = this->m_data.m_flags;
+ 
+-    if (dataFlags & 0x2) {
++    // Custom: races in creatureSkinRaces keep their skin's alpha (alpha-keyed parts), which needs a format with alpha
++    if ((dataFlags & 0x2) || ClientRaceHidesArmorTextures(this->m_data.m_preferences.m_raceID)) {
+         this->m_gxTexFormat = CCharacterComponent::s_gxFormatHigh;
+     }
+ 
+diff --git a/WoW/Common/ComponentCore/CharacterComponent.h b/WoW/Common/ComponentCore/CharacterComponent.h
+index 39d53501..6d9d5393 100644
+--- a/WoW/Common/ComponentCore/CharacterComponent.h
++++ b/WoW/Common/ComponentCore/CharacterComponent.h
+@@ -62,6 +62,8 @@ class CComponentRequest {
+     /* 0038 */ HTEXTURECACHE m_layerTextures [40];
+     /* 00D8 */ uint8_t m_layerSections [40];
+     /* 0100 */ TSLink<CComponentRequest> m_link;
++    // Custom: appended after the stock layout; the skin's alpha is kept (races in creatureSkinRaces)
++    bool m_keepSkinAlpha;
+ 
+     void AddLayer(uint8_t section, HTEXTURECACHE texture);
+     void DestroyCachedTextures();
+@@ -192,6 +194,7 @@ class CCharacterComponent {
+     void GeosRenderPrep();
+     int32_t GetHelmModelFilePath(ItemDisplayInfoRec& rec, const ItemDisplayInfoRec*& displayRec);
+     void GetPreferences(CharacterPreferences* preferences);
++    void CopyChoicesToComponent(CCharacterComponent* other, COMPONENT_CONTEXT context);
+     int32_t GetQuiverModelFilePath(ItemDisplayInfoRec& rec, const ItemDisplayInfoRec*& displayRec);
+     CharSectionsRec* GetSectionsRecord(CHARTEXTUREVARIATIONS variation, int32_t variationIndex, int32_t colorIndex, bool* found);
+     bool Init(ComponentData* data, const char* debug);
+diff --git a/WoW/Common/TextureCache.cpp b/WoW/Common/TextureCache.cpp
+index be99bf29..3db2903a 100644
+--- a/WoW/Common/TextureCache.cpp
++++ b/WoW/Common/TextureCache.cpp
+@@ -102,6 +102,17 @@ void* TextureCacheGetMip(HTEXTURECACHE handle, uint32_t mipLevel) {
+     return reinterpret_cast<uint8_t*>(entry->m_data) + entry->m_data->m_mipOffsets[mipLevel];
+ }
+ 
++// Custom: no counterpart in the binary. The compositor's general paste path reads non-paletted (DXT, ARGB) textures
++const BLPHeader* TextureCacheGetHeader(HTEXTURECACHE handle) {
++    CACHEENTRY* entry = handle;
++
++    if (!entry || entry->m_loadFailed || !entry->m_data) {
++        return nullptr;
++    }
++
++    return entry->m_data;
++}
++
+ // VERIFY: 0bb1b277 manual
+ // OFFSET: 0x004F2D40
+ BlpPalPixel* TextureCacheGetPal(HTEXTURECACHE handle) {
+diff --git a/WoW/Common/TextureCache.h b/WoW/Common/TextureCache.h
+index ba6e6e65..fd55abe4 100644
+--- a/WoW/Common/TextureCache.h
++++ b/WoW/Common/TextureCache.h
+@@ -36,6 +36,8 @@ void TextureCacheDestroyTexture(HTEXTURECACHE handle);
+ int32_t TextureCacheGetInfo(HTEXTURECACHE handle, TCTEXTUREINFO& info, int32_t wait);
+ void* TextureCacheGetMip(HTEXTURECACHE handle, uint32_t mipLevel);
+ BlpPalPixel* TextureCacheGetPal(HTEXTURECACHE handle);
++// Custom: the loaded BLP's header (format, size, mip offsets), nullptr while not loaded
++const BLPHeader* TextureCacheGetHeader(HTEXTURECACHE handle);
+ int32_t TextureCacheHasMips(HTEXTURECACHE handle);
+ void TextureCacheResetLoadCount();
+ 
+diff --git a/WoW/Source/Client.cpp b/WoW/Source/Client.cpp
+index 68fa2822..cd080b94 100644
+--- a/WoW/Source/Client.cpp
++++ b/WoW/Source/Client.cpp
+@@ -1705,6 +1705,26 @@ bool InitializeGlobal() {
+ 
+     CVar::Register("useEnglishAudio", "override the locale and use English audio", 0, "0", nullptr, CATEGORY_DEFAULT, false, nullptr, false);
+ 
++    // Custom: Cataclysm-style altered forms (see ClientGetAlteredFormRace)
++    // Custom: defaults use this setup's race IDs (12 Worgen, 213 Gilnean, which is only an altered form and so stays out
++    // of the race masks' 1-31; the 256-bit client uses the retail IDs 22 and 23)
++    CVar* alteredForms = CVar::Register("alteredFormRaces", "Races with a second form drawn as another race, e.g. \"12=213\" (Worgen = Gilnean)", 0, "12=213", AlteredFormRacesCallback, CATEGORY_DEFAULT, false, nullptr, false);
++    AlteredFormRacesCallback(alteredForms, nullptr, alteredForms->m_stringValue.m_str, nullptr);
++
++    // Custom: whose helmet hide bit a race uses (see ClientGetHelmetRace). Defaults: NPC Goblin (169) = Goblin, the other
++    // NPC races F-008 moves keep their stock bit, Gilnean (213) = Human
++    CVar* helmetRaces = CVar::Register("helmetRaces", "Races that hide geosets under helmets like another race, e.g. \"213=1\" (Gilnean = Human). Needed above race 31, which has no hide bit of its own", 0, "169=9,172=12,173=13,174=14,175=15,176=16,177=17,178=18,179=19,180=20,181=21,213=1", HelmetRacesCallback, CATEGORY_DEFAULT, false, nullptr, false);
++    HelmetRacesCallback(helmetRaces, nullptr, helmetRaces->m_stringValue.m_str, nullptr);
++
++    // Custom: character creation druid form preview (see DruidForms_CharacterCreate.lua)
++    CVar* skinColorRaces = CVar::Register("shapeshiftSkinColorRaces", "Races whose shapeshift models follow skin (fur) color, not hair color. Empty: from DBFilesClient\\ShapeshiftSkinColorRaces.csv", 0, "", ShapeshiftSkinColorRacesCallback, CATEGORY_DEFAULT, false, nullptr, false);
++    ShapeshiftSkinColorRacesCallback(skinColorRaces, nullptr, skinColorRaces->m_stringValue.m_str, nullptr);
++    // Custom: no default races, as this client's race IDs are the server's own (set the list in Config.wtf; the 256-bit
++    // client defaults to its Murloc, Slime Giant, Centaur and CoA race IDs)
++    CVar* creatureSkinRaces = CVar::Register("creatureSkinRaces", "Races whose models use their whole skin texture (creature models made playable) and show no armour textures, e.g. \"41,43\"", 0, "", CreatureSkinRacesCallback, CATEGORY_DEFAULT, false, nullptr, false);
++    CreatureSkinRacesCallback(creatureSkinRaces, nullptr, creatureSkinRaces->m_stringValue.m_str, nullptr);
++    CVar::Register("druidFormPreview", "Show the druid form preview in character creation", 0, "1", nullptr, CATEGORY_DEFAULT, false, nullptr, false);
++
+     if (SFile::IsTrial()) {
+         StartupReport(firstRun);
+     }
+diff --git a/WoW/Source/Client.h b/WoW/Source/Client.h
+index e96f8f28..31ceff77 100644
+--- a/WoW/Source/Client.h
++++ b/WoW/Source/Client.h
+@@ -94,6 +94,18 @@ uint32_t GetM2CvarFlags();
+ int32_t InitializeEngineCallback(const void* data, void* param);
+ bool InitializeGlobal();
+ bool LocaleCallback(CVar* var, const char* oldValue, const char* value, void* arg);
++// Custom: Cataclysm-style altered forms (alteredFormRaces); 0 when the race has none
++bool AlteredFormRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg);
++uint32_t ClientGetAlteredFormRace(uint32_t race);
++// Custom: the race whose helmet hide bit a race uses (helmetRaces); the race itself when not listed
++bool HelmetRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg);
++uint32_t ClientGetHelmetRace(uint32_t race);
++// Custom: races whose shapeshift models follow skin (fur) color (shapeshiftSkinColorRaces)
++bool ShapeshiftSkinColorRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg);
++bool ClientShapeshiftUsesSkinColor(uint32_t race);
++// Custom: races whose characters show no armour textures (creatureSkinRaces)
++bool CreatureSkinRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg);
++bool ClientRaceHidesArmorTextures(uint32_t race);
+ int main();
+ int32_t Packet_SMSG_NOTIFICATION(void* param, NETMESSAGE msgId, uint32_t time, CDataStore* msg);
+ int32_t Packet_SMSG_PLAYED_TIME(void* param, NETMESSAGE msgId, uint32_t time, CDataStore* msg);
+diff --git a/WoW/Source/Client_CVar.cpp b/WoW/Source/Client_CVar.cpp
+index f7f0319f..da0f6d0e 100644
+--- a/WoW/Source/Client_CVar.cpp
++++ b/WoW/Source/Client_CVar.cpp
+@@ -635,6 +635,162 @@ bool LocaleCallback(CVar* var, const char* oldValue, const char* value, void* ar
+     return true;
+ }
+ 
++// Custom: Cataclysm-style altered forms. alteredFormRaces lists "race=alteredRace" pairs (e.g. "22=23" (retail Worgen = Gilnean)),
++// standing in for Cata's ChrRaces.m_alteredFormRaceID. Such a race's second form is drawn as a real character of the
++// altered race with the same customization choices (in game when its display is the altered race's own model, and
++// in the barber shop and character creation previews).
++static uint8_t s_alteredFormRace[256];
++static uint8_t s_helmetRace[256];
++
++// Custom: fills a table from "race=otherRace" pairs
++static void ParseRacePairs(const char* value, uint8_t (&table)[256]) {
++    memset(table, 0, sizeof(table));
++
++    const char* cursor = value ? value : "";
++
++    while (*cursor) {
++        char* end;
++        long race = strtol(cursor, &end, 10);
++
++        if (end == cursor) {
++            cursor++;
++            continue;
++        }
++
++        cursor = end;
++
++        while (*cursor == ' ') {
++            cursor++;
++        }
++
++        if (*cursor != '=') {
++            continue;
++        }
++
++        cursor++;
++        long altered = strtol(cursor, &end, 10);
++
++        if (end == cursor) {
++            continue;
++        }
++
++        cursor = end;
++
++        if (race > 0 && race < 256 && altered > 0 && altered < 256 && race != altered) {
++            table[race] = static_cast<uint8_t>(altered);
++        }
++    }
++}
++
++bool AlteredFormRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg) {
++    ParseRacePairs(value, s_alteredFormRace);
++
++    return true;
++}
++
++uint32_t ClientGetAlteredFormRace(uint32_t race) {
++    return race < sizeof(s_alteredFormRace) ? s_alteredFormRace[race] : 0;
++}
++
++// Custom: HelmetGeosetVisData's hide masks have one bit per race ID, so only IDs below 32 have a bit of their own.
++// helmetRaces lists "race=copiedRace" pairs choosing whose bit a race uses instead, for the NPC races F-008 moved above
++// the playable range and for not-playable altered forms. A race above 31 that isn't listed has no bit: its helmets
++// hide nothing.
++bool HelmetRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg) {
++    ParseRacePairs(value, s_helmetRace);
++
++    return true;
++}
++
++uint32_t ClientGetHelmetRace(uint32_t race) {
++    return race < sizeof(s_helmetRace) && s_helmetRace[race] ? s_helmetRace[race] : race;
++}
++
++// Custom: shapeshiftSkinColorRaces lists the races whose shapeshift form models follow skin (fur) color rather than
++// hair color in player_shapeshift_model. Empty (the default) reads them from DBFilesClient\ShapeshiftSkinColorRaces.csv,
++// which WHE's build-dbc.sh exports from the server's player_race_template, so they follow the manifest's race IDs. It's
++// read on first use, once the MPQs are open; Tauren are the only ones without the file.
++static bool s_shapeshiftSkinColorRace[256];
++static bool s_shapeshiftSkinColorFromFile = false;
++
++static void ParseShapeshiftSkinColorRaces(const char* cursor) {
++    while (*cursor) {
++        char* end;
++        long race = strtol(cursor, &end, 10);
++
++        if (end == cursor) {
++            cursor++;
++            continue;
++        }
++
++        cursor = end;
++
++        if (race > 0 && race < 256) {
++            s_shapeshiftSkinColorRace[race] = true;
++        }
++    }
++}
++
++bool ShapeshiftSkinColorRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg) {
++    memset(s_shapeshiftSkinColorRace, 0, sizeof(s_shapeshiftSkinColorRace));
++
++    s_shapeshiftSkinColorFromFile = !value || !*value;
++    ParseShapeshiftSkinColorRaces(value ? value : "");
++
++    return true;
++}
++
++bool ClientShapeshiftUsesSkinColor(uint32_t race) {
++    if (s_shapeshiftSkinColorFromFile) {
++        s_shapeshiftSkinColorFromFile = false;
++
++        char* data;
++        uint32_t size;
++
++        if (SFile::LoadFile("DBFilesClient\\ShapeshiftSkinColorRaces.csv", reinterpret_cast<void**>(&data), &size, 1, nullptr) && data) {
++            ParseShapeshiftSkinColorRaces(data);
++            SFile::Unload(data);
++        } else {
++            s_shapeshiftSkinColorRace[6] = true;
++        }
++    }
++
++    return race < sizeof(s_shapeshiftSkinColorRace) && s_shapeshiftSkinColorRace[race];
++}
++
++// Custom: creatureSkinRaces lists races whose models use their skin texture's whole layout, like creature models made
++// playable (Murloc, Slime Giant, Centaur and the CoA Custom races). Armour textures are not composited onto them: they would land wherever the
++// model's own UVs fall. Weapons, shields, helmets and other attached item models still show.
++static bool s_creatureSkinRace[256];
++
++bool CreatureSkinRacesCallback(CVar* var, const char* oldValue, const char* value, void* arg) {
++    memset(s_creatureSkinRace, 0, sizeof(s_creatureSkinRace));
++
++    const char* cursor = value ? value : "";
++
++    while (*cursor) {
++        char* end;
++        long race = strtol(cursor, &end, 10);
++
++        if (end == cursor) {
++            cursor++;
++            continue;
++        }
++
++        cursor = end;
++
++        if (race > 0 && race < 256) {
++            s_creatureSkinRace[race] = true;
++        }
++    }
++
++    return true;
++}
++
++bool ClientRaceHidesArmorTextures(uint32_t race) {
++    return race < sizeof(s_creatureSkinRace) && s_creatureSkinRace[race];
++}
++
+ // VERIFY: 9951b118 manual
+ // OFFSET: 0x00401B60
+ void ClientRegisterConsoleCommands() {
+diff --git a/WoW/Source/Glue/CharacterCreation.cpp b/WoW/Source/Glue/CharacterCreation.cpp
+index f5af90a8..d7fb076e 100644
+--- a/WoW/Source/Glue/CharacterCreation.cpp
++++ b/WoW/Source/Glue/CharacterCreation.cpp
+@@ -8,6 +8,7 @@
+ #include "Engine/Source/Storm/H/storm.h"
+ #include "Engine/Source/Tempest/CRandom.h"
+ #include "WoW/Common/ComponentCore/CharacterComponent.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/DBClient/DBClient.h"
+ #include "WoW/Source/DB/Rec/CharBaseInfoRec.h"
+ #include "WoW/Source/DB/Rec/CharStartOutfitRec.h"
+@@ -73,6 +74,9 @@ TSGrowableArray<int32_t> CCharacterCreation::m_races;
+ // STATIC: 0x00B6B1DC
+ CNameGen CCharacterCreation::m_nameGen;
+ 
++// Custom: altered form preview (see CharacterCreation.h)
++CCharacterComponent* CCharacterCreation::m_alteredCharacter;
++int32_t CCharacterCreation::m_alteredFormAtFront;
+ // VERIFY: cbaddeb2 manual
+ // OFFSET: 0x004E1C20
+ void CCharacterCreation::Initialize() {
+@@ -119,10 +123,18 @@ void CCharacterCreation::Shutdown() {
+         CCharacterCreation::m_character = nullptr;
+     }
+ 
++    // Custom: altered form preview
++    if (CCharacterCreation::m_alteredCharacter) {
++        CCharacterComponent::FreeComponent(CCharacterCreation::m_alteredCharacter);
++        CCharacterCreation::m_alteredCharacter = nullptr;
++    }
++
++    CCharacterCreation::m_alteredFormAtFront = 0;
++
+     CCharacterCreation::m_nameGen.m_names.Clear();
+     CCharacterCreation::m_nameGen.m_dictionary.Clear();
+ 
+-    for (uint32_t i = 0; i < 22; i++) {
++    for (uint32_t i = 0; i < sizeof(CCharacterCreation::m_charPreferences) / sizeof(CCharacterCreation::m_charPreferences[0]); i++) {
+         for (uint32_t j = 0; j < 2; j++) {
+             delete CCharacterCreation::m_charPreferences[i][j];
+             CCharacterCreation::m_charPreferences[i][j] = nullptr;
+@@ -134,6 +146,12 @@ void CCharacterCreation::Shutdown() {
+ // OFFSET: 0x004DFA50
+ int32_t CCharacterCreation::Idle(const void* data, void* param) {
+     CGlueLoading::Idle(CCharacterCreation::m_character);
++
++    // Custom: keep the altered form preview composited
++    if (CCharacterCreation::m_alteredCharacter) {
++        CCharacterCreation::m_alteredCharacter->RenderPrep(0);
++    }
++
+     return 1;
+ }
+ 
+@@ -197,7 +215,8 @@ void CCharacterCreation::SetCharCustomizeModel(const char* modelName) {
+     }
+ 
+     if (CCharacterCreation::m_charCustomizeFrame->m_model && CCharacterCreation::m_character->m_data.m_model) {
+-        CCharacterCreation::m_character->m_data.m_model->AttachToParent(CCharacterCreation::m_charCustomizeFrame->m_model, 0, nullptr, 0);
++        // Custom: attaches the altered form preview as well
++        CCharacterCreation::AttachCharacters();
+     }
+ }
+ 
+@@ -206,17 +225,125 @@ void CCharacterCreation::SetCharCustomizeModel(const char* modelName) {
+ void CCharacterCreation::SetCharacterFacing(float facing) {
+     CCharacterCreation::m_charFacing = facing;
+ 
++    // Custom: with an altered form preview, the front model turns and the back one keeps facing forward
++    C3Vector position(0.0f, 0.0f, 0.0f);
++    bool alteredFront = CCharacterCreation::m_alteredCharacter && CCharacterCreation::m_alteredFormAtFront;
++
+     if (CCharacterCreation::m_character->m_data.m_model) {
+-        C3Vector position(0.0f, 0.0f, 0.0f);
+-        CCharacterCreation::m_character->m_data.m_model->SetWorldTransform(position, facing, 1.0f);
++        CCharacterCreation::m_character->m_data.m_model->SetWorldTransform(position, alteredFront ? 0.0f : facing, 1.0f);
++    }
++
++    if (CCharacterCreation::m_alteredCharacter && CCharacterCreation::m_alteredCharacter->m_data.m_model) {
++        CCharacterCreation::m_alteredCharacter->m_data.m_model->SetWorldTransform(position, alteredFront ? facing : 0.0f, 1.0f);
++    }
++}
++
++// Custom: attaches the character (and the altered form preview) to the background model: the front one at attachment
++// 0, the back one at attachment 1, like Cataclysm's Worgen/Human character creation
++void CCharacterCreation::AttachCharacters() {
++    CM2Model* background = CCharacterCreation::m_charCustomizeFrame ? CCharacterCreation::m_charCustomizeFrame->m_model : nullptr;
++
++    if (!background) {
++        return;
++    }
++
++    CM2Model* character = CCharacterCreation::m_character ? CCharacterCreation::m_character->m_data.m_model : nullptr;
++    CM2Model* altered = CCharacterCreation::m_alteredCharacter ? CCharacterCreation::m_alteredCharacter->m_data.m_model : nullptr;
++
++    if (!altered) {
++        CCharacterCreation::m_alteredFormAtFront = 0;
+     }
++
++    if (character) {
++        if (character->m_attachParent) {
++            character->DetachFromParent();
++        }
++
++        character->AttachToParent(background, CCharacterCreation::m_alteredFormAtFront != 0, nullptr, 0);
++    }
++
++    if (altered) {
++        if (altered->m_attachParent) {
++            altered->DetachFromParent();
++        }
++
++        altered->AttachToParent(background, CCharacterCreation::m_alteredFormAtFront == 0, nullptr, 0);
++    }
++
++    CCharacterCreation::SetCharacterFacing(CCharacterCreation::m_charFacing);
++}
++
++// Custom: builds (or drops) the altered form preview for the current character's race and sex
++void CCharacterCreation::CreateAlteredCharacter() {
++    if (CCharacterCreation::m_alteredCharacter) {
++        if (CCharacterCreation::m_alteredCharacter->m_data.m_model->m_attachParent) {
++            CCharacterCreation::m_alteredCharacter->m_data.m_model->DetachFromParent();
++        }
++
++        CCharacterComponent::FreeComponent(CCharacterCreation::m_alteredCharacter);
++        CCharacterCreation::m_alteredCharacter = nullptr;
++    }
++
++    if (!CCharacterCreation::m_character || !CCharacterCreation::m_charCustomizeFrame) {
++        return;
++    }
++
++    const CharacterPreferences& prefs = CCharacterCreation::m_character->m_data.m_preferences;
++    uint32_t alteredRace = ClientGetAlteredFormRace(prefs.m_raceID);
++    CreatureModelDataRec* modelRec = alteredRace ? GetModelDataRec(alteredRace, prefs.m_sexID) : nullptr;
++
++    if (!modelRec || !*modelRec->m_modelName) {
++        return;
++    }
++
++    ComponentData data;
++    data.SetPreferences(&prefs);
++    data.m_preferences.m_raceID = alteredRace;
++    data.m_model = CCharacterCreation::m_charCustomizeFrame->GetScene()->CreateModel(modelRec->m_modelName, 0);
++
++    if (!data.m_model) {
++        return;
++    }
++
++    data.m_model->m_lightingCallback = &CCharacterSelection::GenericLightingCallback;
++    data.m_model->m_lightingArg = CCharacterCreation::m_charCustomizeFrame->m_lightArray2;
++    data.m_model->SetBoneSequence(0xFFFFFFFF, 0, 0, 0, 1.0f, 1, 1);
++    data.m_flags |= 0x2;
++    CCharacterComponent::ValidateComponentData(&data, COMPONENT_CONTEXT_0);
++
++    CCharacterCreation::m_alteredCharacter = CCharacterComponent::AllocComponent();
++    CCharacterCreation::m_alteredCharacter->Init(&data, nullptr);
++    CCharacterCreation::DressComponent(CCharacterCreation::m_alteredCharacter);
++    CCharacterCreation::m_alteredCharacter->RenderPrep(0);
++}
++
++// Custom: copies the current choices onto the altered form preview
++void CCharacterCreation::SyncAlteredCharacter() {
++    if (!CCharacterCreation::m_character || !CCharacterCreation::m_alteredCharacter) {
++        return;
++    }
++
++    CCharacterCreation::m_character->CopyChoicesToComponent(CCharacterCreation::m_alteredCharacter, COMPONENT_CONTEXT_0);
++    CCharacterCreation::m_alteredCharacter->RenderPrep(0);
++}
++
++// Custom: swaps which form stands at the front
++void CCharacterCreation::SetViewingAlteredForm(int32_t alteredForm) {
++    alteredForm = alteredForm && CCharacterCreation::m_alteredCharacter ? 1 : 0;
++
++    if (alteredForm == CCharacterCreation::m_alteredFormAtFront) {
++        return;
++    }
++
++    CCharacterCreation::m_alteredFormAtFront = alteredForm;
++    CCharacterCreation::AttachCharacters();
+ }
+ 
+ // VERIFY: 308d1147 auto
+ // OFFSET: 0x004E01B0
+ bool CCharacterCreation::IsClassAvailable(int32_t classID) {
+     for (uint32_t i = 0; i < CCharacterCreation::m_classes.Count(); i++) {
+-        if (CCharacterCreation::m_classes.m_data[i]->m_id == classID) {
++        if (CCharacterCreation::m_classes.m_data[i] && CCharacterCreation::m_classes.m_data[i]->m_id == classID) {
+             return true;
+         }
+     }
+@@ -240,6 +367,7 @@ void CCharacterCreation::CycleCharCustomization(CHAR_CUSTOMIZATION_TYPE type, in
+             }
+ 
+             CCharacterCreation::m_prevSkinIndex = CCharacterCreation::m_character->m_data.m_preferences.m_skinID;
++            CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+             CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+             return;
+         }
+@@ -289,6 +417,7 @@ void CCharacterCreation::CycleCharCustomization(CHAR_CUSTOMIZATION_TYPE type, in
+         }
+     }
+ 
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -413,9 +542,19 @@ int32_t CCharacterCreation::GetRandomClassID() {
+     return classes[static_cast<uint32_t>((static_cast<uint64_t>(count) * CRandom::uint32_(g_rndSeed)) >> 32)];
+ }
+ 
++// Custom: dresses the character and the altered form preview the same way (the body below is the original Dress,
++// working on `component`; the starting outfit is still chosen by the character's own race)
++void CCharacterCreation::Dress() {
++    CCharacterCreation::DressComponent(CCharacterCreation::m_character);
++
++    if (CCharacterCreation::m_alteredCharacter) {
++        CCharacterCreation::DressComponent(CCharacterCreation::m_alteredCharacter);
++    }
++}
++
+ // VERIFY: b15e5451 auto
+ // OFFSET: 0x004E0FD0
+-void CCharacterCreation::Dress() {
++void CCharacterCreation::DressComponent(CCharacterComponent* component) {
+     if (CCharacterCreation::m_existingCharacterIndex >= 0) {
+         CharacterSelectionDisplay* display = CCharacterSelection::GetCharacterDisplay(CCharacterCreation::m_existingCharacterIndex);
+ 
+@@ -445,9 +584,9 @@ void CCharacterCreation::Dress() {
+                 int32_t visual = found && g_itemVisualsDB.GetRecord(itemRec.m_itemVisual) ? 0 : itemVisual;
+ 
+                 if (slot != INVSLOT_MAINHAND && slot != INVSLOT_OFFHAND && slot != INVSLOT_RANGED) {
+-                    CCharacterCreation::m_character->AddItemBySlot(static_cast<INVENTORY_SLOTS>(slot), displayID, visual);
++                    component->AddItemBySlot(static_cast<INVENTORY_SLOTS>(slot), displayID, visual);
+                 } else if (found) {
+-                    CCharacterComponent::AddHandItem(CCharacterCreation::m_character->m_data.m_model, &itemRec, static_cast<INVENTORY_SLOTS>(slot), SHEATHE_NONE, false, display->m_characterInfo.m_inventoryItemType[slot] == INVTYPE_SHIELD, false, visual);
++                    CCharacterComponent::AddHandItem(component->m_data.m_model, &itemRec, static_cast<INVENTORY_SLOTS>(slot), SHEATHE_NONE, false, display->m_characterInfo.m_inventoryItemType[slot] == INVTYPE_SHIELD, false, visual);
+                 }
+ 
+                 if (slot == INVSLOT_TABARD && found && (itemRec.m_flags & 0x1)) {
+@@ -458,7 +597,7 @@ void CCharacterCreation::Dress() {
+                     int32_t background;
+ 
+                     if (GuildGetGuildTabard(display->m_characterInfo.m_guid, display->m_characterInfo.m_guildID, nullptr, nullptr, emblemStyle, emblemColor, borderStyle, borderColor, background)) {
+-                        CCharacterCreation::m_character->ApplyGuildColor(emblemStyle, emblemColor, borderStyle, borderColor, background);
++                        component->ApplyGuildColor(emblemStyle, emblemColor, borderStyle, borderColor, background);
+                     }
+                 }
+             }
+@@ -468,13 +607,13 @@ void CCharacterCreation::Dress() {
+     }
+ 
+     for (uint32_t i = 0; i < NUM_ITEM_SLOTS; i++) {
+-        CCharacterCreation::m_character->RemoveItem(static_cast<ITEM_SLOT>(i));
++        component->RemoveItem(static_cast<ITEM_SLOT>(i));
+     }
+ 
+-    CCharacterComponent::RemoveHandItem(CCharacterCreation::m_character->m_data.m_model, INVSLOT_MAINHAND, SHEATHE_NONE, false);
+-    CCharacterComponent::RemoveHandItem(CCharacterCreation::m_character->m_data.m_model, INVSLOT_OFFHAND, SHEATHE_NONE, false);
+-    CCharacterComponent::RemoveHandItem(CCharacterCreation::m_character->m_data.m_model, INVSLOT_OFFHAND, SHEATHE_NONE, true);
+-    CCharacterComponent::RemoveHandItem(CCharacterCreation::m_character->m_data.m_model, INVSLOT_RANGED, SHEATHE_NONE, false);
++    CCharacterComponent::RemoveHandItem(component->m_data.m_model, INVSLOT_MAINHAND, SHEATHE_NONE, false);
++    CCharacterComponent::RemoveHandItem(component->m_data.m_model, INVSLOT_OFFHAND, SHEATHE_NONE, false);
++    CCharacterComponent::RemoveHandItem(component->m_data.m_model, INVSLOT_OFFHAND, SHEATHE_NONE, true);
++    CCharacterComponent::RemoveHandItem(component->m_data.m_model, INVSLOT_RANGED, SHEATHE_NONE, false);
+ 
+     for (int32_t i = 0; i < g_charStartOutfitDB.m_numRecords; i++) {
+         CharStartOutfitRec* outfit = i >= 0 && i < g_charStartOutfitDB.m_numRecords ? &g_charStartOutfitDB.m_records[i] : nullptr;
+@@ -506,10 +645,10 @@ void CCharacterCreation::Dress() {
+                         ItemDisplayInfoRec itemRec;
+ 
+                         if (g_itemDisplayInfoDB.GetRecord(displayID, &itemRec)) {
+-                            GEOCOMPONENTLINKS link = CCharacterComponent::AddHandItem(CCharacterCreation::m_character->m_data.m_model, &itemRec, INVSLOT_RANGED, SHEATHE_NONE, false, false, mainHand, 0);
++                            GEOCOMPONENTLINKS link = CCharacterComponent::AddHandItem(component->m_data.m_model, &itemRec, INVSLOT_RANGED, SHEATHE_NONE, false, false, mainHand, 0);
+ 
+                             if (type == INVTYPE_RANGED) {
+-                                for (CM2Model* attached = CCharacterCreation::m_character->m_data.m_model->m_attachList; attached; attached = attached->m_attachNext) {
++                                for (CM2Model* attached = component->m_data.m_model->m_attachList; attached; attached = attached->m_attachNext) {
+                                     if (attached->m_attachmentId == static_cast<uint32_t>(link)) {
+                                         attached->SetLoadedCallback(&CCharacterSelection::ModelLoadedCallback, nullptr);
+                                         break;
+@@ -525,7 +664,7 @@ void CCharacterCreation::Dress() {
+                         ItemDisplayInfoRec itemRec;
+ 
+                         if (g_itemDisplayInfoDB.GetRecord(displayID, &itemRec) && *itemRec.m_modelName[0]) {
+-                            CCharacterCreation::m_character->AddItem(ITEMSLOT_11, &itemRec, 0);
++                            component->AddItem(ITEMSLOT_11, &itemRec, 0);
+                         }
+ 
+                         break;
+@@ -537,7 +676,7 @@ void CCharacterCreation::Dress() {
+                 }
+             }
+ 
+-            CCharacterCreation::m_character->AddItemByType(static_cast<INVENTORY_TYPES>(type), displayID);
++            component->AddItemByType(static_cast<INVENTORY_TYPES>(type), displayID);
+         }
+ 
+         return;
+@@ -590,13 +729,18 @@ void CCharacterCreation::InitCharacterComponents(ComponentData* data, bool rando
+     CCharacterCreation::m_prevHairStyleIndex = CCharacterCreation::m_character->m_data.m_preferences.m_hairStyleId;
+     CCharacterCreation::m_prevFacialHairIndex = CCharacterCreation::m_character->m_data.m_preferences.m_facialHairId;
+ 
++    // Custom: (re)build the altered form preview for this race and sex before dressing, so both get dressed
++    CCharacterCreation::CreateAlteredCharacter();
++
+     CCharacterCreation::SetCharacterFacing(CCharacterCreation::m_charFacing);
+     CCharacterCreation::Dress();
+     CCharacterCreation::m_character->RenderPrep(0);
+ 
+     if (CCharacterCreation::m_charCustomizeFrame->m_model) {
+-        CCharacterCreation::m_character->m_data.m_model->AttachToParent(CCharacterCreation::m_charCustomizeFrame->m_model, 0, nullptr, 0);
++        // Custom: attaches the altered form preview as well
++        CCharacterCreation::AttachCharacters();
+     }
++
+ }
+ 
+ // VERIFY: 68a365e1 manual
+@@ -636,6 +780,7 @@ void CCharacterCreation::SetSelectedSex(uint32_t sexID) {
+             CCharacterCreation::InitCharacterComponents(&data, false);
+ 
+             CCharacterCreation::m_nameGen.LoadNames(CCharacterCreation::m_races.m_data[CCharacterCreation::m_raceIndex], sexID);
++            CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+             CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+             return;
+         }
+@@ -658,6 +803,7 @@ void CCharacterCreation::SetSelectedSex(uint32_t sexID) {
+     }
+ 
+     CCharacterCreation::m_nameGen.LoadNames(CCharacterCreation::m_races.m_data[CCharacterCreation::m_raceIndex], sexID);
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -682,6 +828,7 @@ void CCharacterCreation::SetSelectedClass(int32_t classID) {
+     CCharacterComponent::ValidateComponentData(&data, COMPONENT_CONTEXT_0);
+     CCharacterCreation::InitCharacterComponents(&data, false);
+     CCharacterCreation::Dress();
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -701,6 +848,7 @@ void CCharacterCreation::RandomizeCharCustomization() {
+     CCharacterCreation::m_prevFacialHairIndex = CCharacterCreation::m_character->m_data.m_preferences.m_facialHairId;
+ 
+     CCharacterCreation::Dress();
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -760,6 +908,7 @@ void CCharacterCreation::ResetCharCustomizeInfo() {
+     }
+ 
+     CCharacterCreation::m_nameGen.LoadNames(CCharacterCreation::m_character->m_data.m_preferences.m_raceID, CCharacterCreation::m_character->m_data.m_preferences.m_sexID);
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -831,6 +980,7 @@ void CCharacterCreation::SetSelectedRace(uint32_t raceIndex) {
+ 
+     CCharacterCreation::m_nameGen.LoadNames(CCharacterCreation::m_races.m_data[CCharacterCreation::m_raceIndex], CCharacterCreation::m_character->m_data.m_preferences.m_sexID);
+     CCharacterCreation::Dress();
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+ 
+@@ -868,5 +1018,6 @@ void CCharacterCreation::SetToExistingCharacter(uint32_t index) {
+     }
+ 
+     CCharacterCreation::m_nameGen.LoadNames(CCharacterCreation::m_character->m_data.m_preferences.m_raceID, CCharacterCreation::m_character->m_data.m_preferences.m_sexID);
++    CCharacterCreation::SyncAlteredCharacter(); // Custom: the altered form preview follows the choices
+     CGlueLoading::StartLoad(CCharacterCreation::m_character, 1);
+ }
+diff --git a/WoW/Source/Glue/CharacterCreation.h b/WoW/Source/Glue/CharacterCreation.h
+index 65b138da..90af7c18 100644
+--- a/WoW/Source/Glue/CharacterCreation.h
++++ b/WoW/Source/Glue/CharacterCreation.h
+@@ -52,6 +52,16 @@ class CCharacterCreation {
+     static void SetSelectedSex(uint32_t sexID);
+     static void SetToExistingCharacter(uint32_t index);
+     static void Shutdown();
++
++    // Custom: Cataclysm-style altered form preview (alteredFormRaces). The altered form is a second character of the
++    // altered race with the same choices, attached to the background model at attachment 1 (back) or 0 (front).
++    static CCharacterComponent* m_alteredCharacter;
++    static int32_t m_alteredFormAtFront;
++    static void CreateAlteredCharacter();
++    static void SyncAlteredCharacter();
++    static void AttachCharacters();
++    static void SetViewingAlteredForm(int32_t alteredForm);
++    static void DressComponent(CCharacterComponent* component);
+ };
+ 
+ bool IsRaceClassValid(int32_t raceID, int32_t classID);
+diff --git a/WoW/Source/Glue/CharacterCreation_Scripts.cpp b/WoW/Source/Glue/CharacterCreation_Scripts.cpp
+index 38e3979d..7afc3051 100644
+--- a/WoW/Source/Glue/CharacterCreation_Scripts.cpp
++++ b/WoW/Source/Glue/CharacterCreation_Scripts.cpp
+@@ -1,5 +1,7 @@
+ #include "CharacterCreation.h"
+ #include <cstdint>
++#include <cstdlib>
++#include "Engine/Source/Base/Handle.h"
+ #include "Engine/Source/BlizzardCore/SFile2-Core.h"
+ #include "Engine/Source/Frame/CScriptObject.h"
+ #include "Engine/Source/Frame/CSimpleModel.h"
+@@ -7,13 +9,23 @@
+ #include "Engine/Source/FrameScript/FrameScript_Object.h"
+ #include "Engine/Source/lua-5.1/src/lauxlib.h"
+ #include "Engine/Source/lua-5.1/src/lua.h"
++#include "Engine/Source/Model2/M2Data.h"
++#include "Engine/Source/Model2/M2Model.h"
++#include "Engine/Source/Model2/M2Scene.h"
++#include "Engine/Source/Model2/M2Shared.h"
++#include "Engine/Source/Services/Camera.h"
+ #include "Engine/Source/Storm/H/storm.h"
++#include "Engine/Source/Tempest/CAaSphere.h"
+ #include "WoW/Common/ComponentCore/CharacterComponent.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/DBClient/DBClient.h"
+ #include "WoW/Source/DB/Rec/ChrClassesRec.h"
+ #include "WoW/Source/DB/Rec/ChrRacesRec.h"
++#include "WoW/Source/DB/Rec/CreatureDisplayInfoRec.h"
++#include "WoW/Source/DB/Rec/CreatureModelDataRec.h"
+ #include "WoW/Source/DB/Rec/FactionGroupRec.h"
+ #include "WoW/Source/DB/Rec/FactionTemplateRec.h"
++#include "WoW/Source/DB/Rec/SpellShapeshiftFormRec.h"
+ #include "WoW/Source/Glue/CharacterSelection.h"
+ #include "WoW/Source/Glue/CSimpleModelFFX.h"
+ #include "WoW/Source/Object/ObjectClient/Unit_C.h"
+@@ -118,9 +130,321 @@ static int32_t Script_IsRaceClassRestricted(lua_State* L) {
+ // OFFSET: 0x004DFC90
+ static int32_t Script_UpdateCustomizationScene(lua_State* L) {
+     CCharacterCreation::m_character->RenderPrep(0);
++
++    // Custom: altered form preview
++    if (CCharacterCreation::m_alteredCharacter) {
++        CCharacterCreation::m_alteredCharacter->RenderPrep(0);
++    }
++
++    return 0;
++}
++
++// Custom: AzerothCore's world.player_shapeshift_model, shipped client-side as DBFilesClient\PlayerShapeshiftModel.csv
++// (lines "ShapeshiftID,RaceID,CustomizationID,GenderID,ModelID"; anything not starting with a digit is skipped), so
++// character creation can preview druid forms the way the server will show them
++struct ShapeshiftModelRow {
++    int32_t m_form;
++    int32_t m_race;
++    int32_t m_customization;
++    int32_t m_gender;
++    int32_t m_model;
++};
++
++static TSGrowableArray<ShapeshiftModelRow> s_shapeshiftModels;
++static bool s_shapeshiftModelsLoaded;
++
++static void LoadShapeshiftModels() {
++    if (s_shapeshiftModelsLoaded) {
++        return;
++    }
++
++    s_shapeshiftModelsLoaded = true;
++
++    char* data;
++    uint32_t size;
++
++    if (!SFile::LoadFile("DBFilesClient\\PlayerShapeshiftModel.csv", reinterpret_cast<void**>(&data), &size, 1, nullptr) || !data) {
++        return;
++    }
++
++    const char* line = data;
++
++    while (*line) {
++        const char* end = line;
++
++        while (*end && *end != '\n') {
++            end++;
++        }
++
++        // Values may be quoted ("1","4","0","2","29407", as MySQL tools export them); the header line isn't numeric
++        const char* first = line;
++
++        while (first < end && (*first == '"' || *first == '\'' || *first == ' ' || *first == '\t')) {
++            first++;
++        }
++
++        if (first < end && *first >= '0' && *first <= '9') {
++            int32_t values[5];
++            uint32_t count = 0;
++            const char* cursor = first;
++
++            while (count < 5 && cursor < end) {
++                char* next;
++                long value = strtol(cursor, &next, 10);
++
++                if (next == cursor) {
++                    cursor++;
++                    continue;
++                }
++
++                values[count++] = static_cast<int32_t>(value);
++                cursor = next;
++            }
++
++            if (count == 5) {
++                ShapeshiftModelRow* row = s_shapeshiftModels.New();
++                row->m_form = values[0];
++                row->m_race = values[1];
++                row->m_customization = values[2];
++                row->m_gender = values[3];
++                row->m_model = values[4];
++            }
++        }
++
++        line = *end ? end + 1 : end;
++    }
++
++    SFile::Unload(data);
++}
++
++static int32_t FindShapeshiftModel(int32_t form, int32_t race, int32_t customization, int32_t gender) {
++    for (uint32_t i = 0; i < s_shapeshiftModels.Count(); i++) {
++        const ShapeshiftModelRow& row = s_shapeshiftModels[i];
++
++        // A row whose display the client doesn't have (e.g. one only in the server's DBC tables) can't be shown, so
++        // it is skipped and the lookup falls through to the next, more general row or the DBC default
++        if (row.m_form == form && row.m_race == race && row.m_customization == customization && row.m_gender == gender && g_creatureDisplayInfoDB.GetRecord(row.m_model)) {
++            return row.m_model;
++        }
++    }
++
++    return 0;
++}
++
++static bool IsHordeRace(int32_t race) {
++    ChrRacesRec* raceRec = g_chrRacesDB.GetRecord(race);
++    FactionTemplateRec* factionTemplate = raceRec ? g_factionTemplateDB.GetRecord(raceRec->m_factionID) : nullptr;
++
++    if (!factionTemplate) {
++        return false;
++    }
++
++    for (int32_t i = 0; i < g_factionGroupDB.m_numRecords; i++) {
++        FactionGroupRec* group = &g_factionGroupDB.m_records[i];
++
++        if (group->m_maskID && ((1 << group->m_maskID) & factionTemplate->m_factionGroup) && !SStrCmpI(group->m_internalName, "Horde", STORM_MAX_STR)) {
++            return true;
++        }
++    }
++
++    return false;
++}
++
++// Mirrors AzerothCore's Unit::GetModelForForm / ObjectMgr::GetModelForShapeshift (as patched on this server): the table
++// keyed by skin (fur) color for the races in shapeshiftSkinColorRaces and hair color for everyone else, with 255 = any
++// customization and gender 2 = either, then SpellShapeshiftForm.dbc's Alliance/Horde model by faction
++static int32_t GetShapeshiftDisplay(int32_t form, const CharacterPreferences& prefs) {
++    LoadShapeshiftModels();
++
++    bool horde = IsHordeRace(prefs.m_raceID);
++    int32_t customization = ClientShapeshiftUsesSkinColor(prefs.m_raceID) ? prefs.m_skinID : prefs.m_hairColorId;
++    int32_t race = prefs.m_raceID;
++    int32_t gender = prefs.m_sexID;
++    int32_t model;
++
++    if ((model = FindShapeshiftModel(form, race, customization, gender)) || (model = FindShapeshiftModel(form, race, customization, 2)) || (model = FindShapeshiftModel(form, race, 255, gender)) || (model = FindShapeshiftModel(form, race, 255, 2))) {
++        return model;
++    }
++
++    SpellShapeshiftFormRec* formRec = g_spellShapeshiftFormDB.GetRecord(form);
++
++    if (!formRec) {
++        return 0;
++    }
++
++    model = horde ? formRec->m_creatureDisplayID[1] : formRec->m_creatureDisplayID[0];
++    return model ? model : formRec->m_creatureDisplayID[0];
++}
++
++// Custom: the bounding sphere of a model's stand animation (its first sequence with animation ID 0). The model's own
++// bounds (GetBoundingSphere) cover every animation, a cat's pounce or a flight form's take-off, so framing them put
++// forms low or high in the preview and made some of them tiny; falls back to them for models without a usable stand.
++static CAaSphere GetStandBoundingSphere(CM2Model* model) {
++    const M2Data* data = model->m_shared->m_data;
++
++    for (uint32_t i = 0; i < data->m_sequences.m_count; i++) {
++        const M2Sequence& sequence = data->m_sequences[i];
++
++        if (sequence.m_id != 0 || sequence.m_bounds.m_radius <= 0.1f || sequence.m_bounds.m_extent.IsInverted()) {
++            continue;
++        }
++
++        const CAaBox& extent = sequence.m_bounds.m_extent;
++        CAaSphere sphere;
++        sphere.c = C3Vector((extent.b.x + extent.t.x) * 0.5f, (extent.b.y + extent.t.y) * 0.5f, (extent.b.z + extent.t.z) * 0.5f);
++        sphere.r = sequence.m_bounds.m_radius;
++        return sphere;
++    }
++
++    return model->GetBoundingSphere();
++}
++
++// Custom: SetModelCreatureDisplay("frameName", displayID[, zoom]) shows a creature display (model plus its skins) in a
++// Model frame, lit by the frame's own light and framed whole by a camera aimed at its stand animation's bounds; 0 clears the
++// frame. zoom (default 1) brings the camera closer: the model's size on screen follows the frame's diagonal divided by
++// the camera distance, so a frame shrunk by some factor keeps the model's size with zoom = 1 / factor. Used by the druid
++// form preview. (A plain Model frame draws only in its own rectangle; a ModelFFX would clear the whole screen.)
++static int32_t Script_SetModelCreatureDisplay(lua_State* L) {
++    if (!lua_isstring(L, 1) || !lua_isnumber(L, 2)) {
++        luaL_error(L, "Usage: SetModelCreatureDisplay(\"frameName\", displayID[, zoom])");
++        return 0;
++    }
++
++    CSimpleModel* frame = static_cast<CSimpleModel*>(CScriptObject::GetScriptObjectByName(lua_tolstring(L, 1, nullptr), CSimpleModel::GetObjectType()));
++
++    if (!frame) {
++        luaL_error(L, "SetModelCreatureDisplay: '%s' is not a Model frame", lua_tolstring(L, 1, nullptr));
++        return 0;
++    }
++
++    int32_t displayId = lua_tointeger(L, 2);
++    CreatureDisplayInfoRec* displayRec = displayId > 0 ? g_creatureDisplayInfoDB.GetRecord(displayId) : nullptr;
++    CreatureModelDataRec* modelRec = displayRec ? g_creatureModelDataDB.GetRecord(displayRec->m_modelID) : nullptr;
++
++    if (!modelRec || !modelRec->m_modelName || !*modelRec->m_modelName) {
++        frame->SetModel(static_cast<CM2Model*>(nullptr));
++        return 0;
++    }
++
++    CM2Model* model = frame->GetScene()->CreateModel(modelRec->m_modelName, 0);
++
++    if (!model) {
++        return 0;
++    }
++
++    if (!(model->m_fFlags & 0x1)) {
++        model->WaitForLoad(nullptr);
++    }
++
++    CCharacterComponent::ReplaceMonsterSkin(model, displayRec, modelRec);
++
++    frame->m_light.SetLightType(M2LIGHT_DIRECT);
++    frame->m_light.m_dirColor = C3Vector(0.8f, 0.8f, 0.64f);
++    frame->m_light.m_ambColor = C3Vector(0.7f, 0.7f, 0.7f);
++    frame->m_light.SetDirection(C3Vector(0.0f, 1.0f, 0.0f));
++    frame->m_light.SetVisible(1);
++
++    frame->SetModel(model);
++    model->SetBoneSequence(0xFFFFFFFF, 0, 0xFFFFFFFF, 0, 1.0f, 1, 1);
++
++    // Like CGCharacterModelBase::ConfigureCamera's fallback, scaled to the stand pose: about 4.6 of its radii in front, a little above (closer than the paperdoll framing, so the form fills the preview). 4.6 stand radii keep the Worgen cat as large as 3.4 of its overall radii did
++    CAaSphere sphere = GetStandBoundingSphere(model);
++    float radius = sphere.r > 0.1f ? sphere.r * (4.6f / 3.4f) : 1.0f;
++    float zoom = lua_isnumber(L, 3) ? static_cast<float>(lua_tonumber(L, 3)) : 1.0f;
++
++    if (zoom > 0.1f) {
++        radius /= zoom;
++    }
++
++    // The frame shows about 1.8 radii top to bottom; aim an eighth of that (0.225 radii) below the centre, so the form sits in the middle instead of low with empty space above
++    C3Vector target(sphere.c.x, sphere.c.y, sphere.c.z - radius * 0.225f);
++
++    CCamera* camera = CameraCreate();
++    CameraSetFloat(camera, 4, 0.5f);
++    CameraSetCoord(camera, 8, target, 0);
++    CameraSetCoord(camera, 7, C3Vector(target.x + radius * 3.4f, target.y, target.z + radius * 0.9f), 0);
++    CameraSetFloat(camera, 3, 0.027777778f);
++    frame->SetCamera(camera);
++    HandleClose(reinterpret_cast<HOBJECT>(camera));
++
++    model->Release();
++    return 0;
++}
++
++// Custom: displayID, formName = GetCharCustomizeShapeshiftDisplay(form) for the character being created
++static int32_t Script_GetCharCustomizeShapeshiftDisplay(lua_State* L) {
++    if (!lua_isnumber(L, 1)) {
++        luaL_error(L, "Usage: GetCharCustomizeShapeshiftDisplay(form)");
++        return 0;
++    }
++
++    int32_t form = lua_tointeger(L, 1);
++
++    if (!CCharacterCreation::m_character) {
++        lua_pushnumber(L, 0.0);
++        lua_pushnil(L);
++        return 2;
++    }
++
++    SpellShapeshiftFormRec* formRec = g_spellShapeshiftFormDB.GetRecord(form);
++    lua_pushnumber(L, GetShapeshiftDisplay(form, CCharacterCreation::m_character->m_data.m_preferences));
++
++    if (formRec && formRec->m_name) {
++        lua_pushstring(L, formRec->m_name);
++    } else {
++        lua_pushnil(L);
++    }
++
++    return 2;
++}
++
++// Custom: Cataclysm-style altered form preview (alteredFormRaces): HasAlteredForm(), IsViewingAlteredForm(),
++// SetViewingAlteredForm(bool)
++// Custom: name, fileString = GetAlteredFormRace() for the selected race's altered form (nil when it has none), like
++// GetNameForRace for the race itself
++static int32_t Script_GetAlteredFormRace(lua_State* L) {
++    uint32_t altered = CCharacterCreation::m_character ? ClientGetAlteredFormRace(CCharacterCreation::m_character->m_data.m_preferences.m_raceID) : 0;
++    ChrRacesRec* raceRec = altered ? g_chrRacesDB.GetRecord(altered) : nullptr;
++    const char* name = raceRec ? CGUnit_C::GetDisplayRaceNameFromRecord(raceRec, CCharacterCreation::m_character->m_data.m_preferences.m_sexID, nullptr) : nullptr;
++
++    if (raceRec && name) {
++        lua_pushstring(L, name);
++        lua_pushstring(L, raceRec->m_clientFileString);
++        return 2;
++    }
++
++    lua_pushnil(L);
++    lua_pushnil(L);
++    return 2;
++}
++
++static int32_t Script_HasAlteredForm(lua_State* L) {
++    lua_pushboolean(L, CCharacterCreation::m_alteredCharacter != nullptr);
++    return 1;
++}
++
++static int32_t Script_IsViewingAlteredForm(lua_State* L) {
++    lua_pushboolean(L, CCharacterCreation::m_alteredCharacter ? CCharacterCreation::m_alteredFormAtFront : 0);
++    return 1;
++}
++
++static int32_t Script_SetViewingAlteredForm(lua_State* L) {
++    CCharacterCreation::SetViewingAlteredForm(lua_toboolean(L, 1));
+     return 0;
+ }
+ 
++// Custom: IsMaleOnlyRace() for the selected race: true when its ChrRaces female display uses the male display's
++// model, i.e. the race has no female model. The server (WHE core patch) creates such characters male, and the
++// character creation UI hides the female button for them.
++static int32_t Script_IsMaleOnlyRace(lua_State* L) {
++    ChrRacesRec* raceRec = CCharacterCreation::m_character ? g_chrRacesDB.GetRecord(CCharacterCreation::m_character->m_data.m_preferences.m_raceID) : nullptr;
++    CreatureDisplayInfoRec* maleDisplay = raceRec ? g_creatureDisplayInfoDB.GetRecord(raceRec->m_maleDisplayID) : nullptr;
++    CreatureDisplayInfoRec* femaleDisplay = raceRec ? g_creatureDisplayInfoDB.GetRecord(raceRec->m_femaleDisplayID) : nullptr;
++
++    lua_pushboolean(L, maleDisplay && femaleDisplay && maleDisplay->m_modelID == femaleDisplay->m_modelID);
++    return 1;
++}
++
+ // VERIFY: 262c3be3 manual
+ // OFFSET: 0x004DFCA0
+ static int32_t Script_GetRandomName(lua_State* L) {
+@@ -582,6 +906,13 @@ static FrameScript_Method s_scriptFunctions[] = {
+     { "SetSelectedClass", &Script_SetSelectedClass },
+     { "UpdateCustomizationBackground", &Script_UpdateCustomizationBackground },
+     { "UpdateCustomizationScene", &Script_UpdateCustomizationScene },
++    { "HasAlteredForm", &Script_HasAlteredForm },
++    { "GetAlteredFormRace", &Script_GetAlteredFormRace },
++    { "GetCharCustomizeShapeshiftDisplay", &Script_GetCharCustomizeShapeshiftDisplay },
++    { "SetModelCreatureDisplay", &Script_SetModelCreatureDisplay },
++    { "IsViewingAlteredForm", &Script_IsViewingAlteredForm },
++    { "SetViewingAlteredForm", &Script_SetViewingAlteredForm },
++    { "IsMaleOnlyRace", &Script_IsMaleOnlyRace },
+     { "CycleCharCustomization", &Script_CycleCharCustomization },
+     { "RandomizeCharCustomization", &Script_RandomizeCharCustomization },
+     { "GetCharacterCreateFacing", &Script_GetCharacterCreateFacing },
+diff --git a/WoW/Source/Object/ObjectClient/CGGameObject_C_Type_BarberChair.cpp b/WoW/Source/Object/ObjectClient/CGGameObject_C_Type_BarberChair.cpp
+index a2f358b3..9d6f3388 100644
+--- a/WoW/Source/Object/ObjectClient/CGGameObject_C_Type_BarberChair.cpp
++++ b/WoW/Source/Object/ObjectClient/CGGameObject_C_Type_BarberChair.cpp
+@@ -24,7 +24,9 @@ bool CGGameObject_C_Type_BarberChair::CanUseNow(GAME_ERROR_TYPE* error, float* d
+ 
+     CGPlayer_C* player = ClntObjMgrGetActivePlayerObj();
+ 
+-    if (player->m_unit->m_unitFieldDisplayid == player->m_unit->m_unitFieldNativedisplayid && !player->IsShapeShifted()) {
++    // Custom: also allowed in an altered form (alteredFormRaces), which is a full character the barber shop can edit.
++    // Other transforms and shapeshifts stay refused (their models aren't characters; editing them can crash).
++    if ((player->m_unit->m_unitFieldDisplayid == player->m_unit->m_unitFieldNativedisplayid || player->IsInAlteredForm()) && !player->IsShapeShifted()) {
+         return true;
+     }
+ 
+diff --git a/WoW/Source/Object/ObjectClient/Unit_C.cpp b/WoW/Source/Object/ObjectClient/Unit_C.cpp
+index 9385297f..3670203a 100644
+--- a/WoW/Source/Object/ObjectClient/Unit_C.cpp
++++ b/WoW/Source/Object/ObjectClient/Unit_C.cpp
+@@ -1,6 +1,7 @@
+ #include "WoW/Source/Magic/Types.h"
+ #include "Unit_C.h"
+ #include <cmath>
++#include <map>
+ #include <new>
+ #include <typeinfo>
+ #include <cstring>
+@@ -17,6 +18,7 @@
+ #include "Engine/Source/Tempest/CMath.h"
+ #include "Engine/Source/Tempest/CRandom.h"
+ #include "WoW/Common/ComponentCore/CharacterComponent.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/DBClient/CreatureStats_C.h"
+ #include "WoW/Source/DB/DBClient/DBCacheInstances.h"
+ #include "WoW/Source/DB/DBClient/DBClient.h"
+@@ -149,13 +151,31 @@
+ 
+ static const float UNDERWATER_BUBBLE_THRESHOLD = 5.0f;
+ static const float MOUSE_LOOK_SEND_FACING_DELTA = 0.1f;
++// Custom: an altered form transition in progress (see BeginAlteredFormTransition): the unit's old model, kept with its
++// component, drawn until the unit's new model is ready (begun) and then, if it plays the anim (animate), carrying the
++// new model until its $ALT event (swap). endTime is when waiting for either gives up.
++struct AlteredFormTransition {
++    CM2Model* model;
++    CCharacterComponent* component;
++    uint32_t endTime;
++    bool animate;
++    bool poof;
++    bool begun;
++    bool swap;
++};
+ 
+ static const float TRACKMOVE_THRESHOLD_DISTANCE = 4.5f;
+ static const int32_t DEFAULT_MODEL_FADE_TIME = 1000;
++static std::map<const CGUnit_C*, AlteredFormTransition> s_alteredFormTransitions;
+ 
+ static const float MAX_NAMEPLATE_DIST_SQUARED = 1681.0f;
++// Custom: the sound of a transition's anim (see PlayAlteredFormSound), kept apart from the transition, which is copied
++static std::map<const CGUnit_C*, SE2SoundKitObject> s_alteredFormSounds;
+ 
+ static const float MISSILE_MIN_HEIGHT = 0.25f;
++// Custom: the key bone (Waist) of the old model's legs, which walk or run through the transition's anim when the unit
++// moves (see PlayBaseAnimation)
++static const uint32_t s_alteredFormLegsKeyBone = 5;
+ 
+ // STATIC: 0x00ADAC04
+ static INVENTORY_SLOTS s_virtualItemInvSlots[2] = { INVSLOT_MAINHAND, INVSLOT_OFFHAND };
+@@ -397,7 +417,8 @@ int32_t DisplayIDUpdateHandler(WOWGUID guid, uint32_t fieldOffset, uint32_t fiel
+             CGBarberShop::DisableBarberShop();
+         }
+ 
+-        unit->UpdateDisplayInfo(0);
++        // Custom: the old model stays drawn until the new one is ready (e.g. leaving a shapeshift form)
++        unit->UpdateDisplayInfoKeepingModel();
+     }
+ 
+     return 1;
+@@ -873,6 +894,7 @@ void CGUnit_C::UpdateDisplay(uint32_t time) {
+     }
+ 
+     World::TickObject(this->m_worldObject);
++    this->UpdateAlteredFormTransition(); // Custom
+ 
+     if (this->m_obj->m_guid == CGUnit_C::s_activeMover && !(this->m_obj->m_type & TYPE_PLAYER) && this->IsAutoTracking()) {
+         this->HandleTracking(0.0f, 0.0f);
+@@ -1029,11 +1051,8 @@ int32_t CGUnit_C::IsDeadOrAttachmentDying() {
+ // VERIFY: 87f21e3d manual
+ // OFFSET: 0x0072A480
+ int32_t CGUnit_C::DisplayInfoNeedsUpdate() {
+-    int32_t displayId = this->m_displayId;
+-
+-    if (!displayId || this->m_unit->m_unitFieldNativedisplayid != this->m_unit->m_unitFieldDisplayid) {
+-        displayId = this->m_unit->m_unitFieldDisplayid;
+-    }
++    // Custom: resolve through GetLocalDisplayID so the altered form aura can swap the native display
++    int32_t displayId = this->GetLocalDisplayID();
+ 
+     CreatureDisplayInfoRec* displayInfo = g_creatureDisplayInfoDB.GetRecord(displayId);
+ 
+@@ -1060,6 +1079,9 @@ void CGUnit_C::UpdateDisplayInfo(int32_t force) {
+         return;
+     }
+ 
++    // Custom: the model about to be replaced may be carried by an altered form transition's old model
++    this->StopAlteredFormTransition(false);
++
+     int32_t deathAnim = ANIM_COUNT;
+     this->m_wheelMask = 0;
+ 
+@@ -1257,14 +1279,18 @@ int32_t CGUnit_C::Animate(float elapsed) {
+ void CGUnit_C::ShouldRender(uint32_t flags, int32_t& culled, int32_t& hidden) {
+     this->CGObject_C::ShouldRender(flags, culled, hidden);
+ 
++    // Custom: while an altered form transition waits for the new model and its component, the old model is drawn in
++    // their place, so the unit is not hidden for them (see BeginAlteredFormTransition)
++    bool keepOldModel = !hidden && this->IsAlteredFormTransitionPending();
++
+     if ((this->m_clientFlags & 0x400000) && !this->InitializeComponent()) {
+-        hidden = 1;
++        hidden = !keepOldModel;
+     } else if (culled || hidden) {
+         if (this->m_characterComponent) {
+             this->m_characterComponent->Prep();
+         }
+     } else if (this->m_characterComponent && !this->m_characterComponent->RenderPrep(0)) {
+-        hidden = 1;
++        hidden = !keepOldModel;
+     } else {
+         CM2Model* model = this->m_worldModel;
+         CM2Model* child = nullptr;
+@@ -3637,6 +3663,17 @@ int32_t IsLocomotionAnimId(uint32_t animId) {
+         case 143:
+         case 187:
+         case 223:
++        // Custom: the MountSelf movement and jump anims (see GetMountSelfAnim), so they follow movement speed too
++        case 620:
++        case 622:
++        case 624:
++        case 630:
++        case 632:
++        case 634:
++        case 638:
++        case 640:
++        case 642:
++        case 644:
+             return 1;
+         default:
+             return 0;
+@@ -3985,6 +4022,12 @@ uint32_t CGUnit_C::ResolveAnimForModel(uint32_t animId, CM2Model* model) {
+         model = this->GetObjectModel();
+     }
+ 
++    // Custom: anims past what AnimationData covers (Cataclysm's, e.g. MountSelfStart in Running Wild's spell visual kit)
++    // have no fallbacks to follow and would resolve to the stand anim; the model plays them directly when it has them
++    if (animId >= ANIM_COUNT && model->HasSequence(animId)) {
++        return animId;
++    }
++
+     uint32_t result = static_cast<uint16_t>(animId);
+     int32_t visited[ANIM_COUNT];
+     memset(visited, 0, sizeof(visited));
+@@ -4376,6 +4419,44 @@ void CGUnit_C::PlayBaseAnimation(uint32_t animId, int32_t flags) {
+         return;
+     }
+ 
++    // Custom: through an altered form transition's anim, the unit's anims would cut ToAltered short on the old model,
++    // which then never reaches its swap event ($ALT, on a bone of the root). They are held off until the transition stops
++    // (see StopAlteredFormTransition), except that the anim plays while walking or running: then the old model's legs
++    // (the waist key bone, which has the hips and legs under it) take the movement anim, at its speed, and the rest keeps
++    // ToAltered (attachment 50, which carries the new model, hangs off the pelvis, not the waist). Any other anim gives
++    // the legs back to ToAltered
++    if (!s_alteredFormTransitions.empty() && animId != ANIM_TO_ALTERED && !IsDeadOrDyingAnim(animId)) {
++        auto transition = s_alteredFormTransitions.find(this);
++
++        if (transition != s_alteredFormTransitions.end() && transition->second.begun) {
++            CM2Model* oldModel = transition->second.model;
++            uint32_t legs = this->ResolveAnimForModel(animId, oldModel);
++
++            uint32_t moving = MOVEMENTFLAG_FORWARD | MOVEMENTFLAG_BACKWARD | MOVEMENTFLAG_STRAFE_LEFT | MOVEMENTFLAG_STRAFE_RIGHT;
++
++            if (IsLocomotionAnimId(legs) && (this->m_movementData.m_flags & moving)) {
++                float speed = 1.0f;
++                M2SequenceInfo info;
++                info.Clear();
++                oldModel->GetSequenceInfo(legs, 0, info);
++
++                if (0.0f != info.m_moveSpeed) {
++                    speed = this->m_movementData.GetBaseSpeed(0) / fabsf(info.m_moveSpeed);
++                }
++
++                if (oldModel->GetBoneSequenceId(s_alteredFormLegsKeyBone) == legs) {
++                    oldModel->SetBoneSequenceSpeed(s_alteredFormLegsKeyBone, speed);
++                } else {
++                    oldModel->SetBoneSequence(s_alteredFormLegsKeyBone, legs, 0xFFFFFFFF, 0, speed, 1, 1);
++                }
++            } else {
++                oldModel->UnsetBoneSequence(s_alteredFormLegsKeyBone, 1, 1);
++            }
++
++            return;
++        }
++    }
++
+     if (this->GetObjectModel()->m_lastAnimTime || (this->GetVehicleRec() && this->m_vehicle->IsSpecialBoneAnimPlaying())) {
+         return;
+     }
+@@ -4415,6 +4496,15 @@ void CGUnit_C::PlayBaseAnimation(uint32_t animId, int32_t flags) {
+         anim = (flags & 0x4) ? animId : this->ResolveAnimForModel(animId, nullptr);
+     }
+ 
++    // Custom: a unit that is its own mount plays the MountSelf versions of its anims. Done after resolving, since the
++    // MountSelf IDs are past what AnimationData and the fallback lookups cover; the model plays them directly. The
++    // requested anim is tried first, as resolving can turn it into another (MountSpecial, played on a jump while
++    // standing, is missing from these models and falls back to a stand anim, not to MountSelfSpecial)
++    if (this->IsMountSelf()) {
++        uint32_t mountSelfAnim = this->GetMountSelfAnim(animId);
++        anim = mountSelfAnim != animId ? mountSelfAnim : this->GetMountSelfAnim(anim);
++    }
++
+     M2BoneSequenceInfo mount;
+     M2BoneSequenceInfo base;
+     M2BoneSequenceInfo torso;
+@@ -5666,6 +5756,15 @@ CM2Model* CGUnit_C::GetObjectModel() const {
+         return this->m_mountModel;
+     }
+ 
++    // Custom: the old model carries the unit's during an altered form transition (see BeginAlteredFormTransition)
++    if (!s_alteredFormTransitions.empty()) {
++        auto it = s_alteredFormTransitions.find(this);
++
++        if (it != s_alteredFormTransitions.end()) {
++            return it->second.model;
++        }
++    }
++
+     return this->m_worldModel;
+ }
+ 
+@@ -6996,11 +7095,8 @@ int32_t CGUnit_C::FindDefaultAnimForTier(int32_t tier, uint32_t* anim) const {
+ // VERIFY: 272cc5b1 manual
+ // OFFSET: 0x00717A20
+ CreatureModelDataRec* CGUnit_C::GetModelData() const {
+-    int32_t displayId = this->m_displayId;
+-
+-    if (!displayId || this->m_unit->m_unitFieldNativedisplayid != this->m_unit->m_unitFieldDisplayid) {
+-        displayId = this->m_unit->m_unitFieldDisplayid;
+-    }
++    // Custom: resolve through GetLocalDisplayID so the altered form aura can swap the native display
++    int32_t displayId = this->GetLocalDisplayID();
+ 
+     CreatureDisplayInfoRec* displayInfo = g_creatureDisplayInfoDB.GetRecord(displayId);
+ 
+@@ -7195,6 +7291,11 @@ int32_t CGUnit_C::CanEquipItemsInThisForm() const {
+         return 1;
+     }
+ 
++    // Custom: the altered form is a full character, so it shows gear like the native form
++    if (this->IsInAlteredForm()) {
++        return 1;
++    }
++
+     if (this->m_shapeshiftSuppressed) {
+         return 1;
+     }
+@@ -7208,6 +7309,466 @@ int32_t CGUnit_C::CanEquipItemsInThisForm() const {
+     return unit->m_unitFieldNativedisplayid == unit->m_unitFieldDisplayid;
+ }
+ 
++// Custom: see Unit_C.h. Any display using the altered race's character model (the model of its ChrRaces male/female
++// display) marks the altered form, so a transform aura into e.g. a human NPC creature counts too; the client then
++// builds the player's own character of that race instead of the NPC's fixed look.
++bool CGUnit_C::IsInAlteredForm() const {
++    if (!(this->m_obj->m_type & TYPE_PLAYER)) {
++        return false;
++    }
++
++    uint32_t altered = ClientGetAlteredFormRace(this->m_unit->m_unitFieldBytes0[0]);
++    ChrRacesRec* alteredRec = altered ? g_chrRacesDB.GetRecord(altered) : nullptr;
++
++    if (!alteredRec) {
++        return false;
++    }
++
++    int32_t displayId = this->GetLocalDisplayID();
++
++    if (!displayId || displayId == static_cast<int32_t>(this->m_unit->m_unitFieldNativedisplayid)) {
++        return false;
++    }
++
++    if (displayId == alteredRec->m_maleDisplayID || displayId == alteredRec->m_femaleDisplayID) {
++        return true;
++    }
++
++    CreatureDisplayInfoRec* displayRec = g_creatureDisplayInfoDB.GetRecord(displayId);
++    CreatureDisplayInfoRec* maleRec = g_creatureDisplayInfoDB.GetRecord(alteredRec->m_maleDisplayID);
++    CreatureDisplayInfoRec* femaleRec = g_creatureDisplayInfoDB.GetRecord(alteredRec->m_femaleDisplayID);
++
++    return displayRec && ((maleRec && displayRec->m_modelID == maleRec->m_modelID) || (femaleRec && displayRec->m_modelID == femaleRec->m_modelID));
++}
++
++// Custom: stands in for Cataclysm's aura 358, which does not fit the 320-bit aura effect mask. No 3.3.5 spell uses aura
++// 302 and AzerothCore applies it as a no-op, so a spell DBC edit is enough on the server. Unlike Cataclysm, where the
++// aura marks the native (Worgen) form, here it marks the altered form, so the native form stays the default.
++static const int32_t s_alteredFormAura = 302;
++
++// Custom: see Unit_C.h. Cataclysm 0x005B5070, keyed on s_alteredFormAura and alteredFormRaces instead of
++// m_currentClientRace(Flags)
++int32_t CGUnit_C::GetCurrentClientNativeDisplayID() const {
++    int32_t nativeId = this->m_unit->m_unitFieldNativedisplayid;
++
++    if (!(this->m_obj->m_type & TYPE_PLAYER) || !this->HasAuraEffect(s_alteredFormAura)) {
++        return nativeId;
++    }
++
++    uint32_t altered = ClientGetAlteredFormRace(this->m_unit->m_unitFieldBytes0[0]);
++    ChrRacesRec* alteredRec = altered ? g_chrRacesDB.GetRecord(altered) : nullptr;
++
++    if (!alteredRec) {
++        return nativeId;
++    }
++
++    int32_t displayId = this->m_unit->m_unitFieldBytes0[2] ? alteredRec->m_femaleDisplayID : alteredRec->m_maleDisplayID;
++    return displayId ? displayId : nativeId;
++}
++
++// Custom: see Unit_C.h. Cataclysm 0x005BB8D0, keeping this client's m_displayId override
++int32_t CGUnit_C::GetLocalDisplayID() const {
++    int32_t displayId = this->m_displayId;
++
++    if (!displayId || this->m_unit->m_unitFieldNativedisplayid != this->m_unit->m_unitFieldDisplayid) {
++        displayId = this->m_unit->m_unitFieldDisplayid;
++    }
++
++    if (displayId == static_cast<int32_t>(this->m_unit->m_unitFieldNativedisplayid)) {
++        displayId = this->GetCurrentClientNativeDisplayID();
++    }
++
++    return displayId;
++}
++
++// Custom: Cataclysm's altered form transition. Cataclysm (UpdateAlteredForm 0x005BC0D0, CUnitDisplayTransition_C
++// 0x005FF040 on) makes a second, dressed model of the new form and changes nothing until that model and its component
++// are ready (IsReadyToBegin). It then attaches the new model to the unit's model at attachment 50
++// (MirrorTransformToSwapModel) while both play ToAltered, swaps the unit to it at the old model's $ALT event and plays
++// ToAlteredPostSwap. This client has no anim kits to drive that, so the roles are turned around for the same picture:
++// the unit swaps to the new form at once, and the old model (already dressed, kept with its component) takes its place
++// in the unit's world object (see GetObjectModel), so the unit is not left invisible while the new form's component is
++// built (see ShouldRender). Once that is ready, the old model either goes away, or carries the new one at attachment
++// 50 (like a mount carries its rider) until its $ALT event. Only the change back to the native form has the anim
++// (Cataclysm's ToAltered: human to Worgen); the other way swaps without one, as Cataclysm's FromAltered is missing
++// from the models. The transitions in progress are in s_alteredFormTransitions (top of the file).
++
++// Custom: the attachment of the old model that carries the new one (Cataclysm's UpdateAlteredForm)
++static const uint32_t s_alteredFormAttachment = 50;
++
++// Custom: the old model's swap event ('$ALT')
++static const uint32_t s_alteredFormSwapEvent = 0x544C4124;
++
++// Custom: how long the old model waits for the new one to be ready, and how long ToAltered is (the old model goes away
++// then even without its $ALT event)
++static const uint32_t s_alteredFormReadyTimeout = 10000;
++static const uint32_t s_alteredFormAnimLength = 5000;
++
++// Custom: Cataclysm's special unit effects for the swap without and with the anim ("HARDCODED Altered Form Poof" and
++// "HARDCODED Altered Form Animation Poof", see s_specialUnitEffectNames in Effect_C.cpp)
++static const int32_t s_alteredFormPoof = 12;
++static const int32_t s_alteredFormAnimationPoof = 13;
++
++// Custom: Cataclysm's CUnitDisplayTransition_C::BeginTransition effect, played on the unit's model. Skipped when
++// SpellVisualEffectName has no such effect, as AddSpecialEffect needs its record. The animation poof is placed where
++// the unit stands instead: its model starts at the ground, and Cataclysm plays it on the old model, which lacks its
++// attachment (53) and so takes the base. Here the unit's model is the new one, riding the old one at attachment 50
++// (see UpdateAlteredFormTransition), whose attachment 53 is high above the feet. The anim also plays while walking or
++// running (CanPlayAlteredFormTransition), so the effect follows the unit's position (0x4000, as root spells' world
++// effects do)
++static void PlayAlteredFormEffect(CGUnit_C* unit, int32_t type) {
++    if (!GetSpecialSpellVisualEffectNameRec(type)) {
++        return;
++    }
++
++    void* memory = SMemAlloc(sizeof(CEffect), __FILE__, __LINE__, 0);
++    CEffect* effect = memory ? new (memory) CEffect() : nullptr;
++
++    if (!effect) {
++        return;
++    }
++
++    WOWGUID guid = unit->m_obj->m_guid;
++
++    if (type == s_alteredFormAnimationPoof) {
++        effect->AddSpecialByPosition(type, unit->GetPosition(), &guid, 0x4020, CGObject_C::EffectOnceHandler);
++    } else {
++        effect->AddSpecialEffect(type, guid, CGObject_C::EffectOnceHandler);
++    }
++
++    effect->m_flags |= 0x20;
++    effect->Release();
++}
++
++// Custom: Cataclysm's transform sounds, CreatureSoundData's TransformSoundID (the swap without the anim) and
++// TransformAnimatedSoundID (with it), which this client's CreatureSoundData lacks. Looked up by name in SoundEntries
++// instead, so the same two sounds play for every race; nothing plays without them
++static const char* s_alteredFormSoundName = "(DONOTRENAME)Altered Form Transform";
++static const char* s_alteredFormAnimationSoundName = "(DONOTRENAME)Altered Form Transform Animated";
++
++// Custom: Cataclysm's CGUnit_C::OnDisplayTransitionBeginAnimation sound, played where the unit stands. The anim's
++// sound is kept in s_alteredFormSounds, to be faded out if the transition stops before the swap
++static void PlayAlteredFormSound(CGUnit_C* unit, bool animate) {
++    C3Vector position = unit->GetPosition();
++    SE2SoundKitProperties properties;
++    properties.ResetToDefaults();
++
++    if (animate) {
++        SI2::PlaySoundKit(s_alteredFormAnimationSoundName, &position, &s_alteredFormSounds[unit], &properties);
++    } else {
++        SI2::PlaySoundKit(s_alteredFormSoundName, &position, nullptr, &properties);
++    }
++}
++
++// Custom: see Unit_C.h. The client is not told why the aura went away, so a change while fighting (the aura breaks on
++// attack), casting, falling, swimming, flying or mounted swaps without the anim. Walking or running does not: the anim
++// plays as the unit moves, holding off its movement anims (see PlayBaseAnimation).
++bool CGUnit_C::CanPlayAlteredFormTransition() {
++    if (!(this->m_obj->m_type & TYPE_PLAYER) || this->IsDeadOrAttachmentDying()) {
++        return false;
++    }
++
++    if ((this->m_unit->m_unitFieldFlags & 0x80000) || this->IsInCombat()) {
++        return false;
++    }
++
++    if (this->m_castingSpellId || this->m_channelSpellId || this->m_unit->m_unitChannelSpell) {
++        return false;
++    }
++
++    if (this->m_mountDisplayId > 0 || this->m_vehiclePassenger) {
++        return false;
++    }
++
++    return !(this->m_movementData.m_flags & (MOVEMENTFLAG_FALLING | MOVEMENTFLAG_SWIMMING | MOVEMENTFLAG_FLYING));
++}
++
++// Custom: see Unit_C.h. Takes over the caller's reference to oldModel and the component.
++void CGUnit_C::BeginAlteredFormTransition(CM2Model* oldModel, CCharacterComponent* oldComponent, bool animate, bool poof) {
++    this->StopAlteredFormTransition(false);
++
++    // The unit no longer owns the old model: its anim ending must not reach the unit. Its events still do, for $ALT
++    // (see HandleAlteredFormTransitionEvent)
++    oldModel->SetSequenceCallback(nullptr, 0);
++
++    AlteredFormTransition transition;
++    transition.model = oldModel;
++    transition.component = oldComponent;
++    transition.endTime = OsGetAsyncTimeMs() + s_alteredFormReadyTimeout;
++    transition.animate = animate;
++    transition.poof = poof;
++    transition.begun = false;
++    transition.swap = false;
++    s_alteredFormTransitions[this] = transition;
++
++    // Until the new model is ready, the old one is drawn in its place
++    if (this->m_worldObject) {
++        World::ObjectSetModel(this->m_worldObject, this->GetObjectModel());
++    }
++}
++
++// Custom: a display change that comes while a transition still waits for its new model (e.g. a shapeshift from the
++// altered form, which removes the altered form aura and changes the display) takes over that transition's old model,
++// the one drawn, rather than the unit's model, whose component may not be ready (drawn untextured). True when it did.
++static bool TakeOverPendingAlteredFormTransition(const CGUnit_C* unit, CM2Model** oldModel, CCharacterComponent** oldComponent) {
++    auto it = s_alteredFormTransitions.find(unit);
++
++    if (it == s_alteredFormTransitions.end() || it->second.begun) {
++        return false;
++    }
++
++    *oldModel = it->second.model;
++    *oldComponent = it->second.component;
++    s_alteredFormTransitions.erase(it);
++    return true;
++}
++
++// Custom: see Unit_C.h. Like the altered form change in OnAuraUpdate, without its anim, poof or sound. Cataclysm only
++// keeps the old model while the new one's file loads (CGUnit_C::m_pendingDisplayModel), then hides the unit until its
++// character component is ready, as this client does; the transition's old model covers that wait as well
++void CGUnit_C::UpdateDisplayInfoKeepingModel() {
++    if (!this->DisplayInfoNeedsUpdate()) {
++        return;
++    }
++
++    CM2Model* oldModel = nullptr;
++    CCharacterComponent* oldComponent = nullptr;
++
++    // Taking over a waiting transition, the unit's own model and component go as UpdateDisplayInfo replaces them
++    bool tookOver = TakeOverPendingAlteredFormTransition(this, &oldModel, &oldComponent);
++
++    if (!tookOver && (this->m_obj->m_type & TYPE_PLAYER) && this->m_worldModel && this->m_worldModel->IsLoaded(0, 0) && !this->m_mountModel && !this->m_vehiclePassenger && !this->m_worldModel->m_attachParent) {
++        this->StopAlteredFormTransition(false);
++        oldModel = this->m_worldModel;
++        oldModel->m_refCount++;
++        oldComponent = this->m_characterComponent;
++        this->m_characterComponent = nullptr;
++    }
++
++    this->UpdateDisplayInfo(0);
++
++    if (oldModel) {
++        this->BeginAlteredFormTransition(oldModel, oldComponent, false, false);
++    }
++}
++
++// Custom: see Unit_C.h. Cataclysm's CUnitDisplayTransition_C::IsReadyToBegin, HandleComponentPrep and
++// HandleComponentRenderPrep, for the unit's own new model and component
++bool CGUnit_C::IsAlteredFormTransitionReady() {
++    if (!this->m_worldModel || !this->m_worldModel->IsLoaded(0, 0) || (this->m_clientFlags & 0x400000)) {
++        return false;
++    }
++
++    return !this->m_characterComponent || this->m_characterComponent->RenderPrep(0);
++}
++
++// Custom: see Unit_C.h
++bool CGUnit_C::IsAlteredFormTransitionPending() const {
++    auto it = s_alteredFormTransitions.find(this);
++    return it != s_alteredFormTransitions.end() && !it->second.begun;
++}
++
++// Custom: see Unit_C.h. Cataclysm's CUnitDisplayTransition_C::UpdateState and BeginAnimation
++void CGUnit_C::UpdateAlteredFormTransition() {
++    auto it = s_alteredFormTransitions.find(this);
++
++    if (it == s_alteredFormTransitions.end()) {
++        return;
++    }
++
++    AlteredFormTransition& transition = it->second;
++    bool timedOut = static_cast<int32_t>(OsGetAsyncTimeMs() - transition.endTime) >= 0;
++
++    if (transition.begun) {
++        if (transition.swap || timedOut) {
++            // The anim is through: its sound plays on
++            s_alteredFormSounds.erase(this);
++            this->StopAlteredFormTransition(transition.swap);
++        }
++
++        return;
++    }
++
++    if (!this->IsAlteredFormTransitionReady()) {
++        if (timedOut) {
++            this->StopAlteredFormTransition(false);
++        }
++
++        return;
++    }
++
++    CM2Model* oldModel = transition.model;
++
++    // Without the anim, the swap comes with its poof at once (Cataclysm waits 250 ms after starting the poof, but here
++    // the new model is not drawn until the swap, so neither is a poof on it). A display change that is no altered form
++    // change (e.g. leaving a shapeshift form, see UpdateDisplayInfoKeepingModel) swaps without it
++    if (!transition.animate || !this->CanPlayAlteredFormTransition() || !oldModel->IsLoaded(0, 0) || !oldModel->HasSequence(ANIM_TO_ALTERED)) {
++        bool poof = transition.poof;
++        this->StopAlteredFormTransition(false);
++
++        if (poof) {
++            PlayAlteredFormEffect(this, s_alteredFormPoof);
++            PlayAlteredFormSound(this, false);
++        }
++
++        return;
++    }
++
++    transition.begun = true;
++    transition.endTime = OsGetAsyncTimeMs() + s_alteredFormAnimLength;
++
++    // Falls back to the old model's root when it has no attachment 50 (models older than Cataclysm's). An attached
++    // model's transform is relative to the attachment, and UpdateWorldTransform places the old model, so the new one's
++    // world transform is identity (Cataclysm's MirrorTransformToSwapModel)
++    this->m_worldModel->AttachToParent(oldModel, s_alteredFormAttachment, nullptr, 1);
++
++    C44Matrix identity;
++    identity.Identity();
++    this->m_worldModel->SetWorldTransform(identity);
++
++    // The new model starts ToAltered without blending (0x1): blended in from its stand, it would show whole above the
++    // old one for a moment, its body being hidden and lowered only by ToAltered (Cataclysm's swap model is a fresh model
++    // with nothing to blend from)
++    oldModel->SetBoneSequence(0xFFFFFFFF, ANIM_TO_ALTERED, 0xFFFFFFFF, 0, 1.0f, 1, 1);
++    this->PlayBaseAnimation(ANIM_TO_ALTERED, 0x1);
++
++    // Begun while walking or running: the old model's legs take up the movement anim at once (see PlayBaseAnimation)
++    uint32_t moving = MOVEMENTFLAG_FORWARD | MOVEMENTFLAG_BACKWARD | MOVEMENTFLAG_STRAFE_LEFT | MOVEMENTFLAG_STRAFE_RIGHT;
++
++    if (this->m_movementData.m_flags & moving) {
++        this->UpdateBaseAnimation(0, -1);
++    }
++
++    PlayAlteredFormEffect(this, s_alteredFormAnimationPoof);
++    PlayAlteredFormSound(this, true);
++}
++
++// Custom: see Unit_C.h. Cataclysm's CUnitDisplayTransition_C::PerformSwap, for the part this client still needs:
++// the old model goes away and, after the anim's swap, the new form plays ToAlteredPostSwap
++void CGUnit_C::StopAlteredFormTransition(bool swap) {
++    auto it = s_alteredFormTransitions.find(this);
++
++    if (it == s_alteredFormTransitions.end()) {
++        return;
++    }
++
++    AlteredFormTransition transition = it->second;
++    s_alteredFormTransitions.erase(it);
++
++    // Cut short before the swap, the anim's sound fades out (Cataclysm's CGUnit_C::StopDisplayTransition)
++    auto sound = s_alteredFormSounds.find(this);
++
++    if (sound != s_alteredFormSounds.end()) {
++        SI2::StopSound(&sound->second, 0, 0.5f, 1);
++        s_alteredFormSounds.erase(sound);
++    }
++
++    // The unit's model leaves the old one and goes back into the world object, placed right away rather than on the
++    // next frame
++    if (this->m_worldModel && this->m_worldModel->m_attachParent == transition.model) {
++        this->m_worldModel->DetachFromParent();
++    }
++
++    if (this->m_worldObject) {
++        World::ObjectSetModel(this->m_worldObject, this->GetObjectModel());
++    }
++
++    if (this->m_worldModel && !this->m_worldModel->m_attachParent) {
++        this->UpdateWorldTransform(0.0f);
++    }
++
++    transition.model->SetEventCallback(nullptr, 0);
++    transition.model->Release();
++
++    if (transition.component) {
++        CCharacterComponent::FreeComponent(transition.component);
++    }
++
++    // A unit that moved through the anim takes up its movement anims again, held off until now (see
++    // PlayBaseAnimation); ToAlteredPostSwap is for standing
++    uint32_t moving = MOVEMENTFLAG_FORWARD | MOVEMENTFLAG_BACKWARD | MOVEMENTFLAG_STRAFE_LEFT | MOVEMENTFLAG_STRAFE_RIGHT;
++
++    if (transition.begun && (this->m_movementData.m_flags & moving)) {
++        this->UpdateBaseAnimation(0, -1);
++    } else if (swap && this->GetCurrentTorsoAnimId() == ANIM_TO_ALTERED) {
++        this->PlayBaseAnimation(ANIM_TO_ALTERED_POST_SWAP, 0);
++    }
++}
++
++// Custom: see Unit_C.h. Cataclysm's CUnitDisplayTransition_C::HandleAnimSwapEvent: the swap waits for the next update,
++// as the old model cannot go away from within its own event. Its other events are dropped, since the new form's
++// ToAltered has its own.
++bool CGUnit_C::HandleAlteredFormTransitionEvent(CGUnit_C* unit, CM2Model* model, uint32_t eventId) {
++    auto it = s_alteredFormTransitions.find(unit);
++
++    if (it == s_alteredFormTransitions.end() || it->second.model != model) {
++        return false;
++    }
++
++    if (eventId == s_alteredFormSwapEvent) {
++        it->second.swap = true;
++    }
++
++    return true;
++}
++
++// Custom: see Unit_C.h. Cataclysm 0x005BEEA0 without the display transition and casting checks
++bool CGUnit_C::IsMountSelf() const {
++    int32_t mountDisplayId = this->m_mountDisplayId;
++
++    if (mountDisplayId <= 0) {
++        return false;
++    }
++
++    return mountDisplayId == static_cast<int32_t>(this->m_unit->m_unitFieldNativedisplayid) || mountDisplayId == this->GetLocalDisplayID();
++}
++
++// Custom: Cataclysm's s_animSetMountSelfGround (0x00CA7DC0) as a map from the anims this client chooses. Swimming and
++// flying keep the unit's own anims, which these models have no MountSelf versions of.
++static const uint32_t s_mountSelfAnims[][2] = {
++    { ANIM_STAND, 618 },
++    { ANIM_WALK, 620 },
++    { ANIM_RUN, 622 },
++    { ANIM_SPRINT, 624 },
++    { ANIM_SHUFFLE_LEFT, 630 },
++    { ANIM_SHUFFLE_RIGHT, 632 },
++    { ANIM_WALKBACKWARDS, 634 },
++    { ANIM_JUMP, 638 },
++    { ANIM_JUMP_START, 640 },
++    { ANIM_JUMP_END, 642 },
++    { ANIM_JUMP_LAND_RUN, 644 },
++    { ANIM_FALL, 648 },
++    { ANIM_MOUNT_SPECIAL, 636 },
++};
++
++// Custom: see Unit_C.h. Keeps the anim when the model has no MountSelf version of it (e.g. female Worgen have no
++// MountSelf sprint, so they sprint with the MountSelf run)
++uint32_t CGUnit_C::GetMountSelfAnim(uint32_t anim) const {
++    CM2Model* model = this->m_worldModel;
++
++    if (!model) {
++        return anim;
++    }
++
++    for (uint32_t i = 0; i < sizeof(s_mountSelfAnims) / sizeof(s_mountSelfAnims[0]); i++) {
++        if (s_mountSelfAnims[i][0] != anim) {
++            continue;
++        }
++
++        if (model->HasSequence(s_mountSelfAnims[i][1])) {
++            return s_mountSelfAnims[i][1];
++        }
++
++        if (anim == ANIM_SPRINT) {
++            return this->GetMountSelfAnim(ANIM_RUN);
++        }
++
++        return anim;
++    }
++
++    return anim;
++}
++
+ // VERIFY: 8b19ad28 manual
+ // OFFSET: 0x00720AF0
+ uint32_t CGUnit_C::GetVoiceSex() const {
+@@ -7254,7 +7815,8 @@ void CGUnit_C::PreemptivelyCancelShapeshift() {
+         for (uint32_t i = 0; i < 4; i++) {
+             if (unit->m_unitFieldDisplayid == shapeshift->m_creatureDisplayID[i]) {
+                 this->m_displayId = unit->m_unitFieldNativedisplayid;
+-                this->UpdateDisplayInfo(0);
++                // Custom: the form's model stays drawn until the character's is ready
++                this->UpdateDisplayInfoKeepingModel();
+                 break;
+             }
+         }
+@@ -8086,7 +8648,8 @@ CAaBox CGUnit_C::GetStandBox() const {
+         box = *reinterpret_cast<const CAaBox*>(&modelData->m_geoBoxMinX);
+     }
+ 
+-    if (this->m_unit->m_unitFieldMountdisplayid > 0) {
++    // Custom: a unit that is its own mount does not sit higher
++    if (this->m_unit->m_unitFieldMountdisplayid > 0 && !this->IsMountSelf()) {
+         CreatureDisplayInfoRec* displayInfo = g_creatureDisplayInfoDB.GetRecord(this->m_mountDisplayId);
+ 
+         if (displayInfo) {
+@@ -8515,7 +9078,8 @@ bool CGUnit_C::CanCurrentFormMount() const {
+         return false;
+     }
+ 
+-    if (this->m_unit->m_unitFieldNativedisplayid == this->m_unit->m_unitFieldDisplayid) {
++    // Custom: the altered form can mount like the native form
++    if (this->m_unit->m_unitFieldNativedisplayid == this->m_unit->m_unitFieldDisplayid || this->IsInAlteredForm()) {
+         return true;
+     }
+ 
+@@ -9732,11 +10296,8 @@ void CGUnit_C::OnCollideFalling() {
+ // VERIFY: 8cfa7612 auto
+ // OFFSET: 0x0072D940
+ void CGUnit_C::RefreshDataPointers() {
+-    int32_t displayId = this->m_displayId;
+-
+-    if (!displayId || this->m_unit->m_unitFieldNativedisplayid != this->m_unit->m_unitFieldDisplayid) {
+-        displayId = this->m_unit->m_unitFieldDisplayid;
+-    }
++    // Custom: resolve through GetLocalDisplayID so the altered form aura can swap the native display
++    int32_t displayId = this->GetLocalDisplayID();
+ 
+     this->m_displayInfo = g_creatureDisplayInfoDB.GetRecord(displayId);
+ 
+@@ -10336,6 +10897,7 @@ CGUnit_C::~CGUnit_C() {
+         this->m_pendingMissiles->DeleteSelf();
+     }
+ 
++    this->StopAlteredFormTransition(false); // Custom
+     this->RemoveMountModel();
+     SI2::StopSound(&this->m_npcInteractSound, 1, -1.0f, 1);
+     this->KillCreatureLoopSound();
+@@ -10433,6 +10995,7 @@ CGUnit_C::~CGUnit_C() {
+ // VERIFY: 1ffc0186 manual
+ // OFFSET: 0x00734FD0
+ void CGUnit_C::Disable() {
++    this->StopAlteredFormTransition(false); // Custom
+     CGObject_C::Disable();
+     CMissileCollision::RemoveUnitFromSystem(this);
+ 
+@@ -13593,9 +14156,42 @@ void CGUnit_C::OnAuraUpdate(CDataStore* msg, bool updateAll) {
+     }
+ 
+     this->m_clientFlags &= ~0x40000;
++    bool wasAltered = this->HasAuraEffect(s_alteredFormAura);
+     this->UpdateAuraEffectMask();
+     bool changed = false;
+ 
++    // Custom: the altered form aura changes the drawn display (Cataclysm's UpdateAlteredForm). A change seen as it
++    // happens keeps the old model and its component from UpdateDisplayInfo, which would otherwise free them, to draw
++    // until the new form is ready and, going back to the native form, to play the transition with (see
++    // BeginAlteredFormTransition). Not while mounted or a passenger, where the model is carried by another
++    if (wasAltered != this->HasAuraEffect(s_alteredFormAura) && this->m_worldModel) {
++        CM2Model* oldModel = nullptr;
++        CCharacterComponent* oldComponent = nullptr;
++        bool animate = false;
++
++        // A transition still waiting (e.g. for a shapeshift's display change, which can come before this) keeps the
++        // model it draws, and the change swaps without the poof, as that change does (see UpdateDisplayInfoKeepingModel)
++        bool tookOver = TakeOverPendingAlteredFormTransition(this, &oldModel, &oldComponent);
++
++        if (!tookOver) {
++            this->StopAlteredFormTransition(false);
++        }
++
++        if (!tookOver && !updateAll && (this->m_obj->m_type & TYPE_PLAYER) && !this->m_mountModel && !this->m_vehiclePassenger && !this->m_worldModel->m_attachParent) {
++            oldModel = this->m_worldModel;
++            oldModel->m_refCount++;
++            oldComponent = this->m_characterComponent;
++            this->m_characterComponent = nullptr;
++            animate = wasAltered && this->CanPlayAlteredFormTransition();
++        }
++
++        this->UpdateDisplayInfo(0);
++
++        if (oldModel) {
++            this->BeginAlteredFormTransition(oldModel, oldComponent, animate, !tookOver);
++        }
++    }
++
+     for (uint32_t i = 0; i < oldCount; i++) {
+         if (!updated[i]) {
+             continue;
+@@ -13844,6 +14440,11 @@ int32_t CGUnit_C::InitializeExtendedDisplay(CGPlayer_C* player, int32_t hasDispl
+     } else {
+         data.m_preferences.m_raceID = this->m_unit->m_unitFieldBytes0[0];
+         data.m_preferences.m_sexID = this->m_unit->m_unitFieldBytes0[2];
++
++        // Custom: the altered form is built as the altered race from the same choices (Cataclysm Worgen/Human)
++        if (this->IsInAlteredForm()) {
++            data.m_preferences.m_raceID = ClientGetAlteredFormRace(this->m_unit->m_unitFieldBytes0[0]);
++        }
+     }
+ 
+     data.m_preferences.m_classId = this->m_unit->m_unitFieldBytes0[1];
+@@ -13928,7 +14529,11 @@ int32_t CGUnit_C::InitializeComponent() {
+         return 0;
+     }
+ 
+-    if (this->HasBakedNpcTexture()) {
++    // Custom: the altered form (alteredFormRaces) is built from the player's own choices as the altered race, even when
++    // the transform's display is an NPC one with fixed (baked) looks
++    if (this->IsInAlteredForm()) {
++        this->InitializeExtendedDisplay(static_cast<CGPlayer_C*>(this), 0);
++    } else if (this->HasBakedNpcTexture()) {
+         this->InitializeExtendedDisplay(static_cast<CGPlayer_C*>(this), 1);
+     } else if (this->m_displayInfoExtra) {
+         int32_t result = this->InitializeExtendedDisplay(nullptr, 1);
+@@ -18614,6 +19219,11 @@ void CGUnit_C::AnimEventCallback(CM2Model* model, uint32_t boneId, uint32_t even
+         unit->GetUnitName(nullptr, 1);
+     }
+ 
++    // Custom: events of the old model kept for the altered form transition
++    if (CGUnit_C::HandleAlteredFormTransitionEvent(unit, model, eventId)) {
++        return;
++    }
++
+     unit->HandleAnimEvent(boneId, eventId, data, position, time);
+ }
+ 
+@@ -20862,11 +21472,8 @@ void CGUnit_C::CreateOrDestroyObjectEffectManager() {
+     int32_t displayId = this->m_mountDisplayId;
+ 
+     if (!displayId) {
+-        displayId = this->m_displayId;
+-
+-        if (!displayId || this->m_unit->m_unitFieldNativedisplayid != this->m_unit->m_unitFieldDisplayid) {
+-            displayId = this->m_unit->m_unitFieldDisplayid;
+-        }
++        // Custom: resolve through GetLocalDisplayID so the altered form aura can swap the native display
++        displayId = this->GetLocalDisplayID();
+     }
+ 
+     CreatureDisplayInfoRec* displayInfo = g_creatureDisplayInfoDB.GetRecord(displayId);
+@@ -21363,7 +21970,8 @@ void CGUnit_C::DestroyUnitMount(int32_t a2) {
+ void CGUnit_C::CreateUnitMount(int32_t a2, int32_t a3) {
+     this->m_wheelMask = 0;
+ 
+-    if (!this->m_mountModel) {
++    // Custom: a unit that is its own mount has no mount model (Cataclysm 0x005D6950)
++    if (!this->m_mountModel && !this->IsMountSelf()) {
+         CreatureDisplayInfoRec* displayInfo = g_creatureDisplayInfoDB.GetRecord(this->m_mountDisplayId);
+ 
+         if (!displayInfo) {
+@@ -22194,6 +22802,16 @@ void CGUnit_C::OnMountDisplayChanged(int32_t displayId) {
+         return;
+     }
+ 
++    // Custom: a mount carries the unit's model, so an altered form transition carrying it ends first. Not one that still
++    // waits for the new model, when no mount model is made or goes (mounting itself, e.g. Running Wild, which also ends
++    // the altered form; or getting off itself): the old model stays drawn until the new one is ready (see IsMountSelf)
++    bool mountSelf = displayId > 0 && (displayId == static_cast<int32_t>(this->m_unit->m_unitFieldNativedisplayid) || displayId == this->GetLocalDisplayID());
++    bool noMountModel = !this->m_mountModel && (displayId <= 0 || mountSelf);
++
++    if (!(noMountModel && this->IsAlteredFormTransitionPending())) {
++        this->StopAlteredFormTransition(false);
++    }
++
+     if (!displayId && this->m_vehicle && this->m_vehicle->m_passengers.Head()) {
+         this->m_clientFlags |= 0x10000000;
+         return;
+@@ -22209,7 +22827,8 @@ void CGUnit_C::OnMountDisplayChanged(int32_t displayId) {
+     this->m_mountDisplayId = displayId;
+ 
+     if (displayId) {
+-        bool noTransition = this->m_mountTransition == nullptr;
++        // Custom: no mount summon effect when mounting oneself (Cataclysm 0x005D8550)
++        bool noTransition = this->m_mountTransition == nullptr && !this->IsMountSelf();
+         this->CreateUnitMount(0, wasMounted);
+ 
+         if (noTransition) {
+@@ -23608,7 +24227,8 @@ void CGUnit_C::HandleScaleUpdate(float scale) {
+     int32_t mountDisplayId = this->m_unit->m_unitFieldMountdisplayid;
+     int32_t updated = 0;
+ 
+-    if (mountDisplayId <= 0 || !(this->m_obj->m_type & TYPE_PLAYER)) {
++    // Custom: a unit that is its own mount keeps its own collision box (Cataclysm 0x005C7B00)
++    if (mountDisplayId <= 0 || !(this->m_obj->m_type & TYPE_PLAYER) || this->IsMountSelf()) {
+         updated = this->UpdateUnitCollisionBox(growing, 0);
+     } else {
+         CreatureDisplayInfoRec* displayRec = g_creatureDisplayInfoDB.GetRecord(mountDisplayId);
+diff --git a/WoW/Source/Object/ObjectClient/Unit_C.h b/WoW/Source/Object/ObjectClient/Unit_C.h
+index 6b0c4119..21bd19bc 100644
+--- a/WoW/Source/Object/ObjectClient/Unit_C.h
++++ b/WoW/Source/Object/ObjectClient/Unit_C.h
+@@ -587,6 +587,33 @@ class CGUnit_C : public CGObject_C, public CGUnit {
+     int32_t IsControlledByViewer() const;
+     bool CanAttack(const CGUnit_C* unit) const;
+     int32_t CanEquipItemsInThisForm() const;
++    // Custom: true when a player whose race has an altered form (alteredFormRaces) currently shows that race's own
++    // character model, so it is drawn as a full character of the altered race with the player's choices
++    bool IsInAlteredForm() const;
++    // Custom: Cataclysm's pair. The native display, or the altered race's character display while the altered form aura
++    // (s_alteredFormAura) is up; and the display actually drawn, which uses that in place of the native display.
++    int32_t GetCurrentClientNativeDisplayID() const;
++    int32_t GetLocalDisplayID() const;
++    // Custom: Cataclysm's altered form transition (CUnitDisplayTransition_C). BeginAlteredFormTransition keeps the old
++    // model (already dressed, with its component) drawn in the unit's place until the new model and its component are
++    // ready (IsAlteredFormTransitionReady; while pending, ShouldRender does not hide the unit for them). Then, for the
++    // change back to the native form when CanPlayAlteredFormTransition, both play ToAltered and, after the old model's
++    // $ALT event, StopAlteredFormTransition removes it and the new form plays ToAlteredPostSwap; otherwise the old
++    // model just goes away, with the altered form poof when `poof`. UpdateAlteredFormTransition drives this each frame.
++    // UpdateDisplayInfoKeepingModel uses it, without anim or poof, for a player's other display changes (e.g. leaving
++    // a shapeshift form), so the unit is not hidden while its new model and component are made.
++    bool CanPlayAlteredFormTransition();
++    void BeginAlteredFormTransition(CM2Model* oldModel, CCharacterComponent* oldComponent, bool animate, bool poof);
++    void UpdateDisplayInfoKeepingModel();
++    bool IsAlteredFormTransitionReady();
++    bool IsAlteredFormTransitionPending() const;
++    void UpdateAlteredFormTransition();
++    void StopAlteredFormTransition(bool swap);
++    static bool HandleAlteredFormTransitionEvent(CGUnit_C* unit, CM2Model* model, uint32_t eventId);
++    // Custom: Cataclysm's mount self (Running Wild): mounted on a display that is the unit's own, so no mount model is
++    // made and the unit plays the MountSelf anims in place of its own stand/move/jump/fall anims (GetMountSelfAnim)
++    bool IsMountSelf() const;
++    uint32_t GetMountSelfAnim(uint32_t anim) const;
+     uint32_t GetVoiceSex() const;
+     bool IsShapeShifted() const;
+     void PreemptivelyCancelShapeshift();
+diff --git a/WoW/Source/Ui/BarberShop.cpp b/WoW/Source/Ui/BarberShop.cpp
+index 4f2bc423..a06affee 100644
+--- a/WoW/Source/Ui/BarberShop.cpp
++++ b/WoW/Source/Ui/BarberShop.cpp
+@@ -1,4 +1,5 @@
+ #include "BarberShop.h"
++#include "WoW/Source/Ui/DressUpModelFrame.h"
+ #include "WoW/Source/Ui/ScriptEvents.h"
+ #include "WoW/Source/Ui/Types.h"
+ #include "Engine/Source/Base/CDataStore.h"
+@@ -47,6 +48,36 @@ STYLEREC* CGBarberShop::m_currentFacialHair;
+ // STATIC: 0x00BD19B4
+ STYLEREC* CGBarberShop::m_currentSkinColor;
+ 
++// Custom: see BarberShop.h
++CGDressUpModelFrame* CGBarberShop::m_alternateFormFrame;
++
++// Custom: flags the frame as the other-form preview and (re)builds it for the player; the frame picks the other race
++// and the barber shop dressing itself (see CGDressUpModelFrame::SetModel)
++void CGBarberShop::SetAlternateForm() {
++    CGDressUpModelFrame* frame = CGBarberShop::m_alternateFormFrame;
++
++    if (!frame) {
++        return;
++    }
++
++    frame->m_barberShopAlternateForm = 1;
++    frame->RefreshUnit(ClntObjMgrGetActivePlayer());
++}
++
++// Custom: copies the choices being previewed on the player onto the other-form preview
++void CGBarberShop::UpdateAlternateForm() {
++    CGDressUpModelFrame* frame = CGBarberShop::m_alternateFormFrame;
++    CGPlayer_C* player = ClntObjMgrGetActivePlayerObj();
++
++    if (!frame || !frame->m_component || !player || !player->m_characterComponent) {
++        return;
++    }
++
++    player->m_characterComponent->CopyChoicesToComponent(frame->m_component, COMPONENT_CONTEXT_1);
++    frame->m_component->m_data.m_model->IsDrawable(1, 1);
++    frame->m_component->RenderPrep(1);
++}
++
+ // STATIC: 0x00BD19C4
+ TSHashTable<USEABLESTYLE, HASHKEY_NONE> CGBarberShop::m_useableStyles;
+ 
+@@ -202,6 +233,8 @@ int32_t Packet_SMSG_ENABLE_BARBER_SHOP(void* param, NETMESSAGE msgId, uint32_t t
+     CGBarberShop::m_currentFacialHair = CGBarberShop::GetStyle(2, player->m_unit->m_unitFieldBytes0[0], player->m_player->m_playerBytes3[0], player->m_player->m_playerBytes2[0]);
+     CGBarberShop::m_currentSkinColor = CGBarberShop::GetStyle(3, player->m_unit->m_unitFieldBytes0[0], player->m_player->m_playerBytes3[0], component->m_data.m_preferences.m_skinID);
+     CGBarberShop::m_barberShopEnabled = 1;
++    // Custom: rebuild the other-form preview now the barber shop dressing applies
++    CGBarberShop::SetAlternateForm();
+     FrameScript_SignalEvent(SCRIPT_EVENT_BARBER_SHOP_OPEN, nullptr);
+     CGBarberShop::m_minCameraDistance = 1.0f;
+     M2SequenceInfo info;
+@@ -253,15 +286,32 @@ void CGBarberShop::SetNextBarberShopStyle(int32_t type, bool backward) {
+         return;
+     }
+ 
++    // Custom: the style lists are built for the player's race, but in an altered form (alteredFormRaces) the component
++    // being cycled is the altered race, whose options may not line up. Keep cycling until the choice also exists for the
++    // player's race (the first step always does with normal data), so GetStyle never yields null; if nothing fits,
++    // put the previous choice back.
++    int32_t race = player->m_unit->m_unitFieldBytes0[0];
++    int32_t sex = player->m_unit->m_unitFieldBytes0[2];
++    STYLEREC* style = nullptr;
++
+     switch (type) {
+         case 0:
+             if (!backward) {
+                 component->SetNextHairStyle(COMPONENT_CONTEXT_1);
+             } else {
+                 component->SetPrevHairStyle(COMPONENT_CONTEXT_1);
++            for (int32_t attempt = 0; attempt < 64 && !style; attempt++) {
++                }
++
++                style = CGBarberShop::GetStyle(0, race, sex, component->m_data.m_preferences.m_hairStyleId);
++            }
++
++            if (style) {
++                CGBarberShop::m_currentHairStyle = style;
++            } else if (CGBarberShop::m_currentHairStyle) {
++                component->SetHairStyle(CGBarberShop::m_currentHairStyle->m_rec->m_data, nullptr);
+             }
+ 
+-            CGBarberShop::m_currentHairStyle = CGBarberShop::GetStyle(0, player->m_unit->m_unitFieldBytes0[0], player->m_unit->m_unitFieldBytes0[2], component->m_data.m_preferences.m_hairStyleId);
+             break;
+         case 1:
+             if (!backward) {
+@@ -295,6 +345,7 @@ void CGBarberShop::SetNextBarberShopStyle(int32_t type, bool backward) {
+ 
+     component->m_data.m_model->IsDrawable(1, 1);
+     component->RenderPrep(1);
++    CGBarberShop::UpdateAlternateForm();
+ }
+ 
+ // VERIFY: 1a363132 auto
+@@ -380,6 +431,8 @@ void CGBarberShop::ResetAppearance() {
+     component->SetBeardStyle(player->m_player->m_playerBytes2[0], true, nullptr);
+     component->SetSkinColor(player->m_player->m_playerBytes[0], true, true, nullptr);
+     component->m_data.m_model->IsDrawable(1, 1);
++    // Custom: keep the other-form preview in step
++    CGBarberShop::UpdateAlternateForm();
+ }
+ 
+ // VERIFY: fb38ad28 manual
+@@ -430,7 +483,8 @@ void CGBarberShop::DisableBarberShop() {
+     player->ChangeStandState(UNIT_STANDING);
+     CCharacterComponent* component = player->m_characterComponent;
+ 
+-    if (!component || player->m_unit->m_unitFieldDisplayid != player->m_unit->m_unitFieldNativedisplayid) {
++    // Custom: the altered form (alteredFormRaces) is restored like the native form
++    if (!component || (player->m_unit->m_unitFieldDisplayid != player->m_unit->m_unitFieldNativedisplayid && !player->IsInAlteredForm())) {
+         return;
+     }
+ 
+@@ -561,6 +615,7 @@ void CGBarberShop::ApplyAppearanceChange() {
+ // OFFSET: 0x0052F060
+ void CGBarberShop::ShutdownGame() {
+     CGBarberShop::m_initialized = 0;
++    CGBarberShop::m_alternateFormFrame = nullptr;
+     CGBarberShop::m_useableStyles.InternalClear(0);
+     ClientServices::ClearMessageHandler(SMSG_ENABLE_BARBER_SHOP);
+     ClientServices::ClearMessageHandler(SMSG_BARBER_SHOP_RESULT);
+diff --git a/WoW/Source/Ui/BarberShop.h b/WoW/Source/Ui/BarberShop.h
+index 35942daa..55c8ff20 100644
+--- a/WoW/Source/Ui/BarberShop.h
++++ b/WoW/Source/Ui/BarberShop.h
+@@ -7,6 +7,8 @@
+ #include "WoW/Source/Net/Types.h"
+ #include "WoW/Source/Ui/USEABLESTYLE.h"
+ 
++
++class CGDressUpModelFrame;
+ struct lua_State;
+ 
+ class CDataStore;
+@@ -43,6 +45,12 @@ class CGBarberShop {
+     static void ShutdownGame();
+     static void RegisterScriptFunctions();
+     static void UnregisterScriptFunctions();
++
++    // Custom: Cataclysm-style second preview of the player's other form (alteredFormRaces), shown in a DressUpModel
++    // frame the UI hands over with SetBarberShopAlternateFormFrame
++    static CGDressUpModelFrame* m_alternateFormFrame;
++    static void SetAlternateForm();
++    static void UpdateAlternateForm();
+ };
+ 
+ #endif
+diff --git a/WoW/Source/Ui/BarberShop_Scripts.cpp b/WoW/Source/Ui/BarberShop_Scripts.cpp
+index 7a8a95b7..ef4fc6aa 100644
+--- a/WoW/Source/Ui/BarberShop_Scripts.cpp
++++ b/WoW/Source/Ui/BarberShop_Scripts.cpp
+@@ -1,16 +1,19 @@
+ #include "BarberShop.h"
+ #include <cstdint>
++#include "Engine/Source/Frame/CScriptObject.h"
+ #include "Engine/Source/FrameScript/FrameScript.h"
+ #include "Engine/Source/FrameScript/FrameScript_Object.h"
+ #include "Engine/Source/lua-5.1/src/lua.h"
+ #include "Engine/Source/lua-5.1/src/lauxlib.h"
+ #include "Engine/Source/FrameXML/LoadXML.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/Rec/BarberShopStyleRec.h"
+ #include "WoW/Source/Magic/MagicClient/Spell_C.h"
+ #include "WoW/Source/Object/ObjectClient/Player_C.h"
+ #include "WoW/Source/Object/Unit.h"
+ #include "WoW/Source/ObjectMgrClient/ObjectMgrClient.h"
+ 
++#include "WoW/Source/Ui/DressUpModelFrame.h"
+ // VERIFY: 350bfeb0 auto
+ // OFFSET: 0x0052E4F0
+ static int32_t Script_CanAlterSkin(lua_State* L) {
+@@ -127,7 +130,38 @@ static int32_t Script_GetFacialHairCustomization(lua_State* L) {
+ }
+ 
+ // STATIC: 0x00ACC790
++// Custom: SetBarberShopAlternateFormFrame("frameName") hands over a DressUpModel frame to show the player's other form
++// (alteredFormRaces), like Cataclysm's Worgen/Human barber shop preview
++static int32_t Script_SetBarberShopAlternateFormFrame(lua_State* L) {
++    if (!lua_isstring(L, 1)) {
++        luaL_error(L, "Usage: SetBarberShopAlternateFormFrame(\"frameName\")");
++        return 0;
++    }
++
++    CGDressUpModelFrame* frame = static_cast<CGDressUpModelFrame*>(CScriptObject::GetScriptObjectByName(lua_tolstring(L, 1, nullptr), CGDressUpModelFrame::GetObjectType()));
++
++    if (!frame) {
++        luaL_error(L, "SetBarberShopAlternateFormFrame: '%s' is not a DressUpModel frame", lua_tolstring(L, 1, nullptr));
++        return 0;
++    }
++
++    CGBarberShop::m_alternateFormFrame = frame;
++    CGBarberShop::SetAlternateForm();
++    return 0;
++}
++
++// Custom: hasAlternateForm, inAlteredForm = HasAlternateForm(), like Cataclysm
++static int32_t Script_HasAlternateForm(lua_State* L) {
++    CGPlayer_C* player = ClntObjMgrGetActivePlayerObj();
++    bool has = player && ClientGetAlteredFormRace(player->m_unit->m_unitFieldBytes0[0]) != 0;
++    lua_pushboolean(L, has);
++    lua_pushboolean(L, has && player->IsInAlteredForm());
++    return 2;
++}
++
+ static FrameScript_Method s_ScriptFunctions[] = {
++    { "SetBarberShopAlternateFormFrame", &Script_SetBarberShopAlternateFormFrame },
++    { "HasAlternateForm", &Script_HasAlternateForm },
+     { "GetBarberShopStyleInfo", &Script_GetBarberShopStyleInfo },
+     { "SetNextBarberShopStyle", &Script_SetNextBarberShopStyle },
+     { "GetBarberShopTotalCost", &Script_GetBarberShopTotalCost },
+@@ -150,6 +184,9 @@ void CGBarberShop::RegisterScriptFunctions() {
+ // VERIFY: 86a5e76c auto
+ // OFFSET: 0x0052E550
+ void CGBarberShop::UnregisterScriptFunctions() {
++    // Custom: the UI (and the frame) is going away
++    CGBarberShop::m_alternateFormFrame = nullptr;
++
+     for (uint32_t i = 0; i < sizeof(s_ScriptFunctions) / sizeof(s_ScriptFunctions[0]); i++) {
+         FrameScript_UnregisterFunction(s_ScriptFunctions[i].m_name);
+     }
+diff --git a/WoW/Source/Ui/DressUpModelFrame.cpp b/WoW/Source/Ui/DressUpModelFrame.cpp
+index 784f295e..1abbcc3a 100644
+--- a/WoW/Source/Ui/DressUpModelFrame.cpp
++++ b/WoW/Source/Ui/DressUpModelFrame.cpp
+@@ -10,9 +10,11 @@
+ #include "WoW/Common/ComponentCore/CharacterComponent.h"
+ #include "Engine/Source/Frame/CSimpleModel.h"
+ #include "Engine/Source/Model2/M2Scene.h"
++#include "WoW/Source/Client.h"
+ #include "WoW/Source/DB/DBClient/DBClient.h"
+ #include "WoW/Source/DB/DBClient/DBCacheInstances.h"
+ #include "WoW/Source/DB/DBClient/CreatureStats_C.h"
++#include "WoW/Source/DB/Rec/ChrRacesRec.h"
+ #include "WoW/Source/DB/Rec/SpellRec.h"
+ #include "WoW/Source/Magic/MagicClient/SpellEnums.h"
+ #include "WoW/Source/Object/ItemStats.h"
+@@ -23,6 +25,7 @@
+ #include "WoW/Source/Object/ObjectClient/VisibleItem_C.h"
+ #include "WoW/Source/ObjectMgrClient/ObjectMgrClient.h"
+ #include "WoW/Source/Game/GameClient/CDrawBowString.h"
++#include "WoW/Source/Ui/BarberShop.h"
+ #include "WoW/Source/Ui/GameUI.h"
+ #include <cstdlib>
+ #include <cstring>
+@@ -70,6 +73,20 @@ CSimpleFrame* CGDressUpModelFrame::Create(CSimpleFrame* parent) {
+ // OFFSET: 0x00597B50
+ CGDressUpModelFrame::CGDressUpModelFrame(CSimpleFrame* parent) : CGCharacterModelBase(parent) {
+     this->m_component = nullptr;
++    this->m_barberShopAlternateForm = 0;
++}
++
++// Custom: race of the player's other form for the barber shop preview: the native race while in the altered form,
++// otherwise the altered race (alteredFormRaces); 0 when the race has none
++static uint32_t GetAlternateFormRace(CGPlayer_C* player) {
++    uint32_t native = player->m_unit->m_unitFieldBytes0[0];
++    uint32_t altered = ClientGetAlteredFormRace(native);
++
++    if (!altered) {
++        return 0;
++    }
++
++    return player->IsInAlteredForm() ? native : altered;
+ }
+ 
+ // VERIFY: cc335fc2 auto
+@@ -184,7 +201,21 @@ CM2Model* CGDressUpModelFrame::GetDuplicateUnitCharacterModel(CGUnit_C* unit) {
+         return nullptr;
+     }
+ 
+-    CreatureDisplayInfoRec* display = g_creatureDisplayInfoDB.GetRecord(unit->m_unit->m_unitFieldNativedisplayid);
++    int32_t displayId = unit->m_unit->m_unitFieldNativedisplayid;
++
++    // Custom: the barber shop's other-form preview uses that race's own character model
++    if (this->m_barberShopAlternateForm && (unit->m_obj->m_type & TYPE_PLAYER)) {
++        CGPlayer_C* player = static_cast<CGPlayer_C*>(unit);
++        ChrRacesRec* raceRec = g_chrRacesDB.GetRecord(GetAlternateFormRace(player));
++
++        if (!raceRec) {
++            return nullptr;
++        }
++
++        displayId = player->m_player->m_playerBytes3[0] ? raceRec->m_femaleDisplayID : raceRec->m_maleDisplayID;
++    }
++
++    CreatureDisplayInfoRec* display = g_creatureDisplayInfoDB.GetRecord(displayId);
+ 
+     if (!display) {
+         return nullptr;
+@@ -525,9 +556,26 @@ void CGDressUpModelFrame::SetModel(CM2Model* model) {
+         data.m_preferences.m_hairStyleId = player->m_player->m_playerBytes[2];
+         data.m_preferences.m_hairColorId = player->m_player->m_playerBytes[3];
+         data.m_preferences.m_facialHairId = player->m_player->m_playerBytes2[0];
++        // Custom: the barber shop's other-form preview is built as the other race, from the choices currently previewed on
++        // the player (so it follows the barber shop), validated for that race
++        bool alternateForm = this->m_barberShopAlternateForm && GetAlternateFormRace(player);
++
++        if (alternateForm) {
++            data.m_preferences.m_raceID = GetAlternateFormRace(player);
++
++            if (player->m_characterComponent) {
++                const CharacterPreferences& current = player->m_characterComponent->m_data.m_preferences;
++                data.m_preferences.m_skinID = current.m_skinID;
++                data.m_preferences.m_faceId = current.m_faceId;
++                data.m_preferences.m_hairStyleId = current.m_hairStyleId;
++                data.m_preferences.m_hairColorId = current.m_hairColorId;
++                data.m_preferences.m_facialHairId = current.m_facialHairId;
++            }
++        }
++
+         data.m_model = model;
+         data.m_flags ^= (data.m_flags ^ (static_cast<uint32_t>(player->m_obj->m_guid == ClntObjMgrGetActivePlayer()) << 1)) & 0x2;
+-        CCharacterComponent::ValidateComponentData(&data, COMPONENT_CONTEXT_2);
++        CCharacterComponent::ValidateComponentData(&data, alternateForm ? COMPONENT_CONTEXT_1 : COMPONENT_CONTEXT_2);
+         this->m_component->Init(&data, nullptr);
+         s_mainHandItemId = 0;
+         s_offHandItemId = 0;
+@@ -590,6 +638,14 @@ void CGDressUpModelFrame::SetModel(CM2Model* model) {
+         }
+ 
+         this->m_isNativeDisplay = player->m_unit->m_unitFieldNativedisplayid == player->m_unit->m_unitFieldDisplayid;
++
++        // Custom: dress the other-form preview like the player in the barber shop (no helm or shoulders, barber tabard)
++        if (alternateForm && CGBarberShop::m_barberShopEnabled) {
++            this->m_component->RemoveItemBySlot(INVSLOT_HEAD);
++            this->m_component->RemoveItemBySlot(INVSLOT_SHOULDER);
++            this->m_component->AddItemBySlot(INVSLOT_TABARD, 54559, 0);
++        }
++
+         return;
+     }
+ 
+diff --git a/WoW/Source/Ui/DressUpModelFrame.h b/WoW/Source/Ui/DressUpModelFrame.h
+index 43c93e15..9e16619e 100644
+--- a/WoW/Source/Ui/DressUpModelFrame.h
++++ b/WoW/Source/Ui/DressUpModelFrame.h
+@@ -31,7 +31,8 @@ class CGDressUpModelFrame : public CGCharacterModelBase {
+     /* 0384 */ CGUnitVirtualItem m_mainHand;
+     /* 038C */ CGUnitVirtualItem m_offHand;
+     /* 0394 */ uint8_t m_isNativeDisplay;
+-    /* 0395 */ uint8_t unused_0395 [3];
++    /* 0395 */ uint8_t m_barberShopAlternateForm; // Custom: shows the player's other form (see CGBarberShop)
++    /* 0396 */ uint8_t unused_0396 [2];
+ 
+     ~CGDressUpModelFrame() override;
+     int32_t GetScriptMetaTable() override;
