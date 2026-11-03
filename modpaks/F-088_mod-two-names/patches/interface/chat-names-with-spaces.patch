@@ -1,0 +1,67 @@
+diff --git a/Interface/FrameXML/ChatFrame.lua b/Interface/FrameXML/ChatFrame.lua
+index 56690c8..c414cbe 100644
+--- a/Interface/FrameXML/ChatFrame.lua
++++ b/Interface/FrameXML/ChatFrame.lua
+@@ -1955,7 +1955,11 @@ SlashCmdList["CHANNEL"] = function(msg, editBox)
+ end
+ 
+ SlashCmdList["FRIENDS"] = function(msg)
+-	local player, note = strmatch(msg, "%s*([^%s]+)%s*(.*)");
++	-- Custom: /friend "John Doe" note, for names with spaces
++	local player, note = strmatch(msg, "^%s*\"([^\"]+)\"%s*(.*)$");
++	if ( not player ) then
++		player, note = strmatch(msg, "%s*([^%s]+)%s*(.*)");
++	end
+ 	if ( player ~= "" or UnitIsPlayer("target") ) then
+ 		AddOrRemoveFriend(player, note);
+ 	else
+@@ -3117,6 +3121,11 @@ function ChatFrame_SendTell(name, chatFrame)
+ 	-- Remove spaces from the server name for slash command parsing
+ 	--name = gsub(name, " ", "");
+ 
++	-- Custom: quote names with spaces, so ChatEdit_ExtractTellTarget takes the whole name
++	if ( strfind(name, " ") ) then
++		name = "\""..name.."\"";
++	end
++
+ 	if ( editBox ~= ChatEdit_GetActiveWindow() ) then
+ 		ChatFrame_OpenChat(SLASH_WHISPER1.." "..name.." ", chatFrame);
+ 	else
+@@ -3641,7 +3650,12 @@ function ChatEdit_AddHistory(editBox)
+ 	end
+ 
+ 	if ( type == "WHISPER" ) then
+-		text = text.." "..editBox:GetAttribute("tellTarget");
++		-- Custom: quote names with spaces, so the history line parses back to the same target
++		local tellTarget = editBox:GetAttribute("tellTarget");
++		if ( strfind(tellTarget, " ") ) then
++			tellTarget = "\""..tellTarget.."\"";
++		end
++		text = text.." "..tellTarget;
+ 	elseif ( type == "CHANNEL" ) then
+ 		text = "/"..editBox:GetAttribute("channelTarget");
+ 	end
+@@ -4114,11 +4128,22 @@ end
+ 
+ local tellTargetExtractionAutoComplete = AUTOCOMPLETE_LIST.ALL;
+ function ChatEdit_ExtractTellTarget(editBox, msg)
++	-- Custom: /w "John Doe" message, for names with spaces
++	local quotedTarget, quotedMsg = strmatch(msg, "^%s*\"([^\"]+)\"%s?(.*)$");
++	if ( quotedTarget ) then
++		editBox:SetAttribute("tellTarget", quotedTarget);
++		editBox:SetAttribute("chatType", "WHISPER");
++		editBox:SetText(quotedMsg);
++		ChatEdit_UpdateHeader(editBox);
++		return true;
++	end
++
+ 	-- Grab the string after the slash command
+ 	local target = strmatch(msg, "%s*(.*)");
+ 	
+ 	--If we haven't even finished one word, we aren't done.
+-	if ( not target or not strfind(target, "%s") or (strsub(target, 1, 1) == "|") ) then
++	-- Custom: a quote with no closing quote yet isn't finished either
++	if ( not target or not strfind(target, "%s") or (strsub(target, 1, 1) == "|") or (strsub(target, 1, 1) == "\"") ) then
+ 		return false;
+ 	end
+ 	

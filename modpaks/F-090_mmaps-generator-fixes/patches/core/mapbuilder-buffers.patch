@@ -1,0 +1,42 @@
+diff --git a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator/MapBuilder.cpp
+index ab82cd6e2..55485178a 100644
+--- a/src/tools/mmaps_generator/MapBuilder.cpp
++++ b/src/tools/mmaps_generator/MapBuilder.cpp
+@@ -124,7 +124,7 @@ namespace MMAP
+     {
+         std::vector<std::string> files;
+         uint32 mapID, tileX, tileY, tileID, count = 0, fsize = 0;
+-        char filter[12];
++        char filter[32];
+ 
+         printf("Discovering maps... ");
+         getDirContents(files, m_config->MapsPath());
+@@ -158,7 +158,7 @@ namespace MMAP
+             std::set<uint32>* tiles = m_tile.m_tiles;
+             mapID = m_tile.m_mapId;
+ 
+-            sprintf(filter, "%03u*.vmtile", mapID);
++            snprintf(filter, sizeof(filter), "%03u*.vmtile", mapID);
+             files.clear();
+             getDirContents(files, m_config->VMapsPath(), filter);
+             for (auto & file : files)
+@@ -173,7 +173,7 @@ namespace MMAP
+                 count++;
+             }
+ 
+-            sprintf(filter, "%03u*", mapID);
++            snprintf(filter, sizeof(filter), "%03u*", mapID);
+             files.clear();
+             getDirContents(files, m_config->MapsPath(), filter);
+             for (auto & file : files)
+@@ -615,8 +615,8 @@ namespace MMAP
+                                       dtNavMesh* navMesh)
+     {
+         // console output
+-        char tileString[20];
+-        sprintf(tileString, "[Map %03i] [%02i,%02i]: ", mapID, tileX, tileY);
++        char tileString[32];
++        snprintf(tileString, sizeof(tileString), "[Map %03i] [%02i,%02i]: ", mapID, tileX, tileY);
+         printf("%s Building movemap tiles...\n", tileString);
+ 
+         IntermediateValues iv;
