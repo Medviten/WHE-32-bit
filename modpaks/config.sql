@@ -1603,8 +1603,8 @@ SET @GreenDragonTurtleDisplay                                  =    @NextDisplay
 SET @BlackDragonTurtleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
 SET @CaravanHyenaDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 SET @CaravanHyenaNoCanopyDisplay                               =    @NextDisplayID := @NextDisplayID +1;
-SET @GoblinTrikeDisplay                                        =    35249; -- Cataclysm ID?
-SET @GoblinTurboTrikeDisplay                                   =    35250; -- Cataclysm ID?
+SET @GoblinTrikeDisplay                                        =    35250; -- Cataclysm ID?
+SET @GoblinTurboTrikeDisplay                                   =    35249; -- Cataclysm ID?
 SET @MountainHorseDisplay                                      =    39095; -- black, Cataclysm ID?
 SET @SwiftMountainHorseDisplay                                 =    39096; -- brown, Cataclysm ID?
 SET @MagharDirewolfDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
@@ -1618,8 +1618,8 @@ SET @AvengingFelcrusherDisplay                                 =    @NextDisplay
 SET @GloriousFelcrusherDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
 SET @NightborneManasaberDisplay                                =    @NextDisplayID := @NextDisplayID +1;
 SET @StarcursedVoidstriderDisplay                              =    @NextDisplayID := @NextDisplayID +1;
-SET @ForsakenWarhorseDisplay                                    =    @NextDisplayID := @NextDisplayID +1; -- F-087
-SET @ForsakenChargerDisplay                                     =    @NextDisplayID := @NextDisplayID +1; -- F-087
+SET @ForsakenWarhorseDisplay                                   =    @NextDisplayID := @NextDisplayID +1; -- F-087
+SET @ForsakenChargerDisplay                                    =    @NextDisplayID := @NextDisplayID +1; -- F-087
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
