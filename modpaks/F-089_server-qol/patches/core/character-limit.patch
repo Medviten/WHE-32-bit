@@ -1,0 +1,41 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index a9c297cbe..34bf1b3ff 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -2046,15 +2046,15 @@ CharactersPerAccount = 50
+ #
+ #    CharactersPerRealm
+ #        Description: Limit number of characters per account on this realm.
+-#        Range:       1-10
+-#        Default:     10 - (Client limitation)
++#        Range:       1-255 (a stock 3.3.5a client shows at most 10)
++#        Default:     10 - (Stock client limitation)
+ 
+ CharactersPerRealm = 10
+ 
+ #
+ #    HeroicCharactersPerRealm
+ #        Description: Limit number of heroic class characters per account on this realm.
+-#        Range:       1-10
++#        Range:       1-255
+ #        Default:     1
+ 
+ HeroicCharactersPerRealm = 1
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index 11d0f9661..49a2e5a94 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -230,11 +230,11 @@ void WorldConfig::BuildConfigCache()
+ 
+     SetConfigValue<uint32>(CONFIG_CHARACTER_CREATING_DISABLED_CLASSMASK, "CharacterCreating.Disabled.ClassMask", 0);
+ 
+-    SetConfigValue<uint32>(CONFIG_CHARACTERS_PER_REALM, "CharactersPerRealm", 10, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= 10; }, "> 0 && <= 10");
++    SetConfigValue<uint32>(CONFIG_CHARACTERS_PER_REALM, "CharactersPerRealm", 10, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= 255; }, "> 0 && <= 255");
+ 
+     // must be after CONFIG_CHARACTERS_PER_REALM
+     SetConfigValue<uint32>(CONFIG_CHARACTERS_PER_ACCOUNT, "CharactersPerAccount", 50, ConfigValueCache::Reloadable::Yes, [this](uint32 const& value) { return value >= GetConfigValue<uint32>(CONFIG_CHARACTERS_PER_REALM); }, ">= CONFIG_CHARACTERS_PER_REALM");
+-    SetConfigValue<uint32>(CONFIG_HEROIC_CHARACTERS_PER_REALM, "HeroicCharactersPerRealm", 1, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value <= 10; }, "<= 10");
++    SetConfigValue<uint32>(CONFIG_HEROIC_CHARACTERS_PER_REALM, "HeroicCharactersPerRealm", 1, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value <= 255; }, "<= 255");
+ 
+     SetConfigValue<uint32>(CONFIG_CHARACTER_CREATING_MIN_LEVEL_FOR_HEROIC_CHARACTER, "CharacterCreating.MinLevelForHeroicCharacter", 55);
+ 
