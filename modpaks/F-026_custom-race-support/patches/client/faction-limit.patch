@@ -1,0 +1,159 @@
+diff --git a/WoW/Source/Ui/ReputationInfo.cpp b/WoW/Source/Ui/ReputationInfo.cpp
+index f7c7bf45..ed1e9001 100644
+--- a/WoW/Source/Ui/ReputationInfo.cpp
++++ b/WoW/Source/Ui/ReputationInfo.cpp
+@@ -21,7 +21,7 @@
+ #include "WoW/Source/Ui/GameUI.h"
+ 
+ // STATIC: 0x00C22B70
+-FactionStanding CGReputationInfo::m_factionStandings[128];
++FactionStanding CGReputationInfo::m_factionStandings[CGReputationInfo::NUM_FACTION_STANDINGS]; // Custom: 128 in the binary
+ 
+ // STATIC: 0x00C23370
+ FactionHeader* CGReputationInfo::m_headers[64];
+@@ -160,7 +160,7 @@ uint32_t CGReputationInfo::AddFactionHeader(int32_t factionId) {
+ static bool IsFactionPeaceForced(int32_t faction) {
+     FactionRec* rec = g_factionDB.GetRecord(faction);
+ 
+-    if (rec && static_cast<uint32_t>(rec->m_reputationIndex) <= 127) {
++    if (rec && static_cast<uint32_t>(rec->m_reputationIndex) < CGReputationInfo::NUM_FACTION_STANDINGS) {
+         return (CGReputationInfo::m_factionStandings[rec->m_reputationIndex].m_flags >> 4) & 1;
+     }
+ 
+@@ -173,7 +173,7 @@ bool CGReputationInfo::IsFactionInactive(uint32_t index) {
+     int32_t factionId = index <= CGReputationInfo::m_numFactions ? CGReputationInfo::m_factionList.m_data[index]->m_factionId : 0;
+     FactionRec* faction = g_factionDB.GetRecord(factionId);
+ 
+-    if (faction && static_cast<uint32_t>(faction->m_reputationIndex) <= 127) {
++    if (faction && static_cast<uint32_t>(faction->m_reputationIndex) < CGReputationInfo::NUM_FACTION_STANDINGS) {
+         return (CGReputationInfo::m_factionStandings[faction->m_reputationIndex].m_flags >> 5) & 1;
+     }
+ 
+@@ -185,7 +185,7 @@ bool CGReputationInfo::IsFactionInactive(uint32_t index) {
+ UNIT_REACTION CGReputationInfo::GetFactionStandingReaction(int32_t faction) {
+     FactionRec* rec = g_factionDB.GetRecord(faction);
+ 
+-    if (!rec || static_cast<uint32_t>(rec->m_reputationIndex) > 127) {
++    if (!rec || static_cast<uint32_t>(rec->m_reputationIndex) >= CGReputationInfo::NUM_FACTION_STANDINGS) {
+         return UNIT_REACTION_NEUTRAL;
+     }
+ 
+@@ -236,7 +236,7 @@ bool CGReputationInfo::GetForcedReaction(int32_t faction, UNIT_REACTION* reactio
+ bool CGReputationInfo::IsAtWar(int32_t faction) {
+     FactionRec* rec = g_factionDB.GetRecord(faction);
+ 
+-    if (rec && static_cast<uint32_t>(rec->m_reputationIndex) <= 127) {
++    if (rec && static_cast<uint32_t>(rec->m_reputationIndex) < CGReputationInfo::NUM_FACTION_STANDINGS) {
+         return (CGReputationInfo::m_factionStandings[rec->m_reputationIndex].m_flags >> 1) & 1;
+     }
+ 
+@@ -254,7 +254,7 @@ int32_t CGReputationInfo::AddVisibleFaction(uint32_t repListId, int32_t announce
+ 
+     FactionListEntry* entry = CGReputationInfo::m_factionList.m_data[CGReputationInfo::m_numFactions];
+     entry->m_repListId = repListId;
+-    entry->m_factionId = repListId > 127 ? 0 : CGReputationInfo::m_factionStandings[repListId].m_factionId;
++    entry->m_factionId = static_cast<uint32_t>(repListId) >= CGReputationInfo::NUM_FACTION_STANDINGS ? 0 : CGReputationInfo::m_factionStandings[repListId].m_factionId;
+     entry->m_isHeader = (CGReputationInfo::m_factionStandings[repListId].m_flags >> 3) & 1;
+ 
+     FactionRec* faction = g_factionDB.GetRecord(entry->m_factionId);
+@@ -304,7 +304,7 @@ void CGReputationInfo::SetAtWar(int32_t faction, bool atWar) {
+ 
+     uint32_t index = rec->m_reputationIndex;
+ 
+-    if (index > 127) {
++    if (index >= CGReputationInfo::NUM_FACTION_STANDINGS) { // Custom: 127 in the binary
+         return;
+     }
+ 
+@@ -514,7 +514,7 @@ void CGReputationInfo::SortFactions() {
+         for (uint32_t i = 0; i < CGReputationInfo::m_numFactions; i++) {
+             FactionListEntry* entry = CGReputationInfo::m_factionList.m_data[i];
+             FactionRec* faction = g_factionDB.GetRecord(entry->m_factionId);
+-            int32_t parent = faction && static_cast<uint32_t>(faction->m_reputationIndex) <= 127 && (CGReputationInfo::m_factionStandings[faction->m_reputationIndex].m_flags & 0x20) ? -1 : entry->m_parent;
++            int32_t parent = faction && static_cast<uint32_t>(faction->m_reputationIndex) < CGReputationInfo::NUM_FACTION_STANDINGS && (CGReputationInfo::m_factionStandings[faction->m_reputationIndex].m_flags & 0x20) ? -1 : entry->m_parent;
+ 
+             if (parent == header->m_factionId && !entry->m_isHeader) {
+                 header->m_count++;
+@@ -629,7 +629,7 @@ void CGReputationInfo::SetFactionInactive(int32_t faction, bool inactive) {
+ 
+     uint32_t index = rec->m_reputationIndex;
+ 
+-    if (index > 127) {
++    if (index >= CGReputationInfo::NUM_FACTION_STANDINGS) { // Custom: 127 in the binary
+         return;
+     }
+ 
+@@ -712,7 +712,7 @@ void CGReputationInfo::EnterWorld() {
+         i--;
+         FactionRec* faction = i >= 0 && i < g_factionDB.m_numRecords ? &g_factionDB.m_records[i] : nullptr;
+ 
+-        if (static_cast<uint32_t>(faction->m_reputationIndex) > 127) {
++        if (static_cast<uint32_t>(faction->m_reputationIndex) >= CGReputationInfo::NUM_FACTION_STANDINGS) {
+             continue;
+         }
+ 
+@@ -768,6 +768,13 @@ int32_t Packet_SMSG_INITIALIZE_FACTIONS(void* param, NETMESSAGE msgId, uint32_t
+     int32_t count;
+     msg->Get(reinterpret_cast<uint32_t&>(count));
+ 
++    // Custom: a patched server sends as many entries as its highest reputation list index needs; read them all but
++    // keep what fits (the stock handler wrote past the 128-entry array for longer lists)
++    int32_t total = count;
++    if (count > static_cast<int32_t>(CGReputationInfo::NUM_FACTION_STANDINGS)) {
++        count = static_cast<int32_t>(CGReputationInfo::NUM_FACTION_STANDINGS);
++    }
++
+     for (int32_t i = 0; i < count; i++) {
+         uint8_t flags;
+         msg->Get(flags);
+@@ -781,6 +788,13 @@ int32_t Packet_SMSG_INITIALIZE_FACTIONS(void* param, NETMESSAGE msgId, uint32_t
+         }
+     }
+ 
++    for (int32_t i = count; i < total; i++) {
++        uint8_t flags;
++        uint32_t standing;
++        msg->Get(flags);
++        msg->Get(standing);
++    }
++
+     CGReputationInfo::EnterWorld();
+     FrameScript_SignalEvent(SCRIPT_EVENT_UPDATE_FACTION, nullptr);
+     return 1;
+@@ -1002,7 +1016,7 @@ int32_t Packet_SMSG_SET_FACTION_STANDING(void* param, NETMESSAGE msgId, uint32_t
+ int32_t GetRepListRepValue(int32_t faction) {
+     FactionRec* rec = g_factionDB.GetRecord(faction);
+ 
+-    if (!rec || static_cast<uint32_t>(rec->m_reputationIndex) > 127) {
++    if (!rec || static_cast<uint32_t>(rec->m_reputationIndex) >= CGReputationInfo::NUM_FACTION_STANDINGS) {
+         return 0;
+     }
+ 
+diff --git a/WoW/Source/Ui/ReputationInfo.h b/WoW/Source/Ui/ReputationInfo.h
+index f0777045..f47f2695 100644
+--- a/WoW/Source/Ui/ReputationInfo.h
++++ b/WoW/Source/Ui/ReputationInfo.h
+@@ -46,7 +46,9 @@ struct FACTION : public TSHashObject<FACTION, HASHKEY_NONE> {
+ class CGReputationInfo {
+     public:
+     static TSGrowableArray<const FactionRec*>* GetFactionChildren(int32_t faction);
+-    static FactionStanding m_factionStandings[128];
++    // Custom: 128 in the binary; factions of custom races take reputation list indices past 127
++    static constexpr uint32_t NUM_FACTION_STANDINGS = 1024;
++    static FactionStanding m_factionStandings[NUM_FACTION_STANDINGS];
+     static const int32_t m_reactionThresholds[NUM_UNIT_REACTIONS + 1];
+     static FactionHeader* m_headers[64];
+     static uint32_t m_numHeaders;
+diff --git a/WoW/Source/Ui/ReputationInfo_Scripts.cpp b/WoW/Source/Ui/ReputationInfo_Scripts.cpp
+index e5abc90d..ad1f6c19 100644
+--- a/WoW/Source/Ui/ReputationInfo_Scripts.cpp
++++ b/WoW/Source/Ui/ReputationInfo_Scripts.cpp
+@@ -130,7 +130,7 @@ static int32_t Script_GetWatchedFactionInfo(lua_State* L) {
+ 
+     if (player) {
+         uint32_t index = player->m_player->m_playerFieldWatchedFactionIndex;
+-        faction = index > 127 ? 0 : CGReputationInfo::m_factionStandings[index].m_factionId;
++        faction = index >= CGReputationInfo::NUM_FACTION_STANDINGS ? 0 : /* Custom: 127 in the binary */ CGReputationInfo::m_factionStandings[index].m_factionId;
+         rec = g_factionDB.GetRecord(faction);
+     }
+ 

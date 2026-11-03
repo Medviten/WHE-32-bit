@@ -13,6 +13,11 @@
 - `patches/core/male-only-races.patch` (azerothcore-wotlk, optional): characters of races without a female model
   (ChrRaces' female display uses the male display's model, e.g. Forest Troll, Arakkoa, Hozen) are created male, as
   the stock client still offers both genders. Apply it from the azerothcore-wotlk folder with `git apply`
+- `patches/core/faction-limit.patch` (azerothcore-wotlk) and `patches/client/faction-limit.patch`
+  ([moostigre's wowdecomp](https://github.com/moostigre/wowdecomp), made against 20f9120e): reputation list indices
+  above 127, which custom races past the first 23 use. Unpatched, the server crashes at login on a `ByteBuffer` assert
+  and the client overruns its 128-entry array, so use both. [This project's client](https://github.com/Medviten/wowdecomp)
+  already has the client side
 
 ### Known Issues
 - Racemasks with high defaults haven't all been incorporated yet

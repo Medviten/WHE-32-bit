@@ -1,0 +1,32 @@
+diff --git a/src/server/game/Reputation/ReputationMgr.cpp b/src/server/game/Reputation/ReputationMgr.cpp
+index 4c1c9eb65..dafe092a0 100644
+--- a/src/server/game/Reputation/ReputationMgr.cpp
++++ b/src/server/game/Reputation/ReputationMgr.cpp
+@@ -210,8 +210,16 @@ void ReputationMgr::SendState(FactionState const* faction)
+ 
+ void ReputationMgr::SendInitialReputations()
+ {
+-    WorldPacket data(SMSG_INITIALIZE_FACTIONS, (4 + 128 * 5));
+-    data << uint32 (0x00000080);
++    // WHE: the stock list has 128 slots, but factions of custom races take reputation list indices past 127. The list
++    // is as long as the highest index needs (the client must accept that many); the stock padding loop (a != 128)
++    // never ended for an index above 127 and grew the packet until the size assert.
++    RepListID count = 128;
++
++    if (!_factions.empty() && _factions.rbegin()->first + 1 > count)
++        count = _factions.rbegin()->first + 1;
++
++    WorldPacket data(SMSG_INITIALIZE_FACTIONS, (4 + count * 5));
++    data << uint32(count);
+ 
+     RepListID a = 0;
+ 
+@@ -234,7 +242,7 @@ void ReputationMgr::SendInitialReputations()
+     }
+ 
+     // fill in absent fields
+-    for (; a != 128; a++)
++    for (; a < count; a++)
+     {
+         data << uint8  (0x00);
+         data << uint32 (0x00000000);
