@@ -66,7 +66,7 @@ On the other hand, `patch-J.MPQ` is entirely optional. It is intended to reverse
 
 ## PlayerBots
 
-PlayerBots support is provided through whe-playerbots.patch. It currently comes with all the races I use on my own stable server. In the future, there may be modularity support for this as well, but for now, if you want to modify anything about it, you'll have to do so manually.
+PlayerBots support is provided through F-026's playerbots patch. It works with any selection of races: bots read each race's settings from the world database, so races need no bot code.
 
 ---
 
@@ -98,8 +98,8 @@ Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: 
 
 | File | Contains | Apply from |
 | --- | --- | --- |
-| `combined-core.patch` | whe-acore.patch + modpak `patches/core/` | AzerothCore root |
-| `combined-playerbots.patch` | whe-playerbots.patch + modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
+| `combined-core.patch` | modpak `patches/core/` | AzerothCore root |
+| `combined-playerbots.patch` | modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
 | `combined-<target>.patch` | any other modpak `patches/<target>/`, e.g. `individual-progression` | that repo's root |
 
 Copy combined-core.patch into your AzerothCore root directory. Apply it like this:
@@ -118,7 +118,7 @@ git add .
 git commit -m "Add WHE playerbots patch"
 ```
 
-Without the script, WHE-32-bit/patches/whe-acore.patch and whe-playerbots.patch apply the same way, just without any modpak patches.
+Without the script, apply each modpak's `patches/core/` and `patches/playerbots/` files the same way, in manifest order.
 
 ## 3. Set up the DBC-SQL pipeline
 

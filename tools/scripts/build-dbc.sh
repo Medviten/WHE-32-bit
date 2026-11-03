@@ -120,6 +120,16 @@ WORLD_DB_PLACEHOLDER="${WORLD_DB_PLACEHOLDER:-world_db}"
 # DBFilesClient (the server ignores it).
 SHAPESHIFT_MODEL_CSV="${SHAPESHIFT_MODEL_CSV:-$SERVER_DBC/PlayerShapeshiftModel.csv}"
 
+# Where the races with shapeshift_skin_color set in the world DB's
+# player_race_template are exported, one race ID per line (needs
+# WORLD_DATABASE). The client reads this as
+# DBFilesClient\ShapeshiftSkinColorRaces.csv, so it goes with the DBCs too.
+SKIN_COLOR_RACES_CSV="${SKIN_COLOR_RACES_CSV:-$SERVER_DBC/ShapeshiftSkinColorRaces.csv}"
+
+# Highest race ID the manifest may assign. 32-bit race masks only hold races
+# 1-31, so a race above that would silently get a wrong or empty mask.
+MAX_RACE_ID="${MAX_RACE_ID:-31}"
+
 # Optional: apply extra per-modpak SQL to additional databases (e.g. your
 # worldserver DB), using the same single-connection + config.sql approach
 # as the DBC build. EXTRA_SQL_DATABASES and EXTRA_SQL_PATTERNS are
@@ -748,6 +758,13 @@ fi
 VARIABLES_SNAPSHOT="$TMP_DIR/variables-snapshot.sql"
 compute_variable_snapshot "$VARIABLES_SNAPSHOT"
 
+LAST_RACE_ID="$(sed -n "s/^SET @NextRace = '\([0-9]*\)';\$/\1/p" "$VARIABLES_SNAPSHOT")"
+if [[ -n "$LAST_RACE_ID" ]] && (( LAST_RACE_ID > MAX_RACE_ID )); then
+    echo "ERROR: the manifest assigns race IDs up to $LAST_RACE_ID, but the limit is $MAX_RACE_ID." >&2
+    echo "       Turn off $((LAST_RACE_ID - MAX_RACE_ID)) race modpak(s) in $MANIFEST_FILE." >&2
+    exit 1
+fi
+
 ###############################################################################
 # Find DBC SQL files
 ###############################################################################
@@ -947,9 +964,15 @@ if [[ -n "$WORLD_DATABASE" ]]; then
     # rows, the column order the client reads (it skips the header).
     mysql_cmd -B "$WORLD_DATABASE" -e "SELECT ShapeshiftID, RaceID, CustomizationID, GenderID, ModelID FROM player_shapeshift_model ORDER BY ShapeshiftID, RaceID, CustomizationID, GenderID" \
         | tr '\t' ',' > "$SHAPESHIFT_MODEL_CSV"
+
+    echo "Exporting skin color shapeshift races to $SKIN_COLOR_RACES_CSV..."
+
+    # Header line plus one race ID per line (the client skips the header).
+    mysql_cmd -B "$WORLD_DATABASE" -e "SELECT race AS RaceID FROM player_race_template WHERE shapeshift_skin_color = 1 ORDER BY race;" \
+        > "$SKIN_COLOR_RACES_CSV"
 else
     echo
-    echo "Skipping player_shapeshift_model CSV export: WORLD_DATABASE is not set."
+    echo "Skipping player_shapeshift_model and skin color races CSV exports: WORLD_DATABASE is not set."
 fi
 
 ###############################################################################

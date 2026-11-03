@@ -63,3 +63,13 @@ UPDATE `playercreateinfo_skills` SET `raceMask` = `raceMask` | COALESCE(@Banshee
 UPDATE `playercreateinfo_skills` SET `raceMask` = `raceMask` | COALESCE(@FacelessOneMask, 0) WHERE `raceMask` & (1 << (@FacelessOneHome - 1)) AND FIND_IN_SET(`skill`, @IPWeaponSkills);
 UPDATE `playercreateinfo_skills` SET `raceMask` = `raceMask` | COALESCE(@AllianceDracthyrMask, 0) WHERE `raceMask` & (1 << (@AllianceDracthyrHome - 1)) AND FIND_IN_SET(`skill`, @IPWeaponSkills);
 UPDATE `playercreateinfo_skills` SET `raceMask` = `raceMask` | COALESCE(@HordeDracthyrMask, 0) WHERE `raceMask` & (1 << (@HordeDracthyrHome - 1)) AND FIND_IN_SET(`skill`, @IPWeaponSkills);
+
+/* Goblins and Worgen have their own start outfits, not copies of their Home race's: these are the skills for the
+   weapons in them that their Home race's rows don't give. WHERE: a race mask of 0 would mean every race */
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @GoblinMask, @PriestMask, @StaveSkill, 0, 'Priest - Staves (Goblin)' FROM DUAL WHERE @GoblinMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @GoblinMask, @WarlockMask, @StaveSkill, 0, 'Warlock - Staves (Goblin)' FROM DUAL WHERE @GoblinMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @GoblinMask, @HunterMask, @2HAxeSkill, 0, 'Hunter - Two-Handed Axes (Goblin)' FROM DUAL WHERE @GoblinMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @WorgenMask, @PriestMask, @StaveSkill, 0, 'Priest - Staves (Worgen)' FROM DUAL WHERE @WorgenMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @WorgenMask, @WarlockMask, @StaveSkill, 0, 'Warlock - Staves (Worgen)' FROM DUAL WHERE @WorgenMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @WorgenMask, @WarriorMask, @2HSwordSkill, 0, 'Warrior - Two-Handed Swords (Worgen)' FROM DUAL WHERE @WorgenMask IS NOT NULL;
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) SELECT @WorgenMask, @HunterMask, @2HAxeSkill, 0, 'Hunter - Two-Handed Axes (Worgen)' FROM DUAL WHERE @WorgenMask IS NOT NULL;

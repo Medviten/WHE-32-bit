@@ -1,0 +1,419 @@
+diff --git a/data/sql/updates/pending_db_world/rev_1793750400000000000.sql b/data/sql/updates/pending_db_world/rev_1793750400000000000.sql
+new file mode 100644
+index 0000000..48eaca4
+--- /dev/null
++++ b/data/sql/updates/pending_db_world/rev_1793750400000000000.sql
+@@ -0,0 +1,10 @@
++CREATE TABLE IF NOT EXISTS `player_race_template` (
++  `race` tinyint unsigned NOT NULL,
++  `home_race` tinyint unsigned NOT NULL COMMENT 'Stock race whose start area this race shares: taxi nodes, Collector''s Edition voucher',
++  `kin_race` tinyint unsigned NOT NULL COMMENT 'Race whose looks and language this race shares: holiday costumes, race change language. 0 for none',
++  `shapeshift_skin_color` tinyint unsigned NOT NULL DEFAULT 0 COMMENT 'Shapeshift forms follow skin (fur) color instead of hair color',
++  PRIMARY KEY (`race`)
++) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='What custom races copy from the stock races. A race without a row is its own home and kin';
++
++REPLACE INTO `player_race_template` (`race`, `home_race`, `kin_race`, `shapeshift_skin_color`) VALUES
++(6, 6, 6, 1); -- Tauren
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index b063e47..84502c0 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -66,6 +66,7 @@
+ #include "Pet.h"
+ #include "PetitionMgr.h"
+ #include "QuestDef.h"
++#include "RaceMgr.h"
+ #include "RBAC.h"
+ #include "Realm.h"
+ #include "ReputationMgr.h"
+@@ -687,7 +688,7 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
+             voucherId = 39713; // Ebon Hold Gift Voucher
+         else
+         {
+-            switch (createInfo->Race)
++            switch (sRaceMgr->GetHomeRace(createInfo->Race))
+             {
+                 case RACE_HUMAN:
+                     voucherId = 14646; break; // Goldshire Gift Voucher
+diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
+index 6cf62c9..27af1d1 100644
+--- a/src/server/game/Entities/Player/PlayerTaxi.cpp
++++ b/src/server/game/Entities/Player/PlayerTaxi.cpp
+@@ -17,6 +17,7 @@
+ 
+ #include "ObjectMgr.h"
+ #include "Player.h"
++#include "RaceMgr.h"
+ #include "StringConvert.h"
+ #include "Tokenize.h"
+ 
+@@ -34,7 +35,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
+     }
+ 
+     // race specific initial known nodes: capital and taxi hub masks
+-    switch (race)
++    switch (sRaceMgr->GetHomeRace(race))
+     {
+         case RACE_HUMAN:
+             SetTaximaskNode(2);
+diff --git a/src/server/game/Entities/Player/RaceMgr.cpp b/src/server/game/Entities/Player/RaceMgr.cpp
+index b1ac288..c653bed 100644
+--- a/src/server/game/Entities/Player/RaceMgr.cpp
++++ b/src/server/game/Entities/Player/RaceMgr.cpp
+@@ -18,6 +18,7 @@
+ #include "RaceMgr.h"
+ #include "AccountMgr.h"
+ #include "DatabaseEnv.h"
++#include "Log.h"
+ #include "ObjectMgr.h"
+ #include "Player.h"
+ #include "Util.h"
+@@ -29,6 +30,7 @@ uint8  RaceMgr::_maxRaces = 0;
+ uint32 RaceMgr::_playableRaceMask = 0;
+ uint32 RaceMgr::_allianceRaceMask = 0;
+ uint32 RaceMgr::_hordeRaceMask = 0;
++std::unordered_map<uint8, RaceMgr::RaceTemplate> RaceMgr::_raceTemplates;
+ 
+ RaceMgr::RaceMgr()
+ {
+@@ -74,4 +76,50 @@ void RaceMgr::LoadRaces()
+         else if (alliance == ALLIANCE_ALLIANCE)
+             _allianceRaceMask |= raceBit;
+     }
++
++    LoadRaceTemplates();
++}
++
++void RaceMgr::LoadRaceTemplates()
++{
++    _raceTemplates.clear();
++
++    QueryResult result = WorldDatabase.Query("SELECT race, home_race, kin_race, shapeshift_skin_color FROM player_race_template");
++    if (!result)
++    {
++        LOG_INFO("server.loading", ">> Loaded 0 race templates. DB table `player_race_template` is empty.");
++        return;
++    }
++
++    do
++    {
++        Field* fields = result->Fetch();
++        _raceTemplates[fields[0].Get<uint8>()] = { fields[1].Get<uint8>(), fields[2].Get<uint8>(), fields[3].Get<uint8>() != 0 };
++    } while (result->NextRow());
++
++    LOG_INFO("server.loading", ">> Loaded {} race templates", _raceTemplates.size());
++}
++
++uint8 RaceMgr::GetHomeRace(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() ? itr->second.homeRace : race;
++}
++
++uint8 RaceMgr::GetKinRace(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() ? itr->second.kinRace : race;
++}
++
++uint8 RaceMgr::GetLookalikeRace(uint8 race)
++{
++    uint8 const kin = GetKinRace(race);
++    return kin && kin != uint8(DisplayRace::Goblin) ? kin : GetHomeRace(race);
++}
++
++bool RaceMgr::UsesSkinColorForms(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() && itr->second.shapeshiftSkinColor;
+ }
+diff --git a/src/server/game/Entities/Player/RaceMgr.h b/src/server/game/Entities/Player/RaceMgr.h
+index 239e690..00816d5 100644
+--- a/src/server/game/Entities/Player/RaceMgr.h
++++ b/src/server/game/Entities/Player/RaceMgr.h
+@@ -22,6 +22,7 @@
+ #include "ObjectGuid.h"
+ #include "SharedDefines.h"
+ #include <map>
++#include <unordered_map>
+ 
+ class Player;
+ class WorldPacket;
+@@ -41,12 +42,31 @@ public:
+     static uint32 GetPlayableRaceMask() { return _playableRaceMask; }
+     static uint32 GetAllianceRaceMask() { return _allianceRaceMask; }
+     static uint32 GetHordeRaceMask() { return _hordeRaceMask; }
++
++    /// Loads player_race_template, which the race modpaks fill, so adding a race needs no code.
++    static void LoadRaceTemplates();
++    /// The stock race whose start area a race shares. A race without a template is its own home.
++    static uint8 GetHomeRace(uint8 race);
++    /// The race whose looks and language a race shares, or 0 for none. A race without a template is its own kin.
++    static uint8 GetKinRace(uint8 race);
++    /// The stock race a race can pass for: its kin, or its home if its kin is none or has no stock player model.
++    static uint8 GetLookalikeRace(uint8 race);
++    /// Whether a race's shapeshift forms follow skin (fur) color instead of hair color.
++    static bool UsesSkinColorForms(uint8 race);
+ private:
++    struct RaceTemplate
++    {
++        uint8 homeRace;
++        uint8 kinRace;
++        bool shapeshiftSkinColor;
++    };
++
+     static uint8 _maxRaces; // Max playable race + 1
+ 
+     static uint32 _playableRaceMask;
+     static uint32 _allianceRaceMask;
+     static uint32 _hordeRaceMask;
++    static std::unordered_map<uint8, RaceTemplate> _raceTemplates;
+ };
+ 
+ #define sRaceMgr RaceMgr::instance()
+diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
+index 1c76aa1..589c091 100644
+--- a/src/server/game/Globals/ObjectMgr.cpp
++++ b/src/server/game/Globals/ObjectMgr.cpp
+@@ -1888,12 +1888,9 @@ void ObjectMgr::LoadPlayerShapeshiftModels()
+ 
+ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) const
+ {
+-    uint8 customizationID;
+-
+-    if (player->GetTeamId() == TEAM_ALLIANCE)
+-        customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+-    else
+-        customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
++    uint8 const customizationID = sRaceMgr->UsesSkinColorForms(player->getRace())
++        ? player->GetByteValue(PLAYER_BYTES, 0)  // Use Skin Color
++        : player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+ 
+     // getGender() tracks the active display model; real gender lives in PLAYER_BYTES_3
+     uint8 gender = player->GetByteValue(PLAYER_BYTES_3, PLAYER_BYTES_3_OFFSET_GENDER);
+@@ -4868,7 +4865,7 @@ void ObjectMgr::LoadPlayerInfo()
+                     continue;
+ 
+                 // skip expansion races if not playing with expansion
+-                if (sWorld->getIntConfig(CONFIG_EXPANSION) < EXPANSION_THE_BURNING_CRUSADE && (race == RACE_BLOODELF || race == RACE_DRAENEI))
++                if (sChrRacesStore.LookupEntry(race)->expansion > sWorld->getIntConfig(CONFIG_EXPANSION))
+                     continue;
+ 
+                 // skip expansion classes if not playing with expansion
+diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
+index 9170e24..0243baf 100644
+--- a/src/server/game/Handlers/CharacterHandler.cpp
++++ b/src/server/game/Handlers/CharacterHandler.cpp
+@@ -2194,40 +2194,41 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
+ 
+         trans->Append(stmt);
+ 
+-        // Race specific languages
+-        if (factionChangeInfo->Race != RACE_ORC && factionChangeInfo->Race != RACE_HUMAN)
++        // Race specific languages (new races speak the language of their kin, if it has one)
++        uint32 raceLanguage = 0;
++        switch (sRaceMgr->GetKinRace(factionChangeInfo->Race))
++        {
++        case RACE_DWARF:
++            raceLanguage = 111;
++            break;
++        case RACE_DRAENEI:
++            raceLanguage = 759;
++            break;
++        case RACE_GNOME:
++            raceLanguage = 313;
++            break;
++        case RACE_NIGHTELF:
++            raceLanguage = 113;
++            break;
++        case RACE_UNDEAD_PLAYER:
++            raceLanguage = 673;
++            break;
++        case RACE_TAUREN:
++            raceLanguage = 115;
++            break;
++        case RACE_TROLL:
++            raceLanguage = 315;
++            break;
++        case RACE_BLOODELF:
++            raceLanguage = 137;
++            break;
++        }
++
++        if (raceLanguage)
+         {
+             stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_SKILL_LANGUAGE);
+             stmt->SetData(0, lowGuid);
+-
+-            switch (factionChangeInfo->Race)
+-            {
+-            case RACE_DWARF:
+-                stmt->SetData(1, 111);
+-                break;
+-            case RACE_DRAENEI:
+-                stmt->SetData(1, 759);
+-                break;
+-            case RACE_GNOME:
+-                stmt->SetData(1, 313);
+-                break;
+-            case RACE_NIGHTELF:
+-                stmt->SetData(1, 113);
+-                break;
+-            case RACE_UNDEAD_PLAYER:
+-                stmt->SetData(1, 673);
+-                break;
+-            case RACE_TAUREN:
+-                stmt->SetData(1, 115);
+-                break;
+-            case RACE_TROLL:
+-                stmt->SetData(1, 315);
+-                break;
+-            case RACE_BLOODELF:
+-                stmt->SetData(1, 137);
+-                break;
+-            }
+-
++            stmt->SetData(1, raceLanguage);
+             trans->Append(stmt);
+         }
+ 
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index e3e36f8..edf8e6a 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -15,6 +15,7 @@
+  * with this program. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#include "RaceMgr.h"
+ #include "SpellAuraEffects.h"
+ #include "AreaDefines.h"
+ #include "BattlefieldMgr.h"
+@@ -2300,7 +2301,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                             if (!target->IsPlayer())
+                                 return;
+ 
+-                            switch (target->getRace())
++                            switch (sRaceMgr->GetLookalikeRace(target->getRace()))
+                             {
+                                 // Blood Elf
+                                 case RACE_BLOODELF:
+@@ -2359,7 +2360,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                             if (!target->IsPlayer())
+                                 return;
+ 
+-                            switch (target->getRace())
++                            switch (sRaceMgr->GetLookalikeRace(target->getRace()))
+                             {
+                                 // Blood Elf
+                                 case RACE_BLOODELF:
+@@ -2418,7 +2419,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Brewfest
+                     case 65511:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     if (urand(0, 1))
+@@ -2506,7 +2507,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Winter Veil
+                     case 65522:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18793 : 18785);
+@@ -2548,7 +2549,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Default
+                     case 65523:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 19170 : 19169);
+@@ -2590,7 +2591,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Lunar Festival
+                     case 65524:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18841 : 18840);
+@@ -2632,7 +2633,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Hallow's End
+                     case 65525:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 22361 : 22360);
+@@ -2674,7 +2675,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Midsummer
+                     case 65526:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 21086 : 21085);
+@@ -2716,7 +2717,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Spirit of Competition
+                     case 65527:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 24508 : 24519);
+@@ -2758,7 +2759,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Pirates' Day
+                     case 65528:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 25032 : 25043);
+diff --git a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
+index 647a380..afc8c0b 100644
+--- a/src/server/scripts/Commands/cs_misc.cpp
++++ b/src/server/scripts/Commands/cs_misc.cpp
+@@ -2407,6 +2407,10 @@ public:
+             case RACE_DRAENEI:
+                 raceStr = "Draenei";
+                 break;
++            default: // races beyond the stock ones: the ChrRaces.dbc name
++                if (ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(raceid))
++                    raceStr = raceEntry->name[handler->GetSessionDbcLocale()];
++                break;
+         }
+ 
+         switch (classid)
+diff --git a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp b/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
+index f7798b5..992ad65 100644
+--- a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
++++ b/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
+@@ -19,6 +19,7 @@
+ #include "CreatureTextMgr.h"
+ #include "InstanceMapScript.h"
+ #include "Player.h"
++#include "RaceMgr.h"
+ #include "ScriptedCreature.h"
+ #include "SpellInfo.h"
+ #include "TemporarySummon.h"
+@@ -66,7 +67,9 @@ public:
+             if (instance->GetPlayersCountExceptGMs() == 1)
+                 SetData(DATA_ARTHAS_REPOSITION, 2);
+ 
+-            if (plr->getRace() != RACE_HUMAN && plr->getRace() != RACE_DWARF && plr->getRace() != RACE_GNOME)
++            // Human, Dwarf and Gnome kin keep their own appearance; everyone else is disguised as a human
++            uint8 const kin = sRaceMgr->GetKinRace(plr->getRace());
++            if (kin != RACE_HUMAN && kin != RACE_DWARF && kin != RACE_GNOME)
+                 plr->CastSpell(plr, ((plr->getGender() == GENDER_MALE) ? SPELL_HUMAN_MALE : SPELL_HUMAN_FEMALE), true);
+         }
+ 

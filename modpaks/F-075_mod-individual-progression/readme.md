@@ -6,8 +6,8 @@ its master, 4933d45). List it after every race modpak in the manifest.
 
 ### Features
 - Starting weapon skills: Individual Progression restores the pre-3.3 ones with a race mask per row, so the custom
-  races would start without them. Every custom race gets those of its Home race (whose start outfit it has); races of
-  modpaks that are not applied are left out
+  races would start without them. Every custom race gets those of its Home race; races of modpaks that are not
+  applied are left out. Goblins and Worgen have their own start outfits, so they also get the skills for those weapons
 - Drops the all-classes weapon skill rows that F-002 (ARAC) makes out of Individual Progression's one-class dagger and
   2H mace rows
 - The rows Individual Progression's SQL puts into AzerothCore's `*_dbc` tables (which override the DBCs on the server

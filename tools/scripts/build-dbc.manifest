@@ -14,6 +14,7 @@
 # applied.
 
 # INITIAL SETUP #
+F-091_race-setup # required for any custom race: creates player_race_template and playerbots_race_template, which the race modpaks fill (keep it first)
 #F-001_localization # Turn this on if you need it
 #F-072_patch-reforged-a-hd # Off by default (enable only if you use that patch – rename patches so these DBCs load after it)
 #F-077_patch-reforged-c # Off by default (Project Reforged patch C; race modpaks override its creature model 3141 and displays 32755-32763)
@@ -75,7 +76,7 @@ F-051_mod-playable-ice-troll
 # EXTRA RACES #
 # Race IDs are handed out in this order (Goblin is 9, Worgen 12, then 13 up; Gilnean is NPC-only at 213, F-027), and
 # 32-bit race masks only hold races 1-31 (helmet masks use bit <race>). F-051 above is race 31, so enable no more
-# races here without turning another one off.
+# races here without turning another one off (build-dbc.sh stops if you do).
 #F-005_mod-azerothcore-high-elf # Off in 32-bit (over the cap: race masks stop at 31)
 #F-014_mod-playable-ogres # Off in 32-bit (over the cap: race masks stop at 31)
 #F-031_mod-ogre # Off by default (Nightelf-skeleton female)

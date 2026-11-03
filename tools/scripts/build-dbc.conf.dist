@@ -34,3 +34,9 @@ DBC_BASELINE="/path/to/dbc-baseline.sql"
 # with the DBCs in SERVER_DBC unless SHAPESHIFT_MODEL_CSV says otherwise.
 #WORLD_DATABASE="test_world"
 #SHAPESHIFT_MODEL_CSV="/path/to/server/data/dbc/PlayerShapeshiftModel.csv"
+# It is also needed to export ShapeshiftSkinColorRaces.csv, for the client's
+# shapeshiftSkinColorRaces, from player_race_template.
+#SKIN_COLOR_RACES_CSV="/path/to/server/data/dbc/ShapeshiftSkinColorRaces.csv"
+
+# build-dbc.sh stops if the manifest assigns race IDs above this.
+#MAX_RACE_ID=31

@@ -2,8 +2,8 @@
 -- the stock races (Death Knights keep theirs), which it puts into charstartoutfit_dbc (deleted there again by
 -- sql/db-world/base/[F-075]_dbc_overrides.sql).
 --
--- The custom races' outfits are copies of stock ones (see their modpaks' charstartoutfit files), made before this
--- modpak runs. So instead of replacing rows by id, every row that still has the outfit a stock row has here (same
+-- Most custom races' outfits are copies of stock ones (see their modpaks' charstartoutfit files), made before this
+-- modpak runs; Goblin and Worgen outfits are their own, and stay as they are. So instead of replacing rows by id, every row that still has the outfit a stock row has here (same
 -- class, gender and items) gets the outfit IP gives that stock row: the stock races and the custom races copying
 -- them alike. No two stock rows with the same class, gender and items get different outfits from IP.
 

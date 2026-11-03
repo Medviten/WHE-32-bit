@@ -1,0 +1,313 @@
+diff --git a/data/sql/world/updates/2026_11_03_00.sql b/data/sql/world/updates/2026_11_03_00.sql
+new file mode 100644
+index 0000000..9b5838c
+--- /dev/null
++++ b/data/sql/world/updates/2026_11_03_00.sql
+@@ -0,0 +1,6 @@
++CREATE TABLE IF NOT EXISTS `playerbots_race_template` (
++  `race` tinyint unsigned NOT NULL,
++  `name_race` tinyint unsigned DEFAULT NULL COMMENT 'Race whose bot names this race uses, 0 for generic names. NULL: its kin_race in player_race_template',
++  `mounts` varchar(255) NOT NULL DEFAULT '' COMMENT 'Mount spells, space separated. Sorted by speed; spells the DBCs lack are skipped, and a speed with none uses the home race''s mounts',
++  PRIMARY KEY (`race`)
++) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Bot-only settings of custom races. Races only need a row to differ from their home and kin';
+diff --git a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteAction.cpp
+index 915179f..5cd9f8a 100644
+--- a/src/Ai/Base/Actions/EmoteAction.cpp
++++ b/src/Ai/Base/Actions/EmoteAction.cpp
+@@ -7,8 +7,11 @@
+ #include "EmoteAction.h"
+ #include "Event.h"
+ #include "Playerbots.h"
++#include "RaceMgr.h"
+ #include "ServerFacade.h"
+ 
++#include <unordered_map>
++
+ std::map<std::string, uint32> EmoteActionBase::emotes;
+ std::map<std::string, uint32> EmoteActionBase::textEmotes;
+ char* strstri(char const* haystack, char const* needle);
+@@ -875,6 +878,38 @@ uint32 TalkAction::GetRandomEmote(Unit* unit, bool textEmote)
+ 
+ uint32 EmoteActionBase::GetNumberOfEmoteVariants(TextEmotes emote, uint8 Race, uint8 Gender)
+ {
++    // WHE: Goblin (race 9) and Worgen (race 12) have their own emote sounds. Goblin females have as many variants as the
++    // males: { emote, { male, Worgen female } }
++    static std::unordered_map<uint32, std::pair<uint32, uint32>> const ownVariants = {
++        {304, {1, 1}},
++        {305, {5, 4}},
++        {306, {3, 3}},
++        {TEXT_EMOTE_HELLO, {4, 4}},
++        {324, {3, 3}},
++        {325, {2, 2}},
++        {326, {2, 2}},
++        {TEXT_EMOTE_CHEER, {2, 2}},
++        {TEXT_EMOTE_OPENFIRE, {2, 2}},
++        {TEXT_EMOTE_BYE, {4, 4}},
++        {TEXT_EMOTE_NOD, {6, 4}},
++        {TEXT_EMOTE_NO, {3, 3}},
++        {TEXT_EMOTE_THANK, {3, 3}},
++        {TEXT_EMOTE_FLIRT, {10, 9}},
++        {TEXT_EMOTE_JOKE, {10, 9}},
++    };
++
++    if (Race == 9 || Race == 12)
++    {
++        auto itr = ownVariants.find(emote);
++        if (itr == ownVariants.end())
++            return 1;
++
++        return Race == 9 || Gender == GENDER_MALE ? itr->second.first : itr->second.second;
++    }
++
++    // Other races use the variants of their kin
++    Race = sRaceMgr->GetKinRace(Race);
++
+     if (emote == 304)
+     {
+         switch (Race)
+diff --git a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
+index 9b3c5fb..507f159 100644
+--- a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
++++ b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
+@@ -12,6 +12,7 @@
+ #include "MapMgr.h"
+ #include "PlayerbotTextMgr.h"
+ #include "Playerbots.h"
++#include "RaceMgr.h"
+ #include "RandomPlayerbotMgr.h"
+ #include "ServerFacade.h"
+ 
+@@ -260,10 +261,10 @@ GraveyardStruct const* SpiritHealerAction::GetGrave(bool startZone)
+ 
+     std::vector<uint32> races;
+ 
+-    if (bot->GetTeamId() == TEAM_ALLIANCE)
+-        races = {RACE_HUMAN, RACE_DWARF, RACE_GNOME, RACE_NIGHTELF, RACE_DRAENEI};
+-    else
+-        races = {RACE_ORC, RACE_TROLL, RACE_TAUREN, RACE_UNDEAD_PLAYER, RACE_BLOODELF};
++    uint32 const raceMask = bot->GetTeamId() == TEAM_ALLIANCE ? sRaceMgr->GetAllianceRaceMask() : sRaceMgr->GetHordeRaceMask();
++    for (uint32 race = RACE_HUMAN; race < sRaceMgr->GetMaxRaces(); ++race)
++        if (raceMask & (1 << (race - 1)))
++            races.push_back(race);
+ 
+     float graveDistance = -1;
+ 
+diff --git a/src/Bot/Factory/BotRaceTemplates.cpp b/src/Bot/Factory/BotRaceTemplates.cpp
+new file mode 100644
+index 0000000..25f6e22
+--- /dev/null
++++ b/src/Bot/Factory/BotRaceTemplates.cpp
+@@ -0,0 +1,69 @@
++/*
++ * This file is part of the mod-playerbots module for AzerothCore. See AUTHORS file for Copyright
++ * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License,
++ * or (at your option) any later version.
++ */
++
++#include "BotRaceTemplates.h"
++
++#include "DatabaseEnv.h"
++#include "RaceMgr.h"
++#include "StringConvert.h"
++#include "Tokenize.h"
++
++#include <unordered_map>
++
++namespace
++{
++    struct BotRaceTemplate
++    {
++        bool hasNameRace = false;
++        uint8 nameRace = 0;
++        std::vector<uint32> mounts;
++    };
++
++    std::unordered_map<uint8, BotRaceTemplate> const& GetTemplates()
++    {
++        static std::unordered_map<uint8, BotRaceTemplate> const templates = []
++        {
++            std::unordered_map<uint8, BotRaceTemplate> loaded;
++
++            QueryResult result = WorldDatabase.Query("SELECT race, name_race, mounts FROM playerbots_race_template");
++            if (!result)
++                return loaded;
++
++            do
++            {
++                Field* fields = result->Fetch();
++                BotRaceTemplate& entry = loaded[fields[0].Get<uint8>()];
++                entry.hasNameRace = !fields[1].IsNull();
++                entry.nameRace = entry.hasNameRace ? fields[1].Get<uint8>() : 0;
++
++                std::string const mounts = fields[2].Get<std::string>();
++                for (std::string_view token : Acore::Tokenize(mounts, ' ', false))
++                    if (Optional<uint32> spell = Acore::StringTo<uint32>(token))
++                        entry.mounts.push_back(*spell);
++            } while (result->NextRow());
++
++            return loaded;
++        }();
++
++        return templates;
++    }
++}
++
++uint8 BotRaceTemplates::GetNameRace(uint8 race)
++{
++    auto const& templates = GetTemplates();
++    auto itr = templates.find(race);
++    return itr != templates.end() && itr->second.hasNameRace ? itr->second.nameRace : sRaceMgr->GetKinRace(race);
++}
++
++std::vector<uint32> const& BotRaceTemplates::GetMounts(uint8 race)
++{
++    static std::vector<uint32> const none;
++
++    auto const& templates = GetTemplates();
++    auto itr = templates.find(race);
++    return itr != templates.end() ? itr->second.mounts : none;
++}
+diff --git a/src/Bot/Factory/BotRaceTemplates.h b/src/Bot/Factory/BotRaceTemplates.h
+new file mode 100644
+index 0000000..e4f449b
+--- /dev/null
++++ b/src/Bot/Factory/BotRaceTemplates.h
+@@ -0,0 +1,24 @@
++/*
++ * This file is part of the mod-playerbots module for AzerothCore. See AUTHORS file for Copyright
++ * information; released under GNU GPL v2 license, redistribute/modify under version 2 of the License,
++ * or (at your option) any later version.
++ */
++
++#ifndef _PLAYERBOT_BOTRACETEMPLATES_H
++#define _PLAYERBOT_BOTRACETEMPLATES_H
++
++#include "Define.h"
++
++#include <vector>
++
++/// Bot-only settings of custom races, from playerbots_race_template. The race modpaks fill it.
++class BotRaceTemplates
++{
++public:
++    /// The race whose bot names a race uses, or 0 for generic names. Its kin unless the race has its own setting.
++    static uint8 GetNameRace(uint8 race);
++    /// The race's own mount spells, if any.
++    static std::vector<uint32> const& GetMounts(uint8 race);
++};
++
++#endif
+diff --git a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFactory.cpp
+index f6d579d..d4450b9 100644
+--- a/src/Bot/Factory/PlayerbotFactory.cpp
++++ b/src/Bot/Factory/PlayerbotFactory.cpp
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "PlayerbotFactory.h"
++#include "BotRaceTemplates.h"
+ #include "PlayerbotsDatabase.h"
+ #include "AccountMgr.h"
+ #include "AiFactory.h"
+@@ -32,6 +33,7 @@
+ #include "PlayerbotSpellRepository.h"
+ #include "Playerbots.h"
+ #include "QuestDef.h"
++#include "RaceMgr.h"
+ #include "RandomItemMgr.h"
+ #include "RandomPlayerbotFactory.h"
+ #include "ReputationMgr.h"
+@@ -4107,7 +4109,7 @@ void PlayerbotFactory::InitMounts()
+     std::map<uint8, std::map<uint32, std::vector<uint32>>> mounts;
+     std::vector<uint32> slow, fast, fslow, ffast;
+ 
+-    switch (bot->getRace())
++    switch (sRaceMgr->GetHomeRace(bot->getRace()))
+     {
+         case RACE_HUMAN:
+             slow = {470, 6648, 458, 472};
+@@ -4162,6 +4164,29 @@ void PlayerbotFactory::InitMounts()
+             }
+     }
+ 
++    // WHE: a race's own mounts replace its home race's, by speed. Spells the DBCs lack are skipped.
++    std::vector<uint32> raceSlow, raceFast;
++    for (uint32 spell : BotRaceTemplates::GetMounts(bot->getRace()))
++    {
++        SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(spell);
++        if (!spellInfo)
++            continue;
++
++        for (uint8 i = 0; i < MAX_SPELL_EFFECTS; ++i)
++        {
++            if (spellInfo->Effects[i].ApplyAuraName != SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED)
++                continue;
++
++            (spellInfo->Effects[i].CalcValue() >= 100 ? raceFast : raceSlow).push_back(spell);
++            break;
++        }
++    }
++
++    if (!raceSlow.empty())
++        slow = raceSlow;
++    if (!raceFast.empty())
++        fast = raceFast;
++
+     switch (bot->GetTeamId())
+     {
+         case TEAM_ALLIANCE:
+diff --git a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+index 295fba0..500f193 100644
+--- a/src/Bot/Factory/RandomPlayerbotFactory.cpp
++++ b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "RandomPlayerbotFactory.h"
++#include "BotRaceTemplates.h"
+ #include "PlayerbotsDatabase.h"
+ #include "AccountMgr.h"
+ #include "ArenaTeamMgr.h"
+@@ -138,7 +139,7 @@ Player* RandomPlayerbotFactory::CreateRandomBot(WorldSession* session, uint8 cls
+ 
+     const uint8 race = raceOptions[urand(0, raceOptions.size() - 1)];
+     const uint8 gender = urand(0, 1) ? GENDER_MALE : GENDER_FEMALE;
+-    const auto raceAndGender = CombineRaceAndGender(race, gender);
++    const auto raceAndGender = CombineRaceAndGender(BotRaceTemplates::GetNameRace(race), gender);
+ 
+     std::string name;
+     if (!nameCache.empty())
+diff --git a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
+index 8f60b4f..fe8c981 100644
+--- a/src/Bot/RandomPlayerbotMgr.cpp
++++ b/src/Bot/RandomPlayerbotMgr.cpp
+@@ -1802,7 +1802,7 @@ void RandomPlayerbotMgr::PrepareAddclassCache()
+                     Field* fields = results->Fetch();
+                     ObjectGuid guid = ObjectGuid(HighGuid::Player, fields[0].Get<uint32>());
+                     uint32 race = fields[1].Get<uint32>();
+-                    bool isAlliance = race == 1 || race == 3 || race == 4 || race == 7 || race == 11;
++                    bool isAlliance = Player::TeamIdForRace(race) == TEAM_ALLIANCE;
+                     addclassCache[GetTeamClassIdx(isAlliance, claz)].insert(guid);
+                     collected++;
+                 } while (results->NextRow());
+diff --git a/src/Mgr/Travel/TravelNode.cpp b/src/Mgr/Travel/TravelNode.cpp
+index 8afb143..d44d52f 100644
+--- a/src/Mgr/Travel/TravelNode.cpp
++++ b/src/Mgr/Travel/TravelNode.cpp
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "TravelNode.h"
++#include "ChatHelper.h"
+ #include "PlayerbotsDatabase.h"
+ #include "BudgetValues.h"
+ #include "PathGenerator.h"
+@@ -1672,7 +1673,7 @@ void TravelNodeMap::generateStartNodes()
+ 
+             WorldPosition pos(info->mapId, info->positionX, info->positionY, info->positionZ, info->orientation);
+ 
+-            std::string const nodeName = startNames[i] + " start";
++            std::string const nodeName = (startNames.count(i) ? startNames[i] : ChatHelper::FormatRace(i)) + " start";
+ 
+             TravelNodeMap::instance().addNode(pos, nodeName, true, true);
+ 

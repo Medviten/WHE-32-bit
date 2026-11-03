@@ -49,8 +49,8 @@ Usage: $(basename "$0")
 Writes one combined-<target>.patch per target repo to PATCH_OUTPUT_DIR
 (default: $SCRIPT_DIR):
 
-  combined-core.patch        AzerothCore (whe-acore.patch + modpak patches/core/)
-  combined-playerbots.patch  mod-playerbots (whe-playerbots.patch + patches/playerbots/)
+  combined-core.patch        AzerothCore (modpak patches/core/)
+  combined-playerbots.patch  mod-playerbots (modpak patches/playerbots/)
   combined-<target>.patch    any other patches/<target>/ the modpaks ship
                              (client, individual-progression, ...)
 
