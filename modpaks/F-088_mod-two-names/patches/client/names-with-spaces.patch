@@ -1,0 +1,57 @@
+diff --git a/WoW/Source/Game/ValidateName.cpp b/WoW/Source/Game/ValidateName.cpp
+index fbe48aa1..4668cf6b 100644
+--- a/WoW/Source/Game/ValidateName.cpp
++++ b/WoW/Source/Game/ValidateName.cpp
+@@ -506,7 +506,19 @@ int32_t ValidateName(uint32_t language, const uint16_t* allowed, const char* nam
+                         return 13;
+                     }
+ 
++                    // Custom: no space directly after a hyphen ("Test- man")
++                    if (count > 1 && buffer[count - 2] == '-') {
++                        return 5;
++                    }
++
+                     space = count - 1;
++                } else if (c == '-') {
++                    // Custom: hyphens must sit between two letters
++                    uint32_t count = *length;
++
++                    if (count == 1 || buffer[count - 2] == '-' || buffer[count - 2] == ' ' || !*next) {
++                        return 5;
++                    }
+                 }
+             }
+         } else {
+@@ -576,12 +588,30 @@ int32_t ValidateName(uint32_t language, const uint16_t* allowed, const char* nam
+ // VERIFY: 5e4d5b88 auto
+ // OFFSET: 0x007E1E90
+ int32_t ValidateCharacterNameConst(uint32_t language, const char* name, bool profanity, bool chatProfanity, bool reserved, bool english, int32_t extraLength) {
++    // Custom: allow spaces and hyphens in character names ("Test-man the Great")
++    uint16_t allowed[3] = { ' ', '-', 0 };
++
++    // Custom: accept any character set the validator knows (Latin-1, English, Russian, Korean, Chinese) instead of only
++    // those in the realm category's Cfg_Categories createCharsetMask, so e.g. Chinese names work on an English realm.
++    // A name still has to use a single character set, and forceEnglishNames still restricts it to English.
++    int32_t charsetMask = 0;
++    CVar* forceEnglish;
++
++    if (english && (forceEnglish = CVar::Lookup("forceEnglishNames")) && forceEnglish->m_intValue) {
++        charsetMask = 2;
++    }
++
+     uint32_t length;
+     int32_t charset;
+-    int32_t result = ValidateName(language, nullptr, name, &length, &charset, profanity, chatProfanity, reserved, false, english, -1);
++    int32_t result = ValidateName(language, allowed, name, &length, &charset, profanity, chatProfanity, reserved, false, english, charsetMask);
+ 
+     if (!result) {
+-        int32_t maxLength = 12;
++        // Custom: names are stored in 48-byte buffers (CHARACTER_CREATE_INFO, NameCache), so cap the UTF-8 size too
++        if (SStrLen(name) >= 48) {
++            return 4;
++        }
++
++        int32_t maxLength = 47; // Custom: was 12; the 48-byte check above makes this at most 47 UTF-8 bytes, as servers count
+ 
+         if (charset == 3 || charset == 4) {
+             maxLength = 8;
