@@ -1,0 +1,67 @@
+diff --git a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
+index 058ca793e..a293959a5 100644
+--- a/src/server/scripts/Commands/cs_modify.cpp
++++ b/src/server/scripts/Commands/cs_modify.cpp
+@@ -415,7 +415,7 @@ public:
+     static bool HandleModifyASpeedCommand(ChatHandler* handler, float allSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_ASPEED, LANG_YOURS_ASPEED_CHANGED, allSpeed);
+             target->SetSpeed(MOVE_WALK, allSpeed, true);
+@@ -432,7 +432,7 @@ public:
+     static bool HandleModifySpeedCommand(ChatHandler* handler, float speed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, speed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, speed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_SPEED, LANG_YOURS_SPEED_CHANGED, speed);
+             target->SetSpeedRate(MOVE_RUN, speed);
+@@ -446,7 +446,7 @@ public:
+     static bool HandleModifySwimCommand(ChatHandler* handler, float swimSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_SWIM_SPEED, LANG_YOURS_SWIM_SPEED_CHANGED, swimSpeed);
+             target->SetSpeedRate(MOVE_SWIM, swimSpeed);
+@@ -460,7 +460,7 @@ public:
+     static bool HandleModifyBWalkCommand(ChatHandler* handler, float backSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_BACK_SPEED, LANG_YOURS_BACK_SPEED_CHANGED, backSpeed);
+             target->SetSpeedRate(MOVE_RUN_BACK, backSpeed);
+@@ -474,7 +474,7 @@ public:
+     static bool HandleModifyFlyCommand(ChatHandler* handler, float flySpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 50.0f, false))
++        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 100.0f, false))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_FLY_SPEED, LANG_YOURS_FLY_SPEED_CHANGED, flySpeed);
+             target->SetSpeedRate(MOVE_FLIGHT, flySpeed);
+@@ -487,7 +487,7 @@ public:
+     //Edit Player or Creature Scale
+     static bool HandleModifyScaleCommand(ChatHandler* handler, float scale)
+     {
+-        if (scale > 10.0f || scale < 0.1f)
++        if (scale > 1000.0f || scale < 0.001f)
+         {
+             handler->SendErrorMessage(LANG_BAD_VALUE);
+             return false;
+@@ -540,7 +540,7 @@ public:
+ 
+         float _speed = speed ? *speed : 1.0f;
+ 
+-        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 50.0f))
++        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 100.0f))
+         {
+             return false;
+         }

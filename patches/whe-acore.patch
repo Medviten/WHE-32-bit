@@ -18,19 +18,6 @@ index 94e787747..3a906ae8b 100644
  #
  #    CharacterCreating.Disabled.ClassMask
  #        Description: Mask of classes which cannot be created by players.
-diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index 324b3d2fe..ed73bb109 100644
---- a/src/server/game/Entities/Player/Player.cpp
-+++ b/src/server/game/Entities/Player/Player.cpp
-@@ -874,7 +874,7 @@ int32 Player::getMaxTimer(MirrorTimerType timer)
-     switch (timer)
-     {
-         case FATIGUE_TIMER:
--            return MINUTE * IN_MILLISECONDS;
-+            return DISABLED_MIRROR_TIMER; // MINUTE * IN_MILLISECONDS;
-         case BREATH_TIMER:
-             {
-                 if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
 diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
 index 6cf62c95d..586585cd9 100644
 --- a/src/server/game/Entities/Player/PlayerTaxi.cpp
@@ -690,73 +677,6 @@ index 647a38069..3caa9e721 100644
          }
  
          switch (classid)
-diff --git a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
-index 058ca793e..a293959a5 100644
---- a/src/server/scripts/Commands/cs_modify.cpp
-+++ b/src/server/scripts/Commands/cs_modify.cpp
-@@ -415,7 +415,7 @@ public:
-     static bool HandleModifyASpeedCommand(ChatHandler* handler, float allSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_ASPEED, LANG_YOURS_ASPEED_CHANGED, allSpeed);
-             target->SetSpeed(MOVE_WALK, allSpeed, true);
-@@ -432,7 +432,7 @@ public:
-     static bool HandleModifySpeedCommand(ChatHandler* handler, float speed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, speed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, speed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_SPEED, LANG_YOURS_SPEED_CHANGED, speed);
-             target->SetSpeedRate(MOVE_RUN, speed);
-@@ -446,7 +446,7 @@ public:
-     static bool HandleModifySwimCommand(ChatHandler* handler, float swimSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_SWIM_SPEED, LANG_YOURS_SWIM_SPEED_CHANGED, swimSpeed);
-             target->SetSpeedRate(MOVE_SWIM, swimSpeed);
-@@ -460,7 +460,7 @@ public:
-     static bool HandleModifyBWalkCommand(ChatHandler* handler, float backSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_BACK_SPEED, LANG_YOURS_BACK_SPEED_CHANGED, backSpeed);
-             target->SetSpeedRate(MOVE_RUN_BACK, backSpeed);
-@@ -474,7 +474,7 @@ public:
-     static bool HandleModifyFlyCommand(ChatHandler* handler, float flySpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 50.0f, false))
-+        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 100.0f, false))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_FLY_SPEED, LANG_YOURS_FLY_SPEED_CHANGED, flySpeed);
-             target->SetSpeedRate(MOVE_FLIGHT, flySpeed);
-@@ -487,7 +487,7 @@ public:
-     //Edit Player or Creature Scale
-     static bool HandleModifyScaleCommand(ChatHandler* handler, float scale)
-     {
--        if (scale > 10.0f || scale < 0.1f)
-+        if (scale > 1000.0f || scale < 0.001f)
-         {
-             handler->SendErrorMessage(LANG_BAD_VALUE);
-             return false;
-@@ -540,7 +540,7 @@ public:
- 
-         float _speed = speed ? *speed : 1.0f;
- 
--        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 50.0f))
-+        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 100.0f))
-         {
-             return false;
-         }
 diff --git a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_generic.cpp
 index 5212282a4..21de7fdaa 100644
 --- a/src/server/scripts/Pet/pet_generic.cpp

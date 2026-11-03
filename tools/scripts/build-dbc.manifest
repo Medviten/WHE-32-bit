@@ -119,6 +119,7 @@ F-026_custom-race-support # required for any custom race to function correctly
 #F-087_undead_paladin # Off by default (playable Undead paladins with Forsaken paladin mounts; keep after F-026 and F-002)
 #F-003_mod-faction-free # Off by default (core patch in patches/core)
 #F-088_mod-two-names # Off by default (hooks for the separate mod-two-names module; core patch in patches/core, client patch in patches/client)
+F-089_server-qol # No fatigue and higher .modify limits (core patches in patches/core); comment out for stock behaviour
 #F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
 #F-076_mod-individual-progression_extras # Off by default (mod-individual-progression's optional SQL and DBCs; one file per feature, delete the ones you don't want, see its readme)
 # END ADDITIONAL MODS #

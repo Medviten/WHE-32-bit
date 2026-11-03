@@ -1,0 +1,35 @@
+diff --git a/src/server/game/Handlers/ChatHandler.cpp b/src/server/game/Handlers/ChatHandler.cpp
+index 8adb05144..abda8eb82 100644
+--- a/src/server/game/Handlers/ChatHandler.cpp
++++ b/src/server/game/Handlers/ChatHandler.cpp
+@@ -396,6 +396,30 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
+                 }
+ 
+                 Player* receiver = ObjectAccessor::FindPlayerByName(to, false);
++
++                // WHE: the client ends a typed whisper target at the first word, so "/w John Doe hello" arrives as a whisper
++                // to "John" saying "Doe hello". With no such player, try the message's first words as the rest of the name.
++                // normalizePlayerName only accepts spaces if a module such as mod-two-names allows them.
++                if (!receiver && lang != LANG_ADDON)
++                {
++                    std::size_t wordEnd = msg.find(' ');
++                    for (uint8 words = 0; words < 3 && !receiver && wordEnd != std::string::npos && wordEnd + 1 < msg.size(); ++words)
++                    {
++                        std::string targetName = to + " " + msg.substr(0, wordEnd);
++                        if (!normalizePlayerName(targetName))
++                            break;
++
++                        receiver = ObjectAccessor::FindPlayerByName(targetName, false);
++                        if (receiver)
++                        {
++                            to = targetName;
++                            msg.erase(0, wordEnd + 1);
++                        }
++                        else
++                            wordEnd = msg.find(' ', wordEnd + 1);
++                    }
++                }
++
+                 bool senderIsPlayer = !HasPermission(rbac::RBAC_PERM_TWO_SIDE_INTERACTION_CHAT);
+                 bool receiverIsPlayer = receiver ? !receiver->GetSession()->HasPermission(rbac::RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) : true;
+ 

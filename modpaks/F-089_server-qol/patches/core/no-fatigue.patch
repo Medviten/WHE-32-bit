@@ -1,0 +1,58 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 3a906ae..e736067 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -1634,6 +1634,15 @@ GM.TicketSystem.ChanceOfGMSurvey = 50
+ 
+ DisableWaterBreath = 4
+ 
++#
++#    DisableFatigue
++#        Description: Stops the fatigue timer in deep water, along with its damage and the teleport of
++#                     ghosts to the graveyard.
++#        Default:     1 - (Enabled, no fatigue)
++#                     0 - (Disabled, fatigue works as normal)
++
++DisableFatigue = 1
++
+ #
+ #    AllFlightPaths
+ #        Description: Character knows all flight paths (of both factions) after creation.
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 324b3d2..9863d52 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -936,7 +936,7 @@ void Player::HandleDrowning(uint32 time_diff)
+     }
+ 
+     // In dark water
+-    if (m_MirrorTimerFlags & UNDERWATER_INDARKWATER)
++    if ((m_MirrorTimerFlags & UNDERWATER_INDARKWATER) && !sWorld->getBoolConfig(CONFIG_DISABLE_FATIGUE))
+     {
+         // Fatigue timer not activated - activate it
+         if (m_MirrorTimer[FATIGUE_TIMER] == DISABLED_MIRROR_TIMER)
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index fc8e7c9..e948e3c 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -339,6 +339,8 @@ void WorldConfig::BuildConfigCache()
+ 
+     SetConfigValue<uint32>(CONFIG_DISABLE_BREATHING, "DisableWaterBreath", SEC_CONSOLE);
+ 
++    SetConfigValue<bool>(CONFIG_DISABLE_FATIGUE, "DisableFatigue", true);
++
+     SetConfigValue<bool>(CONFIG_ALWAYS_MAX_SKILL_FOR_LEVEL, "AlwaysMaxSkillForLevel", false);
+ 
+     SetConfigValue<uint32>(CONFIG_EXPANSION, "Expansion", 2, ConfigValueCache::Reloadable::No);
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf00..45e519b 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -49,6 +49,7 @@ enum ServerConfigs
+     CONFIG_SKILL_MILLING,
+     CONFIG_SAVE_RESPAWN_TIME_IMMEDIATELY,
+     CONFIG_WEATHER,
++    CONFIG_DISABLE_FATIGUE,
+     CONFIG_ALWAYS_MAX_SKILL_FOR_LEVEL,
+     CONFIG_QUEST_IGNORE_RAID,
+     CONFIG_DETECT_POS_COLLISION,
