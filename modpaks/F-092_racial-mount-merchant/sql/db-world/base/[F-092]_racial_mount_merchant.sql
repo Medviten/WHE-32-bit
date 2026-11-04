@@ -12,7 +12,7 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 /* On the boardwalk between Crazk Sparks and Sly Garrett */
 DELETE FROM `creature` WHERE `guid` = 6211000;
 INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
-(6211000, @RacialMountMerchant, 0, 0, 0, 1, 1, 0, -14433.75, 409.6, 15.24, 1.57, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL);
+(6211000, @RacialMountMerchant, 0, 0, 0, 1, 1, 0, -14421.688, 410.99, 15.09, 1.57, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL);
 
 /* Only the modpaks in the manifest set these variables, and an unset one matches nothing. A new race with mounts needs
    its items added here */

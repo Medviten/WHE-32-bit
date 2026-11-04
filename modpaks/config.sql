@@ -3929,5 +3929,6 @@ SET @ForsakenChargerSkillLineAbility1                           =    31796; -- P
 SET @ForsakenChargerSkillLineAbility2                           =    31797; -- Mounts skill line
 SET @LearnSummonWarhorseSkillLineAbility                        =    31798; -- Blood Elf trainer spell 34768, so trainers hide it from Undead
 SET @LearnForsakenWarhorseSkillLineAbility                      =    31799; -- Forsaken trainer spell, Undead only
+SET @LearnWarhorseSkillLineAbility                              =    31800; -- Alliance trainer spell 13820, so trainers hide it from Undead
 SET @VenthyrBatCreature                                        =    16175; -- Vampiric Shadowbat, Vampire Bat Form's creature (any creature with a bat model)
 -- <<< Aetheria racials <<<

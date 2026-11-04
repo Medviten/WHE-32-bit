@@ -94,7 +94,7 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
-Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines WHE's own patches in `patches/` with the patches of the modpaks in your manifest, in manifest order, into one file per repo in tools/scripts/:
+Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines the patches of the modpaks in your manifest, in manifest order, into one file per repo in tools/scripts/:
 
 | File | Contains | Apply from |
 | --- | --- | --- |
