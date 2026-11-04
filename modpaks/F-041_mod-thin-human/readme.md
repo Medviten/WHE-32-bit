@@ -5,12 +5,14 @@
 - Playable Thin Human (Alliance)
     - Models and baked textures from the RetroPorter native set (custom\thinhuman\...)
     - Classes, start outfits, start position, action bars and stats copied from Human
+    - The head is a separate batch on texture type 8: the whole-head "faceupper" files go in the skin rows' texture_2, and the face rows paste nothing. Skins are converted to the stock atlas by `tools/models/thinhuman_prep.py` in WHE-256-bit
     - Customization: 4 skin colours, 1 face, 4 hair styles, 4 hair colours, 7 facial hair styles
     - Hair and facial hair textures are Kul Tiran ones (as in the source pack)
 
 ### Known Issues
 - Male only: female characters use the male model and customization (F-026's `patches/core/male-only-races.patch` creates them male)
 - No racial mount
+- No eyebrows: the facial hair rows' eyebrow textures are pasted into a composite rectangle the model does not sample
 - No sound yet
 - Racial faction name and description are placeholders
 - Uses Human helmet models (client prefix 'Hu'); helmet geosets are not adjusted
