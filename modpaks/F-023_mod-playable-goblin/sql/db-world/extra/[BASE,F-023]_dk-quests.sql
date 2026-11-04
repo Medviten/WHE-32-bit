@@ -13,7 +13,7 @@ INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
 
 DELETE FROM `creature_template` WHERE `entry` IN (49356);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(49356, 0, 0, 0, 0, 0, 'Gally Lumpstain', '', '', 0, 53, 54, 0, 7, 0, 1, 1.14286, 1, 1, 18, 0, 0, 1, 2000, 2000, 1, 1, 1, 0, 2048, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 0.004, 1, 1, 1, 0, 0, 1, 0, 8192, 'npc_a_special_surprise', 15595);
+(49356, 0, 0, 0, 0, 0, 'Gally Lumpstain', '', '', 0, 53, 54, 0, 7, 0, 1, 1.14286, 1, 1, 18, 0, 0, 1, 2000, 2000, 1, 1, 1, 0, 2048, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'SmartAI', 0, 1, 0.004, 1, 1, 1, 0, 0, 0, 0, 8192, '', 15595);
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (49356);
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
@@ -29,13 +29,29 @@ INSERT INTO `creature_addon` (`guid`, `path_id`, `mount`, `bytes1`, `bytes2`, `e
 
 DELETE FROM `creature_text` WHERE `CreatureID` IN (49356);
 INSERT INTO `creature_text` (`CreatureID`,`GroupID`,`ID`,`Text`,`Type`,`Language`,`Probability`,`Emote`,`Duration`,`Sound`,`BroadcastTextId`,`TextRange`,`comment`) VALUES 
-(49356, 0, 0, "C... can't we work this out somehow?", 12, 0, 100, 0, 0, 0, 49380, 0, 'Gally Lumpstain - SAY_EXEC_START'),
-(49356, 1, 0, "Alright, j... just let me... let me st... stand up.", 12, 0, 100, 0, 0, 0, 49381, 0, 'Gally Lumpstain - SAY_EXEC_PROG'),
-(49356, 2, 0, "$n?", 12, 0, 100, 0, 0, 0, 49382, 0, 'Gally Lumpstain - SAY_EXEC_NAME'),
-(49356, 3, 0, "$n, I'd recognize that face anywhere... What... What have they done to you, $n?", 12, 0, 100, 0, 0, 0, 49383, 0, 'Gally Lumpstain - SAY_EXEC_RECOG'),
-(49356, 4, 0, "You don't remember me, $n? I lost count of the number of jobs you and I ran back in the day on Kezan. Then I picked up a real bad Kaja'Cola habit and you saved me! It was you who took me to Kalimdor to join the Steamwheedle Cartel. You were the only good goblin I knew. That's how I ended up in the Argent Dawn, because I knew it was what you woulda done. How could this have happened to you?", 12, 0, 100, 0, 0, 0, 49384, 0, 'Gally Lumpstain - SAY_EXEC_NOREM'),
-(49356, 5, 0, "Remember the goblin that you once were, $g brother:sister;! You were my best friend! Fight this!", 12, 0, 100, 0, 0, 0, 49385, 0, 'Gally Lumpstain - SAY_EXEC_THINK'),
-(49356, 6, 0, "Listen to me, $n. You must fight against the Lich King's control. He is a monster that wants to see this world - our world - in ruin. Don't let him use you to accomplish his goals. You were once a hero and you can be again. Fight, damn you! Fight his control!", 12, 0, 100, 0, 0, 0, 49386, 0, 'Gally Lumpstain - SAY_EXEC_LISTEN'),
-(49356, 7, 0, "There... There's no more time for me. I'm done for. Finish me off, $n. Do it or they'll kill us both. $n... Remember Kezan, our beloved home. This world is worth saving.", 12, 0, 100, 0, 0, 0, 49387, 0, 'Gally Lumpstain - SAY_EXEC_TIME'),
-(49356, 8, 0, "Do it, $n! Put me out of my misery!", 12, 0, 100, 0, 0, 0, 49388, 0, 'Gally Lumpstain - SAY_EXEC_WAITING'),
+(49356, 0, 0, "C... can't we work this out somehow?", 12, 0, 100, 1, 0, 0, 49380, 0, 'Gally Lumpstain - SAY_EXEC_START'),
+(49356, 1, 0, "Alright, j... just let me... let me st... stand up.", 12, 0, 100, 25, 0, 0, 49381, 0, 'Gally Lumpstain - SAY_EXEC_PROG'),
+(49356, 2, 0, "$n?", 12, 0, 100, 1, 0, 0, 49382, 0, 'Gally Lumpstain - SAY_EXEC_NAME'),
+(49356, 3, 0, "$n, I'd recognize that face anywhere... What... What have they done to you, $n?", 12, 0, 100, 1, 0, 0, 49383, 0, 'Gally Lumpstain - SAY_EXEC_RECOG'),
+(49356, 4, 0, "You don't remember me, $n? I lost count of the number of jobs you and I ran back in the day on Kezan. Then I picked up a real bad Kaja'Cola habit and you saved me! It was you who took me to Kalimdor to join the Steamwheedle Cartel. You were the only good goblin I knew. That's how I ended up in the Argent Dawn, because I knew it was what you woulda done. How could this have happened to you?", 12, 0, 100, 1, 0, 0, 49384, 0, 'Gally Lumpstain - SAY_EXEC_NOREM'),
+(49356, 5, 0, "Remember the goblin that you once were, $g brother:sister;! You were my best friend! Fight this!", 12, 0, 100, 1, 0, 0, 49385, 0, 'Gally Lumpstain - SAY_EXEC_THINK'),
+(49356, 6, 0, "Listen to me, $n. You must fight against the Lich King's control. He is a monster that wants to see this world - our world - in ruin. Don't let him use you to accomplish his goals. You were once a hero and you can be again. Fight, damn you! Fight his control!", 12, 0, 100, 1, 0, 0, 49386, 0, 'Gally Lumpstain - SAY_EXEC_LISTEN'),
+(49356, 7, 0, "There... There's no more time for me. I'm done for. Finish me off, $n. Do it or they'll kill us both. $n... Remember Kezan, our beloved home. This world is worth saving.", 12, 0, 100, 1, 0, 0, 49387, 0, 'Gally Lumpstain - SAY_EXEC_TIME'),
+(49356, 8, 0, "Do it, $n! Put me out of my misery!", 12, 0, 100, 1, 0, 0, 49388, 0, 'Gally Lumpstain - SAY_EXEC_WAITING'),
 (49356, 9, 0, "%s dies from his injuries.", 16, 0, 100, 0, 0, 0, 49389, 0, 'Gally Lumpstain - EMOTE_DIES');
+
+-- SmartAI, like the stock prisoners since AzerothCore removed npc_a_special_surprise (6df7a6f41). The action list
+-- (2907400) and Knight Commander Plaguefist's script are stock.
+DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` = 49356;
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+(49356, 0, 0, 1, 11, 0, 100, 0, 0, 0, 0, 0, 0, 0, 18, 256, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Respawn - Set Flags Immune To Players'),
+(49356, 0, 1, 2, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 90, 8, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Respawn - Set Flag Standstate Kneel'),
+(49356, 0, 2, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 22, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Respawn - Set Event Phase 1'),
+(49356, 0, 3, 4, 10, 0, 100, 257, 1, 3, 0, 0, 1, 0, 64, 25, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Out of Combat LoS - Store Targetlist (No Repeat)'),
+(49356, 0, 4, 5, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 22, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Out of Combat LoS - Set Event Phase 2 (No Repeat)'),
+(49356, 0, 5, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 80, 2907400, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - On Out of Combat LoS - Run Script (No Repeat)'),
+(49356, 0, 6, 0, 1, 1, 100, 0, 30000, 60000, 30000, 60000, 0, 0, 5, 18, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gally Lumpstain - Out of Combat - Play Emote 18 (Phase 1)');
+
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 22 AND `SourceGroup` = 4 AND `SourceEntry` = 49356 AND `SourceId` = 0;
+INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
+(22, 4, 49356, 0, 0, 47, 0, 28650, 8, 0, 0, 0, 0, '', 'The event will only occur when the player has the "A Special Surprise" (Goblin) quest incomplete.');
