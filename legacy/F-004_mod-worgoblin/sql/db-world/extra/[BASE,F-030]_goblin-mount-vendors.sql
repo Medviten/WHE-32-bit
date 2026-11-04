@@ -25,8 +25,8 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` IN (48510, 48513);
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
-(48510, 0, 7110, 1, 1, 0),
-(48513, 0, 7110, 1, 1, 0);
+(48510, 0, 7191, 1, 1, 0),
+(48513, 0, 26293, 1, 1, 0);
 
 DELETE FROM `trainer` WHERE `Id` = 48513;
 INSERT INTO `trainer` (`Id`, `Type`, `Requirement`, `Greeting`, `VerifiedBuild`) VALUES
@@ -34,7 +34,8 @@ INSERT INTO `trainer` (`Id`, `Type`, `Requirement`, `Greeting`, `VerifiedBuild`)
 
 DELETE FROM `trainer_spell` WHERE `TrainerId` = 48513;
 INSERT INTO `trainer_spell` (`TrainerId`, `SpellId`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqAbility1`, `ReqAbility2`, `ReqAbility3`, `ReqLevel`, `VerifiedBuild`) VALUES
-(48513, 202010, 0, 0, 0, 0, 0, 0, 0, 0);
+(48513, 33388, 40000, 762, 0, 0, 0, 0, 20, 0),
+(48513, 33391, 500000, 762, 75, 0, 0, 0, 40, 0);
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` = 48513;
 INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES

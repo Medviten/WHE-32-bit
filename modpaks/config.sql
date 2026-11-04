@@ -349,7 +349,7 @@ SET @UndeadMask                                                =   1 << (@Undead
 SET @TaurenMask                                                =   1 << (@Tauren           - 1);  -- race ID 6  → 32
 SET @GnomeMask                                                 =   1 << (@Gnome            - 1);  -- race ID 7  → 64
 SET @TrollMask                                                 =   1 << (@Troll            - 1);  -- race ID 8  → 128
-SET @GoblinMask                                                =   0; -- set by F-004/F-023 (race ID 9 → 256); 0 when neither is built
+SET @GoblinMask                                                =   0; -- set by F-023 (race ID 9 → 256); 0 when it is not built
 SET @BloodElfMask                                              =   1 << (@BloodElf         - 1);  -- race ID 10 → 512
 SET @DraeneiMask                                               =   1 << (@Draenei          - 1);  -- race ID 11 → 1024
 
@@ -362,15 +362,15 @@ SET @UndeadHelmetMask                                          =      1 << @Unde
 SET @TaurenHelmetMask                                          =      1 << @Tauren;           -- race ID 6  → 64
 SET @GnomeHelmetMask                                           =      1 << @Gnome;            -- race ID 7  → 128
 SET @TrollHelmetMask                                           =      1 << @Troll;            -- race ID 8  → 256
-SET @GoblinHelmetMask                                          =   0; -- set by F-004/F-023 (race ID 9 → 512)
+SET @GoblinHelmetMask                                          =   0; -- set by F-023 (race ID 9 → 512)
 SET @BloodElfHelmetMask                                        =      1 << @BloodElf;         -- race ID 10 → 1024
 SET @DraeneiHelmetMask                                         =      1 << @Draenei;          -- race ID 11 → 2048
 
 -- Custom race masks: 0 unless the race's modpak is built (its variables.sql sets the real values), so SQL
 -- naming a race whose modpak is left out adds no bits instead of failing on a NULL mask
-SET @WorgenMask                                                =   0; -- F-004, F-024
+SET @WorgenMask                                                =   0; -- F-024
 SET @WorgenHelmetMask                                          =   0;
-SET @GilneanMask                                               =   0; -- F-004 (F-027's Gilnean is an altered form, it has no mask)
+SET @GilneanMask                                               =   0; -- (F-027's Gilnean is an altered form, it has no mask)
 SET @GilneanHelmetMask                                         =   0;
 SET @HighElfMask                                               =   0; -- F-005
 SET @HighElfHelmetMask                                         =   0;

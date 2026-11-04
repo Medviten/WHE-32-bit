@@ -12,7 +12,7 @@
 
 ### Known Issues
 - Listed before the race modpaks in the manifest, so their rows win where the ids clash:
-  - Creature model 3141 (Reforged's `WORGEN_HD` male) is WHE's `@WorgenMaleModel`; F-004 and F-024 replace it
+  - Creature model 3141 (Reforged's `WORGEN_HD` male) is WHE's `@WorgenMaleModel`; F-024 replaces it
     (F-013 also uses 3141 and 90001)
   - F-005 and F-043 delete displays 32755-34280, which takes out 7 of this modpak's new displays (32755-32763);
     F-012 inserts its own 32755. These only matter if server data uses those displays

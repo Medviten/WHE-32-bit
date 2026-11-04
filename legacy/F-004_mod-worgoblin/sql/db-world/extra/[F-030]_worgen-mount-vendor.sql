@@ -1,7 +1,6 @@
 SET @WorgenMask = 2048;
 SET @GilneasFaction = 1165;
 SET @Exalted = 128;
-SET @PlaceholderDisplayID = 0; -- TODO: replace with a real human female CreatureDisplayID before running
 
 DELETE FROM `gossip_menu` WHERE `MenuID` = 12440 AND `TextID` IN (100002, 100003);
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
@@ -24,7 +23,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 
 DELETE FROM `creature_template_model` WHERE `CreatureID` = 48514;
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
-(48514, 0, @PlaceholderDisplayID, 1, 1, 0);
+(48514, 0, 257, 1, 1, 0);
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `SourceGroup` = 12440;
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES

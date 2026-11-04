@@ -31,7 +31,6 @@ F-009_morph-with-gear
 # END INITIAL SETUP #
 
 # RETAIL RACES #
-#F-004_mod-worgoblin # Legacy (requires recompile for some racials to function)
 F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
 F-027_mod-gilnean # requires F-024
