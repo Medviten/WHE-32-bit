@@ -1,0 +1,39 @@
+# rsync exclude patterns, one per line -- rsync's own glob syntax (see
+# `man rsync`, PATTERN MATCHING RULES), not a shell glob and not a
+# literal substring match like build-dbc.sh's manifest uses.
+#
+# Copy this file to deploy-dbc.exclude (or point RSYNC_EXCLUDE_FILE at
+# your own path in deploy-dbc.conf) and adjust as needed. Blank lines
+# and comments are fine -- rsync's own exclude-file parser ignores them.
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tga
+*.psd
+*.blp
+*.m2
+*.M2
+*.anim
+*.skin
+
+# Audio
+*.mp3
+*.wav
+*.ogg
+*.flac
+
+# Video
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Archives / large misc
+*.zip
+*.7z
+*.rar
+

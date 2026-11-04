@@ -168,7 +168,7 @@ World of Warcraft/
 
 The models, textures and interface files are in [WHE-common](https://github.com/Medviten/WHE-common), which both versions of this project share.
 
-Then copy what the pipeline exported into `patch-A.MPQ/DBFilesClient/`, so the client matches the server: the DBCs, `PlayerShapeshiftModel.csv` and `ShapeshiftSkinColorRaces.csv`.
+Then copy what the pipeline exported into `patch-A.MPQ/DBFilesClient/`, so the client matches the server: the DBCs, `PlayerShapeshiftModel.csv` and `ShapeshiftSkinColorRaces.csv`. If you build on another machine, `tools/scripts/deploy-dbc.sh` can do this over SSH: it runs build-dbc.sh there and syncs these files to your client (copy `deploy-dbc.conf.dist` to `deploy-dbc.conf` first).
 
 ---
 

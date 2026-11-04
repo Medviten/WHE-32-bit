@@ -1,0 +1,60 @@
+# SSH host to build on. Can be a plain hostname/IP, or (recommended) a
+# Host alias defined in ~/.ssh/config, e.g.:
+#
+#   Host dbcbuilder
+#       HostName 203.0.113.10
+#       User youruser
+#       IdentityFile ~/.ssh/id_dbcbuilder
+#
+SSH_HOST="dbcbuilder"
+
+# Absolute path to build-dbc.sh on the server.
+REMOTE_BUILD_SCRIPT="/path/to/scripts/build-dbc.sh"
+
+# Must match $DBCTOOL/export in the server's build-dbc.conf -- this is
+# dbctool's own export folder, which build-dbc.sh clears at the start of
+# every build and fills with only the DBCs affected by that build. This is
+# what we want to sync -- NOT $SERVER_DBC, which holds the server's full,
+# unrelated set of every DBC.
+REMOTE_EXPORT_DIR="/path/to/dbctool/export"
+
+# Where build-dbc.sh exports PlayerShapeshiftModel.csv and
+# ShapeshiftSkinColorRaces.csv: $SERVER_DBC in the server's build-dbc.conf,
+# unless SHAPESHIFT_MODEL_CSV or SKIN_COLOR_RACES_CSV say otherwise. The
+# export needs WORLD_DATABASE set there. Leave this empty/unset to skip them;
+# the client's druid form preview needs them.
+REMOTE_CSV_DIR="/path/to/server/data/dbc"
+
+# Where your game client reads DBCs from, on this machine.
+LOCAL_DBFILES_CLIENT="/mnt/c/Games/WoW/Data/patch-A.MPQ/DBFilesClient"
+
+# Optional: push your local working copy (modpaks/, integration/,
+# config.sql, the manifest, etc.) to the server before every build, so
+# you don't need to commit/push/pull just to test an SQL edit. Leave
+# LOCAL_SOURCE_DIR empty/unset to skip this and just build whatever's
+# already on the server.
+#
+# LOCAL_SOURCE_DIR is wherever you're actually editing files, on this
+# machine. REMOTE_SOURCE_DIR must be the matching directory on the
+# server -- typically the parent of $MODPAKS in the server's
+# build-dbc.conf (i.e. the folder that CONTAINS modpaks/, not modpaks/
+# itself).
+#
+# WARNING: this sync uses --delete, making REMOTE_SOURCE_DIR an exact
+# mirror of LOCAL_SOURCE_DIR -- anything present on the server but not
+# locally gets removed. Point REMOTE_SOURCE_DIR carefully.
+#LOCAL_SOURCE_DIR="/path/to/local/working/copy"
+#REMOTE_SOURCE_DIR="/path/to/server/modules/mod-worgoblin-high-elf"
+
+# Safety check: SYNC_SENTINEL_FILENAME (see deploy-dbc.sh for its
+# default) must exist as an empty file at both
+# LOCAL_SOURCE_DIR/<name> and REMOTE_SOURCE_DIR/<name> before the sync
+# is allowed to run -- create it once in both places and forget about
+# it. This exists purely to catch a wrong REMOTE_SOURCE_DIR before
+# --delete can do any damage.
+
+# Optional: exclude large binary assets (images, audio, video, etc.)
+# from the sync so they don't clutter the server. Copy
+# deploy-dbc.exclude.dist to deploy-dbc.exclude and list your
+# patterns, or point RSYNC_EXCLUDE_FILE elsewhere.
+#RSYNC_EXCLUDE_FILE="/path/to/deploy-dbc.exclude"
