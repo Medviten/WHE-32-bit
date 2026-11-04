@@ -1576,6 +1576,7 @@ SET @NightborneManasaberModel                                  =     @NextModelI
 SET @StarcursedVoidstriderModel                                =     @NextModelID := @NextModelID +1;
 SET @ForsakenWarhorseModel                                      =     @NextModelID := @NextModelID +1; -- F-087
 SET @ForsakenChargerModel                                       =     @NextModelID := @NextModelID +1; -- F-087
+SET @DruidManaWurmModel                                         =     @NextModelID := @NextModelID +1; -- F-011
 
 -- Mount Display IDs
 SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;

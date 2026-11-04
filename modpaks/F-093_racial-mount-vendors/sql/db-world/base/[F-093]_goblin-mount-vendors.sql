@@ -1,5 +1,6 @@
-SET @GoblinMask = 256;
-SET @Exalted = 128;
+/* Kall Worthaton, who sells the Goblin racial mounts, and Revi Ramrod, who teaches riding. Only with F-023: its
+   variables are unset when it is not in the manifest (@GoblinMask is not a test, config.sql always sets it) */
+SET @GoblinVendorsEnabled = @GoblinMount1Item IS NOT NULL;
 
 DELETE FROM `gossip_menu` WHERE `MenuID` IN (12439, 25000) AND `TextID` IN (17494, 17495, 100000, 100001);
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
@@ -70,3 +71,23 @@ DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (12439, 25000);
 INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
 (12439, 0, 1, 'I would like to buy from you.', 14967, 3, 128, 0, 0, 0, 0, NULL, 0, 0),
 (25000, 0, 3, 'I seek training to ride a trike.', 0, 5, 16, 0, 0, 0, 0, NULL, 0, 0);
+
+/* In the Orgrimmar wolf pen, with Ogunaro Wolfrunner and Kildar */
+DELETE FROM `creature` WHERE `guid` IN (6211001, 6211002);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
+(6211001, 48510, 1, 0, 0, 1, 1, 0, 2155.36, -4653.94, 50.17, 2.81, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL),
+(6211002, 48513, 1, 0, 0, 1, 1, 0, 2157.00, -4657.60, 50.10, 1.94, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL);
+
+/* Without F-023 there is nothing to sell */
+DELETE FROM `creature` WHERE `guid` IN (6211001, 6211002) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `gossip_menu` WHERE `MenuID` IN (12439, 25000) AND `TextID` IN (17494, 17495, 100000, 100001) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `broadcast_text` WHERE `ID` IN (100000, 100001) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `npc_text` WHERE `ID` IN (100000, 100001) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `creature_template` WHERE `entry` IN (48510, 48513) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `creature_template_model` WHERE `CreatureID` IN (48510, 48513) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `trainer` WHERE `Id` = 48513 AND NOT @GoblinVendorsEnabled;
+DELETE FROM `trainer_spell` WHERE `TrainerId` = 48513 AND NOT @GoblinVendorsEnabled;
+DELETE FROM `creature_default_trainer` WHERE `CreatureId` = 48513 AND NOT @GoblinVendorsEnabled;
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `SourceGroup` IN (12439, 25000) AND NOT @GoblinVendorsEnabled;
+DELETE FROM `npc_vendor` WHERE `entry` = 48510 AND NOT @GoblinVendorsEnabled;
+DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (12439, 25000) AND NOT @GoblinVendorsEnabled;

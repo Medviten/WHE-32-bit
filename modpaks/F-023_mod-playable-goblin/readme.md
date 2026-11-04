@@ -12,7 +12,7 @@
 - Optional extra features
     - Cataclysm starting gear
     - Death Knight quests
-    - Mount vendors
+    - Mount vendors: see F-093_racial-mount-vendors
 
 ### Known Issues
 - Alpha goblin is not yet implemented

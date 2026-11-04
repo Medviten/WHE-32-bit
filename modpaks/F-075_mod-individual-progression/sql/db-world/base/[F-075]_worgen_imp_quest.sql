@@ -1,6 +1,8 @@
-/* "The First Pact", the imp quest for Worgen warlocks, from Amelia Fearhart (see [BASE,F-024]_class-trainers.sql, which it needs).
-   Individual Progression takes Summon Imp off the warlock trainers, so warlocks need a quest for it. The Grell Finger
-   item and its display are in dbc/[BASE,F-024]_item.sql and _itemdisplayinfo.sql */
+/* "The First Pact", the imp quest for Worgen warlocks, from Amelia Fearhart. Individual Progression takes Summon Imp
+   off the warlock trainers, so warlocks need a quest for it. The Grell Finger item and its display are in
+   dbc/[F-075]_imp_quest_item.sql. Only with F-024 and Amelia (F-029, listed before this modpak): without them an
+   empty @WorgenMask would open the quest to every race (AllowableRaces 0), with nobody to give it */
+SET @ImpQuestEnabled = COALESCE(@WorgenMask, 0) <> 0 AND EXISTS (SELECT 1 FROM `creature_template` WHERE `entry` = 62103);
 
 /*Add imp quest*/
 DELETE FROM `quest_template` WHERE (`ID` = @TheFirstPactQuest);
@@ -49,3 +51,14 @@ DELETE FROM `creature_loot_template` WHERE `Entry` IN (1988, 1989) AND `Item` IN
 INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (1988, 90000, 0, 90, 1, 1, 0, 1, 1, 'Grell - Grell Finger'),
 (1989, 90000, 0, 90, 1, 1, 0, 1, 1, 'Grellkin - Grell Finger');
+
+/* No Worgen, or nobody to give the quest */
+DELETE FROM `quest_template` WHERE (`ID` = @TheFirstPactQuest) AND NOT @ImpQuestEnabled;
+DELETE FROM `quest_template_addon` WHERE (`ID` = @TheFirstPactQuest) AND NOT @ImpQuestEnabled;
+DELETE FROM `quest_request_items` WHERE (`ID` = @TheFirstPactQuest) AND NOT @ImpQuestEnabled;
+DELETE FROM `quest_offer_reward` WHERE `ID`=@TheFirstPactQuest AND NOT @ImpQuestEnabled;
+DELETE FROM `creature_queststarter` WHERE (`ID` = 62103) AND (`quest` = @TheFirstPactQuest) AND NOT @ImpQuestEnabled;
+DELETE FROM `creature_questender` WHERE (`ID` = 62103) AND (`quest` = @TheFirstPactQuest) AND NOT @ImpQuestEnabled;
+DELETE FROM `item_template` WHERE (`entry` = 90000) AND NOT @ImpQuestEnabled;
+DELETE FROM `creature_questitem` WHERE `CreatureEntry` IN (1988, 1989) AND `ItemId` = 90000 AND NOT @ImpQuestEnabled;
+DELETE FROM `creature_loot_template` WHERE `Entry` IN (1988, 1989) AND `Item` IN (90000) AND `Reference` IN (0) AND `GroupId` IN (0) AND NOT @ImpQuestEnabled;

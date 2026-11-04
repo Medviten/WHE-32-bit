@@ -13,8 +13,8 @@ DBC_DATABASE="dbc"
 SERVER_HOST="medviten@100.110.63.66"
 SERVER_DBC="/path/to/server/data/dbc"
 
-EXTRA_SQL_DATABASES=("test_world" "test_world")
-EXTRA_SQL_PATTERNS=("sql/db-world/base/*.sql" "sql/db-world/extra/*F-004*.sql")
+EXTRA_SQL_DATABASES=("test_world")
+EXTRA_SQL_PATTERNS=("sql/db-world/base/*.sql")
 EXTRA_SQL_DUMPS=("/path/to/ac-worldserver.sql")
 
 LOCAL_SOURCE_DIR="/home/youruser/dev/wow-modpaks"

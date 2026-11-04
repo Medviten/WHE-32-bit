@@ -15,11 +15,9 @@
     - Cataclysm racial faction: Gilneas
 - Optional extra features
     - Cataclysm starting gear
-    - Class trainers for mages and warlocks in Teldrassil
-        - Includes "The First Pact", a Worgen warlock quest for Summon Imp from Amelia Fearhart, for use with Individual Progression, which takes that spell off the trainers
-        - To apply them, add `sql/db-world/extra/*F-024*_class-trainers*.sql` to `EXTRA_SQL_PATTERNS` in build-dbc.conf, and your world database to `EXTRA_SQL_DATABASES` at the same position. Their displays are in the DBCs either way
     - Death Knight quests
-    - Mount vendor
+    - Class trainers for mages and warlocks in Teldrassil: see F-029_all-trainers. Their displays are in the DBCs either way
+    - Mount vendor: see F-093_racial-mount-vendors
 
 ### Known Issues
 - Two Forms is not yet implemented correctly

@@ -304,7 +304,3 @@ SET @WorgenMount2ItemNameUnk1          = '';
 SET @WorgenMount2ItemNameUnk2          = '';
 SET @WorgenMount2ItemNameUnk3          = '';
 SET @WorgenMount2ItemNameUnk4          = '';
-
--- Quest of sql/db-world/extra/[BASE,F-024]_class-trainers_imp-quest.sql. Stock quests end at 26034, Individual
--- Progression's are at 108743 and up
-SET @TheFirstPactQuest                  = 62103;

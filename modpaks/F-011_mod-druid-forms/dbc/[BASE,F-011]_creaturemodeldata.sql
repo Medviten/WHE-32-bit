@@ -1,0 +1,6 @@
+-- [F-011] mod-druid-forms: creaturemodeldata: 1 insert, 0 updates, 0 deletes
+
+/* Mana Wyrm lowered to the ground for the Blood Elf aquatic form: stock model 2210 hangs above its origin, which puts it above the water at this form's scale. Asset made with tools/models/m2_shift_z.py -0.8, so the geo box's z is 0.8 lower than 2210's; the rest is 2210's */
+DELETE FROM `creaturemodeldata` WHERE `id` = @DruidManaWurmModel;
+INSERT INTO `creaturemodeldata` (`id`, `flags`, `model_path`, `size_class`, `model_scale`, `blood_id`, `footprint_texture_id`, `footprint_texture_length`, `footprint_texture_width`, `footprint_particle_scale`, `foley_material_id`, `footstep_shake_size`, `death_thud_shake_size`, `sound_data`, `collision_width`, `collision_height`, `mount_height`, `geo_box_min_x`, `geo_box_min_y`, `geo_box_min_z`, `geo_box_max_x`, `geo_box_max_y`, `geo_box_max_z`, `world_effect_scale`, `attached_effect_scale`, `missile_collision_radius`, `missile_collision_push`, `missile_collision_raise`) VALUES
+(@DruidManaWurmModel, 1, 'Creature\\ManaWurm\\DruidManaWurm.mdx', 0, 1, 1, 4294967295, 0, 0, 0, 0, 0, 0, 2103, 0.6111, 2.031, 0, -1.065003, -0.255494, 0.017761, 0.377519, 0.525457, 0.609159, 1, 1, 0, 0, 0);

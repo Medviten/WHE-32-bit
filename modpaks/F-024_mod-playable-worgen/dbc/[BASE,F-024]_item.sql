@@ -1,4 +1,4 @@
--- item: 30 inserts, 0 updates, 0 deletes
+-- item: 29 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `item` WHERE `id` IN (
@@ -11,8 +11,7 @@ DELETE FROM `item` WHERE `id` IN (
     @GilneanFootpadsPantsItem, @GilneanFootpadsGlovesItem, @GilneanFootpadsTunicItem, @GilneanFootpadsBootsItem,
     @GilneanRecruitsPantsItem, @GilneanRecruitsBeltItem, @GilneanRecruitsTunicItem, @GilneanRecruitsBootsItem,
     @WornWoodChopperItem,
-    @WorgenMount1Item, @WorgenMount2Item,
-    90000
+    @WorgenMount1Item, @WorgenMount2Item
 );
 INSERT INTO `item` (`id`, `class`, `subclass`, `sound_override_subclass`, `material`, `display_id`, `inventory_type`, `sheath`) VALUES
 (@GilneanApprenticesRobeItem,  4, 1, -1,   7,  @GilneanApprenticesRobeItemDisplay,  20, 0), -- Gilnean Apprentice's Robe
@@ -43,5 +42,4 @@ INSERT INTO `item` (`id`, `class`, `subclass`, `sound_override_subclass`, `mater
 (@GilneanRecruitsBootsItem,    4, 3, -1,   7,  @GilneanRecruitsBootsItemDisplay,     8, 0), -- Gilnean Recruit's Boots
 (@WornWoodChopperItem,         2, 1, -1,   1,  @WornWoodChopperItemDisplay,         17, 1), -- Worn Wood Chopper
 (@WorgenMount1Item,          15, 5, -1,   4,  @WorgenMount1ItemDisplay,            0, 0), -- Mountain Horse
-(@WorgenMount2Item,     15, 5, -1,   4,  @WorgenMount2ItemDisplay,       0, 0), -- Swift Mountain Horse
-(90000,                       12, 0, -1,  -1,                                 75787, 0, 0); -- Unknown?
+(@WorgenMount2Item,     15, 5, -1,   4,  @WorgenMount2ItemDisplay,       0, 0); -- Swift Mountain Horse

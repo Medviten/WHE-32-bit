@@ -39,4 +39,4 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidLynxSkinRedDisplay,      3143, 0, 0, 0.92, 255, 'LynxSkinRed',         'LynxEyeGlow', '', '', -1, 0, 0, 0, 0, 0), -- Springpaw Lynx
 (@DruidDragonHawkSkinDisplay,   2363, 0, 0,  0.8, 255, 'DragonHawkSkin',      '',            '', '', -1, 0, 0, 0, 0, 0), -- Feral Dragonhawk Hatchling
 (@DruidDragonHawkSkin01Display, 2363, 0, 0,  0.8, 255, 'DragonHawkSkin01',    '',            '', '', -1, 0, 0, 0, 0, 0), -- Crazed Dragonhawk
-(@DruidManaWurmSkinDisplay,     2210, 0, 0,  3.2, 255, 'ManaWurmSkinSilver1', '',            '', '', -1, 0, 0, 0, 0, 0); -- Mana Wyrm
+(@DruidManaWurmSkinDisplay,     @DruidManaWurmModel, 0, 0,  3.2, 255, 'ManaWurmSkinSilver1', '',            '', '', -1, 0, 0, 0, 0, 0); -- Mana Wyrm, lowered (see creaturemodeldata)

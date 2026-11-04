@@ -1,3 +1,7 @@
+/* Astrid Langstrump, who sells the Worgen racial mounts. Only with F-024: its variables are unset when it is not in
+   the manifest */
+SET @WorgenVendorEnabled = @WorgenMount1Item IS NOT NULL;
+
 DELETE FROM `gossip_menu` WHERE `MenuID` = 12440 AND `TextID` IN (100002, 100003);
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
 (12440, 100002),
@@ -38,3 +42,19 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 DELETE FROM `gossip_menu_option` WHERE `MenuID` = 12440;
 INSERT INTO `gossip_menu_option` (`MenuID`, `OptionID`, `OptionIcon`, `OptionText`, `OptionBroadcastTextID`, `OptionType`, `OptionNpcFlag`, `ActionMenuID`, `ActionPoiID`, `BoxCoded`, `BoxMoney`, `BoxText`, `BoxBroadcastTextID`, `VerifiedBuild`) VALUES
 (12440, 0, 1, 'I would like to buy from you.', 14967, 3, 128, 0, 0, 0, 0, NULL, 0, 0);
+
+/* In the Darnassus nightsaber pen, with Lelanai and Jartsam */
+DELETE FROM `creature` WHERE `guid` = 6211003;
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
+(6211003, 48514, 1, 0, 0, 1, 1, 0, 10127.40, 2532.00, 1323.50, 2.20, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL);
+
+/* Without F-024 there is nothing to sell */
+DELETE FROM `creature` WHERE `guid` = 6211003 AND NOT @WorgenVendorEnabled;
+DELETE FROM `gossip_menu` WHERE `MenuID` = 12440 AND `TextID` IN (100002, 100003) AND NOT @WorgenVendorEnabled;
+DELETE FROM `broadcast_text` WHERE `ID` IN (100002, 100003) AND NOT @WorgenVendorEnabled;
+DELETE FROM `npc_text` WHERE `ID` IN (100002, 100003) AND NOT @WorgenVendorEnabled;
+DELETE FROM `creature_template` WHERE `entry` = 48514 AND NOT @WorgenVendorEnabled;
+DELETE FROM `creature_template_model` WHERE `CreatureID` = 48514 AND NOT @WorgenVendorEnabled;
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `SourceGroup` = 12440 AND NOT @WorgenVendorEnabled;
+DELETE FROM `npc_vendor` WHERE `entry` = 48514 AND NOT @WorgenVendorEnabled;
+DELETE FROM `gossip_menu_option` WHERE `MenuID` = 12440 AND NOT @WorgenVendorEnabled;

@@ -1,4 +1,4 @@
--- itemdisplayinfo: 29 inserts, 0 updates, 0 deletes
+-- itemdisplayinfo: 28 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `itemdisplayinfo` WHERE `id` IN (
@@ -11,8 +11,7 @@ DELETE FROM `itemdisplayinfo` WHERE `id` IN (
     @GilneanAcolytesRobeItemDisplay,     @GilneanAcolytesPantsItemDisplay,   @GilneanAcolytesBootsItemDisplay,
     @GilneanAdventurersShirtItemDisplay,
     @WornWoodChopperItemDisplay,
-    @WorgenMount1ItemDisplay,
-    75787 -- a wand?
+    @WorgenMount1ItemDisplay
 );
 INSERT INTO `itemdisplayinfo` (`id`, `left_model`, `right_model`, `left_model_texture`, `right_model_texture`, `icon_1`, `icon_2`, `geoset_group_1`, `geoset_group_2`, `geoset_group_3`, `flags`, `spell_visual_id`, `group_sound_index`, `helmet_geoset_male`, `helmet_geoset_female`, `upper_arm_texture`, `lower_arm_texture`, `hands_texture`, `upper_torso_texture`, `lower_torso_texture`, `upper_leg_texture`, `lower_leg_texture`, `foot_texture`, `item_visual`, `particle_colour_id`) VALUES
 (@GilneanApprenticesBootsItemDisplay, '', '', '', '', 'INV_Boots_09', '', 0, 0, 0, 0, 0, 7, 0, 0, '', '', '', '', '', '', 'cloth_gilneasclothes_b_01nobleb_boot_ll', 'cloth_gilneasclothes_b_01nobleb_boot_fo', 0, 0),
@@ -41,6 +40,5 @@ INSERT INTO `itemdisplayinfo` (`id`, `left_model`, `right_model`, `left_model_te
 (@GilneanAcolytesBootsItemDisplay, '', '', '', '', 'inv_boots_05', '', 0, 0, 0, 0, 0, 7, 0, 0, '', '', '', '', '', '', '', 'cloth_gilneasclothes_b_01nobleb_boot_fo', 0, 0),
 (@GilneanFootpadsGlovesItemDisplay, '', '', '', '', 'inv_gauntlets_05', '', 0, 0, 0, 0, 0, 7, 0, 0, '', 'leather_worgen_b_01green_glove_al', 'leather_worgen_b_01green_Glove_HA', '', '', '', '', '', 0, 0),
 (@GilneanTrappersGlovesItemDisplay, '', '', '', '', 'inv_gauntlets_05', '', 0, 0, 0, 0, 0, 7, 0, 0, '', 'leather_worgen_b_01red_Glove_AL', 'leather_worgen_b_01red_glove_ha', '', '', '', '', '', 0, 0),
-(75787, '', '', '', '', 'Inv_wand_12', '', 0, 0, 1, 0, 0, 15, 0, 0, '', '', '', '', '', '', '', '', 0, 0),
 (@GilneanTrappersTunicItemDisplay, '', '', '', '', 'inv_chest_chain_16', '', 0, 0, 0, 0, 0, 7, 0, 0, '', '', '', 'leather_worgen_b_01red_Chest_TU', 'leather_worgen_b_01red_chest_tl', '', '', '', 0, 0),
 (@WorgenMount1ItemDisplay, '', '', '', '', 'ability_mount_ridinghorse', '', 0, 0, 0, 0, 0, 16, 0, 0, '', '', '', '', '', '', '', '', 0, 0);

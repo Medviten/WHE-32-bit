@@ -121,6 +121,7 @@ F-026_custom-race-support # required for any custom race to function correctly
 #F-088_mod-two-names # Off by default (hooks for the separate mod-two-names module; core patch in patches/core, client patch in patches/client)
 F-089_server-qol # No fatigue and higher .modify limits (core patches in patches/core); comment out for stock behaviour
 F-090_mmaps-generator-fixes # mmaps_generator buffer fixes for map ids of 1000 and up (core patch in patches/core)
+F-093_racial-mount-vendors # Goblin and Worgen racial mount vendors, for the race modpaks in the manifest; comment out if you don't want them
 #F-092_racial-mount-merchant # Off by default (neutral vendor in Booty Bay selling the racial mounts of enabled races; keep after every race modpak)
 #F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
 #F-076_mod-individual-progression_extras # Off by default (mod-individual-progression's optional SQL and DBCs; one file per feature, delete the ones you don't want, see its readme)

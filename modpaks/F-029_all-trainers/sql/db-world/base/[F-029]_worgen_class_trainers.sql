@@ -1,3 +1,6 @@
+/* Mage and warlock trainers in Teldrassil for Worgen. Only with F-024: its DBCs hold their displays */
+SET @WorgenTrainersEnabled = COALESCE(@WorgenMask, 0) <> 0;
+
 /* Add NPC entries */
 DELETE FROM `creature_template` WHERE `entry` IN (62100, 62101, 62102, 62103, 62104, 62105);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
@@ -168,3 +171,14 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (15, 62105, 0, 0, 0, 15, 0, 256, 0, 0, 0, 0, 0, '', 'Show gossip if player is a warlock'), -- Warlock training
 (15, 62105, 1, 0, 0, 15, 0, 256, 0, 0, 0, 0, 0, '', 'Show gossip if player is a warlock'), -- Unlearn talents
 (15, 62105, 2, 0, 0, 15, 0, 256, 0, 0, 0, 0, 0, '', 'Show gossip if player is a warlock'); -- Learn dual spec
+
+/* Without F-024 their displays do not exist */
+DELETE FROM `creature_template` WHERE `entry` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `creature_model_info` WHERE `DisplayID` IN (92600, 92601, 92602, 92603, 92604, 92605) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `creature_template_model` WHERE `CreatureID` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `creature` WHERE `guid` IN (6210000, 6210001, 6210002, 6210003, 6210004, 6210005) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `gossip_menu` WHERE `MenuID` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `gossip_menu_option` WHERE `MenuID` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `npc_text` WHERE `ID` IN (621000, 621001, 621010, 621011, 621020, 621021, 621030, 621031, 621040, 621041, 621042, 621050, 621051) AND NOT @WorgenTrainersEnabled;
+DELETE FROM `conditions` WHERE `SourceGroup` IN (62100, 62101, 62102, 62103, 62104, 62105) AND NOT @WorgenTrainersEnabled;

@@ -28,6 +28,9 @@ its master, 4933d45). List it after every race modpak in the manifest.
   Visual (28819), including AzerothCore's `spell_gen_submerge_visual`; it now deletes only its own. Apply it the same
   way, before the module's SQL runs. On a database where that SQL already ran, add the row back once:
   `INSERT IGNORE INTO spell_script_names (spell_id, ScriptName) VALUES (28819, 'spell_gen_submerge_visual');`
+- `sql/db-world/base/[F-075]_worgen_imp_quest.sql`: "The First Pact", a Summon Imp quest for Worgen warlocks from
+  Amelia Fearhart, since Individual Progression takes that spell off the trainers. It needs F-024 and F-029 (Amelia
+  is one of its trainers) and leaves itself out without them. Its item is in `dbc/[F-075]_imp_quest_item.sql`
 
 ### Requirements
 - Individual Progression's world SQL must already be in the world database when the modpaks are applied (a world
