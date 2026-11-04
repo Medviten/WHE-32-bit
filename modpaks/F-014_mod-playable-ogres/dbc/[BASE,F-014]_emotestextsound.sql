@@ -2,7 +2,7 @@
 
 -- New entries
 DELETE FROM `emotestextsound` WHERE `race_id` = @Ogre; -- default: BETWEEN 2554 AND 2635;
-SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`emotestextsound`);
+SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`emotestextsound`);
 INSERT INTO `emotestextsound` (`id`, `emotes_text_id`, `race_id`, `sex_id`, `sound_id`) VALUES
 (@EmotesTextSoundID := @EmotesTextSoundID +1, 14, @Ogre, @Male,   7956),
 (@EmotesTextSoundID := @EmotesTextSoundID +1, 14, @Ogre, @Female, 7956),

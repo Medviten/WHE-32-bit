@@ -2,7 +2,7 @@
 
 -- New entries
 DELETE FROM `vocaluisounds` WHERE `race_id` = @ZandalariTroll; -- default: BETWEEN 2560 AND 2625; (copied from Troll)
-SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
+SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`vocaluisounds`);
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES
 (@VocalUISoundsID := @VocalUISoundsID +1, 0,  @ZandalariTroll, 1820, 1930, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 1,  @ZandalariTroll, 2609, 2973, 0, 0),

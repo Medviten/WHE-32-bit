@@ -1,7 +1,7 @@
 -- charhairgeosets: 62 inserts, 0 updates, 6 deletes
 
 -- New entries
-SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`charhairgeosets`);
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`charhairgeosets`);
 
 -- DELETE FROM `charhairgeosets` WHERE `id` BETWEEN 500 AND 534; -- 535 is absent for some reason
 -- DELETE FROM `charhairgeosets` WHERE `id` BETWEEN 536 AND 562; -- probably not important, but just in case

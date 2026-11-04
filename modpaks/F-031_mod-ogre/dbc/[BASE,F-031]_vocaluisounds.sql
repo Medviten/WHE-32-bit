@@ -1,7 +1,7 @@
 -- [F-033] mod-maghar: vocaluisounds: 66 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
+SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`vocaluisounds`);
 
 DELETE FROM `vocaluisounds` WHERE `id` BETWEEN 2494 AND 2559;
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES

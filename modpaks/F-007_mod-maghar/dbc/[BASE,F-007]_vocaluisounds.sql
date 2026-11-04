@@ -2,7 +2,7 @@
 
 -- New entries
 DELETE FROM `vocaluisounds` WHERE `race_id` = @MagharOrc; -- default: BETWEEN 2354 AND 2419; (copied from Orc)
-SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
+SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`vocaluisounds`);
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES
 (@VocalUISoundsID := @VocalUISoundsID +1, 0, @MagharOrc, 2284, 2341, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 2, @MagharOrc, 2285, 2342, 0, 0),

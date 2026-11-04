@@ -1,7 +1,7 @@
 -- emotestextsound: 526 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`emotestextsound`);
+SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`emotestextsound`);
 
 /*
 DELETE FROM `emotestextsound` WHERE `id` = 567; -- Gilnean female
