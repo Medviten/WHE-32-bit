@@ -1,0 +1,22 @@
+diff --git a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+index 500f193c..61effd79 100644
+--- a/src/Bot/Factory/RandomPlayerbotFactory.cpp
++++ b/src/Bot/Factory/RandomPlayerbotFactory.cpp
+@@ -192,12 +192,14 @@ Player* RandomPlayerbotFactory::CreateRandomBot(WorldSession* session, uint8 cls
+     }
+ 
+     //uint8 skinColor = skinColors[urand(0, skinColors.size() - 1)]; //not used, line marked for removal.
+-    std::pair<uint8, uint8> face = faces[urand(0, faces.size() - 1)];
+-    std::pair<uint8, uint8> hair = hairs[urand(0, hairs.size() - 1)];
++    // WHE: a race may lack some CharSections rows (new races in particular), and size() - 1 of an empty list reads far
++    // out of bounds; use 0 for those
++    std::pair<uint8, uint8> face = faces.empty() ? std::pair<uint8, uint8>(0, 0) : faces[urand(0, faces.size() - 1)];
++    std::pair<uint8, uint8> hair = hairs.empty() ? std::pair<uint8, uint8>(0, 0) : hairs[urand(0, hairs.size() - 1)];
+ 
+     bool excludeCheck = (race == RACE_TAUREN) || (race == RACE_DRAENEI) ||
+                         (gender == GENDER_FEMALE && race != RACE_NIGHTELF && race != RACE_UNDEAD_PLAYER);
+-    uint8 facialHair = excludeCheck ? 0 : facialHairTypes[urand(0, facialHairTypes.size() - 1)];
++    uint8 facialHair = (excludeCheck || facialHairTypes.empty()) ? 0 : facialHairTypes[urand(0, facialHairTypes.size() - 1)];
+ 
+     std::unique_ptr<CharacterCreateInfo> characterInfo = std::make_unique<CharacterCreateInfo>(
+         name, race, cls, gender, face.second, face.first, hair.first, hair.second, facialHair);
