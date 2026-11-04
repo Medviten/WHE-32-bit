@@ -23,15 +23,15 @@ REMOTE_SOURCE_DIR="/home/youruser/wow"
 # Clean baseline database dump instead of reimporting DBCs every time
 DBC_BASELINE="/path/to/dbc-baseline.sql"
 
-# Where build-patch.sh writes combined-<target>.patch: whe-*.patch plus the
+# Where build-patch.sh writes combined-<target>.patch: the
 # patches/<target>/ folders of the modpaks in the manifest (see README).
 # Defaults to this directory.
 #PATCH_OUTPUT_DIR="/path/to/combined/patches"
 
 # The world database (one of EXTRA_SQL_DATABASES). Needed for the world_db
-# placeholder and for exporting player_shapeshift_model as
-# PlayerShapeshiftModel.csv (the client's druid form preview), which goes
-# with the DBCs in SERVER_DBC unless SHAPESHIFT_MODEL_CSV says otherwise.
+# placeholder and for exporting PlayerShapeshiftModel.csv and
+# ShapeshiftSkinColorRaces.csv for the client, which go with the DBCs in
+# SERVER_DBC unless SHAPESHIFT_MODEL_CSV or SKIN_COLOR_RACES_CSV say otherwise.
 #WORLD_DATABASE="test_world"
 #SHAPESHIFT_MODEL_CSV="/path/to/server/data/dbc/PlayerShapeshiftModel.csv"
 # It is also needed to export ShapeshiftSkinColorRaces.csv, for the client's
