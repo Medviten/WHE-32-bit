@@ -32,7 +32,9 @@ F-009_morph-with-gear
 
 # RETAIL RACES #
 F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
+#F-095_alpha-goblin-assets # Off by default (tentative, untested; alpha Goblin look, requires F-023)
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
+#F-094_alpha-worgen-assets # Off by default (tentative, untested; alpha Worgen look, requires F-024)
 F-027_mod-gilnean # requires F-024
 F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched client: Running Wild as a mount on oneself, Two Forms as altered form
 F-020_mod-pandaren-alliance
@@ -102,12 +104,12 @@ F-051_mod-playable-ice-troll
 #F-069_mod-playable-venthyr # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A; core patch in patches/core)
 #F-070_mod-playable-banshee # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
 #F-071_mod-playable-faceless-one # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-096_mod-playable-cultist # Off by default (tentative, untested; human model with the Alpha-Worgen package's cultist skin)
+#F-097_mod-playable-manari # Off by default (tentative, untested; draenei model with the Alpha-Worgen package's eredar skins)
 # END EXTRA RACES #
 
 # ADDITIONAL MODS #
 #F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
-#F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended)
-#F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
 #F-011_mod-druid-forms # Off by default (pseudo-druid forms for ARAC druids; Troll forms are in F-084)
 #F-084_troll_druid # Off by default (playable Troll druids with their Cataclysm forms, without the rest of ARAC)
 #F-085_tree_of_life # Off by default (Cataclysm lumbering oak Tree of Life per race instead of the treant; keep after the race modpaks and F-011/F-084)
@@ -116,6 +118,8 @@ F-051_mod-playable-ice-troll
 #F-015_mod-instamount # Off by default
 F-026_custom-race-support # required for any custom race to function correctly
 #F-002_mod-arac # Off by default
+#F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended; keep after F-002, which re-adds the Blood Elf and Draenei starts on map 530 for its move scripts to relocate)
+#F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
 #F-087_undead_paladin # Off by default (playable Undead paladins with Forsaken paladin mounts; keep after F-026 and F-002)
 #F-003_mod-faction-free # Off by default (core patch in patches/core)
 #F-088_mod-two-names # Off by default (hooks for the separate mod-two-names module; core patch in patches/core, client patch in patches/client)

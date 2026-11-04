@@ -15,4 +15,4 @@
     - Mount vendors: see F-093_racial-mount-vendors
 
 ### Known Issues
-- Alpha goblin is not yet implemented
+- Alpha goblin: see F-095_alpha-goblin-assets (tentative)

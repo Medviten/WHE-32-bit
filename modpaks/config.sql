@@ -476,6 +476,10 @@ SET @AllianceDracthyrMask                                      =   0; -- F-073
 SET @AllianceDracthyrHelmetMask                                =   0;
 SET @HordeDracthyrMask                                         =   0; -- F-074
 SET @HordeDracthyrHelmetMask                                   =   0;
+SET @CultistMask                                                =   0; -- F-096
+SET @CultistHelmetMask                                          =   0;
+SET @ManariMask                                                 =   0; -- F-097
+SET @ManariHelmetMask                                           =   0;
 
 -- New Race Models
 SET @NextModelID                                               =    39999;
@@ -807,6 +811,10 @@ SET @AllianceDracthyrMaleDisplayExtra                          =    @NextDisplay
 SET @AllianceDracthyrFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @HordeDracthyrMaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @HordeDracthyrFemaleDisplayExtra                           =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CultistMaleDisplayExtra                                    =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CultistFemaleDisplayExtra                                  =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ManariMaleDisplayExtra                                     =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ManariFemaleDisplayExtra                                   =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -924,6 +932,8 @@ SET @BansheeRacials                                            =      838;
 SET @FacelessOneRacials                                        =      839;
 SET @AllianceDracthyrRacials                                   =      840;
 SET @HordeDracthyrRacials                                      =      841;
+SET @CultistRacials                                             =   842;
+SET @ManariRacials                                              =   843;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1440,6 +1450,8 @@ SET @BansheeRacialSkillRaceClass                               =     1179;
 SET @FacelessOneRacialSkillRaceClass                           =     1180;
 SET @AllianceDracthyrRacialSkillRaceClass                      =     1183;
 SET @HordeDracthyrRacialSkillRaceClass                         =     1189; -- 1184-1188 are taken
+SET @CultistRacialSkillRaceClass                                =   1190;
+SET @ManariRacialSkillRaceClass                                 =   1191;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1577,6 +1589,10 @@ SET @StarcursedVoidstriderModel                                =     @NextModelI
 SET @ForsakenWarhorseModel                                      =     @NextModelID := @NextModelID +1; -- F-087
 SET @ForsakenChargerModel                                       =     @NextModelID := @NextModelID +1; -- F-087
 SET @DruidManaWurmModel                                         =     @NextModelID := @NextModelID +1; -- F-011
+SET @CultistMaleModel                                           =   @NextModelID := @NextModelID +1;
+SET @CultistFemaleModel                                         =   @NextModelID := @NextModelID +1;
+SET @ManariMaleModel                                            =   @NextModelID := @NextModelID +1;
+SET @ManariFemaleModel                                          =   @NextModelID := @NextModelID +1;
 
 -- Mount Display IDs
 SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
@@ -1625,6 +1641,10 @@ SET @DruidLynxSkinRedDisplay                                   =    @NextDisplay
 SET @DruidDragonHawkSkinDisplay                                =    @NextDisplayID := @NextDisplayID +1; -- F-011
 SET @DruidDragonHawkSkin01Display                              =    @NextDisplayID := @NextDisplayID +1; -- F-011
 SET @DruidManaWurmSkinDisplay                                  =    @NextDisplayID := @NextDisplayID +1; -- F-011
+SET @CultistMaleDisplay                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @CultistFemaleDisplay                                       =   @NextDisplayID := @NextDisplayID +1;
+SET @ManariMaleDisplay                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @ManariFemaleDisplay                                        =   @NextDisplayID := @NextDisplayID +1;
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
@@ -1933,6 +1953,8 @@ SET @BansheeFactionTemplate                                    =     2288; -- Re
 SET @FacelessOneFactionTemplate                                =     2289; -- References @FacelessOnePlayer
 SET @AllianceDracthyrFactionTemplate                           =     2290; -- References @AllianceDracthyrPlayer
 SET @HordeDracthyrFactionTemplate                              =     2291; -- References @HordeDracthyrPlayer
+SET @CultistFactionTemplate                                     =   2292; -- References @CultistPlayer
+SET @ManariFactionTemplate                                      =   2293; -- References @ManariPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1990,6 +2012,8 @@ SET @BansheeFactionRepIndex                                    =    156;
 SET @FacelessOneFactionRepIndex                                =    157;
 SET @AllianceDracthyrFactionRepIndex                           =    158;
 SET @HordeDracthyrFactionRepIndex                              =    159;
+SET @CultistFactionRepIndex                                     =   160;
+SET @ManariFactionRepIndex                                      =   161;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -2051,6 +2075,8 @@ SET @BansheeAchievement                                        =    1523;
 SET @FacelessOneAchievement                                    =    1528;
 SET @AllianceDracthyrAchievement                               =     1529;
 SET @HordeDracthyrAchievement                                  =     1530;
+SET @CultistAchievement                                         =   1531;
+SET @ManariAchievement                                          =   1533;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -2290,6 +2316,14 @@ SET @HordeDracthyrCriteria1                                    =    19418; -- Ac
 SET @HordeDracthyrCriteria2                                    =    19419; -- Achievement 2422: Shake Your Bunny-Maker
 SET @HordeDracthyrCriteria3                                    =    19420; -- Achievement 291: Check Your Head
 SET @HordeDracthyrCriteria4                                    =    19421; -- @HordeDracthyrAchievement: Realm First! Level 80 Dracthyr
+SET @CultistCriteria1                                           =   19422; -- Achievement 1005: Know Thy Enemy
+SET @CultistCriteria2                                           =   19423; -- Achievement 2422: Shake Your Bunny-Maker
+SET @CultistCriteria3                                           =   19424; -- Achievement 291: Check Your Head
+SET @CultistCriteria4                                           =   19425; -- @CultistAchievement: Realm First! Level 80 Cultist
+SET @ManariCriteria1                                            =   19426; -- Achievement 1005: Know Thy Enemy
+SET @ManariCriteria2                                            =   19427; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ManariCriteria3                                            =   19428; -- Achievement 291: Check Your Head
+SET @ManariCriteria4                                            =   19429; -- @ManariAchievement: Realm First! Level 80 Man'ari
 
 -- Classes
 SET @Warrior                                                   =      1;

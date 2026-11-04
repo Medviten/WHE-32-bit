@@ -23,7 +23,7 @@
 - Two Forms is not yet implemented correctly
 - Worgen currently start the game in wolf form, though there are spells to make them pseudo-humans
 - Worgen mount vendor not yet implemented correctly
-- Alpha worgen not yet implemented
+- Alpha worgen: see F-094_alpha-worgen-assets (tentative)
 
 ### CoA Custom 1.9 racials
 - Commented out (the race already has its Cataclysm racials); remove the comment markers in the CoA blocks to use them
