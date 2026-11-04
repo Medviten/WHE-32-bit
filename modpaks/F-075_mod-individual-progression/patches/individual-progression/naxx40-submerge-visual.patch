@@ -1,0 +1,13 @@
+diff --git a/data/sql/world/base/naxx40_spells.sql b/data/sql/world/base/naxx40_spells.sql
+index 9e37da6..35465e0 100644
+--- a/data/sql/world/base/naxx40_spells.sql
++++ b/data/sql/world/base/naxx40_spells.sql
+@@ -170,7 +170,7 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (26046, 'spel
+ 
+ -- Generic Spell Submerge
+ -- relinquery of souls and eye stalk TC: https://github.com/search?q=repo%3ATrinityCore%2FTrinityCore%20spell_reliquary_of_souls_submerge&type=code
+-DELETE FROM `spell_script_names` WHERE `spell_id` IN (26234, 28819);
++DELETE FROM `spell_script_names` WHERE `spell_id` IN (26234, 28819) AND `ScriptName` = 'spell_submerge_visual_aura';
+ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
+ (26234, 'spell_submerge_visual_aura'),
+ (28819, 'spell_submerge_visual_aura');

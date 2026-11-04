@@ -1,4 +1,4 @@
--- [F-011] mod-druid-forms: creaturedisplayinfo: 21 inserts, 0 updates, 0 deletes
+-- [F-011] mod-druid-forms: creaturedisplayinfo: 19 inserts, 0 updates, 0 deletes
 
 -- New entries
 /* Cataclysm Druid forms (Troll ones are in F-084, Worgen ones in F-024) */
@@ -29,3 +29,14 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidLasherOrchidSkinGreen, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinGreen', '', '', '', -1, 0, 0, 0, 0, 0), -- 94145
 (@DruidLasherOrchidSkinBrown, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinBrown', '', '', '', -1, 0, 0, 0, 0, 0), -- 94146
 (@DruidLasherOrchidSkinPurple, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinPurple', '', '', '', -1, 0, 0, 0, 0, 0); -- 94147
+
+/* Blood Elf Druid Forms: Sunstrider Isle / Eversong fauna, scaled to the Night Elf forms. Same textures as the creatures' own displays */
+-- Scale, stand pose: cat 0.92 = Night Elf cat's 3.4 yd length (Springpaw Lynx's 15506 is 0.85), dragonhawks 0.8 = Storm Crow's 6.8 yd wingspan (Feral Hatchling's 17547 is 0.85, Crazed Dragonhawk's 17545 is 1), mana wyrm 3.2 = twice Sunstrider's Mana Wyrm 16217, about the Sea Lion's length
+DELETE FROM `creaturedisplayinfo` WHERE `id` IN (
+    @DruidLynxSkinRedDisplay, @DruidDragonHawkSkinDisplay, @DruidDragonHawkSkin01Display, @DruidManaWurmSkinDisplay
+);
+INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
+(@DruidLynxSkinRedDisplay,      3143, 0, 0, 0.92, 255, 'LynxSkinRed',         'LynxEyeGlow', '', '', -1, 0, 0, 0, 0, 0), -- Springpaw Lynx
+(@DruidDragonHawkSkinDisplay,   2363, 0, 0,  0.8, 255, 'DragonHawkSkin',      '',            '', '', -1, 0, 0, 0, 0, 0), -- Feral Dragonhawk Hatchling
+(@DruidDragonHawkSkin01Display, 2363, 0, 0,  0.8, 255, 'DragonHawkSkin01',    '',            '', '', -1, 0, 0, 0, 0, 0), -- Crazed Dragonhawk
+(@DruidManaWurmSkinDisplay,     2210, 0, 0,  3.2, 255, 'ManaWurmSkinSilver1', '',            '', '', -1, 0, 0, 0, 0, 0); -- Mana Wyrm

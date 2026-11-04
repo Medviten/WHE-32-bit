@@ -1620,6 +1620,10 @@ SET @NightborneManasaberDisplay                                =    @NextDisplay
 SET @StarcursedVoidstriderDisplay                              =    @NextDisplayID := @NextDisplayID +1;
 SET @ForsakenWarhorseDisplay                                   =    @NextDisplayID := @NextDisplayID +1; -- F-087
 SET @ForsakenChargerDisplay                                    =    @NextDisplayID := @NextDisplayID +1; -- F-087
+SET @DruidLynxSkinRedDisplay                                   =    @NextDisplayID := @NextDisplayID +1; -- F-011
+SET @DruidDragonHawkSkinDisplay                                =    @NextDisplayID := @NextDisplayID +1; -- F-011
+SET @DruidDragonHawkSkin01Display                              =    @NextDisplayID := @NextDisplayID +1; -- F-011
+SET @DruidManaWurmSkinDisplay                                  =    @NextDisplayID := @NextDisplayID +1; -- F-011
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;

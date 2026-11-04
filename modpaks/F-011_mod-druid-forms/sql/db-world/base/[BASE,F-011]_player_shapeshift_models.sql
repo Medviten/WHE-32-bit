@@ -16,6 +16,12 @@ REPLACE INTO `player_shapeshift_model` (
 (@FlightForm,      @Undead,    255,       2, @DragonWhelpSkinDiseasedDisplay), -- ModelID: DragonWhelpSkinDiseased
 (@SwiftFlightForm, @Undead,    255,       2, @DragonWhelpSkinDiseasedDisplay), -- ModelID: DragonWhelpSkinDiseased
 
+/* Blood Elf Druid Forms (no bear forms yet: they use SpellShapeshiftForm.dbc's default, the Night Elf bear) */
+(@CatForm,         @BloodElf,  255,       2, @DruidLynxSkinRedDisplay), -- ModelID: LynxSkinRed (Springpaw Lynx)
+(@AquaticForm,     @BloodElf,  255,       2, @DruidManaWurmSkinDisplay), -- ModelID: ManaWurmSkinSilver1 (Mana Wyrm)
+(@FlightForm,      @BloodElf,  255,       2, @DruidDragonHawkSkinDisplay), -- ModelID: DragonHawkSkin (Feral Dragonhawk Hatchling)
+(@SwiftFlightForm, @BloodElf,  255,       2, @DruidDragonHawkSkin01Display), -- ModelID: DragonHawkSkin01 (Crazed Dragonhawk)
+
 /* Gnome Druid Forms */
 (@TreeForm,        @Gnome,      1,        2, @DruidLasherOrchidSkinBrown), -- brown hair: LasherOrchidSkinBrown
 (@TreeForm,        @Gnome,      2,        2, @DruidLasherOrchidSkinBrown), -- gray hair: LasherOrchidSkinBrown
