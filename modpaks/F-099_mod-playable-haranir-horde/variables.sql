@@ -19,6 +19,8 @@ SET @HordeHaranirFlags = @TrollFlags;
 SET @HordeHaranirExplorationSound = @TrollExplorationSound;
 SET @HordeHaranirCinematicSequence = @TrollCinematicSequence;
 SET @HordeHaranirBlood = 1;
+SET @HordeHaranirMaleModelPath = 'custom\\haranir\\native\\male\\harronirmale.mdx';
+SET @HordeHaranirFemaleModelPath = 'custom\\haranir\\native\\female\\harronirfemale.mdx';
 SET @HordeHaranirFaction = 1313; -- vacant slot
 SET @HordeHaranirPlayer = 1314; -- vacant slot
 

@@ -19,6 +19,8 @@ SET @AllianceHaranirFlags = @NightElfFlags;
 SET @AllianceHaranirExplorationSound = @NightElfExplorationSound;
 SET @AllianceHaranirCinematicSequence = @NightElfCinematicSequence;
 SET @AllianceHaranirBlood = 1;
+SET @AllianceHaranirMaleModelPath = 'custom\\haranir\\native\\male\\harronirmale.mdx';
+SET @AllianceHaranirFemaleModelPath = 'custom\\haranir\\native\\female\\harronirfemale.mdx';
 SET @AllianceHaranirFaction = 1311; -- vacant slot
 SET @AllianceHaranirPlayer = 1312; -- vacant slot
 
