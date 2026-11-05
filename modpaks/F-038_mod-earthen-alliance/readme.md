@@ -5,9 +5,9 @@
 - Playable Earthen (Alliance)
     - Models and baked textures from the RetroPorter native set (custom\earthen\...)
     - Classes, start outfits, start position, action bars and stats copied from Dwarf
-    - Customization: 14 skin colours, 10 faces, 11 hair styles, 14 hair colours, 11 beard styles
+    - Customization: 196 skin colours (14 skins x 14 gems), 10 faces, 11 hair styles, 14 hair colours, 11 beard styles
     - The retail hair geosets (group 40) are renumbered to group 0, and hair colours are the male files shared by both genders; done by `tools/models/earthen_prep.py` in WHE-256-bit
-    - Gems follow the skin colour (14 colours, one per skin row's texture_3; needs the client's type 9 support) and all characters show the same gem shapes: the first variant for each body part, always on. Retail makes colour and shapes separate choices, defaulting to none
+    - Every skin and gem colour combination is its own skin colour (196, colour index = skin * 14 + gem; the gem is the skin row's texture_3 and needs the client's type 9 support), so the slider steps through all gems before the next skin. All characters show the same gem shapes: the first variant for each body part, always on. Retail makes colour and shapes separate choices, defaulting to none
     - Eye colour and eyesight are not available: all characters have the same eyes
 
 ### Known Issues

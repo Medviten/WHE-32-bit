@@ -55,8 +55,8 @@ F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requi
 #F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; the stock client shows the Orc model)
 #F-038_mod-earthen-alliance # Off by default (WIP – not ready)
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
-# Haranir Alliance
-# Haranir Horde
+#F-098_mod-playable-haranir-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-099_mod-playable-haranir-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
 # Skyborne Alliance
 # Skyborne Horde
 # END RETAIL RACES #

@@ -37,5 +37,6 @@ UPDATE `factiontemplate` SET `friend_group` = 6, `enemy_group` = 8 WHERE `id` IN
     @EtherealFactionTemplate,  @KyrianFactionTemplate,
     @VenthyrFactionTemplate,  @BansheeFactionTemplate,
     @FacelessOneFactionTemplate,  @AllianceDracthyrFactionTemplate,
-    @HordeDracthyrFactionTemplate
+    @HordeDracthyrFactionTemplate,  @AllianceHaranirFactionTemplate,
+    @HordeHaranirFactionTemplate
 );
