@@ -417,10 +417,12 @@ apply_db_placeholders() {
 extract_variable_names() {
     local file="$1"
     {
-        grep -aoiE 'SET[[:space:]]+@[A-Za-z_][A-Za-z0-9_]*[[:space:]]*=' "$file" \
-            | grep -aoiE '@[A-Za-z_][A-Za-z0-9_]*'
-        grep -aoiE '@[A-Za-z_][A-Za-z0-9_]*[[:space:]]*:=' "$file" \
-            | grep -aoiE '@[A-Za-z_][A-Za-z0-9_]*'
+        # Names may start with a digit (@2HMaceSkill): MySQL allows it, and
+        # skipping them left those variables NULL in every SQL file.
+        grep -aoiE 'SET[[:space:]]+@[A-Za-z0-9_]+[[:space:]]*=' "$file" \
+            | grep -aoiE '@[A-Za-z0-9_]+'
+        grep -aoiE '@[A-Za-z0-9_]+[[:space:]]*:=' "$file" \
+            | grep -aoiE '@[A-Za-z0-9_]+'
     } | sed 's/^@//' || true
 }
 
