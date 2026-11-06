@@ -1,0 +1,34 @@
+-- I-357 q25184 "Wild Mine Cart Ride" -- the player can steer the cart and it never
+-- follows the track.
+--
+-- Vehicle 688 (creature 39329 Mine Cart), seat idx 0 = 7625, flags 0x401088AF. That word
+-- carries VEHICLE_SEAT_FLAG_CAN_CONTROL (0x800), and on AzerothCore a PLAYER entering a
+-- 0x800 seat charms the vehicle:
+--
+--   Vehicle::AddPassenger (Vehicle.cpp:435) -> Creature::SetCharmedBy(CHARM_TYPE_VEHICLE)
+--
+-- Movement then belongs to the player's client, so `npc_zep_wild_mine_cart`'s
+-- MoveSplinePath down WildCartLeg1/Leg2 is overridden and the rider drives a free-roaming
+-- cart instead of riding the rails. Exactly the I-343 failure, on the identical flag word
+-- (bomber back seat 7575 was also 0x401088AF).
+--
+-- The port is faithful -- Cata VehicleSeat.dbc row 7625 is byte-for-byte 0x401088AF -- so
+-- this is not "Cata-bit disease"; retail simply drives that seat some other way. On our
+-- core the bit has to go.
+--
+-- Clear 0x800 and keep every other bit, as I-343 did:
+--   * no CAN_CAST (0x20000000) -> no vehicle action bar, which is right for a one-way
+--     scripted ride; the script ejects with 50630 at the end.
+--   * no CAN_ENTER_OR_EXIT (0x02000000) -> the rider still cannot step off mid-descent.
+--   * PASSENGER_NOT_SELECTABLE (0x100000) and the anim/exit bits are untouched.
+--
+-- Blast radius is nil: seat 7625 is referenced only by vehicle 688, and 39329 is the only
+-- creature on vehicle 688 (both checked). Seats 7626-7629 (the Greely/Ace/Izzy/Gobber
+-- companion seats) do not carry 0x800 and a creature passenger never charms anyway --
+-- the gate is unit->IsPlayer() -- so they are left alone.
+--
+-- The SERVER reads VehicleSeat.dbc too, so this needs the PATCH-Z rebuild and a
+-- worldserver restart, not just `dbc db apply`.
+
+-- 0x401088AF -> 0x401080AF
+UPDATE `vehicleseat` SET flags = 1074823343 WHERE id = 7625;

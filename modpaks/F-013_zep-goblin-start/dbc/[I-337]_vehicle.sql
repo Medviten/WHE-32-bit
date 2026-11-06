@@ -36,7 +36,7 @@
 --
 -- The row belongs to dbc/[AUTO,F-011]_vehicle.sql, so it is edited in place below.
 
-UPDATE vehicle SET
+UPDATE `vehicle` SET
   `flags` = 1730950775,
   `turn_speed` = 2.094,
   `pitch_speed` = 1.047,

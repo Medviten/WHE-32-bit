@@ -14,7 +14,7 @@
 --     first but its kit 9857 drags in the energy/lightning effect (4059).
 --     Per-tick hit feedback stays on 68213's stock visual 11022 (impact kit
 --     on the struck plants).
-UPDATE spell SET
+UPDATE `spell` SET
   effect_1 = 0,
   effect_apply_aura_name_1 = 0,
   effect_misc_value_a_1 = 0,

@@ -5,4 +5,4 @@
 -- ghost-explosion replay. The pinned UseStandingLoop release now comes from
 -- the shreddermount M2 animation-lookup alias instead (lookup[16] -> seq 54;
 -- stock kit 11144's anim 107 is beyond the M2's lookup and falls back to 16).
-DELETE FROM spellvisualkit WHERE id = 90144;
+DELETE FROM `spellvisualkit` WHERE id = 90144;

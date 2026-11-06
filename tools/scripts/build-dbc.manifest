@@ -119,7 +119,7 @@ F-051_mod-playable-ice-troll
 F-026_custom-race-support # required for any custom race to function correctly
 #F-002_mod-arac # Off by default
 #F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended; keep after F-002, which re-adds the Blood Elf and Draenei starts on map 530 for its move scripts to relocate)
-#F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
+#F-013_zep-goblin-start # Off by default (Kezan and the Lost Isles; requires F-010 and F-023, a core patch + recompile and client assets, see its readme; keep after F-002, whose extra classes it moves to Kezan too)
 #F-087_undead_paladin # Off by default (playable Undead paladins with Forsaken paladin mounts; keep after F-026 and F-002)
 #F-003_mod-faction-free # Off by default (core patch in patches/core)
 #F-088_mod-two-names # Off by default (hooks for the separate mod-two-names module; core patch in patches/core, client patch in patches/client)

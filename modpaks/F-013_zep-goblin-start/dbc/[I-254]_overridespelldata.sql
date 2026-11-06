@@ -2,8 +2,8 @@
 -- by 66908 Awesome Party Ensemble (aura 293). Id 122 matches the Cata source row
 -- and is free in stock 3.3.5a (stock has 8 sparse rows, e.g. 121 = Argent charger).
 -- flags=1 mirrors stock single-quest-bar row 121 and the 4.3.4 source value.
-DELETE FROM overridespelldata WHERE id = 122;
-INSERT INTO overridespelldata SET
+DELETE FROM `overridespelldata` WHERE id = 122;
+INSERT INTO `overridespelldata` SET
   id = 122,
   spellid_1 = 66909,
   spellid_2 = 66910,

@@ -19,10 +19,10 @@
 -- Requires: dbc db apply --changed + PATCH-Z rebuild to reach the client.
 
 -- Vashj'elan Warrior (38359), displays 31061-31064 -- skin_color 1 / 0 / 3 / 4
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15591.blp' WHERE id = 20692;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15590.blp' WHERE id = 20693;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15592.blp' WHERE id = 20694;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15593.blp' WHERE id = 20695;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15591.blp' WHERE id = 20692;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15590.blp' WHERE id = 20693;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15592.blp' WHERE id = 20694;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15593.blp' WHERE id = 20695;
 
 -- Vashj'elan Siren (38360), displays 31065-31068 -- race 13 gender 1, same defect on the HD
 -- naga_female.m2 (textures type 1 + type 8 'Gesicht'; the face is on the type-8 SKIN_EXTRA).
@@ -33,10 +33,10 @@ UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15593.blp' W
 -- exactly and only 20696 shifts, to the one donor colour left over (4). skin_color must move
 -- with the bake: it also selects the type-8 Extra texture, so leaving it at 0 would put a
 -- skin-0 face on a skin-4 body.
-UPDATE creaturedisplayinfoextra SET skin_color = 4, texture = 'CreatureDisplayExtra-15589.blp' WHERE id = 20696;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15586.blp' WHERE id = 20697;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15587.blp' WHERE id = 20698;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15588.blp' WHERE id = 20699;
+UPDATE `creaturedisplayinfoextra` SET skin_color = 4, texture = 'CreatureDisplayExtra-15589.blp' WHERE id = 20696;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15586.blp' WHERE id = 20697;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15587.blp' WHERE id = 20698;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15588.blp' WHERE id = 20699;
 
 -- Naga Hatchling (38412/44578/44588/44591), displays 31084/31086 -- male, model 2353.
 --
@@ -62,5 +62,5 @@ UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15588.blp' W
 -- Both bakes ship in PATCH-Z from this zpak, so restoring the name is sufficient. If the
 -- hatchling faces read wrong on the HD mesh, the fix is an HD donor bake as done for
 -- 20692-20699 above -- never a blank name on a flags-0 model.
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-20708.blp' WHERE id = 20708;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-20709.blp' WHERE id = 20709;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-20708.blp' WHERE id = 20708;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-20709.blp' WHERE id = 20709;

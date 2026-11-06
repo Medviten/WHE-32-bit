@@ -7,8 +7,8 @@
 -- own bar is overridden instead — the player casts Lightning Strike themselves,
 -- which also hard-guarantees quest kill credit. flags=1 mirrors stock
 -- single-quest-bar row 121.
-DELETE FROM overridespelldata WHERE id = 508;
-INSERT INTO overridespelldata SET
+DELETE FROM `overridespelldata` WHERE id = 508;
+INSERT INTO `overridespelldata` SET
   id = 508,
   spellid_1 = 68445,
   spellid_2 = 0,

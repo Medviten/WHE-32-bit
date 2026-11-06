@@ -9,10 +9,10 @@
 
 -- F-011 creaturedisplayinfoextra (one file per table; rows carry final state)
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19404;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19404;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19404,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -33,10 +33,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19404.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19405;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19405;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19405,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 3,
@@ -57,10 +57,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19405.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19406;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19406;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19406,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 0,
@@ -81,10 +81,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19406.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19407;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19407;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19407,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 3,
@@ -105,10 +105,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19407.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19408;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19408;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19408,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 1,
@@ -129,10 +129,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19408.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19434;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19434;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19434,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -153,10 +153,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19434.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19435;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19435;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19435,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 2,
@@ -177,10 +177,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19435.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19436;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19436;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19436,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 1,
@@ -201,10 +201,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19436.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19437;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19437;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19437,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 7,
   `face_type` = 3,
@@ -225,10 +225,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19437.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19478;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19478;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19478,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 1,
   `face_type` = 0,
@@ -249,10 +249,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19478.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19494;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19494;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19494,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -273,10 +273,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19494.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19495;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19495;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19495,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 1,
@@ -297,10 +297,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19495.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19496;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19496;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19496,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 3,
@@ -321,10 +321,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19496.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19497;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19497;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19497,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 3,
@@ -345,10 +345,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19497.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19498;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19498;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19498,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 0,
@@ -369,10 +369,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19498.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19499;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19499;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19499,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 0,
@@ -393,10 +393,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19499.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19500;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19500;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19500,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 0,
@@ -417,10 +417,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19500.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19507;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19507;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19507,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 0,
@@ -441,10 +441,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19507.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19511;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19511;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19511,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 7,
   `face_type` = 3,
@@ -465,10 +465,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19511.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19512;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19512;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19512,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 1,
@@ -489,10 +489,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19512.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19556;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19556;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19556,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 7,
   `face_type` = 0,
@@ -513,10 +513,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19556.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19557;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19557;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19557,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 3,
@@ -537,10 +537,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19557.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19580;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19580;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19580,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 0,
@@ -561,10 +561,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19580.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19581;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19581;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19581,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 2,
@@ -585,10 +585,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19581.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19583;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19583;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19583,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 3,
@@ -609,10 +609,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19583.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19584;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19584;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19584,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -633,10 +633,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19584.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19585;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19585;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19585,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 3,
@@ -657,10 +657,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19585.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19586;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19586;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19586,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 4,
@@ -681,10 +681,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19586.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19602;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19602;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19602,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 1,
@@ -705,10 +705,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19602.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19604;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19604;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19604,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 0,
@@ -729,10 +729,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19604.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19620;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19620;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19620,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 0,
   `face_type` = 0,
@@ -753,10 +753,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19620.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19622;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19622;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19622,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 2,
@@ -777,10 +777,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19622.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19623;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19623;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19623,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 0,
@@ -801,10 +801,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19623.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19656;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19656;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19656,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 3,
@@ -825,10 +825,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19656.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19657;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19657;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19657,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 4,
@@ -849,10 +849,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19657.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19658;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19658;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19658,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 7,
   `face_type` = 0,
@@ -873,10 +873,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19658.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19659;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19659;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19659,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 3,
@@ -897,10 +897,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19659.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19660;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19660;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19660,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 0,
@@ -921,10 +921,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19660.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19661;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19661;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19661,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 1,
@@ -945,10 +945,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19661.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19663;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19663;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19663,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 7,
   `face_type` = 3,
@@ -969,10 +969,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19663.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19665;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19665;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19665,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -993,10 +993,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19665.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19666;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19666;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19666,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 0,
   `face_type` = 0,
@@ -1017,10 +1017,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19666.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19667;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19667;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19667,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 0,
@@ -1041,10 +1041,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19667.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19671;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19671;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19671,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -1065,8 +1065,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19671.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19680;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19680;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19680,
   `race` = 1,
   `gender` = 0,
@@ -1087,10 +1087,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19680.blp';
+  `texture` = 'CreatureDisplayExtra-01937_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19681;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19681;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19681,
   `race` = 1,
   `gender` = 1,
@@ -1111,10 +1111,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19681.blp';
+  `texture` = 'CreatureDisplayExtra-09212_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19682;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19682;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19682,
   `race` = 3,
   `gender` = 0,
@@ -1135,12 +1135,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19682.blp';
+  `texture` = 'CreatureDisplayExtra-05936_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19771;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19771;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19771,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 0,
@@ -1161,10 +1161,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19771.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19798;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19798;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19798,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 4,
@@ -1185,10 +1185,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19798.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19799;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19799;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19799,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 4,
@@ -1209,8 +1209,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19799.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19809;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19809;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19809,
   `race` = 2,
   `gender` = 0,
@@ -1231,10 +1231,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19809.blp';
+  `texture` = 'CreatureDisplayExtra-09558_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19824;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19824;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19824,
   `race` = 2,
   `gender` = 1,
@@ -1255,10 +1255,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19824.blp';
+  `texture` = 'CreatureDisplayExtra-12203_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19835;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19835;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19835,
   `race` = 2,
   `gender` = 0,
@@ -1279,10 +1279,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19835.blp';
+  `texture` = 'CreatureDisplayExtra-00122_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19836;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19836;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19836,
   `race` = 2,
   `gender` = 0,
@@ -1303,10 +1303,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19836.blp';
+  `texture` = 'CreatureDisplayExtra-19579_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19837;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19837;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19837,
   `race` = 2,
   `gender` = 0,
@@ -1327,10 +1327,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19837.blp';
+  `texture` = 'CreatureDisplayExtra-01934_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19838;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19838;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19838,
   `race` = 2,
   `gender` = 1,
@@ -1351,10 +1351,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19838.blp';
+  `texture` = 'CreatureDisplayExtra-17555_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19841;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19841;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19841,
   `race` = 2,
   `gender` = 0,
@@ -1375,10 +1375,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19841.blp';
+  `texture` = 'CreatureDisplayExtra-09253_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19842;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19842;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19842,
   `race` = 2,
   `gender` = 0,
@@ -1399,10 +1399,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19842.blp';
+  `texture` = 'CreatureDisplayExtra-08250_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19843;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19843;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19843,
   `race` = 2,
   `gender` = 0,
@@ -1423,10 +1423,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19843.blp';
+  `texture` = 'CreatureDisplayExtra-00096_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19844;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19844;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19844,
   `race` = 2,
   `gender` = 0,
@@ -1447,10 +1447,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19844.blp';
+  `texture` = 'CreatureDisplayExtra-00091_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19845;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19845;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19845,
   `race` = 2,
   `gender` = 0,
@@ -1471,12 +1471,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19845.blp';
+  `texture` = 'CreatureDisplayExtra-09486_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19859;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19859;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19859,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 0,
@@ -1497,8 +1497,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19859.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19860;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19860;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19860,
   `race` = 1,
   `gender` = 0,
@@ -1519,10 +1519,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19860.blp';
+  `texture` = 'CreatureDisplayExtra-03246_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19861;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19861;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19861,
   `race` = 1,
   `gender` = 1,
@@ -1543,10 +1543,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19861.blp';
+  `texture` = 'CreatureDisplayExtra-00180_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19862;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19862;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19862,
   `race` = 1,
   `gender` = 0,
@@ -1567,10 +1567,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19862.blp';
+  `texture` = 'CreatureDisplayExtra-00155_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19863;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19863;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19863,
   `race` = 1,
   `gender` = 0,
@@ -1591,10 +1591,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19863.blp';
+  `texture` = 'CreatureDisplayExtra-00869_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19873;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19873;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19873,
   `race` = 2,
   `gender` = 0,
@@ -1615,10 +1615,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19873.blp';
+  `texture` = 'CreatureDisplayExtra-02832_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19874;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19874;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19874,
   `race` = 1,
   `gender` = 0,
@@ -1639,10 +1639,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19874.blp';
+  `texture` = 'CreatureDisplayExtra-03246_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19875;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19875;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19875,
   `race` = 1,
   `gender` = 0,
@@ -1663,10 +1663,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19875.blp';
+  `texture` = 'CreatureDisplayExtra-00155_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19876;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19876;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19876,
   `race` = 1,
   `gender` = 0,
@@ -1687,10 +1687,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19876.blp';
+  `texture` = 'CreatureDisplayExtra-00869_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19877;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19877;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19877,
   `race` = 1,
   `gender` = 1,
@@ -1711,10 +1711,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19877.blp';
+  `texture` = 'CreatureDisplayExtra-00180_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19878;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19878;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19878,
   `race` = 2,
   `gender` = 0,
@@ -1735,10 +1735,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19878.blp';
+  `texture` = 'CreatureDisplayExtra-09063_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19879;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19879;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19879,
   `race` = 2,
   `gender` = 0,
@@ -1759,10 +1759,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19879.blp';
+  `texture` = 'CreatureDisplayExtra-11743_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19880;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19880;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19880,
   `race` = 2,
   `gender` = 0,
@@ -1783,10 +1783,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19880.blp';
+  `texture` = 'CreatureDisplayExtra-02652_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19881;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19881;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19881,
   `race` = 2,
   `gender` = 1,
@@ -1807,10 +1807,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19881.blp';
+  `texture` = 'CreatureDisplayExtra-06807_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19886;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19886;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19886,
   `race` = 7,
   `gender` = 0,
@@ -1831,10 +1831,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19886.blp';
+  `texture` = 'CreatureDisplayExtra-03060_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19888;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19888;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19888,
   `race` = 1,
   `gender` = 0,
@@ -1855,10 +1855,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 7690,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19888.blp';
+  `texture` = 'CreatureDisplayExtra-01605_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19889;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19889;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19889,
   `race` = 1,
   `gender` = 0,
@@ -1879,10 +1879,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 7690,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19889.blp';
+  `texture` = 'CreatureDisplayExtra-15540_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19890;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19890;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19890,
   `race` = 1,
   `gender` = 0,
@@ -1903,10 +1903,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 7690,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19890.blp';
+  `texture` = 'CreatureDisplayExtra-02917_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19891;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19891;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19891,
   `race` = 1,
   `gender` = 1,
@@ -1927,10 +1927,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 7690,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19891.blp';
+  `texture` = 'CreatureDisplayExtra-17094_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19892;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19892;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19892,
   `race` = 1,
   `gender` = 0,
@@ -1951,12 +1951,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 7690,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19892.blp';
+  `texture` = 'CreatureDisplayExtra-11397_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19906;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19906;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19906,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 3,
@@ -1977,10 +1977,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19906.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19911;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19911;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19911,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 7,
   `face_type` = 0,
@@ -2001,10 +2001,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19911.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19942;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19942;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19942,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 0,
   `face_type` = 0,
@@ -2025,10 +2025,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19942.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19948;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19948;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19948,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2049,10 +2049,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19948.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19949;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19949;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19949,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 2,
@@ -2073,10 +2073,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19949.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19956;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19956;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19956,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 0,
@@ -2097,10 +2097,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19956.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19957;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19957;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19957,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 0,
@@ -2121,8 +2121,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19957.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19958;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19958;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19958,
   `race` = 2,
   `gender` = 0,
@@ -2143,12 +2143,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19958.blp';
+  `texture` = 'CreatureDisplayExtra-08646_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 19961;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 19961;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 19961,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 4,
@@ -2169,10 +2169,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-19961.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20055;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20055;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20055,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2193,10 +2193,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20055.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20066;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20066;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20066,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 6,
   `face_type` = 1,
@@ -2217,10 +2217,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20066.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20206;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20206;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20206,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 1,
@@ -2241,10 +2241,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20206.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20258;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20258;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20258,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 4,
@@ -2265,10 +2265,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20258.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20259;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20259;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20259,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2289,10 +2289,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20259.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20267;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20267;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20267,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 4,
@@ -2313,10 +2313,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20267.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20367;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20367;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20367,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 7,
   `face_type` = 0,
@@ -2337,10 +2337,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20367.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20455;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20455;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20455,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 7,
   `face_type` = 1,
@@ -2361,10 +2361,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20455.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20692;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20692;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20692,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 1,
   `face_type` = 0,
@@ -2385,10 +2385,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20692.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20693;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20693;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20693,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 0,
   `face_type` = 0,
@@ -2409,10 +2409,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20693.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20694;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20694;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20694,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2433,10 +2433,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20694.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20695;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20695;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20695,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 4,
   `face_type` = 0,
@@ -2457,10 +2457,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20695.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20696;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20696;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20696,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 0,
   `face_type` = 0,
@@ -2481,10 +2481,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20696.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20697;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20697;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20697,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 0,
@@ -2505,10 +2505,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20697.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20698;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20698;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20698,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 2,
   `face_type` = 0,
@@ -2529,10 +2529,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20698.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20699;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20699;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20699,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2553,10 +2553,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20699.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20708;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20708;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20708,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 1,
   `face_type` = 0,
@@ -2577,10 +2577,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20708.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20709;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20709;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20709,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 0,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2601,10 +2601,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20709.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20710;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20710;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20710,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 0,
@@ -2625,10 +2625,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20710.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20711;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20711;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20711,
-  `race` = 13,
+  `race` = @Naga,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 0,
@@ -2649,8 +2649,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20711.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20863;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20863;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20863,
   `race` = 1,
   `gender` = 0,
@@ -2671,12 +2671,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 24013,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-20863.blp';
+  `texture` = 'CreatureDisplayExtra-17522_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20864;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20864;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20864,
-  `race` = 12,
+  `race` = @Worgen,
   `gender` = 0,
   `skin_color` = 0,
   `face_type` = 0,
@@ -2697,8 +2697,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20864.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20865;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20865;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20865,
   `race` = 4,
   `gender` = 1,
@@ -2719,12 +2719,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 23042,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-20865.blp';
+  `texture` = 'CreatureDisplayExtra-19569_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 20892;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 20892;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 20892,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 7,
   `face_type` = 4,
@@ -2745,8 +2745,8 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20892.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22530;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22530;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22530,
   `race` = 3,
   `gender` = 0,
@@ -2767,10 +2767,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-22530.blp';
+  `texture` = 'CreatureDisplayExtra-18655_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22531;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22531;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22531,
   `race` = 3,
   `gender` = 0,
@@ -2791,10 +2791,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-22531.blp';
+  `texture` = 'CreatureDisplayExtra-09087_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22532;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22532;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22532,
   `race` = 3,
   `gender` = 1,
@@ -2815,10 +2815,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-22532.blp';
+  `texture` = 'CreatureDisplayExtra-09524_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22533;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22533;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22533,
   `race` = 7,
   `gender` = 0,
@@ -2839,12 +2839,12 @@ INSERT INTO creaturedisplayinfoextra SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-22533.blp';
+  `texture` = 'CreatureDisplayExtra-16684_HD.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22822;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22822;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22822,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 3,
@@ -2865,10 +2865,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-22822.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 22854;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 22854;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22854,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 3,
@@ -2889,10 +2889,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-22854.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23888;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23888;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23888,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 8,
   `face_type` = 4,
@@ -2913,10 +2913,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23888.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23889;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23889;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23889,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 5,
   `face_type` = 1,
@@ -2937,10 +2937,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23889.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23890;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23890;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23890,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 8,
   `face_type` = 1,
@@ -2961,10 +2961,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23890.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23891;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23891;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23891,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 6,
@@ -2985,10 +2985,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23891.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23983;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23983;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23983,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 3,
   `face_type` = 3,
@@ -3009,10 +3009,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23983.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23984;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23984;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23984,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 6,
@@ -3033,10 +3033,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23984.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23985;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23985;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23985,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 0,
   `face_type` = 9,
@@ -3057,10 +3057,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23985.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 23986;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 23986;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 23986,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 0,
@@ -3081,10 +3081,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-23986.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24033;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24033;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24033,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 1,
   `face_type` = 1,
@@ -3105,10 +3105,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24033.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24034;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24034;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24034,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 6,
   `face_type` = 3,
@@ -3129,10 +3129,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24034.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24035;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24035;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24035,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 6,
@@ -3153,10 +3153,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24035.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24036;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24036;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24036,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 8,
   `face_type` = 9,
@@ -3177,10 +3177,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24036.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24037;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24037;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24037,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 0,
   `face_type` = 0,
@@ -3201,10 +3201,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24037.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24038;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24038;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24038,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 2,
   `face_type` = 3,
@@ -3225,10 +3225,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24038.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24039;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24039;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24039,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 4,
   `face_type` = 5,
@@ -3249,10 +3249,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24039.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24040;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24040;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24040,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 1,
   `skin_color` = 5,
   `face_type` = 9,
@@ -3273,10 +3273,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24040.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24690;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24690;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24690,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 7,
   `face_type` = 4,
@@ -3297,10 +3297,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24690.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24852;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24852;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24852,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 11,
   `face_type` = 0,
@@ -3321,10 +3321,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24852.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24853;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24853;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24853,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 11,
   `face_type` = 0,
@@ -3345,10 +3345,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24853.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24854;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24854;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24854,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 11,
   `face_type` = 0,
@@ -3369,10 +3369,10 @@ INSERT INTO creaturedisplayinfoextra SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-24854.blp';
 
-DELETE FROM creaturedisplayinfoextra WHERE id = 24855;
-INSERT INTO creaturedisplayinfoextra SET
+DELETE FROM `creaturedisplayinfoextra` WHERE id = 24855;
+INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 24855,
-  `race` = 9,
+  `race` = @Goblin,
   `gender` = 0,
   `skin_color` = 11,
   `face_type` = 0,

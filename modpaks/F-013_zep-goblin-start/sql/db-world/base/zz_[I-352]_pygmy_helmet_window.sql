@@ -1,0 +1,56 @@
+-- I-352 "Pygmy Helmet" (spell 66987) — when the disguise is worn, and when it comes off.
+--
+-- Reported: on Whitemane the helmet drops as you take "Free the Captives" (24925) /
+-- "Send a Message" (24929), comes back on "Oomlot Dealt With" (24937), and comes off again
+-- at "Up the Volcano" (24940). Here it went on at 24924 and never came off — the aura is
+-- duration_index 21 (infinite) and nothing removed it.
+--
+-- That is not a Whitemane quirk, it is the shape of the chain: you wear a pygmy helmet
+-- while WALKING THROUGH pygmy country, and you take it off while doing hostile work in
+-- their village and once you are safely back in town. The quest text says so out loud —
+-- 24924's details "Your pygmy helmet looks like it's in bad shape, but it should last long
+-- enough for you to get there. I hope." and its offer-reward "$N? What are you doing
+-- wearing that pygmy helm? Looks like it's about to fall apart." — and the Neltharion
+-- changelog records the same behaviour as an explicit fix: "Pygmy Helmet only disappears
+-- after turning in Oomlot Village". Turning in 24924 to Izzy and taking 24925/24929 from
+-- her is one click apart, which is what makes the drop look like it belongs to 24925.
+--
+-- Windows implemented:
+--   24924 "Oomlot Village"    accept -> ON,  turn-in to Izzy   -> OFF
+--   24937 "Oomlot Dealt With" accept -> ON,  turn-in to Sassy  -> OFF  (= taking 24940)
+--
+-- WHY spell_area AND NOT SourceSpellID / RewardSpellCast:
+-- the donor drives this from `quest_template.SourceSpellId` (66987 on 24901 and 24924) plus
+-- TC's `RewardSpellCast = -1` convention, where learnQuestRewardedSpells() removes the
+-- source-spell aura on turn-in. AzerothCore has NEITHER half: there is no RewardSpellCast
+-- column (`GetRewSpellCast()` reads `RewardSpell`), and xinef's rewrite of
+-- Player::learnQuestRewardedSpells dropped the -1 branch entirely. So the donor's removal
+-- mechanism does not exist for us and porting the column would be meaningless.
+--
+-- spell_area is AC's own equivalent and covers the whole lifecycle from data: SendQuestUpdate
+-- autocasts a fitting row on quest accept, and AddQuest/CompleteQuest/RewardQuest/abandon all
+-- call UpdateAreaDependentAuras, which strips any owned aura whose SpellInfo::CheckLocation
+-- no longer fits a spell_area row. Same pattern as I-262's mook disguise, and the same
+-- 10/11 status masks as the retail sniff rows.
+--   quest_start_status 10 = COMPLETE|INCOMPLETE (in the log, not yet rewarded)
+--   quest_end_status   11 = NONE|COMPLETE|INCOMPLETE  (both masks are AND-required in AC,
+--                                                      see [[reference_spell_area_semantics]])
+-- area = 0 deliberately: the disguise is worn on the road between the town and the village,
+-- not inside one subzone, so there is no area to gate on.
+--
+-- 24901 keeps SourceSpellID 0 (I-337's documented divergence — a permanently friendly player
+-- cannot fight the Oomlot invasion from the turret). 24924 keeps its SourceSpellID 66987 from
+-- the AUTO file: it fires after AddQuest, i.e. after the spell_area row has already applied
+-- the aura, so it is a harmless refresh, not a second application.
+--
+-- Side effect to be aware of: a row with autocast=1 makes SpellMgr OR
+-- SPELL_ATTR0_NO_AURA_CANCEL onto 66987, so the player can no longer right-click the helmet
+-- off. That is correct for a quest disguise.
+--
+-- Gate warning: once ANY spell_area row exists for a spell, every cast of that spell fails
+-- SPELL_FAILED_INCORRECT_AREA unless a row fits. Verified 66987 has no other caster —
+-- no smart_scripts row, no spell_linked_spell row, no creature_template_addon aura.
+DELETE FROM `spell_area` WHERE spell = 66987;
+INSERT INTO `spell_area` (spell, area, quest_start, quest_end, aura_spell, racemask, gender, autocast, quest_start_status, quest_end_status) VALUES
+  (66987, 0, 24924, 24924, 0, 0, 2, 1, 10, 11),   -- worn from accepting Oomlot Village until it is turned in
+  (66987, 0, 24937, 24937, 0, 0, 2, 1, 10, 11);   -- worn again for the walk home, until Oomlot Dealt With is turned in

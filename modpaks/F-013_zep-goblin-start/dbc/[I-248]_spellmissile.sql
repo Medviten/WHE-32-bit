@@ -16,8 +16,8 @@
 -- via default_pitch_min 30deg -> 45deg instead — forbidding the low-branch
 -- solution so near dests solve on the steep lob. ID free: stock
 -- SpellMissile.dbc tops out at 2706. Ships in PATCH-Z.
-DELETE FROM spellmissile WHERE id = 90642;
-INSERT INTO spellmissile SET
+DELETE FROM `spellmissile` WHERE id = 90642;
+INSERT INTO `spellmissile` SET
   id = 90642,
   flags = 17,
   default_pitch_min = 0.7853981852531433,

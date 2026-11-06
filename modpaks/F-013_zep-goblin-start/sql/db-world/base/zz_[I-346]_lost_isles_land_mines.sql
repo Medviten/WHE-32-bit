@@ -1,0 +1,1462 @@
+-- I-346 quest 25058 "Mine Disposal, the Goblin Way" — the Land Mines were never spawned.
+--
+-- SYMPTOM (reported in game): no mines anywhere on the beach; the quest has no objectives
+-- to shoot at.
+--
+-- CAUSE: gameobjects.py takes GO spawns from the Neltharion 4.3.4 dump ONLY
+-- (`ctx.q("SELECT * FROM gameobject WHERE TRIM(zone)=...")`) — tdb434 is wired in as an
+-- overlay for creature movement/addons, never for GO spawns. Neltharion has **zero** rows
+-- for GO 202472; tdb434 has all 58. With no spawn to drive it the entry fell through to
+-- gameobjects.py block 04 ("quest-summoned GO templates, referenced by in-scope quests,
+-- not spawned"), which ships the template and nothing else. That is exactly what shipped:
+-- gameobject_template 202472 + smart_scripts + condition, and no `gameobject` row.
+--
+-- The 58 spawns below are the tdb434 rows (map 648, PhaseId 183, VerifiedBuild 30706)
+-- through the standard F-011 transform X-533.3333 / Y-12800.0, Z and orientation verbatim.
+-- Cross-checks, all clean:
+--   * every Z equals `zep world terrain height 1 <x> <y>` to <0.5y (58/58 exact) — the OA
+--     ADTs are the Cata ADTs, so the sniffed ground Z is our ground Z;
+--   * the resulting footprint X 958.6..1533.7 / Y -10008.0..-9809.1 matches quest_poi
+--     25058 polygon 0 (959..1534 / -10005..-9809) corner for corner.
+--
+-- phaseMask 32768: Cata PhaseId 183 maps to our 32768 — measured, not guessed. Of the 12
+-- creature entries that are PhaseId-183-only in tdb434, Neltharion spawns 103 of them at
+-- phaseMask 32768 and 31 at 49152 (= 32768|16384, dual-phase entries). Sassy Hardwrench
+-- 38387, who both offers and takes this quest, stands at 32768 on this beach.
+--
+-- state: the sniff has 48 rows at GO_STATE_READY and 10 at GO_STATE_ACTIVE, with a 300s
+-- respawn — the 10 are mines a player had already blown up when the sniff ran, not a
+-- design. All 58 ship READY (armed/resting), per reference_go_state_pose_is_unknowable.
+--
+-- Credit path verified in core, no script needed: spell 73417 -> 73425 effect 86
+-- SPELL_EFFECT_ACTIVATE_OBJECT with MiscValue 8 = GameObjectActions::Open ->
+-- `GameObject::Use()` -> GAMEOBJECT_TYPE_GOOBER. `goober.questId` (Data1) is 0, so the
+-- quest gate at GameObject.cpp:1684 is skipped and `KillCreditGO(202472, guid)` fires
+-- (GameObject.cpp:1709). Condition 13/1/73425 -> 31/0/5/202472 restricts the spell to
+-- these objects.
+--
+-- Guids 6950101-6950158: hand block, above the F-199/F-202 gathering nodes (max 6950062)
+-- and far above the AUTO sequential Lost Isles range (max 6000868). The AUTO file's
+-- DELETE is scoped `Comment LIKE '[gen F-011 Lost Isles]%%'`, so these rows carry their
+-- own comment and survive a regen.
+
+DELETE FROM `gameobject` WHERE id = 202472;
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950101,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1039.7967,
+  `position_y` = -9985.5800,
+  `position_z` = 11.1609,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239065)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950102,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1055.3367,
+  `position_y` = -9964.5400,
+  `position_z` = 11.7501,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239066)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950103,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1037.1267,
+  `position_y` = -9955.2400,
+  `position_z` = 12.1553,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239067)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950104,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 958.5567,
+  `position_y` = -9915.9500,
+  `position_z` = 1.5498,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239068)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950105,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1022.0767,
+  `position_y` = -9912.2900,
+  `position_z` = 4.8328,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239069)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950106,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1128.1167,
+  `position_y` = -9973.6400,
+  `position_z` = 11.7180,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239070)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950107,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 969.9067,
+  `position_y` = -9929.4700,
+  `position_z` = 9.2208,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239071)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950108,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1004.7267,
+  `position_y` = -9930.8800,
+  `position_z` = 8.5048,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239072)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950109,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 988.5367,
+  `position_y` = -9916.0800,
+  `position_z` = 5.5749,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239073)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950110,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1093.0167,
+  `position_y` = -9949.6800,
+  `position_z` = 6.5060,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239074)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950111,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1120.2167,
+  `position_y` = -9952.5800,
+  `position_z` = 9.6563,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239075)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950112,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1069.9367,
+  `position_y` = -9901.7600,
+  `position_z` = 4.1099,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239076)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950113,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1012.5267,
+  `position_y` = -9898.6400,
+  `position_z` = 3.8779,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239077)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950114,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 978.3067,
+  `position_y` = -9897.1800,
+  `position_z` = 1.2212,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239078)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950115,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1094.3667,
+  `position_y` = -9899.1400,
+  `position_z` = 3.9440,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239079)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950116,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1002.0967,
+  `position_y` = -9880.2700,
+  `position_z` = 0.4052,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239080)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950117,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1293.6367,
+  `position_y` = -9969.7800,
+  `position_z` = 10.8405,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239081)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950118,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1302.2567,
+  `position_y` = -9980.8000,
+  `position_z` = 9.6652,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239082)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950119,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1294.8867,
+  `position_y` = -10007.9500,
+  `position_z` = 10.8164,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239084)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950120,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1318.6467,
+  `position_y` = -10005.0100,
+  `position_z` = 9.0667,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239085)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950121,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1320.1167,
+  `position_y` = -9955.9100,
+  `position_z` = 6.1433,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239086)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950122,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1303.0167,
+  `position_y` = -9914.9600,
+  `position_z` = 7.2448,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239087)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950123,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1293.3767,
+  `position_y` = -9941.4900,
+  `position_z` = 10.9304,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239088)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950124,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1194.7167,
+  `position_y` = -9868.7100,
+  `position_z` = 0.7221,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239089)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950125,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1346.3767,
+  `position_y` = -9993.7100,
+  `position_z` = 7.4905,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239091)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950126,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1366.7367,
+  `position_y` = -9962.8900,
+  `position_z` = 2.1300,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239092)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950127,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1342.5567,
+  `position_y` = -9912.9400,
+  `position_z` = 3.1445,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239093)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950128,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1349.9467,
+  `position_y` = -9945.3000,
+  `position_z` = 3.3001,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239094)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950129,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1253.0967,
+  `position_y` = -9843.5800,
+  `position_z` = 2.3682,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239095)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950130,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1289.7667,
+  `position_y` = -9858.8400,
+  `position_z` = 5.4530,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239096)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950131,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1387.3467,
+  `position_y` = -9977.9500,
+  `position_z` = 3.1929,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239097)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950132,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1286.3867,
+  `position_y` = -9879.1200,
+  `position_z` = 8.6805,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239098)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950133,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1266.7367,
+  `position_y` = -9877.0700,
+  `position_z` = 7.2861,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239099)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950134,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1376.1767,
+  `position_y` = -9935.2700,
+  `position_z` = 0.6123,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239100)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950135,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1360.0067,
+  `position_y` = -9905.9600,
+  `position_z` = 2.1870,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239101)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950136,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1405.1867,
+  `position_y` = -9966.5900,
+  `position_z` = 1.2896,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239103)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950137,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1316.7267,
+  `position_y` = -9845.1600,
+  `position_z` = 3.7170,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239104)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950138,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1373.3167,
+  `position_y` = -9891.3200,
+  `position_z` = 1.0064,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239105)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950139,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1286.4367,
+  `position_y` = -9809.1000,
+  `position_z` = 1.0142,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239106)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950140,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1355.7367,
+  `position_y` = -9850.5000,
+  `position_z` = 1.4717,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239107)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950141,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1458.5167,
+  `position_y` = -9920.8400,
+  `position_z` = 1.0859,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239111)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950142,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1490.3367,
+  `position_y` = -9967.9400,
+  `position_z` = 7.5007,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239112)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950143,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1169.0667,
+  `position_y` = -9864.5100,
+  `position_z` = 0.6563,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239113)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950144,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1352.3467,
+  `position_y` = -9883.5300,
+  `position_z` = 3.4987,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239114)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950145,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1106.3267,
+  `position_y` = -9929.2000,
+  `position_z` = 6.6157,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239115)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950146,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1219.1767,
+  `position_y` = -9872.8500,
+  `position_z` = 2.4271,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239116)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950147,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1235.8667,
+  `position_y` = -9840.6400,
+  `position_z` = 0.2855,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239117)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950148,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1045.1267,
+  `position_y` = -9913.1400,
+  `position_z` = 4.9901,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239118)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950149,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1268.2667,
+  `position_y` = -9820.9700,
+  `position_z` = 1.4492,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239119)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950150,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1004.7267,
+  `position_y` = -9930.8800,
+  `position_z` = 8.5048,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239120)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950151,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1316.5767,
+  `position_y` = -9940.4900,
+  `position_z` = 5.9442,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239121)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950152,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1205.1267,
+  `position_y` = -9890.8500,
+  `position_z` = 5.0466,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239122)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950153,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1091.9967,
+  `position_y` = -9882.4100,
+  `position_z` = 2.9681,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239123)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950154,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1533.7367,
+  `position_y` = -9950.3400,
+  `position_z` = 1.6813,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239125)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950155,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1250.0067,
+  `position_y` = -9820.2500,
+  `position_z` = 0.4621,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239128)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950156,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1310.6767,
+  `position_y` = -9862.6100,
+  `position_z` = 5.8060,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239132)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950157,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1114.6067,
+  `position_y` = -9910.6600,
+  `position_z` = 5.5844,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239136)';
+
+INSERT INTO `gameobject` SET
+  `guid` = 6950158,
+  `id` = 202472,
+  `map` = 1,
+  `zoneId` = 0,
+  `areaId` = 0,
+  `spawnMask` = 1,
+  `phaseMask` = 32768,
+  `position_x` = 1458.3667,
+  `position_y` = -9947.3900,
+  `position_z` = 2.6614,
+  `orientation` = 0,
+  `rotation0` = 0,
+  `rotation1` = 0,
+  `rotation2` = 0,
+  `rotation3` = 1,
+  `spawntimesecs` = 300,
+  `animprogress` = 255,
+  `state` = 1,
+  `ScriptName` = '',
+  `VerifiedBuild` = 0,
+  `Comment` = '[I-346 F-011 Lost Isles] Land Mine (tdb434 guid 239137)';
+
+-- =========================================================================
+-- Template corrections — right-click credit, and the detonation hook
+-- =========================================================================
+-- `flags` = 4 (GO_FLAG_INTERACT_COND) — REPORTED: right-clicking a mine handed out quest
+-- credit with no explosion. Neltharion's own template carries flags **16**
+-- (GO_FLAG_NOT_SELECTABLE): retail's intent is that a land mine is not hand-clickable at
+-- all, you set it off with a grenade. gameobjects.py `_template_cols` never emitted the
+-- `flags` column, so every ported GO shipped flags 0 and the mine became clickable.
+--
+-- We cannot ship 16: AzerothCore opens `GameObject::Use()` with a xinef guard TrinityCore
+-- does not have — `if (HasGameObjectFlag(GO_FLAG_NOT_SELECTABLE)) return;` — which kills
+-- EVERY use path including spell effect 86 ACTIVATE_OBJECT, i.e. the grenade itself
+-- (reference_go_not_selectable_blocks_use, found on I-256 with the Kaja'mite deposits —
+-- the other shipped GO whose donor flags are 16). Flag 4 is the AC-correct translation of
+-- the same intent: the CLIENT refuses interaction (the flag BG doors use), while
+-- server-side only NOT_SELECTABLE is guarded, so the grenade still works.
+--
+-- `Data3` = 5000 (goober.autoCloseTime) from tdb434 — Neltharion has it as 0, and it is
+-- load-bearing three times over. `GameObject::Use()` only runs its close block when
+-- `GetAutoCloseTime()` is non-zero (GameObject.cpp:1717), and that block is what
+--   (a) fires `SetLootState(GO_ACTIVATED)` -> `AI()->OnStateChanged(2)` -> the SAI event
+--       70 below, which is why the shipped SAI row could never fire;
+--   (b) sets GO_FLAG_IN_USE, which the top of the goober branch checks — no re-grenading
+--       the same mine for repeat credit;
+--   (c) with `Data5` consumable = 1, retires the GO through GO_JUST_DEACTIVATED.
+--
+-- tdb434 also has `Data12` = 202463 (goober.linkedTrapId), a type-6 TRAP that casts the
+-- same spell 42807. Deliberately NOT shipped: `TriggeringLinkedGameObject` needs a
+-- *spawned* 202463 in range and neither donor spawns a single one, so it is dead data in
+-- both. The SAI cast below is the path that works on AC.
+--
+-- NOTE ON WHERE FLAGS LIVE: AzerothCore keeps GO faction/flags in
+-- `gameobject_template_addon`, not in `gameobject_template` (which has no such column).
+-- 202472 has no addon row at all today, so this file owns it outright — DELETE+INSERT.
+-- `Data3` is a real gameobject_template column and that row IS defined by the AUTO file,
+-- so it gets a single consolidated UPDATE.
+DELETE FROM `gameobject_template_addon` WHERE entry = 202472;
+INSERT INTO `gameobject_template_addon` SET
+  `entry` = 202472,
+  `faction` = 0,
+  `flags` = 4;
+
+UPDATE `gameobject_template` SET
+  `Data3` = 5000
+WHERE entry = 202472;
+
+-- =========================================================================
+-- Detonation — SmartGameObjectAI
+-- =========================================================================
+-- Replaces the emitted row, which was a dead end. The donor's design routes detonation
+-- through creature 75128 "Wondi's Bunny - Land Mine - Spawner" (56 spawns in Neltharion,
+-- each SUMMON_GO-ing a 202472 on itself — the tdb434 static mines are that summon, sniffed:
+-- 49 of the 56 bunnies sit at distance 0.00 from a tdb mine). The gen NOISE-filters "bunny"
+-- /"wondi" entries, so 75128 never shipped and the emitted `SET_DATA 1 1` on target 19
+-- (closest 75128 within 5y) can never resolve.
+--
+-- Porting the bunny verbatim would not help anyway: the branch of its SAI that actually
+-- casts 42807 is gated on SPELLHIT of spell **151165**, which exists in NEITHER the 4.3.4
+-- client nor 3.3.5a — a dangling gate that cannot fire in the donor either
+-- (reference_dangling_spellhit_gate). What the bunny path really delivers on a data-set is
+-- a despawn, not an explosion.
+--
+-- So the cast is hung on the hook AC actually fires. Event 70 with param1 = 2 is
+-- GO_ACTIVATED reaching `SmartGameObjectAI::OnStateChanged` (SmartAI.cpp:1494) — the same
+-- chain proven on I-256. Target 7 = ACTION_INVOKER is the player, passed through as the
+-- `unit` argument of SetLootState.
+--
+-- `SMART_ACTION_CAST` from a GAMEOBJECT source is supported: SmartScript.cpp:651 does
+-- `if (go) go->CastSpell(target->ToUnit(), spell)`. Because 42807 carries a TargetB on
+-- both effects, `GameObject::CastSpell` takes its non-self branch and summons a world
+-- trigger AT THE MINE to cast from (GameObject.cpp:2137) — which is what puts the
+-- explosion on the mine instead of on the player — and, with no GO owner, gives that
+-- trigger faction 14 (hostile) so the area targeting behaves.
+DELETE FROM `smart_scripts` WHERE source_type = 1 AND entryorguid = 202472;
+INSERT INTO `smart_scripts`
+  (entryorguid, source_type, id, link, event_type, event_phase_mask, event_chance, event_flags,
+   event_param1, event_param2, event_param3, event_param4, event_param5, event_param6,
+   action_type, action_param1, action_param2, action_param3, action_param4, action_param5, action_param6,
+   target_type, target_param1, target_param2, target_param3, target_param4,
+   target_x, target_y, target_z, target_o, comment)
+VALUES
+  (202472, 1, 0, 0, 70, 0, 100, 0, 2, 0, 0, 0, 0, 0,
+   11, 42807, 0, 0, 0, 0, 0,
+   7, 0, 0, 0, 0, 0, 0, 0, 0, 'Land Mine - On GO_ACTIVATED - Cast Detonate');

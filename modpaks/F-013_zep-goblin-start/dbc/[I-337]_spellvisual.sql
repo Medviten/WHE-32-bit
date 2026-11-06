@@ -16,7 +16,7 @@
 -- So 14135 goes back to its shipped values and 72206 back to 12925 (see [I-337]_spell.sql).
 -- 14135 is still referenced by no spell.
 
-UPDATE spellvisual SET
+UPDATE `spellvisual` SET
   `flags` = 1,
   `missile_motion` = 0,
   `impact_area_kit` = 4931

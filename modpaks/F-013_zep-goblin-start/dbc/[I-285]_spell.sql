@@ -7,4 +7,4 @@
 -- summon with no radius caveat. This DELETE stays so the spell never resurfaces
 -- from an old DB or a rebuild; id 900844 may be reclaimed for something else.
 
-DELETE FROM spell WHERE id = 900844;
+DELETE FROM `spell` WHERE id = 900844;

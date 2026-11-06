@@ -8,11 +8,11 @@
 -- elem 844, group 611, effect 828) — ported at original Cata ids, verbatim.
 -- Companion sound rows: [I-242]_soundentries.sql; ogg assets in the zpak mpq.
 
-DELETE FROM objecteffectpackage WHERE id = 492;
-INSERT INTO objecteffectpackage (`id`, `name`) VALUES (492, 'Goblinhotrod');
+DELETE FROM `objecteffectpackage` WHERE id = 492;
+INSERT INTO `objecteffectpackage` (`id`, `name`) VALUES (492, 'Goblinhotrod');
 
-DELETE FROM objecteffectgroup WHERE id IN (612, 614, 615, 616, 623, 649);
-INSERT INTO objecteffectgroup (`id`, `name`) VALUES
+DELETE FROM `objecteffectgroup` WHERE id IN (612, 614, 615, 616, 623, 649);
+INSERT INTO `objecteffectgroup` (`id`, `name`) VALUES
   (612, 'Goblinhotrod_idle'),
   (614, 'goblinhotrod_drive'),
   (615, 'Goblinhotrod_Jump'),
@@ -20,8 +20,8 @@ INSERT INTO objecteffectgroup (`id`, `name`) VALUES
   (623, 'Goblinhotrod_RevFromMotorCycle'),
   (649, 'GoblinTrike_VehicleImpact');
 
-DELETE FROM objecteffectpackageelem WHERE id IN (845, 857, 862, 866, 867, 874, 875, 876, 878, 879, 941, 964);
-INSERT INTO objecteffectpackageelem (`id`, `object_effect_package_id`, `object_effect_group_id`, `state_type`) VALUES
+DELETE FROM `objecteffectpackageelem` WHERE id IN (845, 857, 862, 866, 867, 874, 875, 876, 878, 879, 941, 964);
+INSERT INTO `objecteffectpackageelem` (`id`, `object_effect_package_id`, `object_effect_group_id`, `state_type`) VALUES
   (845, 492, 612, 19),
   (857, 492, 614, 34),
   (862, 492, 612, 25),
@@ -35,8 +35,8 @@ INSERT INTO objecteffectpackageelem (`id`, `object_effect_package_id`, `object_e
   (941, 492, 649, 35),
   (964, 492, 614, 12);
 
-DELETE FROM objecteffect WHERE id IN (830, 832, 833, 836, 837, 838, 841, 842, 843, 844, 846, 847, 848, 849, 861, 862, 911);
-INSERT INTO objecteffect (`id`, `name`, `object_effect_group_id`, `trigger_type`, `event_type`, `effect_rec_type`, `effect_rec_id`, `attachment`, `offset_x`, `offset_y`, `offset_z`, `object_effect_modifier_id`) VALUES
+DELETE FROM `objecteffect` WHERE id IN (830, 832, 833, 836, 837, 838, 841, 842, 843, 844, 846, 847, 848, 849, 861, 862, 911);
+INSERT INTO `objecteffect` (`id`, `name`, `object_effect_group_id`, `trigger_type`, `event_type`, `effect_rec_type`, `effect_rec_id`, `attachment`, `offset_x`, `offset_y`, `offset_z`, `object_effect_modifier_id`) VALUES
   (830, 'Idle', 612, 2, 0, 1, 18097, 0, 0, 0, 0, 0),
   (832, 'drive', 614, 2, 0, 1, 18096, 0, 0, 0, 0, 0),
   (833, 'Sputter', 614, 2, 0, 1, 18099, 0, 0, 0, 0, 0),

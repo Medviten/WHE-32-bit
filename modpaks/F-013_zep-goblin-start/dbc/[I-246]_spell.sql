@@ -29,14 +29,14 @@
 --
 -- Stock-row rule: the AUTO INSERTs are owned by dbc/[AUTO,F-011]_spell.sql —
 -- one consolidated UPDATE per id here.
-UPDATE spell SET
+UPDATE `spell` SET
   effect_amplitude_2 = 10000,
   effect_trigger_spell_2 = 69971,
   effect_implicit_target_a_2 = 25,
   effect_misc_value_a_3 = 37179
 WHERE id = 70016;
 
-UPDATE spell SET
+UPDATE `spell` SET
   effect_2 = 28,
   effect_die_sides_2 = 1,
   effect_misc_value_a_2 = 37114,
@@ -49,10 +49,10 @@ UPDATE spell SET
   effect_implicit_target_a_3 = 46
 WHERE id = 69971;
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 13175
 WHERE id = 69992;
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 11015
 WHERE id = 69993;

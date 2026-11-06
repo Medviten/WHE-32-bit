@@ -12,10 +12,10 @@
 --         = eat-the-banana precast, then Bomb Explosion + Immolate, plus a white
 --         smoke flare state.
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 11368
 WHERE id = 67917;
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 90051
 WHERE id = 67919;

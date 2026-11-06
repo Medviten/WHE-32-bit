@@ -1,0 +1,2782 @@
+{
+  "_comment": "I-376 ramp from the Bilgewater Lumber Yard floor up onto the shelf toward Lost Peak. Band between two in-game .gps edges: west lower (1791.1648, -10943.389, 39.913) -> upper (1797.6177, -10972.466, 55.125); east lower (1804.1101, -10933.831, 35.768) -> upper (1811.4805, -10970.815, 50.476). terrain_raise only (never lowers). 6 ramp lines 3 yd apart across the band; on each, points 1 yd apart from 12 yd before the lower end to the upper end. Each line's target is the lowest surface that stays >= the stock ground and never climbs steeper than 28 deg (backward pass from the top, so a step in the ground is met by raising the approach before it). Each point carries the target from inner (4 yd) behind it, because a raised disk lifts the ground ahead of it by its inner radius; outer 7. Simulated: every line <= ~32 deg over any 1 yd except the west edge 33.6; max raise ~9 yd. Tested in PATCH-Z on a copy of the stock Open Azeroth tile and approved by the user (2026-10-08); now applied to the patch-open-azeroth tile and shipped in PATCH-O (--build). The recipe lives with the I-376 hunter chain. Server maps/vmaps/mmaps for tile 52_28 still need re-extracting.",
+  "target_zpak": "patch-open-azeroth",
+  "placements": {
+    "WORLD/MAPS/KALIMDOR/KALIMDOR_52_28.ADT": {
+      "base_sha256": "18d41edf64668143749b34a071b76d9d3c5afe5125fe39407b42a7b58c4038de",
+      "result_sha256": "a0f2f95972bb97ffc2a5195cf92606c677c93d7cf746b54b8ef6d0ae4706376c",
+      "terrain_raise": [
+        {
+          "center": [
+            1788.56,
+            -10931.67
+          ],
+          "z": 38.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1788.78,
+            -10932.65
+          ],
+          "z": 38.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1789.0,
+            -10933.63
+          ],
+          "z": 38.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1789.21,
+            -10934.6
+          ],
+          "z": 38.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1789.43,
+            -10935.58
+          ],
+          "z": 38.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1789.65,
+            -10936.56
+          ],
+          "z": 38.5,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1789.86,
+            -10937.53
+          ],
+          "z": 38.59,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1790.08,
+            -10938.51
+          ],
+          "z": 38.67,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1790.3,
+            -10939.48
+          ],
+          "z": 38.76,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1790.51,
+            -10940.46
+          ],
+          "z": 38.84,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1790.73,
+            -10941.44
+          ],
+          "z": 39.3,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1790.95,
+            -10942.41
+          ],
+          "z": 39.83,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.16,
+            -10943.39
+          ],
+          "z": 40.37,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.38,
+            -10944.37
+          ],
+          "z": 40.9,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.6,
+            -10945.34
+          ],
+          "z": 41.43,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.81,
+            -10946.32
+          ],
+          "z": 41.96,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.03,
+            -10947.29
+          ],
+          "z": 42.49,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.25,
+            -10948.27
+          ],
+          "z": 43.02,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.46,
+            -10949.25
+          ],
+          "z": 43.56,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.68,
+            -10950.22
+          ],
+          "z": 44.09,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.9,
+            -10951.2
+          ],
+          "z": 44.62,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.11,
+            -10952.18
+          ],
+          "z": 45.15,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.33,
+            -10953.15
+          ],
+          "z": 45.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.55,
+            -10954.13
+          ],
+          "z": 46.21,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.76,
+            -10955.1
+          ],
+          "z": 46.75,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.98,
+            -10956.08
+          ],
+          "z": 47.28,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.2,
+            -10957.06
+          ],
+          "z": 47.81,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.41,
+            -10958.03
+          ],
+          "z": 48.34,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.63,
+            -10959.01
+          ],
+          "z": 48.87,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.85,
+            -10959.99
+          ],
+          "z": 49.4,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.06,
+            -10960.96
+          ],
+          "z": 49.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.28,
+            -10961.94
+          ],
+          "z": 50.47,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.5,
+            -10962.91
+          ],
+          "z": 51.0,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.71,
+            -10963.89
+          ],
+          "z": 51.53,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.93,
+            -10964.87
+          ],
+          "z": 52.06,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.15,
+            -10965.84
+          ],
+          "z": 52.59,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.36,
+            -10966.82
+          ],
+          "z": 53.13,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.58,
+            -10967.8
+          ],
+          "z": 53.52,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.8,
+            -10968.77
+          ],
+          "z": 53.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.01,
+            -10969.75
+          ],
+          "z": 54.37,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.23,
+            -10970.72
+          ],
+          "z": 54.73,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.45,
+            -10971.7
+          ],
+          "z": 54.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.22,
+            -10929.75
+          ],
+          "z": 37.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.43,
+            -10930.73
+          ],
+          "z": 37.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.64,
+            -10931.7
+          ],
+          "z": 37.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1791.85,
+            -10932.68
+          ],
+          "z": 37.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.06,
+            -10933.66
+          ],
+          "z": 37.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.27,
+            -10934.64
+          ],
+          "z": 37.55,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.48,
+            -10935.61
+          ],
+          "z": 37.64,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.7,
+            -10936.59
+          ],
+          "z": 37.75,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1792.91,
+            -10937.57
+          ],
+          "z": 37.87,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.12,
+            -10938.55
+          ],
+          "z": 37.98,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.33,
+            -10939.52
+          ],
+          "z": 38.09,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.54,
+            -10940.5
+          ],
+          "z": 38.21,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.75,
+            -10941.48
+          ],
+          "z": 38.74,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.97,
+            -10942.45
+          ],
+          "z": 39.28,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.18,
+            -10943.43
+          ],
+          "z": 39.81,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.39,
+            -10944.41
+          ],
+          "z": 40.34,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.6,
+            -10945.39
+          ],
+          "z": 40.87,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.81,
+            -10946.36
+          ],
+          "z": 41.4,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.02,
+            -10947.34
+          ],
+          "z": 41.93,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.23,
+            -10948.32
+          ],
+          "z": 42.47,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.45,
+            -10949.3
+          ],
+          "z": 43.0,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.66,
+            -10950.27
+          ],
+          "z": 43.53,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.87,
+            -10951.25
+          ],
+          "z": 44.06,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.08,
+            -10952.23
+          ],
+          "z": 44.59,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.29,
+            -10953.21
+          ],
+          "z": 45.12,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.5,
+            -10954.18
+          ],
+          "z": 45.66,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.72,
+            -10955.16
+          ],
+          "z": 46.19,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.93,
+            -10956.14
+          ],
+          "z": 46.72,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.14,
+            -10957.12
+          ],
+          "z": 47.25,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.35,
+            -10958.09
+          ],
+          "z": 47.78,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.56,
+            -10959.07
+          ],
+          "z": 48.31,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.77,
+            -10960.05
+          ],
+          "z": 48.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.99,
+            -10961.02
+          ],
+          "z": 49.38,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.2,
+            -10962.0
+          ],
+          "z": 49.91,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.41,
+            -10962.98
+          ],
+          "z": 50.44,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.62,
+            -10963.96
+          ],
+          "z": 50.97,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.83,
+            -10964.93
+          ],
+          "z": 51.5,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.04,
+            -10965.91
+          ],
+          "z": 52.04,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.25,
+            -10966.89
+          ],
+          "z": 52.57,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.47,
+            -10967.87
+          ],
+          "z": 52.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.68,
+            -10968.84
+          ],
+          "z": 53.11,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.89,
+            -10969.82
+          ],
+          "z": 53.33,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.1,
+            -10970.8
+          ],
+          "z": 53.5,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.31,
+            -10971.78
+          ],
+          "z": 53.55,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1793.86,
+            -10927.83
+          ],
+          "z": 36.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.07,
+            -10928.8
+          ],
+          "z": 36.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.27,
+            -10929.78
+          ],
+          "z": 36.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.48,
+            -10930.76
+          ],
+          "z": 36.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.69,
+            -10931.74
+          ],
+          "z": 36.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1794.89,
+            -10932.72
+          ],
+          "z": 36.82,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.1,
+            -10933.7
+          ],
+          "z": 36.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.31,
+            -10934.67
+          ],
+          "z": 37.07,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.52,
+            -10935.65
+          ],
+          "z": 37.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.72,
+            -10936.63
+          ],
+          "z": 37.33,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1795.93,
+            -10937.61
+          ],
+          "z": 37.44,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.14,
+            -10938.59
+          ],
+          "z": 37.53,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.34,
+            -10939.57
+          ],
+          "z": 37.81,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.55,
+            -10940.54
+          ],
+          "z": 38.34,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.76,
+            -10941.52
+          ],
+          "z": 38.88,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.96,
+            -10942.5
+          ],
+          "z": 39.41,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.17,
+            -10943.48
+          ],
+          "z": 39.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.38,
+            -10944.46
+          ],
+          "z": 40.47,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.58,
+            -10945.44
+          ],
+          "z": 41.0,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.79,
+            -10946.41
+          ],
+          "z": 41.53,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.0,
+            -10947.39
+          ],
+          "z": 42.07,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.21,
+            -10948.37
+          ],
+          "z": 42.6,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.41,
+            -10949.35
+          ],
+          "z": 43.13,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.62,
+            -10950.33
+          ],
+          "z": 43.66,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.83,
+            -10951.31
+          ],
+          "z": 44.19,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.03,
+            -10952.28
+          ],
+          "z": 44.73,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.24,
+            -10953.26
+          ],
+          "z": 45.26,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.45,
+            -10954.24
+          ],
+          "z": 45.79,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.65,
+            -10955.22
+          ],
+          "z": 46.32,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.86,
+            -10956.2
+          ],
+          "z": 46.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.07,
+            -10957.18
+          ],
+          "z": 47.38,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.28,
+            -10958.15
+          ],
+          "z": 47.92,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.48,
+            -10959.13
+          ],
+          "z": 48.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.69,
+            -10960.11
+          ],
+          "z": 48.98,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.9,
+            -10961.09
+          ],
+          "z": 49.51,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.1,
+            -10962.07
+          ],
+          "z": 50.04,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.31,
+            -10963.05
+          ],
+          "z": 50.57,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.52,
+            -10964.02
+          ],
+          "z": 51.11,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.72,
+            -10965.0
+          ],
+          "z": 51.64,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.93,
+            -10965.98
+          ],
+          "z": 52.17,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.14,
+            -10966.96
+          ],
+          "z": 52.52,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.34,
+            -10967.94
+          ],
+          "z": 52.63,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.55,
+            -10968.92
+          ],
+          "z": 52.71,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.76,
+            -10969.89
+          ],
+          "z": 52.74,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.97,
+            -10970.87
+          ],
+          "z": 52.75,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.5,
+            -10925.9
+          ],
+          "z": 35.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.7,
+            -10926.88
+          ],
+          "z": 35.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1796.9,
+            -10927.86
+          ],
+          "z": 35.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.11,
+            -10928.84
+          ],
+          "z": 35.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.31,
+            -10929.82
+          ],
+          "z": 35.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.51,
+            -10930.8
+          ],
+          "z": 36.08,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.72,
+            -10931.78
+          ],
+          "z": 36.22,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1797.92,
+            -10932.76
+          ],
+          "z": 36.35,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.12,
+            -10933.74
+          ],
+          "z": 36.49,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.32,
+            -10934.72
+          ],
+          "z": 36.9,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.53,
+            -10935.7
+          ],
+          "z": 37.44,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.73,
+            -10936.67
+          ],
+          "z": 37.97,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1798.93,
+            -10937.65
+          ],
+          "z": 38.5,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.13,
+            -10938.63
+          ],
+          "z": 39.03,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.34,
+            -10939.61
+          ],
+          "z": 39.56,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.54,
+            -10940.59
+          ],
+          "z": 40.09,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.74,
+            -10941.57
+          ],
+          "z": 40.63,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.95,
+            -10942.55
+          ],
+          "z": 41.16,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.15,
+            -10943.53
+          ],
+          "z": 41.69,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.35,
+            -10944.51
+          ],
+          "z": 42.22,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.55,
+            -10945.49
+          ],
+          "z": 42.75,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.76,
+            -10946.47
+          ],
+          "z": 43.29,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.96,
+            -10947.45
+          ],
+          "z": 43.82,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.16,
+            -10948.43
+          ],
+          "z": 44.35,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.37,
+            -10949.4
+          ],
+          "z": 44.88,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.57,
+            -10950.38
+          ],
+          "z": 45.41,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.77,
+            -10951.36
+          ],
+          "z": 45.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.97,
+            -10952.34
+          ],
+          "z": 46.48,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.18,
+            -10953.32
+          ],
+          "z": 47.01,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.38,
+            -10954.3
+          ],
+          "z": 47.54,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.58,
+            -10955.28
+          ],
+          "z": 48.07,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.78,
+            -10956.26
+          ],
+          "z": 48.6,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.99,
+            -10957.24
+          ],
+          "z": 49.13,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.19,
+            -10958.22
+          ],
+          "z": 49.67,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.39,
+            -10959.2
+          ],
+          "z": 50.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.6,
+            -10960.18
+          ],
+          "z": 50.73,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.8,
+            -10961.16
+          ],
+          "z": 51.26,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.0,
+            -10962.13
+          ],
+          "z": 51.79,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.2,
+            -10963.11
+          ],
+          "z": 52.28,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.41,
+            -10964.09
+          ],
+          "z": 52.58,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.61,
+            -10965.07
+          ],
+          "z": 52.8,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.81,
+            -10966.05
+          ],
+          "z": 52.95,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.02,
+            -10967.03
+          ],
+          "z": 52.91,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.22,
+            -10968.01
+          ],
+          "z": 52.74,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.42,
+            -10968.99
+          ],
+          "z": 52.58,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.62,
+            -10969.97
+          ],
+          "z": 52.41,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.83,
+            -10970.95
+          ],
+          "z": 52.27,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.13,
+            -10923.98
+          ],
+          "z": 35.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.33,
+            -10924.96
+          ],
+          "z": 35.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.53,
+            -10925.94
+          ],
+          "z": 35.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.73,
+            -10926.92
+          ],
+          "z": 35.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1799.93,
+            -10927.9
+          ],
+          "z": 35.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.13,
+            -10928.88
+          ],
+          "z": 35.3,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.33,
+            -10929.86
+          ],
+          "z": 35.45,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.53,
+            -10930.84
+          ],
+          "z": 35.9,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.73,
+            -10931.82
+          ],
+          "z": 36.43,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1800.92,
+            -10932.8
+          ],
+          "z": 36.96,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.12,
+            -10933.78
+          ],
+          "z": 37.49,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.32,
+            -10934.76
+          ],
+          "z": 38.03,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.52,
+            -10935.74
+          ],
+          "z": 38.56,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.72,
+            -10936.72
+          ],
+          "z": 39.09,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.92,
+            -10937.7
+          ],
+          "z": 39.62,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.12,
+            -10938.68
+          ],
+          "z": 40.15,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.32,
+            -10939.66
+          ],
+          "z": 40.68,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.52,
+            -10940.64
+          ],
+          "z": 41.22,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.71,
+            -10941.62
+          ],
+          "z": 41.75,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.91,
+            -10942.6
+          ],
+          "z": 42.28,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.11,
+            -10943.58
+          ],
+          "z": 42.81,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.31,
+            -10944.56
+          ],
+          "z": 43.34,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.51,
+            -10945.54
+          ],
+          "z": 43.87,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.71,
+            -10946.52
+          ],
+          "z": 44.41,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.91,
+            -10947.5
+          ],
+          "z": 44.94,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.11,
+            -10948.48
+          ],
+          "z": 45.47,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.31,
+            -10949.46
+          ],
+          "z": 46.0,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.51,
+            -10950.44
+          ],
+          "z": 46.53,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.7,
+            -10951.42
+          ],
+          "z": 47.07,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.9,
+            -10952.4
+          ],
+          "z": 47.6,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.1,
+            -10953.38
+          ],
+          "z": 48.13,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.3,
+            -10954.36
+          ],
+          "z": 48.66,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.5,
+            -10955.34
+          ],
+          "z": 49.19,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.7,
+            -10956.32
+          ],
+          "z": 49.72,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.9,
+            -10957.3
+          ],
+          "z": 50.26,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.1,
+            -10958.28
+          ],
+          "z": 50.79,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.3,
+            -10959.26
+          ],
+          "z": 51.32,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.49,
+            -10960.24
+          ],
+          "z": 51.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.69,
+            -10961.22
+          ],
+          "z": 52.38,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.89,
+            -10962.2
+          ],
+          "z": 52.91,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.09,
+            -10963.18
+          ],
+          "z": 52.96,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.29,
+            -10964.16
+          ],
+          "z": 52.93,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.49,
+            -10965.14
+          ],
+          "z": 52.9,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.69,
+            -10966.12
+          ],
+          "z": 52.85,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.89,
+            -10967.1
+          ],
+          "z": 52.72,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.09,
+            -10968.08
+          ],
+          "z": 52.56,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.29,
+            -10969.06
+          ],
+          "z": 52.4,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.48,
+            -10970.04
+          ],
+          "z": 52.24,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.68,
+            -10971.02
+          ],
+          "z": 52.05,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.76,
+            -10922.06
+          ],
+          "z": 34.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1801.96,
+            -10923.04
+          ],
+          "z": 34.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.16,
+            -10924.02
+          ],
+          "z": 34.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.35,
+            -10925.0
+          ],
+          "z": 34.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.55,
+            -10925.99
+          ],
+          "z": 34.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.74,
+            -10926.97
+          ],
+          "z": 34.35,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1802.94,
+            -10927.95
+          ],
+          "z": 34.5,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.13,
+            -10928.93
+          ],
+          "z": 34.66,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.33,
+            -10929.91
+          ],
+          "z": 35.17,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.52,
+            -10930.89
+          ],
+          "z": 35.7,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.72,
+            -10931.87
+          ],
+          "z": 36.23,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1803.91,
+            -10932.85
+          ],
+          "z": 36.76,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.11,
+            -10933.83
+          ],
+          "z": 37.29,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.31,
+            -10934.81
+          ],
+          "z": 37.82,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.5,
+            -10935.79
+          ],
+          "z": 38.36,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.7,
+            -10936.77
+          ],
+          "z": 38.89,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1804.89,
+            -10937.75
+          ],
+          "z": 39.42,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.09,
+            -10938.73
+          ],
+          "z": 39.95,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.28,
+            -10939.72
+          ],
+          "z": 40.48,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.48,
+            -10940.7
+          ],
+          "z": 41.01,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.67,
+            -10941.68
+          ],
+          "z": 41.55,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1805.87,
+            -10942.66
+          ],
+          "z": 42.08,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.06,
+            -10943.64
+          ],
+          "z": 42.61,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.26,
+            -10944.62
+          ],
+          "z": 43.14,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.46,
+            -10945.6
+          ],
+          "z": 43.67,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.65,
+            -10946.58
+          ],
+          "z": 44.2,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1806.85,
+            -10947.56
+          ],
+          "z": 44.74,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.04,
+            -10948.54
+          ],
+          "z": 45.27,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.24,
+            -10949.52
+          ],
+          "z": 45.8,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.43,
+            -10950.5
+          ],
+          "z": 46.33,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.63,
+            -10951.48
+          ],
+          "z": 46.86,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1807.82,
+            -10952.46
+          ],
+          "z": 47.39,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.02,
+            -10953.45
+          ],
+          "z": 47.93,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.21,
+            -10954.43
+          ],
+          "z": 48.46,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.41,
+            -10955.41
+          ],
+          "z": 48.99,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.61,
+            -10956.39
+          ],
+          "z": 49.52,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1808.8,
+            -10957.37
+          ],
+          "z": 50.05,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.0,
+            -10958.35
+          ],
+          "z": 50.58,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.19,
+            -10959.33
+          ],
+          "z": 51.12,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.39,
+            -10960.31
+          ],
+          "z": 51.65,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.58,
+            -10961.29
+          ],
+          "z": 52.18,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.78,
+            -10962.27
+          ],
+          "z": 52.71,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1809.97,
+            -10963.25
+          ],
+          "z": 52.56,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1810.17,
+            -10964.23
+          ],
+          "z": 52.43,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1810.36,
+            -10965.21
+          ],
+          "z": 52.32,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1810.56,
+            -10966.19
+          ],
+          "z": 52.23,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1810.76,
+            -10967.18
+          ],
+          "z": 52.11,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1810.95,
+            -10968.16
+          ],
+          "z": 52.01,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1811.15,
+            -10969.14
+          ],
+          "z": 51.93,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        },
+        {
+          "center": [
+            1811.34,
+            -10970.12
+          ],
+          "z": 51.87,
+          "inner_radius": 4.0,
+          "outer_radius": 7.0,
+          "note": "I-376 lumber yard -> Lost Peak ramp"
+        }
+      ]
+    }
+  }
+}

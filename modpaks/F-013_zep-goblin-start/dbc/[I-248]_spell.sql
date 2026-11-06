@@ -9,7 +9,7 @@
 --
 -- 70052 "Kick Footbomb" (v1 of this fix) is RETIRED — delete, do not re-insert.
 -- Do not add 70052 to the missing_spells fixture either.
-DELETE FROM spell WHERE id = 70052;
+DELETE FROM `spell` WHERE id = 70052;
 
 -- Stock-row rule: 69992/69993 INSERTs are owned by dbc/[AUTO,F-011]_spell.sql
 -- (visual repoints live in dbc/[I-246]_spell.sql) — one consolidated UPDATE each.
@@ -38,7 +38,7 @@ DELETE FROM spell WHERE id = 70052;
 -- the launch visual's impact kit at the OLD dest when refiring mid-flight
 -- (inherent missile-slot behavior); the cooldown keeps normal cadence from
 -- tripping it, exactly as stock siege spells do.
-UPDATE spell SET
+UPDATE `spell` SET
   range_index = 13,
   speed = 40,
   attributes = 0,
@@ -67,7 +67,7 @@ WHERE id = 69992;
 -- until destroyed). Prop 64 = wild summon, no owner — the SAI forced attack
 -- (I-246 file, row 6) becomes valid. eff1's 942 is AUTO-ported; effs 2/3 got
 -- 942 from the I-246 lane clone — this consolidated UPDATE layers after both.
-UPDATE spell SET
+UPDATE `spell` SET
   effect_misc_value_b_1 = 64,
   effect_misc_value_b_2 = 64,
   effect_misc_value_b_3 = 64
@@ -99,7 +99,7 @@ WHERE id = 69971;
 -- 0x4 ignore-LoS. damage_class 3 = stock's. Visual stays 2519, NOT 62489's
 -- 11015 — 11015's cast kit (10166) plays anim 54 on the CASTER at landing,
 -- which stomps the shredder's release anim.
-UPDATE spell SET
+UPDATE `spell` SET
   attributes = 0,
   attributes_ex_1 = 0,
   attributes_ex_2 = 4,

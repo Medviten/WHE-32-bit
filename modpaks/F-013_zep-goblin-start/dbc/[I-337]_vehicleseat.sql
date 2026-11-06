@@ -28,7 +28,7 @@
 --
 -- The row belongs to dbc/[AUTO,F-011]_vehicleseat.sql, so it is edited in place below.
 
-UPDATE vehicleseat SET
+UPDATE `vehicleseat` SET
   `flags` = 1712326671,
   `flags_b` = 0
 WHERE `id` = 7545;

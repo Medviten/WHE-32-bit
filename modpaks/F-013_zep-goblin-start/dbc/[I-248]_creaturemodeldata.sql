@@ -11,8 +11,8 @@
 -- that path, so priority cannot interfere. 90001 = clone of stock 2915 with
 -- only the path changed. Other displays on 2915 (26558 green etc.) are
 -- untouched. ID free (stock creaturemodeldata < 90001).
-DELETE FROM creaturemodeldata WHERE id = 90001;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 90001;
+INSERT INTO `creaturemodeldata` SET
   id = 90001,
   flags = 2,
   model_path = 'Creature\\ZepShredderMount\\ZepShredderMount.mdx',

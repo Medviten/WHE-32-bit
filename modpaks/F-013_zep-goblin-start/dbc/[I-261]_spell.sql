@@ -6,7 +6,7 @@
 -- 67488 Summon Bunny Vehicle: Cata SummonProperties 1621 (control-4 vehicle,
 -- flags 256) has no 3.3.5a row -> repoint to stock 827 (control-4 vehicle,
 -- flags 264; the Hot Rod summon property, proven on this server in I-242).
-UPDATE spell SET
+UPDATE `spell` SET
   effect_misc_value_b_1 = 827
 WHERE id = 67488;
 
@@ -14,7 +14,7 @@ WHERE id = 67488;
 -- target 95 is invalid on 3.3.5a ("invalid target", cf. I-242) -> 25
 -- TARGET_UNIT_TARGET_ANY; the vault SAI casts it explicitly on the rider.
 -- SpellVisual 13447 is STOCK 3.3.5a (EmoteCheer impact on the rider) -> kept.
-UPDATE spell SET
+UPDATE `spell` SET
   effect_implicit_target_a_1 = 25
 WHERE id = 67492;
 
@@ -34,39 +34,39 @@ WHERE id = 67492;
 -- resolves to the player's vehicle = the vault, which is hit and fires
 -- SMART_EVENT_SPELLHIT on the vault so the minigame SAI detects the widget.
 -- (Self/1 hit the PLAYER instead -> no vault spellhit -> prompts never advanced.)
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 676,
   spell_icon_id = 5815,
   recovery_time = 1500,
   effect_implicit_target_a_1 = 94
 WHERE id = 67522;   -- Kaja'mite Drill (INV_Weapon_ShortBlade_21)
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_icon_id = 5816,
   recovery_time = 1500,
   effect_implicit_target_a_1 = 94
 WHERE id = 67524;   -- Ear-O-Scope (INV_Misc_Ear_NightElf_02; vis 215 stock-valid)
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_icon_id = 5817,
   recovery_time = 1500,
   effect_implicit_target_a_1 = 94
 WHERE id = 67525;   -- Infinifold Lockpick (INV_Misc_EngGizmos_swissArmy; vis 215 stock-valid)
 
-UPDATE spell SET
+UPDATE `spell` SET
   spell_visual_1 = 7918,
   recovery_time = 1500,
   effect_implicit_target_a_1 = 94
 WHERE id = 67526;   -- Amazing G-Ray (icon 2262 stock-valid)
 
-UPDATE spell SET
+UPDATE `spell` SET
   recovery_time = 1500,
   effect_implicit_target_a_1 = 94
 WHERE id = 67508;   -- Blastcrackers (visual 11710 + icon 2505 stock-valid)
 
 -- 67476 Vault Cracking Toolset (ride aura, lives on the vehicle): Cata-only
 -- icon 4015 -> stock 353 INV_Misc_Gear_01 (cosmetic only).
-UPDATE spell SET
+UPDATE `spell` SET
   spell_icon_id = 353
 WHERE id = 67476;
 

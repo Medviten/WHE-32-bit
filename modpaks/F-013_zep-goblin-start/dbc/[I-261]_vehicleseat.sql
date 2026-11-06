@@ -18,4 +18,4 @@
 -- the widgets to self ([I-261]_spell.sql). Movement is stopped not by the seat
 -- but by rooting the vehicle with 42716 at spawn (what the Neltharion source
 -- did) — a rooted vehicle can't be driven. So: revert to stock control flags.
-UPDATE vehicleseat SET flags = 1644169222 WHERE id = 5326;
+UPDATE `vehicleseat` SET flags = 1644169222 WHERE id = 5326;

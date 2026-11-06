@@ -3,4 +3,4 @@
 -- completely invisible (no missile, no explosion). Repoint to the stock thrown
 -- sapper-charge visual 3819 (Saronite Bomb 56350 / The Big One 12562 family).
 -- Overrides the [AUTO,F-011]_spell.sql row (loads after it).
-UPDATE spell SET spell_visual_1 = 3819 WHERE id = 67682;
+UPDATE `spell` SET spell_visual_1 = 3819 WHERE id = 67682;

@@ -75,7 +75,7 @@
 -- Rockets: on the shoulders, straddling the dorsal fin, nose forward (+x, yaw 0).
 -- Origin (-0.30, ±0.50, 1.30) -> body from x -0.70 to 0.87, bottom edge just sunk into
 -- the 1.276 shoulder surface. AUTO-owned rows -> UPDATE, one per id.
-UPDATE spellvisualkitmodelattach SET
+UPDATE `spellvisualkitmodelattach` SET
   `spell_vis_effect_name_id` = 90102,
   `attachment_id` = 0,
   `offset_x` = -1.318,
@@ -86,7 +86,7 @@ UPDATE spellvisualkitmodelattach SET
   `roll` = 0
 WHERE id = 90008;
 
-UPDATE spellvisualkitmodelattach SET
+UPDATE `spellvisualkitmodelattach` SET
   `spell_vis_effect_name_id` = 90102,
   `attachment_id` = 0,
   `offset_x` = -1.318,
@@ -113,7 +113,7 @@ WHERE id = 90009;
 -- sat 1.87 behind its own pivot and lagged the segment it visually belongs to. Moved to
 -- attachment 16, whose bone 29 is parented into the 0->2->7->10 spine chain and pivots at
 -- x -1.743, only 0.39 from the pipe. Rest position unchanged.
-UPDATE spellvisualkitmodelattach SET
+UPDATE `spellvisualkitmodelattach` SET
   `attachment_id` = 16,
   `offset_x` = -0.108,
   `offset_y` = 0.655,
@@ -129,8 +129,8 @@ WHERE id = 90007;
 -- Id 91001, NOT the next free 90037: `[AUTO,F-011]_spellvisualkitmodelattach.sql` opens
 -- with `DELETE ... WHERE id BETWEEN 90001 AND 90999`, so anything added inside that band
 -- is wiped the next time the AUTO file applies.
-DELETE FROM spellvisualkitmodelattach WHERE id = 91001;
-INSERT INTO spellvisualkitmodelattach SET
+DELETE FROM `spellvisualkitmodelattach` WHERE id = 91001;
+INSERT INTO `spellvisualkitmodelattach` SET
   `id` = 91001,
   `parent_spell_vis_kit_id` = 14016,
   `spell_vis_effect_name_id` = 90103,
@@ -252,8 +252,8 @@ INSERT INTO spellvisualkitmodelattach SET
 -- at y ±1.00, just proud of the tips so the disc is not buried in the lobe. Donor pitch
 -- 1.5708 kept: the mesh is a flat 1.6-wide glow disc lying in XY, and 90 degrees stands
 -- it upright facing forward.
-DELETE FROM spellvisualkitmodelattach WHERE id IN (91002, 91003);
-INSERT INTO spellvisualkitmodelattach
+DELETE FROM `spellvisualkitmodelattach` WHERE id IN (91002, 91003);
+INSERT INTO `spellvisualkitmodelattach`
   (`id`, `parent_spell_vis_kit_id`, `spell_vis_effect_name_id`, `attachment_id`,
    `offset_x`, `offset_y`, `offset_z`, `yaw`, `pitch`, `roll`) VALUES
   (91002, 14016, 90104, 17, 0.017,  0.43, 0.105,  1.3963, 1.5708, 0),

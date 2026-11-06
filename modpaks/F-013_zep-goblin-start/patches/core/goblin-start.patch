@@ -1,0 +1,2469 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 396d80180..337f0eaf2 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -1426,6 +1426,27 @@ DontCacheRandomMovementPaths = 0
+ #
+ ###################################################################################################
+ 
++###################################################################################################
++# GOBLIN START ZONE
++#
++#    GoblinStartZone.Enable
++#        Description: Core support for the Zeppelin goblin start zone (WHE modpak F-013):
++#                     zone phasing from the phase_definitions table and phase conditions
++#                     (source type 26), quest chests locked for players who no longer need
++#                     them, loot conditions on auto-stored and rolled loot, the action bar on
++#                     uncontrolled cast-capable vehicle seats, the quest-completed/abandoned
++#                     and movie-completed SmartAI events reaching nearby creatures, a single
++#                     SmartAI respawn event per spawn, escorts started by guardian summons,
++#                     and taming rods naming their tame spell in effect 2.
++#                     Requires the phase_definitions table from F-013 when enabled.
++#        Default:     1 - (Enabled)
++#                     0 - (Disabled, stock behaviour)
++
++GoblinStartZone.Enable = 1
++
++#
++###################################################################################################
++
+ ###################################################################################################
+ # WEATHER
+ #
+diff --git a/src/server/game/AI/CoreAI/UnitAI.h b/src/server/game/AI/CoreAI/UnitAI.h
+index 3d2eb09c3..4e154b662 100644
+--- a/src/server/game/AI/CoreAI/UnitAI.h
++++ b/src/server/game/AI/CoreAI/UnitAI.h
+@@ -425,6 +425,10 @@ public:
+     virtual void sQuestSelect(Player* /*player*/, Quest const* /*quest*/) {}
+     virtual void sQuestComplete(Player* /*player*/, Quest const* /*quest*/) {}
+     virtual void sQuestReward(Player* /*player*/, Quest const* /*quest*/, uint32 /*opt*/) {}
++    // Zeppelin: fired on creatures near a player who abandons a quest (SMART_EVENT_QUEST_ABANDONED)
++    virtual void sQuestAbandon(Player* /*player*/, Quest const* /*quest*/) {}
++    // Zeppelin: fired on creatures near a player whose client reported a movie ended or was skipped (SMART_EVENT_MOVIE_COMPLETED)
++    virtual void sMovieCompleted(Player* /*player*/, uint32 /*movieId*/) {}
+     virtual void sOnGameEvent(bool /*start*/, uint16 /*eventId*/) {}
+ 
+     virtual std::string GetDebugInfo() const;
+diff --git a/src/server/game/AI/SmartScripts/SmartAI.cpp b/src/server/game/AI/SmartScripts/SmartAI.cpp
+index e2bf14fcc..38f7da824 100644
+--- a/src/server/game/AI/SmartScripts/SmartAI.cpp
++++ b/src/server/game/AI/SmartScripts/SmartAI.cpp
+@@ -27,6 +27,7 @@
+ #include "ScriptMgr.h"
+ #include "SpellMgr.h"
+ #include "Vehicle.h"
++#include "World.h"
+ 
+ SmartAI::SmartAI(Creature* c) : CreatureAI(c)
+ {
+@@ -1105,7 +1106,16 @@ void SmartAI::InitializeAI()
+     {
+         mJustReset = true;
+         JustReachedHome();
+-        GetScript()->ProcessEventsFor(SMART_EVENT_RESPAWN);
++
++        // Every freshly created creature now has TriggerJustRespawned set (#25482), so
++        // Creature::Update delivers JustRespawned - and with it SMART_EVENT_RESPAWN - on its
++        // first tick. Firing the event here as well would run every respawn action twice, which
++        // is invisible for idempotent actions (flags, morphs, auras) but duplicates anything
++        // that spawns state: a summon on respawn produces two creatures stacked on each other.
++        // Temp summons skip the JustRespawned path (#25533), so they still need the event here.
++        // GoblinStartZone.Enable off keeps the stock double event.
++        if (me->IsSummon() || !sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++            GetScript()->ProcessEventsFor(SMART_EVENT_RESPAWN);
+     }
+ }
+ 
+@@ -1218,11 +1228,26 @@ void SmartAI::sQuestAccept(Player* player, Quest const* quest)
+     GetScript()->ProcessEventsFor(SMART_EVENT_ACCEPTED_QUEST, player, quest->GetQuestId());
+ }
+ 
++void SmartAI::sQuestAbandon(Player* player, Quest const* quest)
++{
++    GetScript()->ProcessEventsFor(SMART_EVENT_QUEST_ABANDONED, player, quest->GetQuestId());
++}
++
++void SmartAI::sQuestComplete(Player* player, Quest const* quest)
++{
++    GetScript()->ProcessEventsFor(SMART_EVENT_QUEST_COMPLETED, player, quest->GetQuestId());
++}
++
+ void SmartAI::sQuestReward(Player* player, Quest const* quest, uint32 opt)
+ {
+     GetScript()->ProcessEventsFor(SMART_EVENT_REWARD_QUEST, player, quest->GetQuestId(), opt);
+ }
+ 
++void SmartAI::sMovieCompleted(Player* player, uint32 movieId)
++{
++    GetScript()->ProcessEventsFor(SMART_EVENT_MOVIE_COMPLETED, player, movieId);
++}
++
+ void SmartAI::SetCombatMovement(bool on, bool stopOrStartMovement)
+ {
+     if (on)
+diff --git a/src/server/game/AI/SmartScripts/SmartAI.h b/src/server/game/AI/SmartScripts/SmartAI.h
+index bb4b8f6ea..b3ca394bf 100644
+--- a/src/server/game/AI/SmartScripts/SmartAI.h
++++ b/src/server/game/AI/SmartScripts/SmartAI.h
+@@ -193,8 +193,10 @@ public:
+     void sGossipSelectCode(Player* player, uint32 sender, uint32 action, char const* code) override;
+     void sQuestAccept(Player* player, Quest const* quest) override;
+     //void sQuestSelect(Player* player, Quest const* quest);
+-    //void sQuestComplete(Player* player, Quest const* quest);
++    void sQuestComplete(Player* player, Quest const* quest) override;
+     void sQuestReward(Player* player, Quest const* quest, uint32 opt) override;
++    void sQuestAbandon(Player* player, Quest const* quest) override;
++    void sMovieCompleted(Player* player, uint32 movieId) override;
+     void sOnGameEvent(bool start, uint16 eventId) override;
+ 
+     uint32 mEscortQuestID;
+diff --git a/src/server/game/AI/SmartScripts/SmartScript.cpp b/src/server/game/AI/SmartScripts/SmartScript.cpp
+index 35a8896e7..92414834e 100644
+--- a/src/server/game/AI/SmartScripts/SmartScript.cpp
++++ b/src/server/game/AI/SmartScripts/SmartScript.cpp
+@@ -4733,6 +4733,31 @@ void SmartScript::ProcessEvent(SmartScriptHolder& e, Unit* unit, uint32 var0, ui
+                 ProcessAction(e, unit, var0);
+                 break;
+             }
++        case SMART_EVENT_QUEST_ABANDONED:
++        case SMART_EVENT_QUEST_COMPLETED:
++            {
++                if (!unit)
++                    return;
++                if (e.event.questAbandon.quest && var0 != e.event.questAbandon.quest)
++                    return;
++                if (e.event.questAbandon.onlyOwnSummon)
++                {
++                    TempSummon* summon = me ? me->ToTempSummon() : nullptr;
++                    if (!summon || summon->GetSummonerGUID() != unit->GetGUID())
++                        return;
++                }
++                ProcessAction(e, unit, var0);
++                break;
++            }
++        case SMART_EVENT_MOVIE_COMPLETED:
++            {
++                if (!unit)
++                    return;
++                if (e.event.movie.movieId && var0 != e.event.movie.movieId)
++                    return;
++                ProcessAction(e, unit, var0);
++                break;
++            }
+         case SMART_EVENT_TRANSPORT_ADDCREATURE:
+             {
+                 if (e.event.transportAddCreature.creature && var0 != e.event.transportAddCreature.creature)
+diff --git a/src/server/game/AI/SmartScripts/SmartScriptMgr.cpp b/src/server/game/AI/SmartScripts/SmartScriptMgr.cpp
+index 42aa47cb6..e10179ad7 100644
+--- a/src/server/game/AI/SmartScripts/SmartScriptMgr.cpp
++++ b/src/server/game/AI/SmartScripts/SmartScriptMgr.cpp
+@@ -418,6 +418,9 @@ void SmartAIMgr::CheckIfSmartAIInDatabaseExists()
+         case SMART_EVENT_GOSSIP_SELECT:
+         case SMART_EVENT_ACCEPTED_QUEST:
+         case SMART_EVENT_REWARD_QUEST:
++        case SMART_EVENT_QUEST_ABANDONED:
++        case SMART_EVENT_QUEST_COMPLETED:
++        case SMART_EVENT_MOVIE_COMPLETED:
+         case SMART_EVENT_FOLLOW_COMPLETED:
+         case SMART_EVENT_ON_SPELLCLICK:
+         case SMART_EVENT_GO_STATE_CHANGED:
+@@ -634,6 +637,9 @@ bool SmartAIMgr::CheckUnusedEventParams(SmartScriptHolder const& e)
+             case SMART_EVENT_TARGET_MANA_PCT: return sizeof(SmartEvent::minMaxRepeat);
+             case SMART_EVENT_ACCEPTED_QUEST: return sizeof(SmartEvent::quest);
+             case SMART_EVENT_REWARD_QUEST: return sizeof(SmartEvent::quest);
++            case SMART_EVENT_QUEST_ABANDONED: return sizeof(SmartEvent::questAbandon);
++            case SMART_EVENT_QUEST_COMPLETED: return sizeof(SmartEvent::questAbandon);
++            case SMART_EVENT_MOVIE_COMPLETED: return sizeof(SmartEvent::movie);
+             case SMART_EVENT_REACHED_HOME: return NO_PARAMS;
+             case SMART_EVENT_RECEIVE_EMOTE: return sizeof(SmartEvent::emote);
+             case SMART_EVENT_HAS_AURA: return sizeof(SmartEvent::aura);
+@@ -1251,6 +1257,14 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
+                 if (!IsMinMaxValid(e, e.event.quest.cooldownMin, e.event.quest.cooldownMax))
+                     return false;
+                 break;
++            case SMART_EVENT_QUEST_ABANDONED:
++            case SMART_EVENT_QUEST_COMPLETED:
++                if (e.event.questAbandon.quest && !IsQuestValid(e, e.event.questAbandon.quest))
++                    return false;
++
++                if (!IsSAIBoolValid(e, e.event.questAbandon.onlyOwnSummon))
++                    return false;
++                break;
+             case SMART_EVENT_RECEIVE_EMOTE:
+                 {
+                     if (e.event.emote.emote && !IsTextEmoteValid(e, e.event.emote.emote))
+@@ -1493,6 +1507,7 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
+             case SMART_EVENT_ON_SPELLCLICK:
+             case SMART_EVENT_WAYPOINT_REACHED:
+             case SMART_EVENT_WAYPOINT_ENDED:
++            case SMART_EVENT_MOVIE_COMPLETED:
+                 break;
+             default:
+                 LOG_ERROR("sql.sql", "SmartAIMgr: Not handled event_type({}), Entry {} SourceType {} Event {} Action {}, skipped.", e.GetEventType(), e.entryOrGuid, e.GetScriptType(), e.event_id, e.GetActionType());
+diff --git a/src/server/game/AI/SmartScripts/SmartScriptMgr.h b/src/server/game/AI/SmartScripts/SmartScriptMgr.h
+index 04636a21b..9cd5f6f94 100644
+--- a/src/server/game/AI/SmartScripts/SmartScriptMgr.h
++++ b/src/server/game/AI/SmartScripts/SmartScriptMgr.h
+@@ -197,8 +197,11 @@ enum SMART_EVENT
+     SMART_EVENT_WAYPOINT_REACHED         = 108,      // PointId (0: any), pathId (0: any)
+     SMART_EVENT_WAYPOINT_ENDED           = 109,      // PointId (0: any), pathId (0: any)
+     SMART_EVENT_IS_IN_MELEE_RANGE        = 110,      // min, max, repeatMin, repeatMax, dist, invert (0: false, 1: true)
++    SMART_EVENT_QUEST_ABANDONED          = 111,      // QuestID (0 = any), onlyOwnSummon (1 = only fire if creature is a TempSummon of the abandoning player); fired on creatures near the player
++    SMART_EVENT_QUEST_COMPLETED          = 112,      // QuestID (0 = any), onlyOwnSummon (1 = only fire if creature is a TempSummon of the completing player); fired on creatures near the player when all objectives are done (not hand-in)
++    SMART_EVENT_MOVIE_COMPLETED          = 113,      // MovieID (0 = any); fired on creatures near the player when the client reports a movie (SMSG_TRIGGER_MOVIE) finished playing or was skipped
+ 
+-    SMART_EVENT_AC_END                   = 111
++    SMART_EVENT_AC_END                   = 114
+ };
+ 
+ struct SmartEvent
+@@ -305,6 +308,17 @@ struct SmartEvent
+             uint32 cooldownMax;
+         } quest;
+ 
++        struct
++        {
++            uint32 quest;
++            SAIBool onlyOwnSummon;
++        } questAbandon;
++
++        struct
++        {
++            uint32 movieId;
++        } movie;
++
+         struct
+         {
+             uint32 emote;
+@@ -1954,6 +1968,9 @@ const uint32 SmartAIEventMask[SMART_EVENT_AC_END][2] =
+     {SMART_EVENT_WAYPOINT_REACHED,     SMART_SCRIPT_TYPE_MASK_CREATURE },
+     {SMART_EVENT_WAYPOINT_ENDED,       SMART_SCRIPT_TYPE_MASK_CREATURE },
+     {SMART_EVENT_IS_IN_MELEE_RANGE,         SMART_SCRIPT_TYPE_MASK_CREATURE },
++    {SMART_EVENT_QUEST_ABANDONED,           SMART_SCRIPT_TYPE_MASK_CREATURE },
++    {SMART_EVENT_QUEST_COMPLETED,           SMART_SCRIPT_TYPE_MASK_CREATURE },
++    {SMART_EVENT_MOVIE_COMPLETED,           SMART_SCRIPT_TYPE_MASK_CREATURE },
+ };
+ 
+ enum SmartEventFlags
+diff --git a/src/server/game/Conditions/ConditionMgr.cpp b/src/server/game/Conditions/ConditionMgr.cpp
+index c1c3961ab..866d1404c 100644
+--- a/src/server/game/Conditions/ConditionMgr.cpp
++++ b/src/server/game/Conditions/ConditionMgr.cpp
+@@ -27,6 +27,7 @@
+ #include "RaceMgr.h"
+ #include "ReputationMgr.h"
+ #include "ScriptMgr.h"
++#include "World.h"
+ #include "ScriptedCreature.h"
+ #include "Spell.h"
+ #include "SpellAuras.h"
+@@ -987,7 +988,8 @@ bool ConditionMgr::CanHaveSourceGroupSet(ConditionSourceType sourceType) const
+ {
+     return (sourceType == CONDITION_SOURCE_TYPE_CREATURE_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_DISENCHANT_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_FISHING_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_GAMEOBJECT_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_ITEM_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_MAIL_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_MILLING_LOOT_TEMPLATE ||
+             sourceType == CONDITION_SOURCE_TYPE_PICKPOCKETING_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_PROSPECTING_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_REFERENCE_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_SKINNING_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_SPELL_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_GOSSIP_MENU || sourceType == CONDITION_SOURCE_TYPE_GOSSIP_MENU_OPTION || sourceType == CONDITION_SOURCE_TYPE_VEHICLE_SPELL || sourceType == CONDITION_SOURCE_TYPE_GOSSIP_HELLO ||
+-            sourceType == CONDITION_SOURCE_TYPE_SPELL_IMPLICIT_TARGET || sourceType == CONDITION_SOURCE_TYPE_SPELL_CLICK_EVENT || sourceType == CONDITION_SOURCE_TYPE_SMART_EVENT || sourceType == CONDITION_SOURCE_TYPE_NPC_VENDOR || sourceType == CONDITION_SOURCE_TYPE_PLAYER_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_OBJECT_VISIBILITY);
++            sourceType == CONDITION_SOURCE_TYPE_SPELL_IMPLICIT_TARGET || sourceType == CONDITION_SOURCE_TYPE_SPELL_CLICK_EVENT || sourceType == CONDITION_SOURCE_TYPE_SMART_EVENT || sourceType == CONDITION_SOURCE_TYPE_NPC_VENDOR || sourceType == CONDITION_SOURCE_TYPE_PLAYER_LOOT_TEMPLATE || sourceType == CONDITION_SOURCE_TYPE_OBJECT_VISIBILITY ||
++            sourceType == CONDITION_SOURCE_TYPE_PHASE); // F-194: phase-definition conditions key on SourceGroup = zoneId
+ }
+ 
+ bool ConditionMgr::CanHaveSourceIdSet(ConditionSourceType sourceType) const
+@@ -1014,6 +1016,16 @@ ConditionList ConditionMgr::GetConditionsForNotGroupedEntry(ConditionSourceType
+     return spellCond;
+ }
+ 
++// F-194 Cata zone phasing: conditions for a phase_definitions (zoneId, entry).
++ConditionList ConditionMgr::GetConditionsForPhaseDefinition(uint32 zoneId, uint32 entry)
++{
++    ConditionList cond;
++    auto itr = PhaseDefinitionConditionStore.find(std::make_pair(zoneId, entry));
++    if (itr != PhaseDefinitionConditionStore.end())
++        cond = itr->second;
++    return cond;
++}
++
+ ConditionList ConditionMgr::GetConditionsForSpellClickEvent(uint32 creatureId, uint32 spellId)
+ {
+     ConditionList                                   cond;
+@@ -1380,6 +1392,13 @@ void ConditionMgr::LoadConditions(bool isReload)
+                 ++count;
+                 continue; // do not add to AllocatedMemoryStore to avoid double-deleting
+             }
++            case CONDITION_SOURCE_TYPE_PHASE: // F-194 Cata zone phasing: SourceGroup=zoneId, SourceEntry=phase_definition entry
++            {
++                PhaseDefinitionConditionStore[std::make_pair(cond->SourceGroup, uint32(cond->SourceEntry))].push_back(cond);
++                valid = true;
++                ++count;
++                continue; // freed via PhaseDefinitionConditionStore in Clean(), not AllocatedMemoryStore
++            }
+             case CONDITION_SOURCE_TYPE_PLAYER_LOOT_TEMPLATE:
+             {
+                 valid = addToLootTemplate(cond, LootTemplates_Player.GetLootForConditionFill(cond->SourceGroup));
+@@ -1577,12 +1596,21 @@ bool ConditionMgr::isSourceTypeValid(Condition* cond)
+     switch (cond->SourceType)
+     {
+     case CONDITION_SOURCE_TYPE_TERRAIN_SWAP:
+-    case CONDITION_SOURCE_TYPE_PHASE:
+     case CONDITION_SOURCE_TYPE_GRAVEYARD:
+     {
+         LOG_ERROR("sql.sql", "ConditionSourceType {} in `condition` table is not supported on 3.3.5a, ignoring.", uint32(cond->SourceType));
+         return false;
+     }
++    case CONDITION_SOURCE_TYPE_PHASE: // F-194 Cata zone phasing: SourceGroup=zoneId, SourceEntry=phase_definition entry
++    {
++        // no cross-table existence check needed; matched against phase_definitions at runtime by PhaseMgr
++        if (!sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++        {
++            LOG_ERROR("sql.sql", "ConditionSourceType {} in `condition` table is not supported on 3.3.5a, ignoring.", uint32(cond->SourceType));
++            return false;
++        }
++        break;
++    }
+     case CONDITION_SOURCE_TYPE_CREATURE_LOOT_TEMPLATE:
+     {
+         if (!LootTemplates_Creature.HaveLootFor(cond->SourceGroup))
+@@ -2742,6 +2770,15 @@ void ConditionMgr::Clean()
+ 
+     ObjectVisibilityConditionStore.clear();
+ 
++    // F-194 phase-definition conditions (bucketed, not in AllocatedMemoryStore)
++    for (auto& itr : PhaseDefinitionConditionStore)
++    {
++        for (Condition* cond : itr.second)
++            delete cond;
++        itr.second.clear();
++    }
++    PhaseDefinitionConditionStore.clear();
++
+     // this is a BIG hack, feel free to fix it if you can figure out the ConditionMgr ;)
+     for (std::list<Condition*>::const_iterator itr = AllocatedMemoryStore.begin(); itr != AllocatedMemoryStore.end(); ++itr) delete *itr;
+ 
+diff --git a/src/server/game/Conditions/ConditionMgr.h b/src/server/game/Conditions/ConditionMgr.h
+index 78b871e5a..3f7008d4c 100644
+--- a/src/server/game/Conditions/ConditionMgr.h
++++ b/src/server/game/Conditions/ConditionMgr.h
+@@ -269,6 +269,7 @@ public:
+     [[nodiscard]] bool CanHaveSourceGroupSet(ConditionSourceType sourceType) const;
+     [[nodiscard]] bool CanHaveSourceIdSet(ConditionSourceType sourceType) const;
+     ConditionList GetConditionsForNotGroupedEntry(ConditionSourceType sourceType, uint32 entry);
++    ConditionList GetConditionsForPhaseDefinition(uint32 zoneId, uint32 entry); // F-194 Cata zone phasing
+     ConditionList GetConditionsForSpellClickEvent(uint32 creatureId, uint32 spellId);
+     ConditionList GetConditionsForSmartEvent(int32 entryOrGuid, uint32 eventId, uint32 sourceType);
+     ConditionList GetConditionsForVehicleSpell(uint32 creatureId, uint32 spellId);
+@@ -293,6 +294,7 @@ private:
+     NpcVendorConditionContainer        NpcVendorConditionContainerStore;
+     SmartEventConditionContainer       SmartEventConditionStore;
+     ObjectVisibilityConditionContainer ObjectVisibilityConditionStore;
++    std::map<std::pair<uint32 /*zoneId*/, uint32 /*entry*/>, ConditionList> PhaseDefinitionConditionStore; // F-194
+ };
+ 
+ #define sConditionMgr ConditionMgr::instance()
+diff --git a/src/server/game/Entities/GameObject/GameObject.cpp b/src/server/game/Entities/GameObject/GameObject.cpp
+index 0957aa667..c2d715c78 100644
+--- a/src/server/game/Entities/GameObject/GameObject.cpp
++++ b/src/server/game/Entities/GameObject/GameObject.cpp
+@@ -1390,6 +1390,46 @@ bool GameObject::ActivateToQuest(Player* target) const
+     return false;
+ }
+ 
++// A chest whose whole loot table is quest gated has nothing to offer a player who is not
++// on that quest, or who has already filled the objective. The core does not model that:
++// chest.questId is unused (GameObjectData.h), chests are absent from GameObject::Use, and
++// opening runs client lock cast -> Spell::EffectOpenLock -> Player::SendLoot without ever
++// reading quest status. So the chest stays interactable, hands out an empty loot window,
++// and — when chest.consumable is set — despawns on the loot release, taking it away from
++// the players who still need it.
++//
++// This is what ActivateToQuest already computes for the sparkle; the flag work in
++// BuildValuesUpdate turns the same answer into GO_FLAG_LOCKED | GO_FLAG_NOT_SELECTABLE for
++// that one player, exactly as the chest.groupLootRules branch does for a player outside the
++// loot group. Chests that also hold loot anyone may take (a treasure chest with a quest item
++// mixed in, e.g. 153123 Kim'jael's Equipment) are deliberately left alone.
++bool GameObject::IsQuestChestUnavailableFor(Player* target) const
++{
++    if (!sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++        return false;
++
++    if (GetGoType() != GAMEOBJECT_TYPE_CHEST)
++        return false;
++
++    GameObjectTemplate const* info = GetGOInfo();
++    if (!info->IsGameObjectForQuests())
++        return false;
++
++    // still wanted by one of this player's quests
++    if (ActivateToQuest(target))
++        return false;
++
++    if (LootTemplates_Gameobject.HaveNonQuestLootFor(info->GetLootId()))
++        return false;
++
++    // template addon gold is lootable regardless of quest status
++    if (GameObjectTemplateAddon const* addon = GetTemplateAddon())
++        if (addon->maxgold > 0)
++            return false;
++
++    return true;
++}
++
+ void GameObject::TriggeringLinkedGameObject(uint32 trapEntry, Unit* target)
+ {
+     GameObjectTemplate const* trapInfo = sObjectMgr->GetGameObjectTemplate(trapEntry);
+@@ -2740,8 +2780,18 @@ void GameObject::BuildValuesUpdate(uint8 updateType, ByteBuffer* data, Player* t
+     if (!target)
+         return;
+ 
+-    bool forcedFlags = GetGoType() == GAMEOBJECT_TYPE_CHEST && GetGOInfo()->chest.groupLootRules && HasLootRecipient();
+     bool targetIsGM = target->IsGameMaster() && target->GetSession()->IsGMAccount();
++    // A quest chest re-sends GAMEOBJECT_FLAGS on EVERY update for this player, not only
++    // while the lock applies. The lock below is per-player while the stored field never
++    // changes, so nothing dirties the mask on its own: if the field only travelled when
++    // the lock was on, accepting the quest would leave the client holding a stale
++    // GO_FLAG_LOCKED | GO_FLAG_NOT_SELECTABLE and the chest would stay dead. Player quest
++    // transitions run UpdateForQuestWorldObjects (PlayerQuest.cpp:1635/1914/1955), which
++    // rebuilds every visible gameobject for that player, so this lands the moment the
++    // objective fills or the quest is taken.
++    bool questChest = sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) && GetGoType() == GAMEOBJECT_TYPE_CHEST && GetGOInfo()->IsGameObjectForQuests();
++    bool questChestUnavailable = questChest && !targetIsGM && IsQuestChestUnavailableFor(target);
++    bool forcedFlags = questChest || (GetGoType() == GAMEOBJECT_TYPE_CHEST && GetGOInfo()->chest.groupLootRules && HasLootRecipient());
+ 
+     ByteBuffer fieldBuffer;
+ 
+@@ -2823,6 +2873,11 @@ void GameObject::BuildValuesUpdate(uint8 updateType, ByteBuffer* data, Player* t
+                     goFlags |= GO_FLAG_LOCKED | GO_FLAG_NOT_SELECTABLE;
+                 }
+ 
++                if (questChestUnavailable)
++                {
++                    goFlags |= GO_FLAG_LOCKED | GO_FLAG_NOT_SELECTABLE;
++                }
++
+                 fieldBuffer << goFlags;
+             }
+             else
+diff --git a/src/server/game/Entities/GameObject/GameObject.h b/src/server/game/Entities/GameObject/GameObject.h
+index b814c9819..4159d4214 100644
+--- a/src/server/game/Entities/GameObject/GameObject.h
++++ b/src/server/game/Entities/GameObject/GameObject.h
+@@ -266,6 +266,8 @@ public:
+     [[nodiscard]] bool hasQuest(uint32 quest_id) const override;
+     [[nodiscard]] bool hasInvolvedQuest(uint32 quest_id) const override;
+     bool ActivateToQuest(Player* target) const;
++    // True for a quest-only chest (every drop it holds is quest gated) that this player has no use for
++    bool IsQuestChestUnavailableFor(Player* target) const;
+     void UseDoorOrButton(uint32 time_to_restore = 0, bool alternative = false, Unit* user = nullptr);
+     // 0 = use `gameobject`.`spawntimesecs`
+     void ResetDoorOrButton();
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 004a5a481..1b597b73f 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -164,6 +164,8 @@ Player::Player(WorldSession* session): Unit(), m_mover(this), _cinematicMgr(*thi
+     m_objectType |= TYPEMASK_PLAYER;
+     m_objectTypeId = TYPEID_PLAYER;
+ 
++    m_phaseMgr = std::make_unique<PhaseMgr>(this); // F-194 Cata zone phasing progression
++
+     m_valuesCount = PLAYER_END;
+ 
+     m_session = session;
+@@ -5891,11 +5893,39 @@ void Player::SendCinematicStart(uint32 CinematicSequenceId) const
+ 
+ void Player::SendMovieStart(uint32 MovieId)
+ {
++    // Zeppelin: remembered so CMSG_COMPLETE_MOVIE can be matched back to the movie
++    // it ends -- the packet itself carries no movie id
++    _pendingMovieId = MovieId;
++
+     WorldPacket data(SMSG_TRIGGER_MOVIE, 4);
+     data << uint32(MovieId);
+     SendDirectMessage(&data);
+ }
+ 
++void Player::CompletedMovie()
++{
++    uint32 movieId = _pendingMovieId;
++    if (!movieId)
++        return;
++
++    _pendingMovieId = 0;
++
++    if (!sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++        return;
++
++    // Zeppelin: SMART_EVENT_MOVIE_COMPLETED for creatures near the player, so scripted
++    // scenes can start when the player can actually see the world again instead of
++    // racing the movie. Fires on skip too -- the client sends the same packet.
++    std::list<Unit*> nearby;
++    Acore::AnyUnitInObjectRangeCheck check(this, 150.0f);
++    Acore::UnitListSearcher<Acore::AnyUnitInObjectRangeCheck> searcher(this, nearby, check);
++    Cell::VisitObjects(this, searcher, 150.0f);
++    for (Unit* nearbyUnit : nearby)
++        if (Creature* creature = nearbyUnit->ToCreature())
++            if (creature->IsAIEnabled)
++                creature->AI()->sMovieCompleted(this, movieId);
++}
++
+ void Player::CheckAreaExploreAndOutdoor()
+ {
+     if (!IsAlive())
+@@ -8036,6 +8066,17 @@ void Player::SendLoot(ObjectGuid guid, LootType loot_type)
+             return;
+         }
+ 
++        // A quest-only chest this player has no use for cannot be opened at all. The
++        // per-target GO_FLAG_NOT_SELECTABLE from GameObject::BuildValuesUpdate stops the
++        // client offering it; this stops a client that ignores the flag from consuming it
++        // anyway, since a consumable chest despawns on the loot release even when the loot
++        // came out empty.
++        if (!IsGameMaster() && go->IsQuestChestUnavailableFor(this))
++        {
++            SendLootRelease(guid);
++            return;
++        }
++
+         loot = &go->loot;
+ 
+         // Xinef: loot was generated and respawntime has passed since then, allow to recreate loot
+@@ -13850,6 +13891,14 @@ void Player::AutoStoreLoot(uint8 bag, uint8 slot, uint32 loot_id, LootStore cons
+     {
+         LootItem* lootItem = loot.LootItemInSlot(i, this);
+ 
++        // LootItemInSlot does not enforce loot conditions: a player who fails the gate
++        // simply has no entry in PlayerNonQuestNonFFAConditionalItems and the row is
++        // handed back anyway. The loot window filters those rows when building the
++        // packet, so the check only ever ran there - auto-stored loot (group disenchant
++        // roll, auto-skinning, spell loot) got every conditional row regardless (I-314).
++        if (!lootItem || (sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) && !lootItem->AllowedForPlayer(this, loot.sourceWorldObjectGUID)))
++            continue;
++
+         ItemPosCountVec dest;
+         InventoryResult msg = CanStoreNewItem(bag, slot, dest, lootItem->itemid, lootItem->count);
+         if (msg != EQUIP_ERR_OK && slot != NULL_SLOT)
+diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+index cc1f42b1f..c9dcd8f9e 100644
+--- a/src/server/game/Entities/Player/Player.h
++++ b/src/server/game/Entities/Player/Player.h
+@@ -52,6 +52,7 @@ struct VendorItem;
+ 
+ class AchievementMgr;
+ class ReputationMgr;
++class PhaseMgr; // F-194 Cata zone phasing
+ class Channel;
+ class CharacterCreateInfo;
+ class Creature;
+@@ -1405,6 +1406,8 @@ public:
+     CinematicMgr& GetCinematicMgr() { return _cinematicMgr; }
+     CinematicMgr const& GetCinematicMgr() const { return _cinematicMgr; }
+ 
++    PhaseMgr* GetPhaseMgr() { return m_phaseMgr.get(); } // F-194 Cata zone phasing
++
+     void UpdateEnchantTime(uint32 time);
+     void UpdateSoulboundTradeItems();
+     void AddTradeableItem(Item* item);
+@@ -2485,6 +2488,9 @@ public:
+ 
+     void SendCinematicStart(uint32 CinematicSequenceId) const;
+     void SendMovieStart(uint32 MovieId);
++    // Zeppelin: called from CMSG_COMPLETE_MOVIE when the client reports the movie
++    // triggered by SendMovieStart ended (played through or skipped)
++    void CompletedMovie();
+ 
+     uint32 DoRandomRoll(uint32 minimum, uint32 maximum);
+ 
+@@ -3016,6 +3022,8 @@ private:
+     Item* _LoadItem(CharacterDatabaseTransaction trans, uint32 zoneId, uint32 timeDiff, Field* fields);
+ 
+     CinematicMgr _cinematicMgr;
++    std::unique_ptr<PhaseMgr> m_phaseMgr; // F-194 Cata zone phasing progression
++    uint32 _pendingMovieId = 0; // Zeppelin: movie sent via SendMovieStart, awaiting CMSG_COMPLETE_MOVIE; not persisted
+ 
+     typedef GuidSet RefundableItemsSet;
+     RefundableItemsSet m_refundableItems;
+diff --git a/src/server/game/Entities/Player/PlayerQuest.cpp b/src/server/game/Entities/Player/PlayerQuest.cpp
+index b3228c1ef..f07e53846 100644
+--- a/src/server/game/Entities/Player/PlayerQuest.cpp
++++ b/src/server/game/Entities/Player/PlayerQuest.cpp
+@@ -15,8 +15,11 @@
+  * with this program. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#include "CellImpl.h"
+ #include "CreatureAI.h"
+ #include "DisableMgr.h"
++#include "GridNotifiers.h"
++#include "GridNotifiersImpl.h"
+ #include "GameEventMgr.h"
+ #include "GameObjectAI.h"
+ #include "GameTime.h"
+@@ -25,6 +28,7 @@
+ #include "Group.h"
+ #include "MapMgr.h"
+ #include "Player.h"
++#include "PhaseMgr.h" // F-194 Cata zone phasing
+ #include "PoolMgr.h"
+ #include "QuestPackets.h"
+ #include "ReputationMgr.h"
+@@ -642,6 +646,21 @@ void Player::CompleteQuest(uint32 quest_id)
+     UpdateAreaDependentAuras(GetAreaId());
+     AdditionalSavingAddMask(ADDITIONAL_SAVING_INVENTORY_AND_GOLD | ADDITIONAL_SAVING_QUEST_STATUS);
+ 
++    // Zeppelin: SMART_EVENT_QUEST_COMPLETED for creatures near the player (e.g. summoned
++    // quest companions reacting to the last objective). Runs after SetQuestStatus, so the
++    // quest state and any spell_area auras are already updated when the event fires.
++    if (qInfo && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++    {
++        std::list<Unit*> nearby;
++        Acore::AnyUnitInObjectRangeCheck check(this, 150.0f);
++        Acore::UnitListSearcher<Acore::AnyUnitInObjectRangeCheck> searcher(this, nearby, check);
++        Cell::VisitObjects(this, searcher, 150.0f);
++        for (Unit* nearbyUnit : nearby)
++            if (Creature* creature = nearbyUnit->ToCreature())
++                if (creature->IsAIEnabled)
++                    creature->AI()->sQuestComplete(this, qInfo);
++    }
++
+     // check if Quest Tracker is enabled
+     if (sWorld->getBoolConfig(CONFIG_QUEST_ENABLE_QUEST_TRACKER))
+     {
+@@ -901,6 +920,9 @@ void Player::RewardQuest(Quest const* quest, uint32 reward, Object* questGiver,
+     UpdateAreaDependentAuras(GetAreaId());
+ 
+     sScriptMgr->OnPlayerCompleteQuest(this, quest);
++
++    if (PhaseMgr* pm = GetPhaseMgr()) // F-194 quest rewarded -> maybe re-phase the zone (world progresses)
++        pm->NotifyConditionChanged();
+ }
+ 
+ void Player::SetRewardedQuest(uint32 quest_id)
+@@ -1564,6 +1586,9 @@ void Player::SetQuestStatus(uint32 questId, QuestStatus status, bool update /*=
+ 
+     if (update)
+         SendQuestUpdate(questId);
++
++    if (PhaseMgr* pm = GetPhaseMgr()) // F-194 quest state changed -> maybe re-phase the zone
++        pm->NotifyConditionChanged();
+ }
+ 
+ void Player::RemoveActiveQuest(uint32 questId, bool update /*= true*/)
+diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
+index a0529ad54..7d089e014 100644
+--- a/src/server/game/Entities/Player/PlayerUpdates.cpp
++++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
+@@ -30,6 +30,7 @@
+ #include "OutdoorPvPMgr.h"
+ #include "Pet.h"
+ #include "Player.h"
++#include "PhaseMgr.h" // F-194 Cata zone phasing
+ #include "ScriptMgr.h"
+ #include "SkillDiscovery.h"
+ #include "SpellAuraEffects.h"
+@@ -1308,6 +1309,9 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
+     m_zoneUpdateId    = newZone;
+     m_zoneUpdateTimer = ZONE_UPDATE_INTERVAL;
+ 
++    if (PhaseMgr* pm = GetPhaseMgr()) // F-194 recompute Cata zone phasing on zone change / login
++        pm->NotifyConditionChanged();
++
+     // zone changed, so area changed as well, update it
+     UpdateArea(newArea);
+ 
+diff --git a/src/server/game/Entities/Vehicle/Vehicle.cpp b/src/server/game/Entities/Vehicle/Vehicle.cpp
+index fb31c0c29..563306829 100644
+--- a/src/server/game/Entities/Vehicle/Vehicle.cpp
++++ b/src/server/game/Entities/Vehicle/Vehicle.cpp
+@@ -25,6 +25,7 @@
+ #include "ScriptMgr.h"
+ #include "TemporarySummon.h"
+ #include "Unit.h"
++#include "World.h"
+ #include "Util.h"
+ #include <algorithm>
+ 
+@@ -33,6 +34,28 @@ enum PowerDisplayIds
+     POWER_DISPLAY_PYRITE = 41
+ };
+ 
++// Zeppelin (I-311): deferred vehicle-bar send for riders of uncontrolled CAN_CAST
++// seats — see the comment at the AddPassenger call site. Runs on the passenger's
++// event processor, so it is cancelled automatically if the player is destroyed.
++class VehicleBarInitEvent : public BasicEvent
++{
++public:
++    VehicleBarInitEvent(Player* player, ObjectGuid vehicleGuid)
++        : _player(player), _vehicleGuid(vehicleGuid) { }
++
++    bool Execute(uint64 /*time*/, uint32 /*diff*/) override
++    {
++        if (Unit* base = _player->GetVehicleBase())
++            if (base->GetGUID() == _vehicleGuid)
++                _player->VehicleSpellInitialize();
++        return true;
++    }
++
++private:
++    Player* _player;
++    ObjectGuid _vehicleGuid;
++};
++
+ Vehicle::Vehicle(Unit* unit, VehicleEntry const* vehInfo, uint32 creatureEntry) :
+     _me(unit), _vehicleInfo(vehInfo), _usableSeatNum(0), _creatureEntry(creatureEntry), _status(STATUS_NONE),
+     _accessoriesInstalled(false)
+@@ -442,6 +465,18 @@ bool Vehicle::AddPassenger(Unit* unit, int8 seatId)
+             return false;
+         }
+     }
++    // Zeppelin (I-311): retail serves the vehicle action bar on cast-capable seats even
++    // without CAN_CONTROL (client shows it via Lua_UnitHasVehicleUI, e.g. Stormcrest
++    // Eagle seat 2112) — but the charm above is the only path that sends it, so riders
++    // of uncontrolled seats got an empty bar. The send must be DEFERRED: the client
++    // only learns it is in the vehicle from the control-vehicle aura in the end-of-tick
++    // update batch, and a PET_SPELLS sent synchronously here arrives first and is
++    // discarded. The matching cast authorization lives in HandlePetCastSpellOpcode;
++    // HandleRequestPetInfo re-serves the bar on client-side UI reloads.
++    else if (_me->IsCreature() && unit->IsPlayer() && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE)
++             && seat->second.SeatInfo->m_flags & VEHICLE_SEAT_FLAG_CAN_CAST)
++        unit->m_Events.AddEvent(new VehicleBarInitEvent(unit->ToPlayer(), _me->GetGUID()),
++                                unit->m_Events.CalculateTime(1500));
+ 
+     if (_me->IsInWorld())
+     {
+@@ -520,6 +555,10 @@ void Vehicle::RemovePassenger(Unit* unit)
+ 
+     if (_me->IsCreature() && unit->IsPlayer() && seat->second.SeatInfo->m_flags & VEHICLE_SEAT_FLAG_CAN_CONTROL)
+         _me->RemoveCharmedBy(unit);
++    // Zeppelin (I-311): mirror of the uncontrolled-cast-seat bar in AddPassenger
++    else if (_me->IsCreature() && unit->IsPlayer() && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE)
++             && seat->second.SeatInfo->m_flags & VEHICLE_SEAT_FLAG_CAN_CAST)
++        unit->ToPlayer()->SendRemoveControlBar();
+ 
+     if (_me->IsInWorld())
+     {
+diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
+index 6f82eb7f3..1b59a96ae 100644
+--- a/src/server/game/Globals/ObjectMgr.cpp
++++ b/src/server/game/Globals/ObjectMgr.cpp
+@@ -8500,6 +8500,48 @@ void ObjectMgr::LoadPointsOfInterest()
+     LOG_INFO("server.loading", " ");
+ }
+ 
++// F-194 Cata zone phasing progression: per-zone ordered definitions, gated by
++// CONDITION_SOURCE_TYPE_PHASE conditions on quest state, resolved by PhaseMgr.
++void ObjectMgr::LoadPhaseDefinitions()
++{
++    uint32 oldMSTime = getMSTime();
++    _phaseDefinitionStore.clear();
++
++    //                                                   0       1        2          3        4          5                6
++    QueryResult result = WorldDatabase.Query("SELECT zoneId, entry, phaseMask, phaseId, originmap, terrainswapmap, flags FROM phase_definitions ORDER BY entry ASC");
++    if (!result)
++    {
++        LOG_INFO("server.loading", ">> Loaded 0 phasing definitions. DB table `phase_definitions` is empty.");
++        LOG_INFO("server.loading", " ");
++        return;
++    }
++
++    uint32 count = 0;
++    do
++    {
++        Field* fields = result->Fetch();
++
++        PhaseDefinition pd;
++        pd.zoneId         = fields[0].Get<uint32>();
++        pd.entry          = fields[1].Get<uint32>();
++        pd.phasemask      = fields[2].Get<uint32>();
++        pd.phaseId        = fields[3].Get<uint32>();
++        pd.originmap      = fields[4].Get<uint32>();
++        pd.terrainswapmap = fields[5].Get<uint32>();
++        pd.flags          = uint8(fields[6].Get<uint32>());
++
++        // OVERWRITE + NEGATE is contradictory; keep OVERWRITE (matches TC behaviour)
++        if ((pd.flags & PHASE_FLAG_OVERWRITE_EXISTING) && (pd.flags & PHASE_FLAG_NEGATE_PHASE))
++            pd.flags &= ~PHASE_FLAG_NEGATE_PHASE;
++
++        _phaseDefinitionStore[pd.zoneId].push_back(pd);
++        ++count;
++    } while (result->NextRow());
++
++    LOG_INFO("server.loading", ">> Loaded {} phasing definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
++    LOG_INFO("server.loading", " ");
++}
++
+ void ObjectMgr::LoadQuestPOI()
+ {
+     if (!sWorld->getBoolConfig(CONFIG_QUEST_POI_ENABLED))
+diff --git a/src/server/game/Globals/ObjectMgr.h b/src/server/game/Globals/ObjectMgr.h
+index ea6b56867..e4a4440cb 100644
+--- a/src/server/game/Globals/ObjectMgr.h
++++ b/src/server/game/Globals/ObjectMgr.h
+@@ -41,6 +41,7 @@
+ #include <map>
+ #include <memory>
+ #include <string>
++#include "PhaseMgr.h" // F-194 PhaseDefinitionStore
+ 
+ class Item;
+ struct DungeonProgressionRequirements;
+@@ -1124,6 +1125,10 @@ public:
+ 
+     void LoadVendors();
+     void LoadTrainers();
++
++    // F-194 Cata zone phasing progression
++    void LoadPhaseDefinitions();
++    [[nodiscard]] PhaseDefinitionStore const& GetPhaseDefinitionStore() const { return _phaseDefinitionStore; }
+     void LoadCreatureDefaultTrainers();
+ 
+     std::string GeneratePetName(uint32 entry);
+@@ -1704,6 +1709,8 @@ private:
+     GossipMenuItemsLocaleContainer _gossipMenuItemsLocaleStore;
+     PointOfInterestLocaleContainer _pointOfInterestLocaleStore;
+ 
++    PhaseDefinitionStore _phaseDefinitionStore; // F-194 zone -> ordered phase definitions
++
+     CacheVendorItemContainer _cacheVendorItemStore;
+     std::unordered_map<uint32, Trainer::Trainer> _trainers;
+     std::unordered_map<uint8, std::vector<Trainer::Trainer const*>> _classTrainers;
+diff --git a/src/server/game/Groups/Group.cpp b/src/server/game/Groups/Group.cpp
+index 653d01e43..c941da838 100644
+--- a/src/server/game/Groups/Group.cpp
++++ b/src/server/game/Groups/Group.cpp
+@@ -1793,6 +1793,9 @@ void Group::CountTheRoll(Rolls::iterator rollI)
+                             for(uint32 i = 0; i < max_slot; i++)
+                             {
+                                 LootItem* lootItem = loot.LootItemInSlot(i, player);
++                                if (!lootItem || (sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) && !lootItem->AllowedForPlayer(player, loot.sourceWorldObjectGUID)))
++                                    continue;
++
+                                 player->SendEquipError(msg, nullptr, nullptr, lootItem->itemid);
+                                 player->SendItemRetrievalMail(lootItem->itemid, lootItem->count);
+                             }
+diff --git a/src/server/game/Handlers/MiscHandler.cpp b/src/server/game/Handlers/MiscHandler.cpp
+index 1d1d14383..7feafbd56 100644
+--- a/src/server/game/Handlers/MiscHandler.cpp
++++ b/src/server/game/Handlers/MiscHandler.cpp
+@@ -954,6 +954,14 @@ void WorldSession::HandleNextCinematicCamera(WorldPacket& /*recv_data*/)
+     GetPlayer()->GetCinematicMgr().StartCinematicCamera();
+ }
+ 
++void WorldSession::HandleCompleteMovie(WorldPacket& /*recv_data*/)
++{
++    // Zeppelin: sent by the client when the movie triggered by SMSG_TRIGGER_MOVIE ends,
++    // whether it played through or was skipped. The packet carries no payload; the
++    // movie id is remembered by Player::SendMovieStart.
++    GetPlayer()->CompletedMovie();
++}
++
+ void WorldSession::HandleSetActionBarToggles(WorldPacket& recv_data)
+ {
+     uint8 ActionBar;
+@@ -1580,6 +1588,15 @@ void WorldSession::HandleRequestPetInfo(WorldPackets::Pet::RequestPetInfo& /*pac
+         else
+             _player->CharmSpellInitialize();
+     }
++    // Zeppelin (I-311): rider of an uncontrolled CAN_CAST vehicle seat — no pet and
++    // no charm carry the bar, so re-serve it here (client-side UI reloads and the
++    // post-boarding resync both land in this opcode).
++    else if (_player->GetVehicleCreatureBase() && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++    {
++        if (VehicleSeatEntry const* seatInfo = _player->GetVehicle()->GetSeatForPassenger(_player))
++            if (seatInfo->m_flags & VEHICLE_SEAT_FLAG_CAN_CAST)
++                _player->VehicleSpellInitialize();
++    }
+ }
+ 
+ void WorldSession::HandleSetTaxiBenchmarkOpcode(WorldPacket& recv_data)
+diff --git a/src/server/game/Handlers/PetHandler.cpp b/src/server/game/Handlers/PetHandler.cpp
+index 34f307007..de0c04512 100644
+--- a/src/server/game/Handlers/PetHandler.cpp
++++ b/src/server/game/Handlers/PetHandler.cpp
+@@ -32,6 +32,7 @@
+ #include "SpellInfo.h"
+ #include "SpellMgr.h"
+ #include "Util.h"
++#include "Vehicle.h"
+ #include "World.h"
+ #include "WorldPacket.h"
+ #include "WorldSession.h"
+@@ -1022,12 +1023,19 @@ void WorldSession::HandlePetCastSpellOpcode(WorldPacket& recvPacket)
+     LOG_DEBUG("network", "WORLD: CMSG_PET_CAST_SPELL, guid: {}, castCount: {}, spellId {}, castFlags {}", guid.ToString(), castCount, spellId, castFlags);
+ 
+     // This opcode is also sent from charmed and possessed units (players and creatures)
+-    if (!_player->GetGuardianPet() && !_player->GetCharm())
++    if (!_player->GetGuardianPet() && !_player->GetCharm() && !(_player->GetVehicleBase() && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE)))
+         return;
+ 
+     Unit* caster = ObjectAccessor::GetUnit(*_player, guid);
+ 
+-    if (!caster || (caster != _player->GetGuardianPet() && caster != _player->GetCharm()))
++    // Zeppelin (I-311): the bar is also served on uncontrolled CAN_CAST vehicle seats
++    // (Vehicle::AddPassenger) — accept casts from the rider's own vehicle base there.
++    bool uncontrolledVehicleCast = false;
++    if (caster && caster == _player->GetVehicleCreatureBase() && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++        if (VehicleSeatEntry const* seatInfo = _player->GetVehicle()->GetSeatForPassenger(_player))
++            uncontrolledVehicleCast = (seatInfo->m_flags & VEHICLE_SEAT_FLAG_CAN_CAST) != 0;
++
++    if (!caster || (caster != _player->GetGuardianPet() && caster != _player->GetCharm() && !uncontrolledVehicleCast))
+     {
+         LOG_ERROR("network.opcode", "HandlePetCastSpellOpcode: Pet {} isn't pet of player {} .", guid.ToString(), GetPlayer()->GetName());
+         return;
+diff --git a/src/server/game/Handlers/QuestHandler.cpp b/src/server/game/Handlers/QuestHandler.cpp
+index ed9699a93..a7cd8f6b8 100644
+--- a/src/server/game/Handlers/QuestHandler.cpp
++++ b/src/server/game/Handlers/QuestHandler.cpp
+@@ -17,8 +17,12 @@
+ 
+ #include "Battleground.h"
+ #include "BattlegroundAV.h"
++#include "CellImpl.h"
+ #include "Chat.h"
++#include "CreatureAI.h"
+ #include "GameObjectAI.h"
++#include "GridNotifiers.h"
++#include "GridNotifiersImpl.h"
+ #include "Group.h"
+ #include "Language.h"
+ #include "Log.h"
+@@ -423,6 +427,22 @@ void WorldSession::HandleQuestLogRemoveQuest(WorldPackets::Quest::QuestLogRemove
+ 
+             sScriptMgr->OnPlayerQuestAbandon(_player, questId);
+ 
++            // Zeppelin: SMART_EVENT_QUEST_ABANDONED for creatures near the player (e.g. summoned
++            // quest companions). Runs after RemoveActiveQuest, so the quest status and any
++            // spell_area auras are already cleaned up when the event fires.
++            Quest const* quest = sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) ? sObjectMgr->GetQuestTemplate(questId) : nullptr;
++            if (quest)
++            {
++                std::list<Unit*> nearby;
++                Acore::AnyUnitInObjectRangeCheck check(_player, 150.0f);
++                Acore::UnitListSearcher<Acore::AnyUnitInObjectRangeCheck> searcher(_player, nearby, check);
++                Cell::VisitObjects(_player, searcher, 150.0f);
++                for (Unit* nearbyUnit : nearby)
++                    if (Creature* creature = nearbyUnit->ToCreature())
++                        if (creature->IsAIEnabled)
++                            creature->AI()->sQuestAbandon(_player, quest);
++            }
++
+             LOG_DEBUG("network.opcode", "Player {} abandoned quest {}", _player->GetGUID().ToString(), questId);
+             // check if Quest Tracker is enabled
+             if (sWorld->getBoolConfig(CONFIG_QUEST_ENABLE_QUEST_TRACKER))
+diff --git a/src/server/game/Loot/LootMgr.cpp b/src/server/game/Loot/LootMgr.cpp
+index a103aab09..db03acef8 100644
+--- a/src/server/game/Loot/LootMgr.cpp
++++ b/src/server/game/Loot/LootMgr.cpp
+@@ -100,6 +100,7 @@ public:
+     void AddEntry(LootStoreItem* item);                     // Adds an entry to the group (at loading stage)
+     bool HasQuestDrop(LootTemplateMap const& store) const;  // True if group includes at least 1 quest drop entry
+     bool HasQuestDropForPlayer(Player const* player, LootTemplateMap const& store) const;
++    bool HasNonQuestDrop(LootTemplateMap const& store) const; // True if group includes at least 1 entry that is not quest gated
+     // The same for active quests of the player
+     void Process(Loot& loot, Player const* player, LootStore const& lootstore, uint16 lootMode, uint16 nonRefIterationsLeft) const;    // Rolls an item from the group (if any) and adds the item to the loot
+     float RawTotalChance() const;                       // Overall chance for the group (without equal chanced items)
+@@ -235,6 +236,15 @@ bool LootStore::HaveQuestLootForPlayer(uint32 loot_id, Player const* player) con
+     return false;
+ }
+ 
++bool LootStore::HaveNonQuestLootFor(uint32 loot_id) const
++{
++    LootTemplateMap::const_iterator itr = m_LootTemplates.find(loot_id);
++    if (itr == m_LootTemplates.end())
++        return false;
++
++    return itr->second->HasNonQuestDrop(m_LootTemplates);
++}
++
+ void LootStore::ResetConditions()
+ {
+     for (LootTemplateMap::iterator itr = m_LootTemplates.begin(); itr != m_LootTemplates.end(); ++itr)
+@@ -1346,6 +1356,56 @@ bool LootTemplate::LootGroup::HasQuestDrop(LootTemplateMap const& store) const
+     return false;
+ }
+ 
++// True if group includes at least 1 entry any player may take regardless of quest status
++bool LootTemplate::LootGroup::HasNonQuestDrop(LootTemplateMap const& store) const
++{
++    for (LootStoreItemList::const_iterator i = ExplicitlyChanced.begin(); i != ExplicitlyChanced.end(); ++i)
++    {
++        LootStoreItem* item = *i;
++        if (item->reference) // References
++        {
++            LootTemplateMap::const_iterator Referenced = store.find(std::abs(item->reference));
++            if (Referenced == store.end())
++            {
++                continue; // Error message [should be] already printed at loading stage
++            }
++
++            if (Referenced->second->HasNonQuestDrop(store))
++            {
++                return true;
++            }
++        }
++        else if (!item->needs_quest)
++        {
++            return true;
++        }
++    }
++
++    for (LootStoreItemList::const_iterator i = EqualChanced.begin(); i != EqualChanced.end(); ++i)
++    {
++        LootStoreItem* item = *i;
++        if (item->reference) // References
++        {
++            LootTemplateMap::const_iterator Referenced = store.find(std::abs(item->reference));
++            if (Referenced == store.end())
++            {
++                continue; // Error message [should be] already printed at loading stage
++            }
++
++            if (Referenced->second->HasNonQuestDrop(store))
++            {
++                return true;
++            }
++        }
++        else if (!item->needs_quest)
++        {
++            return true;
++        }
++    }
++
++    return false;
++}
++
+ // True if group includes at least 1 quest drop entry for active quests of the player
+ bool LootTemplate::LootGroup::HasQuestDropForPlayer(Player const* player, LootTemplateMap const& store) const
+ {
+@@ -1769,6 +1829,40 @@ bool LootTemplate::HasQuestDrop(LootTemplateMap const& store) const
+     return false;
+ }
+ 
++// True if template includes at least 1 drop that is not gated behind a quest
++bool LootTemplate::HasNonQuestDrop(LootTemplateMap const& store) const
++{
++    for (LootStoreItemList::const_iterator i = Entries.begin(); i != Entries.end(); ++i)
++    {
++        LootStoreItem* item = *i;
++        if (item->reference)                                // References
++        {
++            LootTemplateMap::const_iterator Referenced = store.find(std::abs(item->reference));
++            if (Referenced == store.end())
++                continue;                                   // Error message [should be] already printed at loading stage
++
++            if (Referenced->second->HasNonQuestDrop(store))
++                return true;
++        }
++        else if (!item->needs_quest)
++            return true;                                    // non-quest drop found
++    }
++
++    // Now processing groups
++    for (LootGroups::const_iterator i = Groups.begin(); i != Groups.end(); ++i)
++    {
++        if (LootGroup* group = *i)
++        {
++            if (group->HasNonQuestDrop(store))
++            {
++                return true;
++            }
++        }
++    }
++
++    return false;
++}
++
+ // True if template includes at least 1 quest drop for an active quest of the player
+ bool LootTemplate::HasQuestDropForPlayer(LootTemplateMap const& store, Player const* player) const
+ {
+diff --git a/src/server/game/Loot/LootMgr.h b/src/server/game/Loot/LootMgr.h
+index 62b2adc60..73753afde 100644
+--- a/src/server/game/Loot/LootMgr.h
++++ b/src/server/game/Loot/LootMgr.h
+@@ -224,6 +224,8 @@ public:
+     [[nodiscard]] bool HaveLootFor(uint32 loot_id) const { return m_LootTemplates.find(loot_id) != m_LootTemplates.end(); }
+     [[nodiscard]] bool HaveQuestLootFor(uint32 loot_id) const;
+     bool HaveQuestLootForPlayer(uint32 loot_id, Player const* player) const;
++    // True if the template holds anything that is NOT gated behind a quest
++    [[nodiscard]] bool HaveNonQuestLootFor(uint32 loot_id) const;
+ 
+     [[nodiscard]] LootTemplate const* GetLootFor(uint32 loot_id) const;
+     [[nodiscard]] LootTemplate* GetLootForConditionFill(uint32 loot_id) const;
+@@ -261,6 +263,8 @@ public:
+     [[nodiscard]] bool HasQuestDrop(LootTemplateMap const& store) const;
+     // True if template includes at least 1 quest drop for an active quest of the player
+     bool HasQuestDropForPlayer(LootTemplateMap const& store, Player const* player) const;
++    // True if template includes at least 1 drop that is not gated behind a quest
++    [[nodiscard]] bool HasNonQuestDrop(LootTemplateMap const& store) const;
+ 
+     // Checks integrity of the template
+     void Verify(LootStore const& store, uint32 Id) const;
+diff --git a/src/server/game/Maps/PhaseMgr.cpp b/src/server/game/Maps/PhaseMgr.cpp
+new file mode 100644
+index 000000000..85f06b7e6
+--- /dev/null
++++ b/src/server/game/Maps/PhaseMgr.cpp
+@@ -0,0 +1,50 @@
++/*
++ * Zeppelin custom content — Cata-style zone phasing progression (F-194).
++ * See PhaseMgr.h for the design.
++ */
++
++#include "PhaseMgr.h"
++#include "ConditionMgr.h"
++#include "ObjectMgr.h"
++#include "Player.h"
++#include "World.h"
++
++void PhaseMgr::Recalculate()
++{
++    if (!_player || !sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++        return;
++
++    PhaseDefinitionStore const& store = sObjectMgr->GetPhaseDefinitionStore();
++    PhaseDefinitionStore::const_iterator itr = store.find(_player->GetZoneId());
++    if (itr == store.end())
++        return; // this zone is not phased — leave the phasemask as-is (auras / other systems own it)
++
++    if (_player->IsGameMaster())
++    {
++        if (_player->GetPhaseMask() != uint32(PHASEMASK_ANYWHERE))
++            _player->SetPhaseMask(PHASEMASK_ANYWHERE, true);
++        return;
++    }
++
++    uint32 phasemask = 0;
++    for (PhaseDefinition const& def : itr->second)
++    {
++        ConditionList const conditions = sConditionMgr->GetConditionsForPhaseDefinition(def.zoneId, def.entry);
++        if (!sConditionMgr->IsObjectMeetToConditions(_player, conditions))
++            continue;
++
++        if (def.IsOverwritingExistingPhases())
++            phasemask = def.phasemask;
++        else if (def.IsNegatingPhasemask())
++            phasemask &= ~def.phasemask;
++        else
++            phasemask |= def.phasemask;
++
++        if (def.IsLastDefinition())
++            break;
++    }
++
++    uint32 const finalMask = phasemask ? phasemask : uint32(PHASEMASK_NORMAL);
++    if (_player->GetPhaseMask() != finalMask)
++        _player->SetPhaseMask(finalMask, true);
++}
+diff --git a/src/server/game/Maps/PhaseMgr.h b/src/server/game/Maps/PhaseMgr.h
+new file mode 100644
+index 000000000..1c4535b06
+--- /dev/null
++++ b/src/server/game/Maps/PhaseMgr.h
+@@ -0,0 +1,63 @@
++/*
++ * Zeppelin custom content — Cata-style zone phasing progression (F-194).
++ *
++ * Server-side, definition-driven phasing backported from TrinityCore 4.3.4 (Project
++ * Neltharion) so a zone's world-state progresses as the player quests. Per-zone ordered
++ * phase_definitions are gated by conditions (CONDITION_SOURCE_TYPE_PHASE) on quest state;
++ * the resolved phasemask is applied via Player::SetPhaseMask (visibility). Terrain swaps
++ * (terrainswapmap/phaseId) are NOT applied here — deferred until the swap terrains are
++ * ported; those columns are loaded but ignored.
++ */
++
++#ifndef ZEPPELIN_PHASEMGR_H
++#define ZEPPELIN_PHASEMGR_H
++
++#include "Define.h"
++#include <list>
++#include <unordered_map>
++
++class Player;
++
++enum PhasingFlags
++{
++    PHASE_FLAG_OVERWRITE_EXISTING = 0x01, // replace the accumulated phasemask instead of OR-ing
++    PHASE_FLAG_NO_MORE_PHASES     = 0x02, // stop after this definition matches
++    PHASE_FLAG_NEGATE_PHASE       = 0x04  // clear these bits instead of setting them
++};
++
++struct PhaseDefinition
++{
++    uint32 zoneId         = 0;
++    uint32 entry          = 0;
++    uint32 phasemask      = 0;
++    uint32 phaseId        = 0;   // client-side (terrain-swap era) — ignored on 3.3.5a
++    uint32 terrainswapmap = 0;   // deferred (needs swap terrain ported) — ignored here
++    uint32 originmap      = 0;
++    uint8  flags          = 0;
++
++    [[nodiscard]] bool IsOverwritingExistingPhases() const { return (flags & PHASE_FLAG_OVERWRITE_EXISTING) != 0; }
++    [[nodiscard]] bool IsLastDefinition() const { return (flags & PHASE_FLAG_NO_MORE_PHASES) != 0; }
++    [[nodiscard]] bool IsNegatingPhasemask() const { return (flags & PHASE_FLAG_NEGATE_PHASE) != 0; }
++};
++
++typedef std::list<PhaseDefinition> PhaseDefinitionContainer;
++typedef std::unordered_map<uint32 /*zoneId*/, PhaseDefinitionContainer> PhaseDefinitionStore;
++
++class PhaseMgr
++{
++public:
++    explicit PhaseMgr(Player* player) : _player(player) { }
++
++    // Recompute the player's definition-driven phasemask for their current zone and apply it.
++    // Safe to call when the current zone has no phase_definitions (no-op).
++    void Recalculate();
++
++    // Fired when something that a phase condition could depend on changed (zone change,
++    // quest accept/complete/reward/abandon, login). Currently just recalculates.
++    void NotifyConditionChanged() { Recalculate(); }
++
++private:
++    Player* _player;
++};
++
++#endif // ZEPPELIN_PHASEMGR_H
+diff --git a/src/server/game/Server/Protocol/Opcodes.cpp b/src/server/game/Server/Protocol/Opcodes.cpp
+index aa2979621..0b2f2b1a8 100644
+--- a/src/server/game/Server/Protocol/Opcodes.cpp
++++ b/src/server/game/Server/Protocol/Opcodes.cpp
+@@ -1253,7 +1253,7 @@ void OpcodeTable::Initialize()
+     /*0x462*/ DEFINE_HANDLER(CMSG_UPDATE_MISSILE_TRAJECTORY,                                        STATUS_LOGGEDIN,   PROCESS_THREADUNSAFE,   &WorldSession::HandleUpdateMissileTrajectory            );
+     /*0x463*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_UPDATE_ACCOUNT_DATA_COMPLETE,                       STATUS_NEVER);
+     /*0x464*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_TRIGGER_MOVIE,                                      STATUS_NEVER);
+-    /*0x465*/ DEFINE_HANDLER(CMSG_COMPLETE_MOVIE,                                                   STATUS_NEVER,      PROCESS_INPLACE,        &WorldSession::Handle_NULL                              );
++    /*0x465*/ DEFINE_HANDLER(CMSG_COMPLETE_MOVIE,                                                   STATUS_LOGGEDIN,   PROCESS_THREADSAFE,     &WorldSession::HandleCompleteMovie                      );
+     /*0x466*/ DEFINE_HANDLER(CMSG_SET_GLYPH_SLOT,                                                   STATUS_NEVER,      PROCESS_INPLACE,        &WorldSession::Handle_NULL                              );
+     /*0x467*/ DEFINE_HANDLER(CMSG_SET_GLYPH,                                                        STATUS_NEVER,      PROCESS_INPLACE,        &WorldSession::Handle_NULL                              );
+     /*0x468*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_ACHIEVEMENT_EARNED,                                 STATUS_NEVER);
+diff --git a/src/server/game/Server/WorldSession.h b/src/server/game/Server/WorldSession.h
+index 72e1b5884..1693dd6e4 100644
+--- a/src/server/game/Server/WorldSession.h
++++ b/src/server/game/Server/WorldSession.h
+@@ -1031,6 +1031,7 @@ public:                                                 // opcodes handlers
+ 
+     void HandleCompleteCinematic(WorldPacket& recvPacket);
+     void HandleNextCinematicCamera(WorldPacket& recvPacket);
++    void HandleCompleteMovie(WorldPacket& recvPacket);
+ 
+     void HandlePageTextQueryOpcode(WorldPacket& recvPacket);
+ 
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index f6ad1b90b..f8e26a725 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -39,6 +39,7 @@
+ #include "Util.h"
+ #include "Vehicle.h"
+ #include "WorldPacket.h"
++#include "World.h"
+ 
+ /// @todo: this import is not necessary for compilation and marked as unused by the IDE
+ //  however, for some reasons removing it would cause a damn linking issue
+@@ -5338,6 +5339,11 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
+                         break;
+                 }
+ 
++                // Zeppelin I-376: custom taming rods name their final tame spell in the rod's own
++                // effect 2 TriggerSpell (unused by the dummy aura), so new rods need no entry above.
++                if (!finalSpelId && sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE))
++                    finalSpelId = GetSpellInfo()->Effects[EFFECT_1].TriggerSpell;
++
+                 if (finalSpelId)
+                     caster->CastSpell(target, finalSpelId, true, nullptr, this);
+             }
+diff --git a/src/server/game/Spells/SpellEffects.cpp b/src/server/game/Spells/SpellEffects.cpp
+index d684660c9..8b96341a0 100644
+--- a/src/server/game/Spells/SpellEffects.cpp
++++ b/src/server/game/Spells/SpellEffects.cpp
+@@ -23,6 +23,7 @@
+ #include "Chat.h"
+ #include "Common.h"
+ #include "Creature.h"
++#include "CreatureAI.h"
+ #include "DynamicObject.h"
+ #include "Formulas.h"
+ #include "GameObject.h"
+@@ -6422,7 +6423,11 @@ void Spell::SummonGuardian(uint32 i, uint32 entry, SummonPropertiesEntry const*
+         //    ((Minion*)summon)->SetFollowAngle(unitCaster->GetAngle(summon));
+ 
+         // xinef: move this here, some auras are added in initstatsforlevel!
+-        if (!summon->IsInCombat() && !summon->IsTrigger())
++        // Map::SummonCreature() has already run InitSummon() -> AI()->IsSummonedBy(), so an AI that
++        // started an escort in that hook already owns MOTION_SLOT_ACTIVE. Overwriting it with a follow
++        // strands the escort: it keeps STATE_ESCORT_ESCORTING but never gets an ESCORT_MOTION_TYPE
++        // generator back, so it trails the summoner forever instead of walking its path.
++        if (!summon->IsInCombat() && !summon->IsTrigger() && !(sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) && summon->IsAIEnabled && summon->AI()->IsEscorted()))
+         {
+             //  summon->AI()->EnterEvadeMode();
+             summon->GetMotionMaster()->Clear(false);
+diff --git a/src/server/game/World/World.cpp b/src/server/game/World/World.cpp
+index a001fcaf3..e6c9b35d7 100644
+--- a/src/server/game/World/World.cpp
++++ b/src/server/game/World/World.cpp
+@@ -815,6 +815,12 @@ void World::SetInitialWorldSettings()
+     LOG_INFO("server.loading", "Loading Conditions...");
+     sConditionMgr->LoadConditions();
+ 
++    if (sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE)) // phase_definitions only exists with F-013
++    {
++        LOG_INFO("server.loading", "Loading Phase Definitions...");   // F-194 Cata zone phasing
++        sObjectMgr->LoadPhaseDefinitions();
++    }
++
+     LOG_INFO("server.loading", "Loading Faction Change Achievement Pairs...");
+     sObjectMgr->LoadFactionChangeAchievements();
+ 
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index a39e23b37..614d30a6a 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -300,6 +300,8 @@ void WorldConfig::BuildConfigCache()
+ 
+     SetConfigValue<bool>(CONFIG_OBJECT_QUEST_MARKERS, "Visibility.ObjectQuestMarkers", true);
+ 
++    SetConfigValue<bool>(CONFIG_GOBLIN_START_ZONE, "GoblinStartZone.Enable", true);
++
+     SetConfigValue<uint32>(CONFIG_MAIL_DELIVERY_DELAY, "MailDeliveryDelay", HOUR);
+     SetConfigValue<bool>(CONFIG_MAIL_PUSH_INBOX_ON_DELIVERY, "Mail.PushInboxOnDelivery", false);
+ 
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf0075..c4283fb17 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -139,6 +139,7 @@ enum ServerConfigs
+     CONFIG_OBJECT_SPARKLES,
+     CONFIG_LOW_LEVEL_REGEN_BOOST,
+     CONFIG_OBJECT_QUEST_MARKERS,
++    CONFIG_GOBLIN_START_ZONE, // F-013 Zeppelin goblin start zone core support
+     CONFIG_STRICT_NAMES_RESERVED,
+     CONFIG_STRICT_NAMES_PROFANITY,
+     CONFIG_CHAT_FILTER_WHISPER,
+diff --git a/src/server/scripts/Custom/custom_script_loader.cpp b/src/server/scripts/Custom/custom_script_loader.cpp
+index 8f381e96f..b7b61e254 100644
+--- a/src/server/scripts/Custom/custom_script_loader.cpp
++++ b/src/server/scripts/Custom/custom_script_loader.cpp
+@@ -17,10 +17,14 @@
+ 
+ // This is where scripts' loading functions should be declared:
+ // void MyExampleScript()
++void AddSC_zeppelin_goblin_start();
++void AddSC_zeppelin_goblin_creatures();
+ 
+ // The name of this function should match:
+ // void Add${NameOfDirectory}Scripts()
+ void AddCustomScripts()
+ {
+     // MyExampleScript()
++    AddSC_zeppelin_goblin_start();
++    AddSC_zeppelin_goblin_creatures();
+ }
+diff --git a/src/server/scripts/Custom/zeppelin_goblin_creatures.cpp b/src/server/scripts/Custom/zeppelin_goblin_creatures.cpp
+new file mode 100644
+index 000000000..f891dbab6
+--- /dev/null
++++ b/src/server/scripts/Custom/zeppelin_goblin_creatures.cpp
+@@ -0,0 +1,641 @@
++/*
++ * Zeppelin custom content — F-011 Goblin Starting Zone (Lost Isles / Kezan).
++ *
++ * Creature scripts re-implemented from Project Neltharion (4.3.4, SkyFire/ArkCORE
++ * lineage). The F-011 port collector carries TABLES ONLY, so every donor entry
++ * whose behaviour lived in a CreatureScript arrived with an empty ScriptName, no
++ * AIName and no smart_scripts — inert, with no error logged anywhere. I-312
++ * documents the pattern; this file closes it for the entries that can be closed.
++ *
++ * ScriptName wiring lives in the zep-goblin-start zpak:
++ *   sql/zz_[I-313]_donor_script_ports.sql
++ *
++ * ---------------------------------------------------------------------------
++ * THREE PORTING RULES THAT APPLY TO EVERY SCRIPT BELOW
++ * ---------------------------------------------------------------------------
++ * 1. COORDINATES ARE TRANSFORMED. Donor paths are Cata map 648; OA re-hosts the
++ *    terrain on Kalimdor map 1 with X-533.3333 / Y-12800.0, Z and O unchanged.
++ *    Verified here to 0.01yd: every donor Oomlot Warrior summon position lands
++ *    exactly on the shipped heightmap ground after transform (57.46 vs 57.47,
++ *    51.84 vs 51.85, ...). Raw donor coordinates are kept in comments.
++ *
++ * 2. NO MovementInform FOR SPLINE PATHS. The donor drives its set-pieces off
++ *    MoveSmoothPath + MovementInform(SPLINE_MOTION_TYPE, pointIndex). AC has no
++ *    MoveSmoothPath; the nearest equivalent, MotionMaster::MoveSplinePath, runs
++ *    an EscortMovementGenerator that reports NOTHING — no per-point callback and
++ *    no completion id (EscortMovementGenerator.cpp: DoFinalize sends no inform).
++ *    Fortunately every point the donor tests is the LAST index of its array
++ *    (cart path 1 size 5 -> tests 4; cart path 2 size 12 -> tests 11; hot rod
++ *    path 1 size 25 -> tests 24; path 2 size 27 -> tests 26), so polling
++ *    me->movespline->Finalized() reproduces all of them exactly. Each AI below
++ *    therefore carries a small "leg" state machine instead of MovementInform.
++ *
++ * 3. THE 1511xx SPELLS DO NOT EXIST — AND ARE NOT NEEDED. 151143/151154/151156/
++ *    151235 are donor-invented server-side stubs (they are the ONLY rows in the
++ *    donor's own spell_dbc table and appear in no 4.3.4 client DBC — same bogus
++ *    band as I-274/I-277). The donor used them purely as an event bus: the player
++ *    casts a "ping", nearby actors react. In C++ that indirection is pointless,
++ *    so the ported scripts call EnterVehicle / DespawnOrUnsummon directly and the
++ *    dependency disappears rather than needing custom spells.
++ *
++ * Derivation note: these AIs extend ScriptedAI, not VehicleAI, even for vehicles.
++ * AC's VehicleAI arms a 5s auto-dismiss once the last passenger leaves
++ * (VEHICLE_DISMISS_TIME, CombatAI.h:97) which races the explicit despawn timing
++ * each set-piece needs. Everything VehicleAI would provide (passive react state,
++ * no melee) is set explicitly instead.
++ */
++
++#include "CreatureScript.h"
++#include "MotionMaster.h"
++#include "MoveSpline.h"
++#include "ObjectAccessor.h"
++#include "Player.h"
++#include "ScriptedCreature.h"
++#include "SmartAI.h"
++#include "SpellInfo.h"
++#include "Vehicle.h"
++
++#include <cmath>
++#include <unordered_map>
++
++enum ZepGoblinShared
++{
++    SPELL_ROOT_SELF             = 42716, // "Rooted" — stock, present in our DBC
++    SPELL_EJECT_ALL_PASSENGERS  = 50630
++};
++
++// Donor map-648 -> OA map-1. Kept as a helper so the raw donor numbers stay
++// readable in the tables below and the transform is stated exactly once.
++static constexpr float ZEP_DX = -533.3333f;
++static constexpr float ZEP_DY = -12800.0f;
++
++static inline G3D::Vector3 ZepPt(float x, float y, float z)
++{
++    return G3D::Vector3(x + ZEP_DX, y + ZEP_DY, z);
++}
++
++/* ===========================================================================
++ * q24901 "Town-In-A-Box: Under Attack" — B.C. Eliminator (38526)
++ *
++ * Donor: npc_bc_eliminator (lost_isles.cpp:1366). A parked, rooted turret the
++ * player mans; while manned it spawns a stream of Oomlot Warriors from six fixed
++ * points on the slope below, and it cannot be killed. Boarding ends when the
++ * quest completes or is abandoned.
++ *
++ * Closure is complete for this one: 75116 Oomlot Warrior, 42716 and 50630 all
++ * exist in our DB/DBC, and 38526 already has its 5 spawns.
++ * =========================================================================== */
++enum ZepEliminator
++{
++    QUEST_TOWN_IN_A_BOX_UNDER_ATTACK = 24901,
++    NPC_OOMLOT_WARRIOR               = 75116
++};
++
++// Donor WarriorsSumPosition[] (map 648) -> map 1. Each lands dead on the ground.
++static Position const EliminatorWarriorSpawns[6] =
++{
++    { 379.415f, -10620.030f, 57.46f, 1.2f }, // donor 912.748 2179.97 57.46
++    { 370.608f, -10610.080f, 51.84f, 1.2f }, // donor 903.941 2189.92 51.84
++    { 363.760f, -10603.330f, 50.12f, 1.2f }, // donor 897.093 2196.67 50.12
++    { 374.559f, -10597.700f, 43.60f, 1.2f }, // donor 907.892 2202.30 43.60
++    { 381.044f, -10582.220f, 33.41f, 1.2f }, // donor 914.377 2217.78 33.41
++    { 371.142f, -10585.450f, 37.13f, 1.2f }  // donor 904.475 2214.55 37.13
++};
++
++struct npc_zep_bc_eliminator : public ScriptedAI
++{
++    npc_zep_bc_eliminator(Creature* creature) : ScriptedAI(creature), _summons(me) { }
++
++    void InitializeAI() override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        me->setActive(true);
++        DoCast(me, SPELL_ROOT_SELF, true);
++    }
++
++    void PassengerBoarded(Unit* passenger, int8 /*seatId*/, bool apply) override
++    {
++        Player* player = passenger->ToPlayer();
++        if (!player)
++            return;
++
++        if (apply)
++        {
++            _playerGUID = player->GetGUID();
++            _spawnTimer = 1000;
++            DoCast(me, SPELL_ROOT_SELF, true);
++        }
++        else
++        {
++            _summons.DespawnAll();
++            _playerGUID.Clear();
++        }
++    }
++
++    // Donor zeroed any lethal hit; the turret is scenery and must never die.
++    void DamageTaken(Unit* /*attacker*/, uint32& damage, DamageEffectType, SpellSchoolMask) override
++    {
++        if (damage >= me->GetHealth())
++            damage = 0;
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!_playerGUID)
++            return;
++
++        Player* player = ObjectAccessor::GetPlayer(*me, _playerGUID);
++        if (!player)
++        {
++            _summons.DespawnAll();
++            _playerGUID.Clear();
++            return;
++        }
++
++        QuestStatus status = player->GetQuestStatus(QUEST_TOWN_IN_A_BOX_UNDER_ATTACK);
++        if (status == QUEST_STATUS_NONE || status == QUEST_STATUS_COMPLETE)
++        {
++            _summons.DespawnAll();
++            _playerGUID.Clear();
++            player->ExitVehicle();
++            DoCast(me, SPELL_EJECT_ALL_PASSENGERS, true);
++            return;
++        }
++
++        if (_spawnTimer <= diff)
++        {
++            _spawnTimer = urand(500, 2000);
++            if (Creature* warrior = me->SummonCreature(NPC_OOMLOT_WARRIOR,
++                    EliminatorWarriorSpawns[urand(0, 5)], TEMPSUMMON_TIMED_DESPAWN, 90000))
++            {
++                warrior->setActive(true);
++                _summons.Summon(warrior);
++            }
++        }
++        else
++            _spawnTimer -= diff;
++    }
++
++private:
++    ObjectGuid _playerGUID;
++    uint32 _spawnTimer = 1000;
++    SummonList _summons;
++};
++
++/* ===========================================================================
++ * q24942 "Zombies vs. Super Booster Rocket Boots" — the boots (38802)
++ *
++ * Donor: npc_super_booster_rocket_boots (lost_isles.cpp:1466). A summoned vehicle
++ * the player rides; it drops them when they get more than 20yd away from it, or
++ * once the quest is complete and they have reached Crosscheck (38738).
++ *
++ * NOTHING IN THIS AI RUNS WHILE THE PLAYER IS RIDING (I-340). Seat 7562 is
++ * VEHICLE_SEAT_FLAG_CAN_CONTROL, so Vehicle::AddPassenger charms the boots to
++ * the player, and Unit::SetCharmedBy -> CreatureAI::OnCharmed sets
++ * `me->IsAIEnabled = false` (CreatureAI.cpp:54). Both PassengerBoarded
++ * (Vehicle.cpp:496) and Creature::Update's UpdateAI call are gated on that flag,
++ * so for the whole ride this AI is switched off. Do NOT put ride behaviour here.
++ *
++ * The burning aura (72885) therefore lives on the 72887 rider aura instead — see
++ * spell_zep_q24942_boots_ride in zeppelin_goblin_start.cpp. The RemoveAura below
++ * is kept only as a safety net for a hypothetical non-controlling seat; on this
++ * vehicle it never runs.
++ *
++ * What DOES still work: once the player dismounts the charm ends,
++ * Creature::Update re-enables the AI (Creature.cpp:781) and UpdateAI resumes, so
++ * the 20yd despawn below cleans the boots up. The donor's auto-dismount at
++ * Crosscheck once the quest is complete is lost — it needed UpdateAI during the
++ * ride — and the player just right-clicks off instead.
++ * =========================================================================== */
++enum ZepRocketBoots
++{
++    QUEST_ZOMBIES_VS_BOOTS    = 24942,
++    NPC_CROSSCHECK            = 38738,
++    SPELL_ZOMBIE_BURNING_AURA = 72885
++};
++
++struct npc_zep_super_booster_rocket_boots : public ScriptedAI
++{
++    npc_zep_super_booster_rocket_boots(Creature* creature) : ScriptedAI(creature) { }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        if (Player* player = summoner->ToPlayer())
++            _playerGUID = player->GetGUID();
++    }
++
++    void PassengerBoarded(Unit* passenger, int8 /*seatId*/, bool apply) override
++    {
++        Player* player = passenger->ToPlayer();
++        if (!player)
++            return;
++
++        if (!apply)
++            player->RemoveAurasDueToSpell(SPELL_ZOMBIE_BURNING_AURA);
++    }
++
++    void UpdateAI(uint32 /*diff*/) override
++    {
++        if (!_playerGUID)
++            return;
++
++        Player* player = ObjectAccessor::GetPlayer(*me, _playerGUID);
++        if (!player)
++            return;
++
++        bool done = me->GetDistance(player) >= 20.0f;
++
++        if (!done && player->GetQuestStatus(QUEST_ZOMBIES_VS_BOOTS) == QUEST_STATUS_COMPLETE)
++            done = me->FindNearestCreature(NPC_CROSSCHECK, 7.0f) != nullptr;
++
++        if (done)
++        {
++            _playerGUID.Clear();
++            player->RemoveAurasDueToSpell(SPELL_ZOMBIE_BURNING_AURA);
++            player->ExitVehicle();
++            me->DespawnOrUnsummon(100ms);
++        }
++    }
++
++private:
++    ObjectGuid _playerGUID;
++};
++
++/* ===========================================================================
++ * q25184 "Wild Mine Cart Ride" — the cart (39329) and its three passengers
++ *
++ * Donor: npc_wild_mine_cart_ride_vehicle (lost_isles.cpp:2418) plus
++ * npc_summoned_izzy_gobber_ace (:2133) and npc_assistant_greedy_kajacola (:1992).
++ *
++ * Shape: the player boards the cart with Greely (seat 1), Ace (2), Izzy (3) and
++ * Gobber (4). Leg 1 rolls to the broken track, the cart JUMPS the gap, leg 2 is
++ * the runaway descent, and it detonates at the bottom, ejecting everyone.
++ *
++ * The donor seated the passengers by having the player cast 151154 ("player to
++ * his actors") which each companion answered by calling EnterVehicle on itself.
++ * That spell does not exist (rule 3 above), so the CART seats them directly when
++ * the player boards — same result, no phantom spell, and no dependence on four
++ * separate AIs all hearing the same ping.
++ * =========================================================================== */
++enum ZepWildCart
++{
++    QUEST_WILD_MINE_CART_RIDE = 25184,
++
++    NPC_CART_GREELY = 39199,
++    NPC_CART_ACE    = 39198,
++    NPC_CART_IZZY   = 39200,
++    NPC_CART_GOBBER = 39201,
++
++    // Credits handed out as each companion is freed (donor IsSummonedBy).
++    NPC_CREDIT_ACE    = 38441,
++    NPC_CREDIT_IZZY   = 38647,
++    NPC_CREDIT_GOBBER = 38746,
++
++    // "Free Their Minds: Summon <X> Controller" — the player-side auras that keep
++    // each companion alive. Present in our DBC; stripped when the actor leaves.
++    SPELL_CONTROLLER_ACE    = 73633,
++    SPELL_CONTROLLER_IZZY   = 73635,
++    SPELL_CONTROLLER_GOBBER = 73637,
++    SPELL_CONTROLLER_GREELY = 73616,
++
++    SPELL_KAJACOLA_ZERO = 73599
++};
++
++// Donor WildCartRidePath[5] -> map 1. Leg 1: the approach to the broken track.
++static G3D::Vector3 const WildCartLeg1[] =
++{
++    ZepPt(2072.210f, 1846.002f, 138.143f),
++    ZepPt(2080.459f, 1849.126f, 137.606f),
++    ZepPt(2105.403f, 1855.833f, 129.191f),
++    ZepPt(2126.280f, 1861.491f, 126.503f),
++    ZepPt(2147.560f, 1868.554f, 127.346f)
++};
++
++// Donor WildCartRidePath2[12] -> map 1. Leg 2: the runaway descent.
++static G3D::Vector3 const WildCartLeg2[] =
++{
++    ZepPt(2181.068f, 1879.653f, 105.940f),
++    ZepPt(2199.793f, 1885.604f,  84.518f),
++    ZepPt(2216.008f, 1889.728f,  69.419f),
++    ZepPt(2236.289f, 1895.935f,  59.542f),
++    ZepPt(2253.223f, 1901.180f,  52.231f),
++    ZepPt(2273.656f, 1905.713f,  40.891f),
++    ZepPt(2292.110f, 1911.351f,  34.743f),
++    ZepPt(2316.186f, 1919.141f,  30.829f),
++    ZepPt(2332.839f, 1925.787f,  28.113f),
++    ZepPt(2343.340f, 1928.780f,  26.394f),
++    ZepPt(2354.215f, 1929.784f,  25.113f),
++    ZepPt(2368.307f, 1933.982f,  21.221f)
++};
++
++// Donor MoveJump target between the two legs (2170.37 1876.81 117.25).
++static Position const WildCartJump = { 1637.037f, -10923.190f, 117.25f, 0.0f };
++
++struct npc_zep_wild_mine_cart : public ScriptedAI
++{
++    npc_zep_wild_mine_cart(Creature* creature) : ScriptedAI(creature) { }
++
++    enum Leg : uint8 { LEG_IDLE, LEG_ONE, LEG_JUMP, LEG_TWO, LEG_DONE };
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        if (Player* player = summoner->ToPlayer())
++            _playerGUID = player->GetGUID();
++    }
++
++    void PassengerBoarded(Unit* passenger, int8 /*seatId*/, bool apply) override
++    {
++        Player* player = passenger->ToPlayer();
++        if (!player)
++            return;
++
++        if (apply)
++        {
++            _playerGUID = player->GetGUID();
++            SeatCompanions(player);
++            _startTimer = 2000;         // donor EVENT_WILD_MINE_CART_1
++        }
++        else if (_leg == LEG_DONE)
++        {
++            // Donor cast 151156 here to tear down the companion summons; done
++            // directly instead (rule 3).
++            DespawnCompanions(player);
++        }
++    }
++
++    // Replaces the donor's 151154 ping. Each companion is a summon owned by the
++    // rider, so ownership is what distinguishes this player's actors from another
++    // player's in the same spot.
++    void SeatCompanions(Player* player)
++    {
++        struct { uint32 entry; int8 seat; } const actors[] =
++        {
++            { NPC_CART_GREELY, 1 }, { NPC_CART_ACE, 2 },
++            { NPC_CART_IZZY,   3 }, { NPC_CART_GOBBER, 4 }
++        };
++
++        for (auto const& actor : actors)
++            if (Creature* c = me->FindNearestCreature(actor.entry, 40.0f))
++                if (c->GetOwnerGUID() == player->GetGUID())
++                    c->EnterVehicle(me, actor.seat);
++    }
++
++    void DespawnCompanions(Player* player)
++    {
++        for (uint32 spell : { SPELL_CONTROLLER_ACE, SPELL_CONTROLLER_IZZY,
++                              SPELL_CONTROLLER_GOBBER, SPELL_CONTROLLER_GREELY })
++            player->RemoveAurasDueToSpell(spell);
++
++        for (uint32 entry : { NPC_CART_GREELY, NPC_CART_ACE, NPC_CART_IZZY, NPC_CART_GOBBER })
++            if (Creature* c = me->FindNearestCreature(entry, 60.0f))
++                if (c->GetOwnerGUID() == player->GetGUID())
++                    c->DespawnOrUnsummon(100ms);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (_startTimer)
++        {
++            if (_startTimer <= diff)
++            {
++                _startTimer = 0;
++                _leg = LEG_ONE;
++                me->GetMotionMaster()->MoveSplinePath(&_leg1);
++            }
++            else
++                _startTimer -= diff;
++            return;
++        }
++
++        if (_endTimer)
++        {
++            if (_endTimer <= diff)
++            {
++                _endTimer = 0;
++                DoCast(me, SPELL_EJECT_ALL_PASSENGERS, true);
++                me->DespawnOrUnsummon(1s);
++            }
++            else
++                _endTimer -= diff;
++            return;
++        }
++
++        // Leg completion: AC's spline path generator reports nothing, so poll.
++        if (_leg == LEG_IDLE || _leg == LEG_DONE || !me->movespline->Finalized())
++            return;
++
++        switch (_leg)
++        {
++            case LEG_ONE:   // donor MovementInform point 4 (last of path 1)
++                _leg = LEG_JUMP;
++                me->GetMotionMaster()->MoveJump(WildCartJump, 21.0f, 15.0f);
++                _jumpTimer = 1500;   // donor EVENT_WILD_MINE_CART_2 delay
++                break;
++            case LEG_JUMP:
++                if (_jumpTimer > diff)
++                {
++                    _jumpTimer -= diff;
++                    return;
++                }
++                _jumpTimer = 0;
++                _leg = LEG_TWO;
++                me->SetSpeed(MOVE_RUN, 4.0f, true);
++                me->GetMotionMaster()->MoveSplinePath(&_leg2);
++                break;
++            case LEG_TWO:   // donor MovementInform point 11 (last of path 2)
++                _leg = LEG_DONE;
++                _endTimer = 500;    // donor EVENT_WILD_MINE_CART_3 delay
++                break;
++            default:
++                break;
++        }
++    }
++
++private:
++    ObjectGuid _playerGUID;
++    Leg _leg = LEG_IDLE;
++    uint32 _startTimer = 0;
++    uint32 _jumpTimer = 0;
++    uint32 _endTimer = 0;
++
++    // Non-const: MotionMaster::MoveSplinePath takes a mutable PointsArray*.
++    Movement::PointsArray _leg1{ std::begin(WildCartLeg1), std::end(WildCartLeg1) };
++    Movement::PointsArray _leg2{ std::begin(WildCartLeg2), std::end(WildCartLeg2) };
++};
++
++/* ---------------------------------------------------------------------------
++ * The three freed prisoners (39198 Ace / 39200 Izzy / 39201 Gobber) and
++ * Assistant Greely (39199). One AI serves all four — the donor used two nearly
++ * identical classes that differed only in which credit and which controller aura
++ * they touched, so the per-entry data is a lookup here instead of a copy.
++ *
++ * Behaviour: on summon, greet the player, hand out the freed-prisoner credit and
++ * strip the "invisible until freed" detection aura; then follow at a fixed angle
++ * until the player dies, finishes the quest, or walks 120yd away. Greely has no
++ * credit — she is the escort, not a prisoner.
++ * --------------------------------------------------------------------------- */
++struct ZepCompanionData
++{
++    uint32 credit;          // 0 = no credit (Greely)
++    uint32 controllerAura;  // player-side aura removed on teardown
++    uint32 detectionAura;   // "see the captive" aura removed once freed
++    float  followAngle;     // donor MoveFollow angle, as a multiple of pi
++};
++
++static ZepCompanionData const* GetCompanionData(uint32 entry)
++{
++    static std::unordered_map<uint32, ZepCompanionData> const data =
++    {
++        { NPC_CART_ACE,    { NPC_CREDIT_ACE,    SPELL_CONTROLLER_ACE,    49416, 0.4f } },
++        { NPC_CART_IZZY,   { NPC_CREDIT_IZZY,   SPELL_CONTROLLER_IZZY,   49417, 0.9f } },
++        { NPC_CART_GOBBER, { NPC_CREDIT_GOBBER, SPELL_CONTROLLER_GOBBER, 60922, 1.4f } },
++        { NPC_CART_GREELY, { 0,                 SPELL_CONTROLLER_GREELY, 0,     3.0f } }
++    };
++
++    auto itr = data.find(entry);
++    return itr != data.end() ? &itr->second : nullptr;
++}
++
++struct npc_zep_wild_cart_companion : public ScriptedAI
++{
++    npc_zep_wild_cart_companion(Creature* creature) : ScriptedAI(creature)
++    {
++        _data = GetCompanionData(creature->GetEntry());
++    }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        DoCast(me, SPELL_KAJACOLA_ZERO, true);
++
++        Player* player = summoner->ToPlayer();
++        if (!player || !_data)
++            return;
++
++        _playerGUID = player->GetGUID();
++        Talk(0, player, 1s);
++
++        if (_data->credit)
++            player->KilledMonsterCredit(_data->credit);
++        if (_data->detectionAura)
++            player->RemoveAurasDueToSpell(_data->detectionAura);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!_data || !_playerGUID)
++            return;
++
++        if (_checkTimer > diff)
++        {
++            _checkTimer -= diff;
++            return;
++        }
++        _checkTimer = 1000;
++
++        Player* player = ObjectAccessor::GetPlayer(*me, _playerGUID);
++        if (!player)
++            return;
++
++        QuestStatus status = player->GetQuestStatus(QUEST_WILD_MINE_CART_RIDE);
++        if (!player->IsAlive() || me->GetDistance(player) >= 120.0f ||
++            status == QUEST_STATUS_REWARDED || status == QUEST_STATUS_COMPLETE)
++        {
++            player->RemoveAurasDueToSpell(_data->controllerAura);
++            me->DespawnOrUnsummon();
++            return;
++        }
++
++        // Never re-issue MoveFollow while riding the cart — it would fight the
++        // vehicle seat. (The donor only guarded on combat and could stutter.)
++        if (!me->IsInCombat() && !me->GetVehicle())
++            me->GetMotionMaster()->MoveFollow(player, 0.8f, _data->followAngle * float(M_PI));
++    }
++
++private:
++    ObjectGuid _playerGUID;
++    uint32 _checkTimer = 1000;
++    ZepCompanionData const* _data = nullptr;
++};
++
++/*
++ * I-247 — Kezan Training Dummy (48304). Donor ScriptName npc_training_dummy.
++ * The stock AC npc_training_dummy is a NullCreatureAI, which would silence the
++ * dummy's smart_scripts quest-credit rows (on spellhit -> KILLEDMONSTER). This is
++ * the same behaviour on top of SmartAI: keep AIName = SmartAI, set this ScriptName.
++ *   - takes no damage (health never moves, SMART_EVENT_DAMAGED still fires first);
++ *     like the stock dummies it is ~1 HP (HealthModifier 0.000187), because the
++ *     client pre-subtracts spell damage and nothing resends an unchanged health;
++ *   - drops combat with each attacker 5s after their last direct hit (DoTs don't
++ *     refresh), exactly like the stock dummy;
++ *   - never chases, melees or evades (rooting/pacify stay data: Rooted=1, 0x20000).
++ */
++struct npc_zep_training_dummy : public SmartAI
++{
++    npc_zep_training_dummy(Creature* creature) : SmartAI(creature) { }
++
++    void JustEnteredCombat(Unit* who) override
++    {
++        SmartAI::JustEnteredCombat(who);
++        _combatTimer[who->GetGUID()] = 5s;
++    }
++
++    void DamageTaken(Unit* attacker, uint32& damage, DamageEffectType damageType, SpellSchoolMask schoolMask) override
++    {
++        SmartAI::DamageTaken(attacker, damage, damageType, schoolMask);
++        damage = 0;
++
++        if (!attacker || damageType == DOT)
++            return;
++
++        _combatTimer[attacker->GetGUID()] = 5s;
++
++        // Pet attacks engage the owner via propagation without firing
++        // JustEnteredCombat here, so track the owner's timer too.
++        if (Unit* owner = attacker->GetCharmerOrOwner())
++            if (me->GetCombatManager().IsInCombatWith(owner))
++                _combatTimer[owner->GetGUID()] = 5s;
++    }
++
++    // A rooted, pacified dummy has nowhere to go; evading would only strip its auras.
++    void EnterEvadeMode(EvadeReason /*why*/) override { }
++
++    void UpdateAI(uint32 diff) override
++    {
++        // Not SmartAI::UpdateAI — that would select a victim, melee and evade.
++        GetScript()->OnUpdate(diff);
++
++        for (auto itr = _combatTimer.begin(); itr != _combatTimer.end();)
++        {
++            itr->second -= Milliseconds(diff);
++            if (itr->second <= 0s)
++            {
++                auto const& pveRefs = me->GetCombatManager().GetPvECombatRefs();
++                auto it = pveRefs.find(itr->first);
++                if (it != pveRefs.end())
++                    it->second->EndCombat();
++
++                itr = _combatTimer.erase(itr);
++            }
++            else
++                ++itr;
++        }
++
++        if (IsEngaged() && !me->IsInCombat())
++            EngagementOver();
++    }
++
++private:
++    std::unordered_map<ObjectGuid, Milliseconds> _combatTimer;
++};
++
++void AddSC_zeppelin_goblin_creatures()
++{
++    RegisterCreatureAI(npc_zep_bc_eliminator);
++    RegisterCreatureAI(npc_zep_super_booster_rocket_boots);
++    RegisterCreatureAI(npc_zep_wild_mine_cart);
++    RegisterCreatureAI(npc_zep_wild_cart_companion);
++    RegisterCreatureAI(npc_zep_training_dummy);
++}
+diff --git a/src/server/scripts/Custom/zeppelin_goblin_start.cpp b/src/server/scripts/Custom/zeppelin_goblin_start.cpp
+new file mode 100644
+index 000000000..3968ac574
+--- /dev/null
++++ b/src/server/scripts/Custom/zeppelin_goblin_start.cpp
+@@ -0,0 +1,459 @@
++/*
++ * Zeppelin custom content — F-011 Goblin Starting Zone (Lost Isles / Kezan).
++ *
++ * Quest-item spell scripts ported from Cataclysm (Project Neltharion). The source
++ * effects are DUMMY/SCRIPT_EFFECT whose behaviour lives in core C++; here we
++ * reimplement the quest-credit behaviour for 3.3.5a.
++ *
++ * Registered spell_script_names live in the zep-goblin-start zpak SQL.
++ */
++
++#include "Creature.h"
++#include "ObjectAccessor.h"
++#include "ObjectMgr.h"
++#include "Player.h"
++#include "ScriptMgr.h"
++#include "Spell.h"
++#include "SpellScript.h"
++#include "SpellScriptLoader.h"
++
++#include <algorithm>
++#include <cmath>
++#include <list>
++
++enum ZepGoblinCredits
++{
++    SPELL_WEED_WHACKER            = 68211, // DUMMY
++    SPELL_WEED_WHACKER_AURA       = 68212, // whirlwind state, periodic 68213 mow pulse
++    SPELL_KTC_SNAPFLASH           = 68280, // DUMMY (photograph target -> credit that entry)
++
++    // q24942 "Zombies vs. Super Booster Rocket Boots" (I-340)
++    QUEST_ZOMBIES_VS_BOOTS        = 24942,
++    SPELL_SUPER_BOOSTER_ROCKET_BOOTS = 72891, // SCRIPT_EFFECT, item 84320 on-use
++    SPELL_BOOTS_SUMMON            = 72889, // SUMMON 38802 (SummonProperties 827, vehicle)
++    SPELL_BOOTS_CONTROL_VEHICLE   = 72887, // CONTROL_VEHICLE on the boots + DUMMY on the rider
++    SPELL_BOOTS_BURNING_AURA      = 72885, // 500ms periodic -> 72886, the 8yd fire nova
++
++    // Gallywix Labor Mine chain (I-357)
++    QUEST_KAJACOLA_IDEAS          = 25110, // turn-in fires the one and only summon
++    QUEST_WILD_MINE_CART_RIDE     = 25184, // end of the window; the companion AI despawns on it
++    NPC_ASSISTANT_GREELY_FOLLOWER = 39199,
++    SPELL_RESUMMON_GREELY         = 73648, // SUMMON 39199, SummonProperties 2989, permanent
++    AREA_GALLYWIX_LABOR_MINE      = 4924
++};
++
++// I-340 Super Booster Rocket Boots (q24942): the item's SCRIPT_EFFECT summons
++// the boots vehicle (38802) and boards the player, who then burns Goblin Zombies
++// (38753) by running over them. Beat for beat from the donor's
++// Spell::EffectScriptEffect case 72891 (SpellEffects.cpp:4446): gated on the
++// quest being active and on the player not already wearing a pair.
++//
++// It does NOT grant credit. Credit is the zombie's: 38753 carries
++// KillCredit1 = 38807, so the fire damage killing it pays the objective once per
++// zombie. The port previously wired this spell to a generic fixed-credit script,
++// which banked exactly one credit per click and never touched a zombie.
++//
++// The donor gated the re-use check on `HasAura(72887)` and we deliberately do
++// NOT copy that. 72887 applies CONTROL_VEHICLE to the boots (effect 0, target 25)
++// and a permanent DUMMY to the player (effect 1, target 1), so the player's half
++// is a separate permanent Aura object that nothing in AC removes when the ride
++// ends — `Unit::ExitVehicle` only strips CONTROL_VEHICLE from the vehicle base.
++// Gating on it would let one ride lock the boots out for good. `GetVehicle()` is
++// the same question asked of real state. (The boots AI strips the stale dummy on
++// unboard as well, so it does not sit on the buff bar either.)
++class spell_zep_q24942_zombies_booster : public SpellScript
++{
++    PrepareSpellScript(spell_zep_q24942_zombies_booster);
++
++    bool Validate(SpellInfo const* /*spellInfo*/) override
++    {
++        return ValidateSpellInfo({ SPELL_BOOTS_SUMMON, SPELL_BOOTS_CONTROL_VEHICLE });
++    }
++
++    void HandleScript(SpellEffIndex /*effIndex*/)
++    {
++        Player* player = GetCaster() ? GetCaster()->ToPlayer() : nullptr;
++        if (!player)
++            return;
++
++        if (player->GetQuestStatus(QUEST_ZOMBIES_VS_BOOTS) != QUEST_STATUS_INCOMPLETE)
++            return;
++
++        if (player->GetVehicle())
++            return;
++
++        player->CastSpell(player, SPELL_BOOTS_SUMMON, true);
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_zep_q24942_zombies_booster::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
++    }
++};
++
++// I-340 the ride itself. 72887 is cast by the player on the summoned boots and
++// carries TWO effects with different targets, so AC builds two separate Aura
++// objects: effect 0 CONTROL_VEHICLE on the BOOTS (target 25, the explicit
++// target), effect 1 DUMMY on the RIDER (target 1, the caster). This script rides
++// the rider's half and is what actually lights the boots.
++//
++// Retail did the same thing from the seat: 72897 "Zombies vs. Super Booster
++// Rocket Boots: AICast on Enter Seat" (effect 160, TARGET_UNIT_MASTER 27)
++// triggers 72885 onto the controller when the seat is entered. 3.3.5a has no
++// enter-seat cast, and the obvious substitute — the boots' own
++// CreatureAI::PassengerBoarded — CANNOT WORK on this vehicle:
++//
++//     Vehicle::AddPassenger charms the vehicle to the player for a
++//     VEHICLE_SEAT_FLAG_CAN_CONTROL seat (Vehicle.cpp:432), and
++//     Unit::SetCharmedBy -> CreatureAI::OnCharmed ends with
++//     `me->IsAIEnabled = false` (CreatureAI.cpp:54). The PassengerBoarded call
++//     40 lines later is gated on IsAIEnabled (Vehicle.cpp:496), so it never
++//     fires — and Creature::Update skips UpdateAI for the same reason. EVERY
++//     CreatureAI hook on a DRIVEN vehicle is dead for the whole ride.
++//
++// The 72887 aura, by contrast, is exactly co-terminous with the ride: AC removes
++// the rider's half itself when the ride ends
++// (AuraEffect::HandleAuraControlVehicle's remove branch does
++// `caster->RemoveAurasDueToSpell(GetId())`), whether the player right-clicks
++// off, the boots despawn, or they log out. So apply and remove are both
++// guaranteed here and nowhere else.
++class spell_zep_q24942_boots_ride : public AuraScript
++{
++    PrepareAuraScript(spell_zep_q24942_boots_ride);
++
++    bool Validate(SpellInfo const* /*spellInfo*/) override
++    {
++        return ValidateSpellInfo({ SPELL_BOOTS_BURNING_AURA });
++    }
++
++    void HandleApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        Unit* rider = GetTarget();
++        if (rider->IsPlayer())
++            rider->CastSpell(rider, SPELL_BOOTS_BURNING_AURA, true);
++    }
++
++    void HandleRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        GetTarget()->RemoveAurasDueToSpell(SPELL_BOOTS_BURNING_AURA);
++    }
++
++    void Register() override
++    {
++        AfterEffectApply  += AuraEffectApplyFn(spell_zep_q24942_boots_ride::HandleApply, EFFECT_1, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
++        AfterEffectRemove += AuraEffectRemoveFn(spell_zep_q24942_boots_ride::HandleRemove, EFFECT_1, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
++    }
++};
++
++// I-307 Weed Whacker (q14236): the item's dummy (68211) toggles the whirlwind
++// aura 68212, whose periodic pulse (68213) mows the Deadly Jungle Plants. No
++// direct credit here — the plants (35897) self-credit on death.
++class spell_zep_q14236_weed_whacker : public SpellScript
++{
++    PrepareSpellScript(spell_zep_q14236_weed_whacker);
++
++    void HandleDummy(SpellEffIndex /*effIndex*/)
++    {
++        Unit* caster = GetCaster();
++        if (!caster)
++            return;
++
++        if (caster->HasAura(SPELL_WEED_WHACKER_AURA))
++            caster->RemoveAurasDueToSpell(SPELL_WEED_WHACKER_AURA);
++        else
++            caster->CastSpell(caster, SPELL_WEED_WHACKER_AURA, true);
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_zep_q14236_weed_whacker::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
++    }
++};
++
++// KTC Snapflash: photograph the targeted creature -> credit its own entry.
++class spell_zep_q14031_ktc_snapflash : public SpellScript
++{
++    PrepareSpellScript(spell_zep_q14031_ktc_snapflash);
++
++    void HandleCredit(SpellEffIndex /*effIndex*/)
++    {
++        Player* player = GetCaster() ? GetCaster()->ToPlayer() : nullptr;
++        if (!player)
++            return;
++        if (Creature* target = GetHitCreature())
++            player->KilledMonsterCredit(target->GetEntry());
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_zep_q14031_ktc_snapflash::HandleCredit, EFFECT_0, SPELL_EFFECT_ANY);
++    }
++};
++
++// I-248 Fourth and Goal (q28414): score detection for Throw Footbomb (69992,
++// cast by the possessed Bilgewater Buccaneer 37179). The KTC goal is the gap
++// between the smokestacks — a vertical quad GM-mapped in-game: Z 110..177 above
++// the line (-8935.1,-11336.4) -> (-8944.3,-11296.0). Data-side detection cannot
++// express "the ball crossed the plane" (dest areas only see the landing point;
++// the traj corridor is missile-width), so: intersect the shot's XY path with the
++// goal line and evaluate the ball height there using the same endpoint +
++// launch-angle parabola the trajectory system uses (Spell::SelectImplicitTrajTargets);
++// credit goal bunny 37203 when it passes inside the frame. No-op off-quest.
++class spell_zep_q28414_footbomb_goal : public SpellScript
++{
++    PrepareSpellScript(spell_zep_q28414_footbomb_goal);
++
++    static constexpr float GOAL_X1 = -8935.1f;
++    static constexpr float GOAL_Y1 = -11336.4f;
++    static constexpr float GOAL_X2 = -8944.3f;
++    static constexpr float GOAL_Y2 = -11296.0f;
++    static constexpr float GOAL_Z_MIN = 106.0f;
++    static constexpr float GOAL_Z_MAX = 180.0f;
++    static constexpr uint32 NPC_FOURTH_AND_GOAL_TARGET = 37203;
++
++    void CheckGoal()
++    {
++        Unit* caster = GetCaster();
++        WorldLocation const* dest = GetExplTargetDest();
++        if (!caster || !dest)
++            return;
++
++        Player* player = caster->GetCharmerOrOwnerPlayerOrPlayerItself();
++        if (!player)
++            return;
++
++        float const sx = caster->GetPositionX();
++        float const sy = caster->GetPositionY();
++        float const sz = caster->GetPositionZ();
++        float const rx = dest->GetPositionX() - sx;
++        float const ry = dest->GetPositionY() - sy;
++        float const qx = GOAL_X2 - GOAL_X1;
++        float const qy = GOAL_Y2 - GOAL_Y1;
++
++        float const denom = rx * qy - ry * qx;
++        if (std::fabs(denom) < 0.0001f)
++            return;
++
++        float const ex = GOAL_X1 - sx;
++        float const ey = GOAL_Y1 - sy;
++        float const t = (ex * qy - ey * qx) / denom; // fraction along the shot
++        float const s = (ex * ry - ey * rx) / denom; // fraction along the goal line
++        if (t < 0.0f || t > 1.0f || s < 0.0f || s > 1.0f)
++            return;
++
++        // Ball height at the crossing: parabola through the endpoints leaving at
++        // the client-sent launch angle (matches the rendered aim arc); straight
++        // chord as fallback when no trajectory data reached us.
++        float const dist2d = std::sqrt(rx * rx + ry * ry);
++        float zCross;
++        SpellCastTargets const& targets = GetSpell()->m_targets;
++        if (dist2d > 1.0f && targets.HasTraj())
++        {
++            float const b = std::tan(targets.GetElevation());
++            float const a = (dest->GetPositionZ() - sz - b * dist2d) / (dist2d * dist2d);
++            float const d = t * dist2d;
++            zCross = sz + b * d + a * d * d;
++        }
++        else
++            zCross = sz + t * (dest->GetPositionZ() - sz);
++
++        if (zCross < GOAL_Z_MIN || zCross > GOAL_Z_MAX)
++            return;
++
++        // Credit when the ball actually reaches the goal plane, not at launch:
++        // flight time to the crossing from the client-sent trajectory speed
++        // (fall back to the spell's missile render speed of 40 yd/s).
++        float const d = t * dist2d;
++        float speedXY = targets.HasTraj() ? targets.GetSpeedXY() : 40.0f;
++        if (speedXY < 1.0f)
++            speedXY = 40.0f;
++        uint32 const delay = std::min<uint32>(uint32(d / speedXY * 1000.0f), 8000);
++
++        ObjectGuid const playerGuid = player->GetGUID();
++        player->m_Events.AddEventAtOffset([playerGuid]()
++        {
++            if (Player* scorer = ObjectAccessor::FindPlayer(playerGuid))
++                scorer->KilledMonsterCredit(NPC_FOURTH_AND_GOAL_TARGET);
++        }, Milliseconds(delay));
++    }
++
++    void Register() override
++    {
++        AfterCast += SpellCastFn(spell_zep_q28414_footbomb_goal::CheckGoal);
++    }
++};
++
++// I-259 Kaja'Cola (item 84474, spell 70478): "It gives you IDEAS! (TM)". The
++// spell only applies a 5s dummy aura; on retail the drinker sometimes blurts
++// out a random goblin invention idea (Cata broadcast_text 37326-37365, already
++// imported with the zone). Spoken after a short "thinking" delay inside the
++// aura window.
++class spell_zep_item_kajacola : public AuraScript
++{
++    PrepareAuraScript(spell_zep_item_kajacola);
++
++    static constexpr uint32 IDEA_TEXT_FIRST = 37326;
++    static constexpr uint32 IDEA_TEXT_LAST  = 37365;
++
++    void HandleApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        Player* player = GetTarget()->ToPlayer();
++        if (!player)
++            return;
++
++        BroadcastText const* bct = sObjectMgr->GetBroadcastText(urand(IDEA_TEXT_FIRST, IDEA_TEXT_LAST));
++        if (!bct)
++            return;
++
++        ObjectGuid const playerGuid = player->GetGUID();
++        std::string idea = bct->GetText(LOCALE_enUS, player->getGender());
++        player->m_Events.AddEventAtOffset([playerGuid, idea = std::move(idea)]()
++        {
++            if (Player* drinker = ObjectAccessor::FindPlayer(playerGuid))
++                drinker->Say(idea, LANG_UNIVERSAL);
++        }, Milliseconds(urand(1500, 3500)));
++    }
++
++    void Register() override
++    {
++        OnEffectApply += AuraEffectApplyFn(spell_zep_item_kajacola::HandleApply, EFFECT_0, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
++    }
++};
++
++// I-262 Waltz Right In (q14123): carrier 67435's 5s periodic re-applies the mook
++// disguise (70467). Retail gated this on being out of combat (kezan.cpp); without
++// the gate the tick re-casts mid-fight and the next hit knocks it straight back
++// off — buff/transform flicker for the whole scrap. While in combat the tick
++// instead strips a lingering disguise (covers combat entries the aura interrupt
++// flags can't see, e.g. opening with a ranged/spell attack).
++class spell_zep_mook_disguise_carrier : public AuraScript
++{
++    PrepareAuraScript(spell_zep_mook_disguise_carrier);
++
++    static constexpr uint32 SPELL_MOOK_DISGUISE = 70467;
++
++    void HandlePeriodic(AuraEffect const* /*aurEff*/)
++    {
++        Unit* target = GetTarget();
++        if (target->IsInCombat())
++        {
++            PreventDefaultAction();
++            target->RemoveAurasDueToSpell(SPELL_MOOK_DISGUISE);
++        }
++    }
++
++    void Register() override
++    {
++        OnEffectPeriodic += AuraEffectPeriodicFn(spell_zep_mook_disguise_carrier::HandlePeriodic, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
++    }
++};
++
++/* ---------------------------------------------------------------------------
++ * I-357 — Assistant Greely persistence.
++ *
++ * The Gallywix Labor Mine chain (q25122 Morale Boost / q25123 Throw It On the
++ * Ground! / q25124 Brute Brutality / q25125 Light at the End of the Tunnel) has
++ * exactly one quest giver: the FOLLOWER Greely, 39199. She is a summon, cast
++ * once by 38124's SmartAI on the q25110 turn-in (SMART_EVENT_QUEST_REWARDED ->
++ * SMART_ACTION_INVOKER_CAST 73648) and never again.
++ *
++ * A summon does not survive a logout or a worldserver restart, and
++ * npc_zep_wild_cart_companion despawns her on player death or at 120 yd —
++ * faithfully, the donor's npc_assistant_greedy_kajacolaAI has the same three
++ * branches. Nothing brings her back: the donor's 1 s heartbeat (aura 73607 ->
++ * periodic 73631 "Dummy To Assistant Greely") is a GREET ping handled by the
++ * donor's SpellHit (IDEA visual + Talk), not a resummon, and we ship no script
++ * for it. Any of those four events therefore stranded the character with four
++ * unobtainable quests and no way to recover.
++ *
++ * Restore her whenever the player is standing in the mine inside the window the
++ * companion AI itself considers live: q25110 rewarded, q25184 not yet finished,
++ * and no Greely of ours already out. Re-casting 73648 (rather than spawning her
++ * directly) keeps the donor plumbing intact — SummonProperties 2989, ownership,
++ * and the AI's IsSummonedBy all run exactly as they do on the real turn-in.
++ * --------------------------------------------------------------------------- */
++class player_zep_greely_persistence : public PlayerScript
++{
++public:
++    // Opt in to just the three hooks we use — an empty list enables ALL of them,
++    // which would put this script on every player hook in the core for nothing.
++    player_zep_greely_persistence() : PlayerScript("player_zep_greely_persistence",
++        { PLAYERHOOK_ON_LOGIN, PLAYERHOOK_ON_UPDATE_AREA, PLAYERHOOK_ON_PLAYER_RESURRECT }) { }
++
++    void OnPlayerLogin(Player* player) override
++    {
++        // Covers the relog and the worldserver restart: the summon is simply gone.
++        TryRestore(player, player->GetAreaId());
++    }
++
++    void OnPlayerUpdateArea(Player* player, uint32 /*oldArea*/, uint32 newArea) override
++    {
++        // Covers the 120 yd walk-away and the corpse run back in.
++        TryRestore(player, newArea);
++    }
++
++    void OnPlayerResurrect(Player* player, float /*restorePercent*/, bool& /*applySickness*/) override
++    {
++        // Covers a rez taken in place, where no area change ever fires.
++        TryRestore(player, player->GetAreaId());
++    }
++
++private:
++    static void TryRestore(Player* player, uint32 areaId)
++    {
++        if (!player || !player->IsInWorld() || areaId != AREA_GALLYWIX_LABOR_MINE || !player->IsAlive())
++            return;
++
++        if (player->GetQuestStatus(QUEST_KAJACOLA_IDEAS) != QUEST_STATUS_REWARDED)
++            return;
++
++        QuestStatus cart = player->GetQuestStatus(QUEST_WILD_MINE_CART_RIDE);
++        if (cart == QUEST_STATUS_REWARDED || cart == QUEST_STATUS_COMPLETE)
++            return;
++
++        // Deliberately NOT gated on HasAura(73616) "Summon Assistant Greely Controller".
++        // 73648 does apply that marker to the player: its effect 2 is FORCE_CAST_2 with
++        // TriggerSpell 73616 and TARGET_UNIT_CASTER, so EffectForceCast has the caster
++        // cast it on itself. But it is a PERMANENT player aura, so it is saved and
++        // restored across the very logout or restart that killed the summon — after
++        // exactly the failure this script exists for, the player holds 73616 with no
++        // Greely and the aura reports her present. Real state is the creature, not the
++        // marker. (Same trap as the stale 72887 boots dummy noted above.)
++        //
++        // Ownership matters: the nearest 39199 in a busy mine is very likely to be
++        // someone else's, and FindNearestCreature would happily hand it back.
++        std::list<Creature*> greelys;
++        player->GetCreatureListWithEntryInGrid(greelys, NPC_ASSISTANT_GREELY_FOLLOWER, 150.0f);
++        for (Creature* greely : greelys)
++            if (greely->GetOwnerGUID() == player->GetGUID())
++                return;
++
++        player->CastSpell(player, SPELL_RESUMMON_GREELY, true);
++    }
++};
++
++void AddSC_zeppelin_goblin_start()
++{
++    // q14019 Monkey Business has no C++ script: the credit is granted by the fed
++    // monkey's own SmartAI (34699 SPELLHIT 67917 -> actionlist 3469900), which
++    // also roots, explodes and despawns it. See zz_[I-281]_monkey_business_feed.sql.
++    // q24671 Cluster Cluck likewise has no C++ script (I-318). The generic
++    // fixed-credit script paid the caster on ANY effect hit, so 71170's dummy
++    // banked a credit even when the item self-cast with nothing targeted, and
++    // a real capture paid twice. Credit belongs to the Wild Clucker's own
++    // SmartAI (38111 SPELLHIT 71170 -> actionlist 3811100), which also clears
++    // the spellclick flag and flies the bird off.
++    // The generic `spell_zep_fixed_credit<Entry>` template those two used is GONE
++    // (I-340). It credited the caster on ANY effect hit without looking at what
++    // was hit, so every spell it was ever wired to either paid for nothing or
++    // paid twice — I-281, I-318, and finally q24942, whose whole mechanic it was
++    // standing in for. Quest credit belongs to the thing that was actually hit.
++    RegisterSpellScript(spell_zep_q14236_weed_whacker);
++    RegisterSpellScript(spell_zep_q24942_zombies_booster);
++    RegisterSpellScript(spell_zep_q24942_boots_ride);
++    RegisterSpellScript(spell_zep_q14031_ktc_snapflash);
++    RegisterSpellScript(spell_zep_q28414_footbomb_goal);
++    RegisterSpellScript(spell_zep_item_kajacola);
++    RegisterSpellScript(spell_zep_mook_disguise_carrier);
++    new player_zep_greely_persistence();
++}

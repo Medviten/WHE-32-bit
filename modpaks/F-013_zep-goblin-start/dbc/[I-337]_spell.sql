@@ -49,7 +49,7 @@
 -- The row is AUTO-owned (dbc/[AUTO,F-011]_spell.sql DELETEs and INSERTs 72206), so the
 -- single consolidated statement below edits it in place rather than redefining it.
 
-UPDATE spell SET
+UPDATE `spell` SET
   `spell_missile_id` = 582,
   `speed` = 10,
   `spell_visual_1` = 12925

@@ -7,8 +7,8 @@
 -- Row is ours (absent from the AUTO file) -> DELETE + INSERT.
 -- Server reads data/dbc/Vehicle.dbc, client reads PATCH-Z: dbc apply -> PATCH-Z build
 -- -> worldserver restart.
-DELETE FROM vehicle WHERE id = 628;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 628;
+INSERT INTO `vehicle` SET
   `id` = 628,
   `flags` = 1610657807,
   `turn_speed` = 3.142,

@@ -10,7 +10,7 @@
 -- drink played no animation. Repointed to the ported chain 90050 — see
 -- [I-268]_spellvisual.sql / [I-268]_spellvisualkit.sql.
 
-UPDATE spell SET
+UPDATE `spell` SET
   attributes_ex_1 = 0,
   spell_visual_1 = 90050
 WHERE id = 70478;

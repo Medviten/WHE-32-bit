@@ -1,0 +1,44 @@
+-- I-357 q25184 "Wild Mine Cart Ride" -- fires the credit spell when the ride ends.
+--
+-- Companion to zpaks/zep-goblin-start/dbc/[I-357]_spell.sql, which ports 73755
+-- "Wild Mine Cart Ride: Exit - Master" (SPELL_EFFECT_KILL_CREDIT 39335, implicit target
+-- 92 TARGET_UNIT_SUMMONER). That file explains why nothing credited the objective.
+--
+-- WHAT FIRES IT. Retail casts 73755 as the rider is thrown clear; neither the donor AI nor
+-- any donor table does. Rather than add it to `npc_zep_wild_mine_cart` (which would need a
+-- core build), hang it off the aura that already marks the ride:
+--
+--   73747 "Riding Mine Cart" is the SPELL_AURA_CONTROL_VEHICLE aura. AzerothCore's vehicle
+--   summon path (`Spell::EffectSummonType`, SUMMON_CATEGORY_VEHICLE) has the summoning
+--   player cast it ON THE CART, so the aura lives on creature 39329 with the player as
+--   caster. `npc_zep_wild_mine_cart` ends the ride with SPELL_EJECT_ALL_PASSENGERS (50630),
+--   which removes it.
+--
+--   A negative `spell_trigger` is the "on aura removal" form: `Aura::HandleAuraSpecificMods`
+--   (SpellAuras.cpp:1256) looks up GetSpellLinked(-spellId) when the aura comes off and does
+--   `target->CastSpell(target, effect, true)`. `target` is the cart, so 73755 is cast BY the
+--   cart -- which is exactly the caster its TARGET_UNIT_SUMMONER effect expects. The
+--   summoner is the rider, and `EffectKillCreditPersonal` credits
+--   `unitTarget->GetCharmerOrOwnerPlayerOrPlayerItself()`.
+--
+-- WHY THIS CANNOT PAY OUT EARLY. Seat 7625 no longer carries CAN_CONTROL or
+-- CAN_ENTER_OR_EXIT (see dbc/[I-357]_vehicleseat.sql), so a rider cannot step off; the only
+-- ways the aura comes off are the end-of-ride eject and the cart despawning under a
+-- logout. AzerothCore also skips the link on AURA_REMOVE_BY_DEATH, so dying mid-descent
+-- pays nothing. Retail's own spell is named "Exit" and carries a 73766 abandon-quest check,
+-- i.e. it credits on exit too -- this is the same contract.
+--
+-- BLAST RADIUS. 73747 is referenced by exactly two rows, both for creature 39329: its
+-- `creature_template_addon.auras` and its `npc_spellclick_spells` entry. No other creature,
+-- spell or link uses it. Note the addon row self-applies a second copy of 73747 on spawn
+-- (Neltharion noise -- tdb434 has no auras on this creature); that copy is permanent and
+-- only comes off at despawn, so at worst 73755 fires a second time after the ride, and a
+-- KilledMonsterCredit against an objective already at quota is a no-op. The addon row is
+-- deliberately left alone: boarding works today and is not worth risking for tidiness.
+--
+-- Needs a worldserver restart, not `.reload` -- the new Spell.dbc row is server-side and
+-- `/workspace/project/data/dbc/` is written by the patch-mpq build.
+
+DELETE FROM `spell_linked_spell` WHERE spell_trigger = -73747 AND spell_effect = 73755;
+INSERT INTO `spell_linked_spell` (spell_trigger, spell_effect, type, comment) VALUES
+  (-73747, 73755, 0, 'I-357 q25184 - Riding Mine Cart removed -> Wild Mine Cart Ride: Exit - Master (credit 39335)');

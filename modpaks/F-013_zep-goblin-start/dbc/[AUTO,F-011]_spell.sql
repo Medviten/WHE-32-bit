@@ -10,8 +10,8 @@
 -- F-011 spell (one file per table; rows carry final state)
 
 -- 56576 Wild Clucker Eggs
-DELETE FROM spell WHERE id = 56576;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 56576;
+INSERT INTO `spell` SET
   `id` = 56576,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -57,8 +57,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 65734 Cosmetic - Blacksmith Smoke (Chest)
-DELETE FROM spell WHERE id = 65734;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 65734;
+INSERT INTO `spell` SET
   `id` = 65734,
   `attributes` = 159383808,
   `attributes_ex_1` = 268435488,
@@ -104,8 +104,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66137 Goblin Escape Pods: Summon Live Goblin Survivor
-DELETE FROM spell WHERE id = 66137;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66137;
+INSERT INTO `spell` SET
   `id` = 66137,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -151,8 +151,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66146 Do it Yourself: Cat's Mark - Sudsy
-DELETE FROM spell WHERE id = 66146;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66146;
+INSERT INTO `spell` SET
   `id` = 66146,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -198,8 +198,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66298 Honk Horn
-DELETE FROM spell WHERE id = 66298;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66298;
+INSERT INTO `spell` SET
   `id` = 66298,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -273,8 +273,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66299 Radio
-DELETE FROM spell WHERE id = 66299;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66299;
+INSERT INTO `spell` SET
   `id` = 66299,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -327,8 +327,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66300 Punch It
-DELETE FROM spell WHERE id = 66300;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66300;
+INSERT INTO `spell` SET
   `id` = 66300,
   `attributes` = 134479872,
   `attributes_ex_1` = 32768,
@@ -382,8 +382,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66392 Hot Rod
-DELETE FROM spell WHERE id = 66392;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66392;
+INSERT INTO `spell` SET
   `id` = 66392,
   `attributes` = 33024,
   `attributes_ex_1` = 1024,
@@ -450,8 +450,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66393 Rolling with my Homies: Summon Hot Rod
-DELETE FROM spell WHERE id = 66393;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66393;
+INSERT INTO `spell` SET
   `id` = 66393,
   `attributes` = 268435712,
   `attributes_ex_1` = 1024,
@@ -517,8 +517,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66724 Sassy's Driving
-DELETE FROM spell WHERE id = 66724;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66724;
+INSERT INTO `spell` SET
   `id` = 66724,
   `attributes` = 2147549440,
   `attributes_ex_1` = 1024,
@@ -582,8 +582,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66727 Cluster Cluck: Wild Clucker Loot FX
-DELETE FROM spell WHERE id = 66727;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66727;
+INSERT INTO `spell` SET
   `id` = 66727,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -629,8 +629,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66772 Earthquake Camera Shake
-DELETE FROM spell WHERE id = 66772;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66772;
+INSERT INTO `spell` SET
   `id` = 66772,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -676,8 +676,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66908 Awesome Party Ensemble
-DELETE FROM spell WHERE id = 66908;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66908;
+INSERT INTO `spell` SET
   `id` = 66908,
   `attributes` = 2281701376,
   `attributes_ex_1` = 32,
@@ -744,8 +744,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66909 Bubbly
-DELETE FROM spell WHERE id = 66909;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66909;
+INSERT INTO `spell` SET
   `id` = 66909,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -794,8 +794,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66910 Bucket
-DELETE FROM spell WHERE id = 66910;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66910;
+INSERT INTO `spell` SET
   `id` = 66910,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -844,8 +844,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66911 Dance
-DELETE FROM spell WHERE id = 66911;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66911;
+INSERT INTO `spell` SET
   `id` = 66911,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -894,8 +894,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66912 Fireworks
-DELETE FROM spell WHERE id = 66912;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66912;
+INSERT INTO `spell` SET
   `id` = 66912,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -961,8 +961,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66913 Hors D'oeuvres
-DELETE FROM spell WHERE id = 66913;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66913;
+INSERT INTO `spell` SET
   `id` = 66913,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -1011,8 +1011,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66916 Happy Partygoer
-DELETE FROM spell WHERE id = 66916;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66916;
+INSERT INTO `spell` SET
   `id` = 66916,
   `attributes` = 2147483904,
   `attributes_ex_1` = 2048,
@@ -1059,8 +1059,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66917 Life Of The Party: Fireworks - Blue
-DELETE FROM spell WHERE id = 66917;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66917;
+INSERT INTO `spell` SET
   `id` = 66917,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -1106,8 +1106,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66918 Life of the Party: Fireworks - Green
-DELETE FROM spell WHERE id = 66918;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66918;
+INSERT INTO `spell` SET
   `id` = 66918,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -1153,8 +1153,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66919 Life of the Party: Fireworks - Red
-DELETE FROM spell WHERE id = 66919;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66919;
+INSERT INTO `spell` SET
   `id` = 66919,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -1200,8 +1200,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 66927 Life Of The Party: Outfit - Female
-DELETE FROM spell WHERE id = 66927;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66927;
+INSERT INTO `spell` SET
   `id` = 66927,
   `attributes` = 696254848,
   `attributes_ex_1` = 3104,
@@ -1267,8 +1267,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66928 Life of the Party: Outfit - Male
-DELETE FROM spell WHERE id = 66928;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66928;
+INSERT INTO `spell` SET
   `id` = 66928,
   `attributes` = 687866240,
   `attributes_ex_1` = 3104,
@@ -1334,8 +1334,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 66985 Life of the Party: Outfit - Secondary
-DELETE FROM spell WHERE id = 66985;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66985;
+INSERT INTO `spell` SET
   `id` = 66985,
   `attributes` = 687866240,
   `attributes_ex_1` = 3104,
@@ -1418,8 +1418,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 66987 Pygmy Helmet
-DELETE FROM spell WHERE id = 66987;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66987;
+INSERT INTO `spell` SET
   `id` = 66987,
   `attributes` = 2835349760,
   `attributes_ex_1` = 3104,
@@ -1454,7 +1454,7 @@ INSERT INTO spell SET
   `effect_die_sides_1` = 1,
   `effect_item_type_1` = 0,
   `effect_mechanic_1` = 0,
-  `effect_misc_value_a_1` = 1157,
+  `effect_misc_value_a_1` = @PygmyFaction,
   `effect_misc_value_b_1` = 0,
   `effect_radius_index_1` = 0,
   `effect_trigger_spell_1` = 0,
@@ -1500,8 +1500,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 67433 Goblin Escape Pods: Trade Prince Controller Aura
-DELETE FROM spell WHERE id = 67433;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67433;
+INSERT INTO `spell` SET
   `id` = 67433,
   `attributes` = 2835349888,
   `attributes_ex_1` = 268438560,
@@ -1547,8 +1547,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67476 Vault Cracking Toolset
-DELETE FROM spell WHERE id = 67476;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67476;
+INSERT INTO `spell` SET
   `id` = 67476,
   `attributes` = 671088896,
   `attributes_ex_1` = 1024,
@@ -1612,8 +1612,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 67488 The Great Bank Heist: Summon Bunny Vehicle
-DELETE FROM spell WHERE id = 67488;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67488;
+INSERT INTO `spell` SET
   `id` = 67488,
   `attributes` = 150995200,
   `attributes_ex_1` = 1024,
@@ -1659,8 +1659,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67492 Vault Cracked!
-DELETE FROM spell WHERE id = 67492;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67492;
+INSERT INTO `spell` SET
   `id` = 67492,
   `attributes` = 687866112,
   `attributes_ex_1` = 132128,
@@ -1706,8 +1706,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67508 Blastcrackers
-DELETE FROM spell WHERE id = 67508;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67508;
+INSERT INTO `spell` SET
   `id` = 67508,
   `attributes` = 687866112,
   `attributes_ex_1` = 1056,
@@ -1753,8 +1753,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67522 Kaja'mite Drill
-DELETE FROM spell WHERE id = 67522;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67522;
+INSERT INTO `spell` SET
   `id` = 67522,
   `attributes` = 687866112,
   `attributes_ex_1` = 1056,
@@ -1800,8 +1800,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67524 Ear-O-Scope
-DELETE FROM spell WHERE id = 67524;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67524;
+INSERT INTO `spell` SET
   `id` = 67524,
   `attributes` = 687866112,
   `attributes_ex_1` = 1056,
@@ -1847,8 +1847,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67525 Infinifold Lockpick
-DELETE FROM spell WHERE id = 67525;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67525;
+INSERT INTO `spell` SET
   `id` = 67525,
   `attributes` = 687866112,
   `attributes_ex_1` = 1056,
@@ -1894,8 +1894,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67526 Amazing G-Ray
-DELETE FROM spell WHERE id = 67526;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67526;
+INSERT INTO `spell` SET
   `id` = 67526,
   `attributes` = 687866112,
   `attributes_ex_1` = 1056,
@@ -1941,8 +1941,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67682 Kablooey Bombs
-DELETE FROM spell WHERE id = 67682;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67682;
+INSERT INTO `spell` SET
   `id` = 67682,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -2012,8 +2012,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 67917 Nitro-Potassium Bananas
-DELETE FROM spell WHERE id = 67917;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67917;
+INSERT INTO `spell` SET
   `id` = 67917,
   `attributes` = 16777216,
   `attributes_ex_1` = 1056,
@@ -2059,8 +2059,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 67919 Exploding Bananas
-DELETE FROM spell WHERE id = 67919;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67919;
+INSERT INTO `spell` SET
   `id` = 67919,
   `attributes` = 691011840,
   `attributes_ex_1` = 268435624,
@@ -2123,8 +2123,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68059 Miner Troubles: Summon Frightened Miner
-DELETE FROM spell WHERE id = 68059;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68059;
+INSERT INTO `spell` SET
   `id` = 68059,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -2170,8 +2170,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68062 Miner Troubles: Frightened Miner Controller Aura
-DELETE FROM spell WHERE id = 68062;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68062;
+INSERT INTO `spell` SET
   `id` = 68062,
   `attributes` = 2835349888,
   `attributes_ex_1` = 268438560,
@@ -2234,8 +2234,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68211 Weed Whacker
-DELETE FROM spell WHERE id = 68211;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68211;
+INSERT INTO `spell` SET
   `id` = 68211,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -2281,8 +2281,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68212 Weed Whacker
-DELETE FROM spell WHERE id = 68212;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68212;
+INSERT INTO `spell` SET
   `id` = 68212,
   `attributes` = 2147483648,
   `attributes_ex_1` = 0,
@@ -2366,8 +2366,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 68213 Weed Whacker
-DELETE FROM spell WHERE id = 68213;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68213;
+INSERT INTO `spell` SET
   `id` = 68213,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -2430,8 +2430,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68231 Capturing The Unknown: Bunny 1 Invis & State Visual
-DELETE FROM spell WHERE id = 68231;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68231;
+INSERT INTO `spell` SET
   `id` = 68231,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -2477,8 +2477,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68280 KTC Snapflash
-DELETE FROM spell WHERE id = 68280;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68280;
+INSERT INTO `spell` SET
   `id` = 68280,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -2528,8 +2528,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68281 KTC Snapflash
-DELETE FROM spell WHERE id = 68281;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68281;
+INSERT INTO `spell` SET
   `id` = 68281,
   `attributes` = 256,
   `attributes_ex_1` = 536871940,
@@ -2596,8 +2596,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68295 Strangle Vine: Entangling Roots Visual
-DELETE FROM spell WHERE id = 68295;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68295;
+INSERT INTO `spell` SET
   `id` = 68295,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -2643,8 +2643,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68296 Capturing The Unknown: KTC Snapflash Effect
-DELETE FROM spell WHERE id = 68296;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68296;
+INSERT INTO `spell` SET
   `id` = 68296,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -2690,8 +2690,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68322 Infrared = Infradead: SI:7 Assassin Aura
-DELETE FROM spell WHERE id = 68322;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68322;
+INSERT INTO `spell` SET
   `id` = 68322,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -2757,8 +2757,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68327 Infrared = Infradead: Heat Signature Aura - Humanoid (80%)
-DELETE FROM spell WHERE id = 68327;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68327;
+INSERT INTO `spell` SET
   `id` = 68327,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -2804,8 +2804,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68336 Infrared = Infradead: Summon Orc Scout
-DELETE FROM spell WHERE id = 68336;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68336;
+INSERT INTO `spell` SET
   `id` = 68336,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -2851,8 +2851,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68338 Orc Scout
-DELETE FROM spell WHERE id = 68338;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68338;
+INSERT INTO `spell` SET
   `id` = 68338,
   `attributes` = 2835349760,
   `attributes_ex_1` = 3104,
@@ -2919,8 +2919,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68376 Infrared Heat Focals
-DELETE FROM spell WHERE id = 68376;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68376;
+INSERT INTO `spell` SET
   `id` = 68376,
   `attributes` = 2147483648,
   `attributes_ex_1` = 0,
@@ -3004,8 +3004,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 68386 Precious Cargo: Quest Accept
-DELETE FROM spell WHERE id = 68386;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68386;
+INSERT INTO `spell` SET
   `id` = 68386,
   `attributes` = 268435840,
   `attributes_ex_1` = 1024,
@@ -3051,8 +3051,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68387 Gyrochoppa!
-DELETE FROM spell WHERE id = 68387;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68387;
+INSERT INTO `spell` SET
   `id` = 68387,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -3116,8 +3116,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68408 Warchief's Revenge: Quest Accept
-DELETE FROM spell WHERE id = 68408;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68408;
+INSERT INTO `spell` SET
   `id` = 68408,
   `attributes` = 805306624,
   `attributes_ex_1` = 0,
@@ -3163,8 +3163,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68436 Cyclone of the Elements
-DELETE FROM spell WHERE id = 68436;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68436;
+INSERT INTO `spell` SET
   `id` = 68436,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -3228,8 +3228,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68445 Lightning Strike
-DELETE FROM spell WHERE id = 68445;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68445;
+INSERT INTO `spell` SET
   `id` = 68445,
   `attributes` = 538968064,
   `attributes_ex_1` = 136,
@@ -3282,8 +3282,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68488 Warchief's Revenge: Rope Ladder A
-DELETE FROM spell WHERE id = 68488;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68488;
+INSERT INTO `spell` SET
   `id` = 68488,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -3329,8 +3329,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68489 Warchief's Revenge: Rope Ladder B
-DELETE FROM spell WHERE id = 68489;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68489;
+INSERT INTO `spell` SET
   `id` = 68489,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -3376,8 +3376,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68750 Quest Phase 05
-DELETE FROM spell WHERE id = 68750;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68750;
+INSERT INTO `spell` SET
   `id` = 68750,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -3426,8 +3426,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68804 Up, Up & Away!: Summon Sling Rocket - Character
-DELETE FROM spell WHERE id = 68804;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68804;
+INSERT INTO `spell` SET
   `id` = 68804,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -3473,8 +3473,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68805 Sling Rocket
-DELETE FROM spell WHERE id = 68805;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68805;
+INSERT INTO `spell` SET
   `id` = 68805,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -3538,8 +3538,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68815 Up, Up & Away!: Quest Accept
-DELETE FROM spell WHERE id = 68815;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68815;
+INSERT INTO `spell` SET
   `id` = 68815,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -3585,8 +3585,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68817 Up, Up & Away!: Summon Sling Rocket - Trade Prince Gallywix
-DELETE FROM spell WHERE id = 68817;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68817;
+INSERT INTO `spell` SET
   `id` = 68817,
   `attributes` = 536871296,
   `attributes_ex_1` = 1024,
@@ -3632,8 +3632,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68824 Weed Whacker
-DELETE FROM spell WHERE id = 68824;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68824;
+INSERT INTO `spell` SET
   `id` = 68824,
   `attributes` = 2147484032,
   `attributes_ex_1` = 268435456,
@@ -3717,8 +3717,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 68935 It's A Town-In-A-Box: Town-In-A-Box Plunger - Effect 1
-DELETE FROM spell WHERE id = 68935;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68935;
+INSERT INTO `spell` SET
   `id` = 68935,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -3781,8 +3781,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68938 It's A Town-In-A-Box: Town-In-A-Box Plunger - Cover
-DELETE FROM spell WHERE id = 68938;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68938;
+INSERT INTO `spell` SET
   `id` = 68938,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -3845,8 +3845,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 68973 To The Cliffs: Quest Accept
-DELETE FROM spell WHERE id = 68973;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68973;
+INSERT INTO `spell` SET
   `id` = 68973,
   `attributes` = 268435840,
   `attributes_ex_1` = 1024,
@@ -3892,8 +3892,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 68974 Riding Bastia
-DELETE FROM spell WHERE id = 68974;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 68974;
+INSERT INTO `spell` SET
   `id` = 68974,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -3957,8 +3957,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 69022 Jumper Cables
-DELETE FROM spell WHERE id = 69022;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69022;
+INSERT INTO `spell` SET
   `id` = 69022,
   `attributes` = 689963008,
   `attributes_ex_1` = 1192,
@@ -4004,8 +4004,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69077 Phase - Quest Zone-Specific 09
-DELETE FROM spell WHERE id = 69077;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69077;
+INSERT INTO `spell` SET
   `id` = 69077,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -4051,8 +4051,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69303 Infrared Heat Focals
-DELETE FROM spell WHERE id = 69303;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69303;
+INSERT INTO `spell` SET
   `id` = 69303,
   `attributes` = 2147483904,
   `attributes_ex_1` = 268435456,
@@ -4136,8 +4136,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 69626 Lightning Bolt
-DELETE FROM spell WHERE id = 69626;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69626;
+INSERT INTO `spell` SET
   `id` = 69626,
   `attributes` = 65536,
   `attributes_ex_1` = 0,
@@ -4197,8 +4197,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69813 Gas Fighter: Gas Stream
-DELETE FROM spell WHERE id = 69813;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69813;
+INSERT INTO `spell` SET
   `id` = 69813,
   `attributes` = 538968320,
   `attributes_ex_1` = 17548,
@@ -4244,8 +4244,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69971 Necessary Roughness: Summon Steamwheedle Shark 000
-DELETE FROM spell WHERE id = 69971;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69971;
+INSERT INTO `spell` SET
   `id` = 69971,
   `attributes` = 150995200,
   `attributes_ex_1` = 1024,
@@ -4291,8 +4291,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69992 Throw Footbomb
-DELETE FROM spell WHERE id = 69992;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69992;
+INSERT INTO `spell` SET
   `id` = 69992,
   `attributes` = 536936448,
   `attributes_ex_1` = 1160,
@@ -4349,8 +4349,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 69993 Throw Footbomb
-DELETE FROM spell WHERE id = 69993;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 69993;
+INSERT INTO `spell` SET
   `id` = 69993,
   `attributes` = 539033600,
   `attributes_ex_1` = 268436616,
@@ -4400,8 +4400,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70015 Necessary Roughness: Summon Bilgewater Buccaneer
-DELETE FROM spell WHERE id = 70015;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70015;
+INSERT INTO `spell` SET
   `id` = 70015,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -4447,8 +4447,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70016 Bilgewater Buccaneer
-DELETE FROM spell WHERE id = 70016;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70016;
+INSERT INTO `spell` SET
   `id` = 70016,
   `attributes` = 33024,
   `attributes_ex_1` = 1024,
@@ -4532,8 +4532,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 70198 447: Summon Overloaded Generator
-DELETE FROM spell WHERE id = 70198;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70198;
+INSERT INTO `spell` SET
   `id` = 70198,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -4579,8 +4579,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70226 447: Overloaded Generator Visual
-DELETE FROM spell WHERE id = 70226;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70226;
+INSERT INTO `spell` SET
   `id` = 70226,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -4626,8 +4626,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70236 447: Stove Leak Visual
-DELETE FROM spell WHERE id = 70236;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70236;
+INSERT INTO `spell` SET
   `id` = 70236,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -4673,8 +4673,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70241 447: Summon Stove Leak
-DELETE FROM spell WHERE id = 70241;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70241;
+INSERT INTO `spell` SET
   `id` = 70241,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -4720,8 +4720,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70249 447: Summon Smoldering Bed
-DELETE FROM spell WHERE id = 70249;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70249;
+INSERT INTO `spell` SET
   `id` = 70249,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -4767,8 +4767,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70250 447: Smoldering Bed Visual
-DELETE FROM spell WHERE id = 70250;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70250;
+INSERT INTO `spell` SET
   `id` = 70250,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -4814,8 +4814,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70252 447: Summon Gasbot
-DELETE FROM spell WHERE id = 70252;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70252;
+INSERT INTO `spell` SET
   `id` = 70252,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -4861,8 +4861,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70256 447: Gasbot Gas Stream
-DELETE FROM spell WHERE id = 70256;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70256;
+INSERT INTO `spell` SET
   `id` = 70256,
   `attributes` = 384,
   `attributes_ex_1` = 525316,
@@ -4908,8 +4908,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70259 447: Gasbot Explosion
-DELETE FROM spell WHERE id = 70259;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70259;
+INSERT INTO `spell` SET
   `id` = 70259,
   `attributes` = 16777600,
   `attributes_ex_1` = 0,
@@ -4955,8 +4955,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70262 447: Explosion + Fire
-DELETE FROM spell WHERE id = 70262;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70262;
+INSERT INTO `spell` SET
   `id` = 70262,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -5002,8 +5002,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70319 Life Savings: Force Cast Summon the Hot Rod
-DELETE FROM spell WHERE id = 70319;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70319;
+INSERT INTO `spell` SET
   `id` = 70319,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -5049,8 +5049,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70321 Life Savings: Summon the Hot Rod
-DELETE FROM spell WHERE id = 70321;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70321;
+INSERT INTO `spell` SET
   `id` = 70321,
   `attributes` = 384,
   `attributes_ex_1` = 1024,
@@ -5096,8 +5096,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70478 Kaja'Cola
-DELETE FROM spell WHERE id = 70478;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70478;
+INSERT INTO `spell` SET
   `id` = 70478,
   `attributes` = 134217984,
   `attributes_ex_1` = 268435456,
@@ -5150,8 +5150,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70641 Capturing The Unknown: Player's Bind Sight
-DELETE FROM spell WHERE id = 70641;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70641;
+INSERT INTO `spell` SET
   `id` = 70641,
   `attributes` = 384,
   `attributes_ex_1` = 1024,
@@ -5200,8 +5200,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70649 Capturing The Unknown: Player's Screen Effect
-DELETE FROM spell WHERE id = 70649;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70649;
+INSERT INTO `spell` SET
   `id` = 70649,
   `attributes` = 384,
   `attributes_ex_1` = 1024,
@@ -5250,8 +5250,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70661 Capturing The Unknown: See Invis Target Bunny 1
-DELETE FROM spell WHERE id = 70661;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70661;
+INSERT INTO `spell` SET
   `id` = 70661,
   `attributes` = 3103785344,
   `attributes_ex_1` = 1057,
@@ -5297,8 +5297,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70678 Capturing The Unknown: See Invis Target Bunny 2
-DELETE FROM spell WHERE id = 70678;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70678;
+INSERT INTO `spell` SET
   `id` = 70678,
   `attributes` = 3112173952,
   `attributes_ex_1` = 1057,
@@ -5344,8 +5344,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70680 Capturing The Unknown: See Invis Target Bunny 3
-DELETE FROM spell WHERE id = 70680;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70680;
+INSERT INTO `spell` SET
   `id` = 70680,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -5391,8 +5391,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70681 Capturing The Unknown: See Invis Target Bunny 4
-DELETE FROM spell WHERE id = 70681;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70681;
+INSERT INTO `spell` SET
   `id` = 70681,
   `attributes` = 3112173952,
   `attributes_ex_1` = 1057,
@@ -5438,8 +5438,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70686 Capturing The Unknown: Bunny 2 Invis & State Visual
-DELETE FROM spell WHERE id = 70686;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70686;
+INSERT INTO `spell` SET
   `id` = 70686,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -5485,8 +5485,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70687 Capturing The Unknown: Bunny 3 Invis & State Visual
-DELETE FROM spell WHERE id = 70687;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70687;
+INSERT INTO `spell` SET
   `id` = 70687,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -5532,8 +5532,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70688 Capturing The Unknown: Bunny 4 Invis & State Visual
-DELETE FROM spell WHERE id = 70688;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70688;
+INSERT INTO `spell` SET
   `id` = 70688,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -5579,8 +5579,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 70988 Parachute
-DELETE FROM spell WHERE id = 70988;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70988;
+INSERT INTO `spell` SET
   `id` = 70988,
   `attributes` = 2843738112,
   `attributes_ex_1` = 1056,
@@ -5630,8 +5630,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71064 Tiki Target Visual 1
-DELETE FROM spell WHERE id = 71064;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71064;
+INSERT INTO `spell` SET
   `id` = 71064,
   `attributes` = 2281701632,
   `attributes_ex_1` = 268435456,
@@ -5677,8 +5677,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71065 Tiki Target Visual 2
-DELETE FROM spell WHERE id = 71065;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71065;
+INSERT INTO `spell` SET
   `id` = 71065,
   `attributes` = 2281701632,
   `attributes_ex_1` = 268435456,
@@ -5724,8 +5724,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71066 Tiki Target Visual 3
-DELETE FROM spell WHERE id = 71066;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71066;
+INSERT INTO `spell` SET
   `id` = 71066,
   `attributes` = 2281701632,
   `attributes_ex_1` = 268435456,
@@ -5771,8 +5771,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71091 It's A Town-In-A-Box: Town-In-A-Box Plunger - Effect 2
-DELETE FROM spell WHERE id = 71091;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71091;
+INSERT INTO `spell` SET
   `id` = 71091,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -5835,8 +5835,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 71170 Remote Control Fireworks
-DELETE FROM spell WHERE id = 71170;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71170;
+INSERT INTO `spell` SET
   `id` = 71170,
   `attributes` = 538968064,
   `attributes_ex_1` = 1160,
@@ -5882,8 +5882,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71240 Tiki Target Death
-DELETE FROM spell WHERE id = 71240;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71240;
+INSERT INTO `spell` SET
   `id` = 71240,
   `attributes` = 8388864,
   `attributes_ex_1` = 0,
@@ -5929,8 +5929,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71333 Cosmetic - Blacksmith Smoke (World)
-DELETE FROM spell WHERE id = 71333;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71333;
+INSERT INTO `spell` SET
   `id` = 71333,
   `attributes` = 159383808,
   `attributes_ex_1` = 268435488,
@@ -5976,8 +5976,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71409 Cosmetic - Deterrence Visual State
-DELETE FROM spell WHERE id = 71409;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71409;
+INSERT INTO `spell` SET
   `id` = 71409,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -6023,8 +6023,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71422 The Biggest Egg Ever: Summon The Biggest Egg Ever Visual Bunny
-DELETE FROM spell WHERE id = 71422;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71422;
+INSERT INTO `spell` SET
   `id` = 71422,
   `attributes` = 8388992,
   `attributes_ex_1` = 0,
@@ -6070,8 +6070,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71423 The Biggest Egg Ever: Mechachicken Overload
-DELETE FROM spell WHERE id = 71423;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71423;
+INSERT INTO `spell` SET
   `id` = 71423,
   `attributes` = 262400,
   `attributes_ex_1` = 268436480,
@@ -6117,8 +6117,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71648 Mechashark X-Steam
-DELETE FROM spell WHERE id = 71648;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71648;
+INSERT INTO `spell` SET
   `id` = 71648,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -6164,8 +6164,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71657 Deadly Egg Barrage
-DELETE FROM spell WHERE id = 71657;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71657;
+INSERT INTO `spell` SET
   `id` = 71657,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -6211,8 +6211,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71658 Egg-splosive Barrage
-DELETE FROM spell WHERE id = 71658;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71658;
+INSERT INTO `spell` SET
   `id` = 71658,
   `attributes` = 0,
   `attributes_ex_1` = 131072,
@@ -6265,8 +6265,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71659 Freakin' Laser Beam
-DELETE FROM spell WHERE id = 71659;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71659;
+INSERT INTO `spell` SET
   `id` = 71659,
   `attributes` = 4194304,
   `attributes_ex_1` = 131072,
@@ -6320,8 +6320,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71660 Repair
-DELETE FROM spell WHERE id = 71660;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71660;
+INSERT INTO `spell` SET
   `id` = 71660,
   `attributes` = 0,
   `attributes_ex_1` = 131072,
@@ -6374,8 +6374,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71661 Mechashark X-Steam
-DELETE FROM spell WHERE id = 71661;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71661;
+INSERT INTO `spell` SET
   `id` = 71661,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -6459,8 +6459,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 71662 A Goblin In Shark's Clothing: Mechashark X-Steam Controller
-DELETE FROM spell WHERE id = 71662;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71662;
+INSERT INTO `spell` SET
   `id` = 71662,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -6506,8 +6506,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71663 A Goblin In Shark's Clothing: Mechashark X-Steam's Visual Aura
-DELETE FROM spell WHERE id = 71663;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71663;
+INSERT INTO `spell` SET
   `id` = 71663,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -6553,8 +6553,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71812 Shadow Bolt
-DELETE FROM spell WHERE id = 71812;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71812;
+INSERT INTO `spell` SET
   `id` = 71812,
   `attributes` = 589824,
   `attributes_ex_1` = 0,
@@ -6610,8 +6610,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71855 Bilgewater Cartel Represent: Force Cast
-DELETE FROM spell WHERE id = 71855;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71855;
+INSERT INTO `spell` SET
   `id` = 71855,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -6657,8 +6657,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71857 Bilgewater Cartel Banner
-DELETE FROM spell WHERE id = 71857;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71857;
+INSERT INTO `spell` SET
   `id` = 71857,
   `attributes` = 536871296,
   `attributes_ex_1` = 1024,
@@ -6721,8 +6721,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 71910 Strange Tentacle: Base Effect
-DELETE FROM spell WHERE id = 71910;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71910;
+INSERT INTO `spell` SET
   `id` = 71910,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -6768,8 +6768,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71914 Irresistible Pool Pony
-DELETE FROM spell WHERE id = 71914;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71914;
+INSERT INTO `spell` SET
   `id` = 71914,
   `attributes` = 671088640,
   `attributes_ex_1` = 3104,
@@ -6836,8 +6836,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 71917 Irresistible Pool Pony: Naga Hatchling Proximity Control - Master
-DELETE FROM spell WHERE id = 71917;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71917;
+INSERT INTO `spell` SET
   `id` = 71917,
   `attributes` = 687866240,
   `attributes_ex_1` = 3104,
@@ -6883,8 +6883,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71918 Irresistible Pool Pony: Summon Naga Hatchling 02
-DELETE FROM spell WHERE id = 71918;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71918;
+INSERT INTO `spell` SET
   `id` = 71918,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -6930,8 +6930,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 71919 Irresistible Pool Pony: Summon Naga Hatchling 01
-DELETE FROM spell WHERE id = 71919;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 71919;
+INSERT INTO `spell` SET
   `id` = 71919,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -6977,8 +6977,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72035 Surrender Or Else!: Kill Credit
-DELETE FROM spell WHERE id = 72035;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72035;
+INSERT INTO `spell` SET
   `id` = 72035,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -7041,8 +7041,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72055 Absorption Shield
-DELETE FROM spell WHERE id = 72055;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72055;
+INSERT INTO `spell` SET
   `id` = 72055,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -7089,8 +7089,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72058 Surrender Or Else!: Summon Ace
-DELETE FROM spell WHERE id = 72058;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72058;
+INSERT INTO `spell` SET
   `id` = 72058,
   `attributes` = 150995200,
   `attributes_ex_1` = 1024,
@@ -7136,8 +7136,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72076 Surrender Or Else!: Faceless of the Deep - Beam Effect
-DELETE FROM spell WHERE id = 72076;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72076;
+INSERT INTO `spell` SET
   `id` = 72076,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -7182,9 +7182,56 @@ INSERT INTO spell SET
   `effect_spell_class_mask_b_1` = 0,
   `effect_spell_class_mask_c_1` = 0;
 
+-- 72077 Surrender Or Else!: Goblin Banner Aura
+DELETE FROM `spell` WHERE id = 72077;
+INSERT INTO `spell` SET
+  `id` = 72077,
+  `attributes` = 384,
+  `attributes_ex_1` = 0,
+  `attributes_ex_2` = 0,
+  `attributes_ex_3` = 0,
+  `attributes_ex_4` = 192,
+  `attributes_ex_5` = 0,
+  `attributes_ex_6` = 0,
+  `attributes_ex_7` = 0,
+  `cast_time_index` = 1,
+  `duration_index` = 21,
+  `range_index` = 1,
+  `power_type` = 0,
+  `speed` = 0,
+  `spell_visual_1` = 15233,
+  `spell_icon_id` = 1,
+  `active_icon_id` = 0,
+  `school_mask` = 1,
+  `spell_name_enus` = 'Surrender Or Else!: Goblin Banner Aura',
+  `spell_desc_enus` = '',
+  `spell_level` = 0,
+  `base_level` = 0,
+  `max_level` = 0,
+  `proc_chance` = 101,
+  `equipped_item_class` = -1,
+  `damage_class` = 1,
+  `effect_1` = 6,
+  `effect_apply_aura_name_1` = 4,
+  `effect_amplitude_1` = 0,
+  `effect_base_points_1` = 0,
+  `effect_die_sides_1` = 1,
+  `effect_item_type_1` = 0,
+  `effect_mechanic_1` = 0,
+  `effect_misc_value_a_1` = 0,
+  `effect_misc_value_b_1` = 0,
+  `effect_radius_index_1` = 0,
+  `effect_trigger_spell_1` = 0,
+  `effect_implicit_target_a_1` = 1,
+  `effect_implicit_target_b_1` = 0,
+  `effect_real_points_per_level_1` = 0,
+  `effect_spell_class_mask_a_1` = 0,
+  `effect_spell_class_mask_b_1` = 0,
+  `effect_spell_class_mask_c_1` = 0;
+
 -- 72085 Surrender Or Else!: Despawn Summons
-DELETE FROM spell WHERE id = 72085;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72085;
+INSERT INTO `spell` SET
   `id` = 72085,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -7230,8 +7277,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72126 Surrender Or Else!: Faceless of the Deep - Freeze Anim
-DELETE FROM spell WHERE id = 72126;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72126;
+INSERT INTO `spell` SET
   `id` = 72126,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -7277,8 +7324,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72204 Jump Charge Unit
-DELETE FROM spell WHERE id = 72204;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72204;
+INSERT INTO `spell` SET
   `id` = 72204,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -7324,8 +7371,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72206 Fire Cannon
-DELETE FROM spell WHERE id = 72206;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72206;
+INSERT INTO `spell` SET
   `id` = 72206,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -7382,8 +7429,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72207 Cannon Blast
-DELETE FROM spell WHERE id = 72207;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72207;
+INSERT INTO `spell` SET
   `id` = 72207,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -7454,8 +7501,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72240 B.C. Eliminator
-DELETE FROM spell WHERE id = 72240;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72240;
+INSERT INTO `spell` SET
   `id` = 72240,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -7526,8 +7573,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72243 Free The Captives: Summon Oomlot Shaman
-DELETE FROM spell WHERE id = 72243;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72243;
+INSERT INTO `spell` SET
   `id` = 72243,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -7573,8 +7620,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72381 Turtle Power
-DELETE FROM spell WHERE id = 72381;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72381;
+INSERT INTO `spell` SET
   `id` = 72381,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -7621,8 +7668,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72518 Enveloping Winds
-DELETE FROM spell WHERE id = 72518;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72518;
+INSERT INTO `spell` SET
   `id` = 72518,
   `attributes` = 0,
   `attributes_ex_1` = 268453892,
@@ -7672,8 +7719,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72522 Enveloping Winds
-DELETE FROM spell WHERE id = 72522;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72522;
+INSERT INTO `spell` SET
   `id` = 72522,
   `attributes` = 256,
   `attributes_ex_1` = 2052,
@@ -7720,8 +7767,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72580 Free The Captives: Dummy to Goblin On Death
-DELETE FROM spell WHERE id = 72580;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72580;
+INSERT INTO `spell` SET
   `id` = 72580,
   `attributes` = 8388992,
   `attributes_ex_1` = 1024,
@@ -7768,8 +7815,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72652 Body And Soul: Yngwie's Body - Master
-DELETE FROM spell WHERE id = 72652;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72652;
+INSERT INTO `spell` SET
   `id` = 72652,
   `attributes` = 159383936,
   `attributes_ex_1` = 32,
@@ -7815,8 +7862,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72778 Cosmetic - Plague Strike State - Red
-DELETE FROM spell WHERE id = 72778;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72778;
+INSERT INTO `spell` SET
   `id` = 72778,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -7862,8 +7909,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72866 Cosmetic - Stun (no Head Swirl)
-DELETE FROM spell WHERE id = 72866;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72866;
+INSERT INTO `spell` SET
   `id` = 72866,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -7909,8 +7956,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72885 Zombies vs. Super Booster Rocket Boots: Damage - Trigger
-DELETE FROM spell WHERE id = 72885;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72885;
+INSERT INTO `spell` SET
   `id` = 72885,
   `attributes` = 262528,
   `attributes_ex_1` = 0,
@@ -7959,8 +8006,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72886 Zombies vs. Super Booster Rocket Boots: Damage - Effect
-DELETE FROM spell WHERE id = 72886;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72886;
+INSERT INTO `spell` SET
   `id` = 72886,
   `attributes` = 17039744,
   `attributes_ex_1` = 0,
@@ -8023,8 +8070,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72887 Super Booster Rocket Boots
-DELETE FROM spell WHERE id = 72887;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72887;
+INSERT INTO `spell` SET
   `id` = 72887,
   `attributes` = 262400,
   `attributes_ex_1` = 1024,
@@ -8095,8 +8142,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72889 Zombies vs. Super Booster Rocket Boots: Summon Spell
-DELETE FROM spell WHERE id = 72889;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72889;
+INSERT INTO `spell` SET
   `id` = 72889,
   `attributes` = 328064,
   `attributes_ex_1` = 0,
@@ -8159,8 +8206,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 72891 Super Booster Rocket Boots
-DELETE FROM spell WHERE id = 72891;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72891;
+INSERT INTO `spell` SET
   `id` = 72891,
   `attributes` = 262144,
   `attributes_ex_1` = 0,
@@ -8206,8 +8253,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72935 Zombie Transformation
-DELETE FROM spell WHERE id = 72935;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72935;
+INSERT INTO `spell` SET
   `id` = 72935,
   `attributes` = 0,
   `attributes_ex_1` = 18436,
@@ -8257,8 +8304,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 72971 Rockin' Powder Infused Rocket Boots
-DELETE FROM spell WHERE id = 72971;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 72971;
+INSERT INTO `spell` SET
   `id` = 72971,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -8339,8 +8386,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 73066 Bootzooka
-DELETE FROM spell WHERE id = 73066;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73066;
+INSERT INTO `spell` SET
   `id` = 73066,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -8395,9 +8442,56 @@ INSERT INTO spell SET
   `effect_spell_class_mask_b_1` = 0,
   `effect_spell_class_mask_c_1` = 0;
 
+-- 73149 Old Friends: Flying Bomber's Rope Ladder
+DELETE FROM `spell` WHERE id = 73149;
+INSERT INTO `spell` SET
+  `id` = 73149,
+  `attributes` = 384,
+  `attributes_ex_1` = 0,
+  `attributes_ex_2` = 0,
+  `attributes_ex_3` = 0,
+  `attributes_ex_4` = 0,
+  `attributes_ex_5` = 0,
+  `attributes_ex_6` = 0,
+  `attributes_ex_7` = 0,
+  `cast_time_index` = 1,
+  `duration_index` = 21,
+  `range_index` = 1,
+  `power_type` = 0,
+  `speed` = 0,
+  `spell_visual_1` = 15427,
+  `spell_icon_id` = 1,
+  `active_icon_id` = 0,
+  `school_mask` = 1,
+  `spell_name_enus` = 'Old Friends: Flying Bomber''s Rope Ladder',
+  `spell_desc_enus` = '',
+  `spell_level` = 0,
+  `base_level` = 0,
+  `max_level` = 0,
+  `proc_chance` = 101,
+  `equipped_item_class` = -1,
+  `damage_class` = 1,
+  `effect_1` = 6,
+  `effect_apply_aura_name_1` = 4,
+  `effect_amplitude_1` = 0,
+  `effect_base_points_1` = 0,
+  `effect_die_sides_1` = 1,
+  `effect_item_type_1` = 0,
+  `effect_mechanic_1` = 0,
+  `effect_misc_value_a_1` = 0,
+  `effect_misc_value_b_1` = 0,
+  `effect_radius_index_1` = 0,
+  `effect_trigger_spell_1` = 0,
+  `effect_implicit_target_a_1` = 1,
+  `effect_implicit_target_b_1` = 0,
+  `effect_real_points_per_level_1` = 0,
+  `effect_spell_class_mask_a_1` = 0,
+  `effect_spell_class_mask_b_1` = 0,
+  `effect_spell_class_mask_c_1` = 0;
+
 -- 73389 Shoot
-DELETE FROM spell WHERE id = 73389;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73389;
+INSERT INTO `spell` SET
   `id` = 73389,
   `attributes` = 4194306,
   `attributes_ex_1` = 1024,
@@ -8445,8 +8539,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73417 Satchel of Grenades
-DELETE FROM spell WHERE id = 73417;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73417;
+INSERT INTO `spell` SET
   `id` = 73417,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -8500,8 +8594,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73425 Mine Disposal, The Goblin Way: Satchel of Grenades - Effect
-DELETE FROM spell WHERE id = 73425;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73425;
+INSERT INTO `spell` SET
   `id` = 73425,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -8568,8 +8662,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73427 Pride of Kezan
-DELETE FROM spell WHERE id = 73427;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73427;
+INSERT INTO `spell` SET
   `id` = 73427,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -8650,8 +8744,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 73430 The Pride Of Kezan: Summon the Pride of Kezan
-DELETE FROM spell WHERE id = 73430;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73430;
+INSERT INTO `spell` SET
   `id` = 73430,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -8697,8 +8791,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73456 Machine Gun
-DELETE FROM spell WHERE id = 73456;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73456;
+INSERT INTO `spell` SET
   `id` = 73456,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -8755,8 +8849,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73477 Wild Weasel Rockets
-DELETE FROM spell WHERE id = 73477;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73477;
+INSERT INTO `spell` SET
   `id` = 73477,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -8809,8 +8903,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73490 The Pride Of Kezan: Pride of Kezan - Smoking
-DELETE FROM spell WHERE id = 73490;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73490;
+INSERT INTO `spell` SET
   `id` = 73490,
   `attributes` = 159383808,
   `attributes_ex_1` = 268437536,
@@ -8856,8 +8950,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73493 The Pride Of Kezan: Pride of Kezan - On Fire
-DELETE FROM spell WHERE id = 73493;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73493;
+INSERT INTO `spell` SET
   `id` = 73493,
   `attributes` = 159383808,
   `attributes_ex_1` = 268437536,
@@ -8902,9 +8996,121 @@ INSERT INTO spell SET
   `effect_spell_class_mask_b_1` = 0,
   `effect_spell_class_mask_c_1` = 0;
 
+-- 73531 Riding Bastia
+DELETE FROM `spell` WHERE id = 73531;
+INSERT INTO `spell` SET
+  `id` = 73531,
+  `attributes` = 2147483904,
+  `attributes_ex_1` = 1024,
+  `attributes_ex_2` = 0,
+  `attributes_ex_3` = 1342177280,
+  `attributes_ex_4` = 65,
+  `attributes_ex_5` = 1024,
+  `attributes_ex_6` = 1024,
+  `attributes_ex_7` = 0,
+  `cast_time_index` = 1,
+  `duration_index` = 21,
+  `range_index` = 6,
+  `power_type` = 0,
+  `speed` = 0,
+  `spell_visual_1` = 0,
+  `spell_icon_id` = 836,
+  `active_icon_id` = 0,
+  `school_mask` = 1,
+  `spell_name_enus` = 'Riding Bastia',
+  `spell_desc_enus` = '',
+  `spell_level` = 0,
+  `base_level` = 0,
+  `max_level` = 0,
+  `proc_chance` = 101,
+  `equipped_item_class` = -1,
+  `damage_class` = 1,
+  `spell_tooltip_enus` = 'Riding Bastia up to the Sky Falls.',
+  `effect_1` = 6,
+  `effect_apply_aura_name_1` = 236,
+  `effect_amplitude_1` = 0,
+  `effect_base_points_1` = 0,
+  `effect_die_sides_1` = 1,
+  `effect_item_type_1` = 0,
+  `effect_mechanic_1` = 0,
+  `effect_misc_value_a_1` = 0,
+  `effect_misc_value_b_1` = 0,
+  `effect_radius_index_1` = 0,
+  `effect_trigger_spell_1` = 0,
+  `effect_implicit_target_a_1` = 25,
+  `effect_implicit_target_b_1` = 0,
+  `effect_real_points_per_level_1` = 0,
+  `effect_spell_class_mask_a_1` = 0,
+  `effect_spell_class_mask_b_1` = 0,
+  `effect_spell_class_mask_c_1` = 0,
+  `effect_2` = 6,
+  `effect_apply_aura_name_2` = 4,
+  `effect_amplitude_2` = 0,
+  `effect_base_points_2` = 0,
+  `effect_die_sides_2` = 1,
+  `effect_item_type_2` = 0,
+  `effect_mechanic_2` = 0,
+  `effect_misc_value_a_2` = 0,
+  `effect_misc_value_b_2` = 0,
+  `effect_radius_index_2` = 0,
+  `effect_trigger_spell_2` = 0,
+  `effect_implicit_target_a_2` = 1,
+  `effect_implicit_target_b_2` = 0,
+  `effect_real_points_per_level_2` = 0,
+  `effect_spell_class_mask_a_2` = 0,
+  `effect_spell_class_mask_b_2` = 0,
+  `effect_spell_class_mask_c_2` = 0;
+
+-- 73532 Let's Ride: Quest Accept
+DELETE FROM `spell` WHERE id = 73532;
+INSERT INTO `spell` SET
+  `id` = 73532,
+  `attributes` = 268435840,
+  `attributes_ex_1` = 1024,
+  `attributes_ex_2` = 4,
+  `attributes_ex_3` = 0,
+  `attributes_ex_4` = 128,
+  `attributes_ex_5` = 0,
+  `attributes_ex_6` = 0,
+  `attributes_ex_7` = 0,
+  `cast_time_index` = 1,
+  `duration_index` = 21,
+  `range_index` = 1,
+  `power_type` = 0,
+  `speed` = 0,
+  `spell_visual_1` = 0,
+  `spell_icon_id` = 1,
+  `active_icon_id` = 0,
+  `school_mask` = 1,
+  `spell_name_enus` = 'Let''s Ride: Quest Accept',
+  `spell_desc_enus` = '',
+  `spell_level` = 0,
+  `base_level` = 0,
+  `max_level` = 0,
+  `proc_chance` = 101,
+  `equipped_item_class` = -1,
+  `damage_class` = 1,
+  `effect_1` = 28,
+  `effect_apply_aura_name_1` = 0,
+  `effect_amplitude_1` = 0,
+  `effect_base_points_1` = 73531,
+  `effect_die_sides_1` = 0,
+  `effect_item_type_1` = 0,
+  `effect_mechanic_1` = 0,
+  `effect_misc_value_a_1` = 39152,
+  `effect_misc_value_b_1` = 827,
+  `effect_radius_index_1` = 7,
+  `effect_trigger_spell_1` = 0,
+  `effect_implicit_target_a_1` = 48,
+  `effect_implicit_target_b_1` = 0,
+  `effect_real_points_per_level_1` = 0,
+  `effect_spell_class_mask_a_1` = 0,
+  `effect_spell_class_mask_b_1` = 0,
+  `effect_spell_class_mask_c_1` = 0;
+
 -- 73538 Shadow Bolt
-DELETE FROM spell WHERE id = 73538;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73538;
+INSERT INTO `spell` SET
   `id` = 73538,
   `attributes` = 65792,
   `attributes_ex_1` = 0,
@@ -8953,8 +9159,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73543 Fireball
-DELETE FROM spell WHERE id = 73543;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73543;
+INSERT INTO `spell` SET
   `id` = 73543,
   `attributes` = 65792,
   `attributes_ex_1` = 0,
@@ -9003,8 +9209,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73558 Lost Isles Mail Bird: Mail Bag - Hold
-DELETE FROM spell WHERE id = 73558;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73558;
+INSERT INTO `spell` SET
   `id` = 73558,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -9050,8 +9256,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73561 Lost Isles Mail Bird: Aura Timer
-DELETE FROM spell WHERE id = 73561;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73561;
+INSERT INTO `spell` SET
   `id` = 73561,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -9097,8 +9303,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73583 Kaja'Cola Zero-One
-DELETE FROM spell WHERE id = 73583;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73583;
+INSERT INTO `spell` SET
   `id` = 73583,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -9144,8 +9350,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73593 Free Their Minds: See Quest Invisibility 01 - Ace
-DELETE FROM spell WHERE id = 73593;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73593;
+INSERT INTO `spell` SET
   `id` = 73593,
   `attributes` = 689963264,
   `attributes_ex_1` = 268436648,
@@ -9194,8 +9400,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73595 Free Their Minds: See Quest Invisibility 02 - Izzy
-DELETE FROM spell WHERE id = 73595;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73595;
+INSERT INTO `spell` SET
   `id` = 73595,
   `attributes` = 689963264,
   `attributes_ex_1` = 268436648,
@@ -9244,8 +9450,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73597 Free Their Minds: See Quest Invisibility 03 - Gobber
-DELETE FROM spell WHERE id = 73597;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73597;
+INSERT INTO `spell` SET
   `id` = 73597,
   `attributes` = 689963264,
   `attributes_ex_1` = 268436648,
@@ -9294,8 +9500,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73599 Kaja'Cola Zero-One
-DELETE FROM spell WHERE id = 73599;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73599;
+INSERT INTO `spell` SET
   `id` = 73599,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -9341,8 +9547,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73601 Free Their Minds: Summon Ace
-DELETE FROM spell WHERE id = 73601;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73601;
+INSERT INTO `spell` SET
   `id` = 73601,
   `attributes` = 150995200,
   `attributes_ex_1` = 1056,
@@ -9405,8 +9611,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73602 Free Their Minds: Ace Freed
-DELETE FROM spell WHERE id = 73602;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73602;
+INSERT INTO `spell` SET
   `id` = 73602,
   `attributes` = 538968320,
   `attributes_ex_1` = 1160,
@@ -9469,8 +9675,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73607 Kaja'Cola Gives You IDEAS! (TM): On First Summons Of Assistant Greely
-DELETE FROM spell WHERE id = 73607;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73607;
+INSERT INTO `spell` SET
   `id` = 73607,
   `attributes` = 2298478976,
   `attributes_ex_1` = 268435488,
@@ -9516,8 +9722,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73609 Free Their Minds: Summon Izzy
-DELETE FROM spell WHERE id = 73609;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73609;
+INSERT INTO `spell` SET
   `id` = 73609,
   `attributes` = 150995200,
   `attributes_ex_1` = 1056,
@@ -9580,8 +9786,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73611 Free Their Minds: Summon Gobber
-DELETE FROM spell WHERE id = 73611;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73611;
+INSERT INTO `spell` SET
   `id` = 73611,
   `attributes` = 150995200,
   `attributes_ex_1` = 1056,
@@ -9644,8 +9850,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73613 Free Their Minds: Izzy Freed
-DELETE FROM spell WHERE id = 73613;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73613;
+INSERT INTO `spell` SET
   `id` = 73613,
   `attributes` = 538968320,
   `attributes_ex_1` = 1160,
@@ -9708,8 +9914,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73614 Free Their Minds: Gobber Freed
-DELETE FROM spell WHERE id = 73614;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73614;
+INSERT INTO `spell` SET
   `id` = 73614,
   `attributes` = 538968320,
   `attributes_ex_1` = 1160,
@@ -9772,8 +9978,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73616 Kaja'Cola Gives You IDEAS! (TM): Summon Assistant Greely Controller
-DELETE FROM spell WHERE id = 73616;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73616;
+INSERT INTO `spell` SET
   `id` = 73616,
   `attributes` = 754975104,
   `attributes_ex_1` = 2080,
@@ -9822,8 +10028,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73631 Kaja'Cola Gives You IDEAS! (TM): Dummy To Assistant Greely
-DELETE FROM spell WHERE id = 73631;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73631;
+INSERT INTO `spell` SET
   `id` = 73631,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -9869,8 +10075,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73633 Free Their Minds: Summon Ace Controller
-DELETE FROM spell WHERE id = 73633;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73633;
+INSERT INTO `spell` SET
   `id` = 73633,
   `attributes` = 754975104,
   `attributes_ex_1` = 2080,
@@ -9919,8 +10125,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73635 Free Their Minds: Summon Izzy Controller
-DELETE FROM spell WHERE id = 73635;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73635;
+INSERT INTO `spell` SET
   `id` = 73635,
   `attributes` = 754975104,
   `attributes_ex_1` = 2080,
@@ -9969,8 +10175,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73637 Free Their Minds: Summon Gobber Controller
-DELETE FROM spell WHERE id = 73637;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73637;
+INSERT INTO `spell` SET
   `id` = 73637,
   `attributes` = 754975104,
   `attributes_ex_1` = 2080,
@@ -10019,8 +10225,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73648 Kaja'Cola Gives You IDEAS! (TM): Resummon Assistant Greely
-DELETE FROM spell WHERE id = 73648;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73648;
+INSERT INTO `spell` SET
   `id` = 73648,
   `attributes` = 150995200,
   `attributes_ex_1` = 1056,
@@ -10083,8 +10289,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73702 Blastshadow's Soulstone
-DELETE FROM spell WHERE id = 73702;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73702;
+INSERT INTO `spell` SET
   `id` = 73702,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -10130,8 +10336,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73711 Throw It On The Ground!: Dummy To Assistant Greely
-DELETE FROM spell WHERE id = 73711;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73711;
+INSERT INTO `spell` SET
   `id` = 73711,
   `attributes` = 689963392,
   `attributes_ex_1` = 1192,
@@ -10177,8 +10383,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73723 Throw It On The Ground!: Blastshadow On Death
-DELETE FROM spell WHERE id = 73723;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73723;
+INSERT INTO `spell` SET
   `id` = 73723,
   `attributes` = 142606592,
   `attributes_ex_1` = 0,
@@ -10241,8 +10447,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73746 Wild Mine Cart Ride: Summon Mine Cart
-DELETE FROM spell WHERE id = 73746;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73746;
+INSERT INTO `spell` SET
   `id` = 73746,
   `attributes` = 268435840,
   `attributes_ex_1` = 1024,
@@ -10288,8 +10494,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73747 Riding Mine Cart
-DELETE FROM spell WHERE id = 73747;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73747;
+INSERT INTO `spell` SET
   `id` = 73747,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -10370,8 +10576,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 73767 Wild Mine Cart Ride: Mine Cart Sound 01
-DELETE FROM spell WHERE id = 73767;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73767;
+INSERT INTO `spell` SET
   `id` = 73767,
   `attributes` = 2298478976,
   `attributes_ex_1` = 2080,
@@ -10434,8 +10640,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73838 Release The Valves: Dummy to Bunny
-DELETE FROM spell WHERE id = 73838;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73838;
+INSERT INTO `spell` SET
   `id` = 73838,
   `attributes` = 538968448,
   `attributes_ex_1` = 1160,
@@ -10481,8 +10687,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73852 Shredder Shutdown: Steamwheedle Shark On Death
-DELETE FROM spell WHERE id = 73852;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73852;
+INSERT INTO `spell` SET
   `id` = 73852,
   `attributes` = 8388864,
   `attributes_ex_1` = 268435456,
@@ -10528,8 +10734,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73871 KTC Oil Bot: Cutting Laser Cosmetic Periodic
-DELETE FROM spell WHERE id = 73871;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73871;
+INSERT INTO `spell` SET
   `id` = 73871,
   `attributes` = 268435712,
   `attributes_ex_1` = 268435456,
@@ -10582,8 +10788,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73899 Primal Strike
-DELETE FROM spell WHERE id = 73899;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73899;
+INSERT INTO `spell` SET
   `id` = 73899,
   `attributes` = 327680,
   `attributes_ex_1` = 512,
@@ -10642,8 +10848,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73926 Escape Velocity: Cage
-DELETE FROM spell WHERE id = 73926;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73926;
+INSERT INTO `spell` SET
   `id` = 73926,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -10689,8 +10895,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73947 Escape Velocity: On Interact
-DELETE FROM spell WHERE id = 73947;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73947;
+INSERT INTO `spell` SET
   `id` = 73947,
   `attributes` = 538968320,
   `attributes_ex_1` = 1160,
@@ -10736,8 +10942,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73948 Escape Velocity: Rockets
-DELETE FROM spell WHERE id = 73948;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73948;
+INSERT INTO `spell` SET
   `id` = 73948,
   `attributes` = 384,
   `attributes_ex_1` = 2048,
@@ -10783,8 +10989,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73989 The Ultimate Footbomb Uniform
-DELETE FROM spell WHERE id = 73989;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73989;
+INSERT INTO `spell` SET
   `id` = 73989,
   `attributes` = 2147483904,
   `attributes_ex_1` = 1024,
@@ -10865,8 +11071,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 73991 Final Confrontation: On Interact - Summon
-DELETE FROM spell WHERE id = 73991;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73991;
+INSERT INTO `spell` SET
   `id` = 73991,
   `attributes` = 538968320,
   `attributes_ex_1` = 1160,
@@ -10919,8 +11125,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73994 Field Goal
-DELETE FROM spell WHERE id = 73994;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73994;
+INSERT INTO `spell` SET
   `id` = 73994,
   `attributes` = 539033600,
   `attributes_ex_1` = 268436616,
@@ -10973,8 +11179,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 73997 Blitz
-DELETE FROM spell WHERE id = 73997;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73997;
+INSERT INTO `spell` SET
   `id` = 73997,
   `attributes` = 538968064,
   `attributes_ex_1` = 131208,
@@ -11044,8 +11250,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73998 Illegal Contact
-DELETE FROM spell WHERE id = 73998;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73998;
+INSERT INTO `spell` SET
   `id` = 73998,
   `attributes` = 16,
   `attributes_ex_1` = 133632,
@@ -11116,8 +11322,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 73999 Toxic Assets
-DELETE FROM spell WHERE id = 73999;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 73999;
+INSERT INTO `spell` SET
   `id` = 73999,
   `attributes` = 524288,
   `attributes_ex_1` = 0,
@@ -11184,8 +11390,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74000 Unload Toxic Assets
-DELETE FROM spell WHERE id = 74000;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74000;
+INSERT INTO `spell` SET
   `id` = 74000,
   `attributes` = 524288,
   `attributes_ex_1` = 4,
@@ -11263,8 +11469,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74003 Downsizing
-DELETE FROM spell WHERE id = 74003;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74003;
+INSERT INTO `spell` SET
   `id` = 74003,
   `attributes` = 67108864,
   `attributes_ex_1` = 2048,
@@ -11355,8 +11561,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 74004 You're Fired
-DELETE FROM spell WHERE id = 74004;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74004;
+INSERT INTO `spell` SET
   `id` = 74004,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -11427,8 +11633,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74005 Revenue Stream
-DELETE FROM spell WHERE id = 74005;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74005;
+INSERT INTO `spell` SET
   `id` = 74005,
   `attributes` = 0,
   `attributes_ex_1` = 268435456,
@@ -11503,8 +11709,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74006 Final Confrontation: Trade Prince Gallywix - Revenue Stream - Visual
-DELETE FROM spell WHERE id = 74006;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74006;
+INSERT INTO `spell` SET
   `id` = 74006,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -11550,8 +11756,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 74025 Quest Phase 10
-DELETE FROM spell WHERE id = 74025;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74025;
+INSERT INTO `spell` SET
   `id` = 74025,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -11617,8 +11823,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74028 Rockin' Powder Infused Rocket Boots
-DELETE FROM spell WHERE id = 74028;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74028;
+INSERT INTO `spell` SET
   `id` = 74028,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -11682,8 +11888,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74029 Warchief's Emissary: Teleport & Bind to Orgrimmar
-DELETE FROM spell WHERE id = 74029;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74029;
+INSERT INTO `spell` SET
   `id` = 74029,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -11763,8 +11969,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 74036 Shadow Channelling
-DELETE FROM spell WHERE id = 74036;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74036;
+INSERT INTO `spell` SET
   `id` = 74036,
   `attributes` = 402653440,
   `attributes_ex_1` = 268435520,
@@ -11813,8 +12019,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 74038 Fire Channeling
-DELETE FROM spell WHERE id = 74038;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74038;
+INSERT INTO `spell` SET
   `id` = 74038,
   `attributes` = 402653440,
   `attributes_ex_1` = 268435520,
@@ -11863,8 +12069,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 74100 Life Savings: Teleport & Bind to the Lost Isles
-DELETE FROM spell WHERE id = 74100;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74100;
+INSERT INTO `spell` SET
   `id` = 74100,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -11927,8 +12133,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 74177 Cluster Cluck: Remote Control Fireworks Visual
-DELETE FROM spell WHERE id = 74177;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74177;
+INSERT INTO `spell` SET
   `id` = 74177,
   `attributes` = 384,
   `attributes_ex_1` = 2048,
@@ -11974,8 +12180,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 74958 Machine Gun
-DELETE FROM spell WHERE id = 74958;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74958;
+INSERT INTO `spell` SET
   `id` = 74958,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -12025,8 +12231,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 74973 Power Word: Fortitude
-DELETE FROM spell WHERE id = 74973;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 74973;
+INSERT INTO `spell` SET
   `id` = 74973,
   `attributes` = 0,
   `attributes_ex_1` = 526336,
@@ -12083,8 +12289,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75361 Swashbuckling Slice
-DELETE FROM spell WHERE id = 75361;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75361;
+INSERT INTO `spell` SET
   `id` = 75361,
   `attributes` = 327700,
   `attributes_ex_1` = 134217728,
@@ -12140,8 +12346,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75761 Bubble Blast
-DELETE FROM spell WHERE id = 75761;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75761;
+INSERT INTO `spell` SET
   `id` = 75761,
   `attributes` = 589824,
   `attributes_ex_1` = 136,
@@ -12220,8 +12426,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 75772 Burning Weapon
-DELETE FROM spell WHERE id = 75772;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75772;
+INSERT INTO `spell` SET
   `id` = 75772,
   `attributes` = 524288,
   `attributes_ex_1` = 136,
@@ -12271,8 +12477,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75773 Burning Weapon
-DELETE FROM spell WHERE id = 75773;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75773;
+INSERT INTO `spell` SET
   `id` = 75773,
   `attributes` = 384,
   `attributes_ex_1` = 268435456,
@@ -12322,8 +12528,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75775 Throw Gears
-DELETE FROM spell WHERE id = 75775;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75775;
+INSERT INTO `spell` SET
   `id` = 75775,
   `attributes` = 589824,
   `attributes_ex_1` = 136,
@@ -12401,8 +12607,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 75902 Shadow Crash
-DELETE FROM spell WHERE id = 75902;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75902;
+INSERT INTO `spell` SET
   `id` = 75902,
   `attributes` = 524288,
   `attributes_ex_1` = 0,
@@ -12455,8 +12661,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75903 Shadow Crash
-DELETE FROM spell WHERE id = 75903;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75903;
+INSERT INTO `spell` SET
   `id` = 75903,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -12505,8 +12711,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75924 Heartbreaker
-DELETE FROM spell WHERE id = 75924;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75924;
+INSERT INTO `spell` SET
   `id` = 75924,
   `attributes` = 327680,
   `attributes_ex_1` = 262144,
@@ -12557,8 +12763,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75942 Voodoo Illusion
-DELETE FROM spell WHERE id = 75942;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75942;
+INSERT INTO `spell` SET
   `id` = 75942,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -12621,8 +12827,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 75945 Fury of the Storm
-DELETE FROM spell WHERE id = 75945;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75945;
+INSERT INTO `spell` SET
   `id` = 75945,
   `attributes` = 589824,
   `attributes_ex_1` = 2188,
@@ -12684,8 +12890,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 75946 Fire and the Flames
-DELETE FROM spell WHERE id = 75946;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75946;
+INSERT INTO `spell` SET
   `id` = 75946,
   `attributes` = 851968,
   `attributes_ex_1` = 2048,
@@ -12753,8 +12959,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 75964 Beatdown
-DELETE FROM spell WHERE id = 75964;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75964;
+INSERT INTO `spell` SET
   `id` = 75964,
   `attributes` = 786448,
   `attributes_ex_1` = 0,
@@ -12822,8 +13028,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 75968 Full Monte
-DELETE FROM spell WHERE id = 75968;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75968;
+INSERT INTO `spell` SET
   `id` = 75968,
   `attributes` = 327696,
   `attributes_ex_1` = 0,
@@ -12914,8 +13120,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 75969 Full Monte
-DELETE FROM spell WHERE id = 75969;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 75969;
+INSERT INTO `spell` SET
   `id` = 75969,
   `attributes` = 262160,
   `attributes_ex_1` = 0,
@@ -12965,8 +13171,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 76136 Acidic Sweat
-DELETE FROM spell WHERE id = 76136;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 76136;
+INSERT INTO `spell` SET
   `id` = 76136,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -13013,8 +13219,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 76137 Acidic Sweat
-DELETE FROM spell WHERE id = 76137;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 76137;
+INSERT INTO `spell` SET
   `id` = 76137,
   `attributes` = 0,
   `attributes_ex_1` = 0,
@@ -13065,8 +13271,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 76354 Infrared = Infradead: Heat Signature Aura - Beast
-DELETE FROM spell WHERE id = 76354;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 76354;
+INSERT INTO `spell` SET
   `id` = 76354,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -13112,8 +13318,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 76356 Infrared = Infradead: Heat Signature Aura - Humanoid (120%)
-DELETE FROM spell WHERE id = 76356;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 76356;
+INSERT INTO `spell` SET
   `id` = 76356,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -13159,8 +13365,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 76371 Infrared = Infradead: Heat Signature Aura - Humanoid (175%)
-DELETE FROM spell WHERE id = 76371;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 76371;
+INSERT INTO `spell` SET
   `id` = 76371,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -13206,8 +13412,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 77589 Spotlight
-DELETE FROM spell WHERE id = 77589;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 77589;
+INSERT INTO `spell` SET
   `id` = 77589,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -13253,8 +13459,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 78273 Flametongue Weapon
-DELETE FROM spell WHERE id = 78273;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 78273;
+INSERT INTO `spell` SET
   `id` = 78273,
   `attributes` = 328208,
   `attributes_ex_1` = 0,
@@ -13326,8 +13532,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 78275 Creature - Flametongue Weapon Proc
-DELETE FROM spell WHERE id = 78275;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 78275;
+INSERT INTO `spell` SET
   `id` = 78275,
   `attributes` = 262400,
   `attributes_ex_1` = 0,
@@ -13373,8 +13579,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 78607 ... It Will Come: Ground Rumble Earthquake
-DELETE FROM spell WHERE id = 78607;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 78607;
+INSERT INTO `spell` SET
   `id` = 78607,
   `attributes` = 696254848,
   `attributes_ex_1` = 3104,
@@ -13420,8 +13626,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 78990 Restore Mana
-DELETE FROM spell WHERE id = 78990;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 78990;
+INSERT INTO `spell` SET
   `id` = 78990,
   `attributes` = 134217728,
   `attributes_ex_1` = 0,
@@ -13478,8 +13684,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 78993 Concentration
-DELETE FROM spell WHERE id = 78993;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 78993;
+INSERT INTO `spell` SET
   `id` = 78993,
   `attributes` = 68222976,
   `attributes_ex_1` = 262208,
@@ -13533,8 +13739,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 79058 Arcane Brilliance
-DELETE FROM spell WHERE id = 79058;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79058;
+INSERT INTO `spell` SET
   `id` = 79058,
   `attributes` = 65536,
   `attributes_ex_1` = 0,
@@ -13612,8 +13818,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 79304 Cosmetic - Combat Knockdown Self
-DELETE FROM spell WHERE id = 79304;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79304;
+INSERT INTO `spell` SET
   `id` = 79304,
   `attributes` = 268435712,
   `attributes_ex_1` = 1088,
@@ -13662,8 +13868,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 79469 Flask of Steelskin
-DELETE FROM spell WHERE id = 79469;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79469;
+INSERT INTO `spell` SET
   `id` = 79469,
   `attributes` = 671088640,
   `attributes_ex_1` = 0,
@@ -13714,8 +13920,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 79470 Flask of the Draconic Mind
-DELETE FROM spell WHERE id = 79470;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79470;
+INSERT INTO `spell` SET
   `id` = 79470,
   `attributes` = 671088640,
   `attributes_ex_1` = 0,
@@ -13790,8 +13996,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 79471 Flask of the Winds
-DELETE FROM spell WHERE id = 79471;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79471;
+INSERT INTO `spell` SET
   `id` = 79471,
   `attributes` = 671088640,
   `attributes_ex_1` = 0,
@@ -13859,8 +14065,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 79472 Flask of Titanic Strength
-DELETE FROM spell WHERE id = 79472;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79472;
+INSERT INTO `spell` SET
   `id` = 79472,
   `attributes` = 671088640,
   `attributes_ex_1` = 0,
@@ -13928,8 +14134,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 79476 Volcanic Power
-DELETE FROM spell WHERE id = 79476;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79476;
+INSERT INTO `spell` SET
   `id` = 79476,
   `attributes` = 0,
   `attributes_ex_1` = 1024,
@@ -13987,8 +14193,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 79633 Tol'vir Agility
-DELETE FROM spell WHERE id = 79633;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79633;
+INSERT INTO `spell` SET
   `id` = 79633,
   `attributes` = 671088640,
   `attributes_ex_1` = 1024,
@@ -14046,8 +14252,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 79634 Golem's Strength
-DELETE FROM spell WHERE id = 79634;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 79634;
+INSERT INTO `spell` SET
   `id` = 79634,
   `attributes` = 671088640,
   `attributes_ex_1` = 1024,
@@ -14105,8 +14311,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 80264 Stealth
-DELETE FROM spell WHERE id = 80264;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 80264;
+INSERT INTO `spell` SET
   `id` = 80264,
   `attributes` = 262144,
   `attributes_ex_1` = 0,
@@ -14153,8 +14359,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 80719 Flask of Steelskin
-DELETE FROM spell WHERE id = 80719;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 80719;
+INSERT INTO `spell` SET
   `id` = 80719,
   `attributes` = 65568,
   `attributes_ex_1` = 1024,
@@ -14207,8 +14413,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 80720 Flask of the Draconic Mind
-DELETE FROM spell WHERE id = 80720;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 80720;
+INSERT INTO `spell` SET
   `id` = 80720,
   `attributes` = 65568,
   `attributes_ex_1` = 1024,
@@ -14261,8 +14467,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 80721 Flask of the Winds
-DELETE FROM spell WHERE id = 80721;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 80721;
+INSERT INTO `spell` SET
   `id` = 80721,
   `attributes` = 65568,
   `attributes_ex_1` = 1024,
@@ -14315,8 +14521,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 80723 Flask of Titanic Strength
-DELETE FROM spell WHERE id = 80723;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 80723;
+INSERT INTO `spell` SET
   `id` = 80723,
   `attributes` = 65568,
   `attributes_ex_1` = 1024,
@@ -14369,8 +14575,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 81312 Self Stun Forever
-DELETE FROM spell WHERE id = 81312;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 81312;
+INSERT INTO `spell` SET
   `id` = 81312,
   `attributes` = 128,
   `attributes_ex_1` = 0,
@@ -14416,8 +14622,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 81717 Generic Quest Invisibility 14
-DELETE FROM spell WHERE id = 81717;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 81717;
+INSERT INTO `spell` SET
   `id` = 81717,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -14463,8 +14669,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 83115 Irresistible Pool Pony: Summon Naga Hatchling 03
-DELETE FROM spell WHERE id = 83115;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 83115;
+INSERT INTO `spell` SET
   `id` = 83115,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -14510,8 +14716,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 83116 Irresistible Pool Pony: Summon Naga Hatchling 04
-DELETE FROM spell WHERE id = 83116;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 83116;
+INSERT INTO `spell` SET
   `id` = 83116,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -14557,8 +14763,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 83142 Irresistible Pool Pony: Loot FX
-DELETE FROM spell WHERE id = 83142;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 83142;
+INSERT INTO `spell` SET
   `id` = 83142,
   `attributes` = 384,
   `attributes_ex_1` = 0,
@@ -14604,8 +14810,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 83594 Go Home
-DELETE FROM spell WHERE id = 83594;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 83594;
+INSERT INTO `spell` SET
   `id` = 83594,
   `attributes` = 696254720,
   `attributes_ex_1` = 1056,
@@ -14651,8 +14857,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 85370 Blowdart Anim Replacement
-DELETE FROM spell WHERE id = 85370;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 85370;
+INSERT INTO `spell` SET
   `id` = 85370,
   `attributes` = 0,
   `attributes_ex_1` = 268435456,
@@ -14698,8 +14904,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 87226 Cosmetic - Rocket Barrage (Goblin Racial)
-DELETE FROM spell WHERE id = 87226;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 87226;
+INSERT INTO `spell` SET
   `id` = 87226,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -14745,8 +14951,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 87604 Food
-DELETE FROM spell WHERE id = 87604;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 87604;
+INSERT INTO `spell` SET
   `id` = 87604,
   `attributes` = 402653440,
   `attributes_ex_1` = 0,
@@ -14830,8 +15036,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_3` = 0;
 
 -- 88223 Wild Mine Cart Ride: Mine Cart Visual
-DELETE FROM spell WHERE id = 88223;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 88223;
+INSERT INTO `spell` SET
   `id` = 88223,
   `attributes` = 696254848,
   `attributes_ex_1` = 3104,
@@ -14877,8 +15083,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 88467 Sanctuary
-DELETE FROM spell WHERE id = 88467;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 88467;
+INSERT INTO `spell` SET
   `id` = 88467,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -14924,8 +15130,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 89125 Micro Mechachicken: Grow
-DELETE FROM spell WHERE id = 89125;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 89125;
+INSERT INTO `spell` SET
   `id` = 89125,
   `attributes` = 134218112,
   `attributes_ex_1` = 268435456,
@@ -14971,8 +15177,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 89138 Lightning Beam Bunny: Lightning Beam
-DELETE FROM spell WHERE id = 89138;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 89138;
+INSERT INTO `spell` SET
   `id` = 89138,
   `attributes` = 687866240,
   `attributes_ex_1` = 1060,
@@ -15018,8 +15224,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 89196 Anim Kit Dead
-DELETE FROM spell WHERE id = 89196;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 89196;
+INSERT INTO `spell` SET
   `id` = 89196,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -15065,8 +15271,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 89842 Drink Tray
-DELETE FROM spell WHERE id = 89842;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 89842;
+INSERT INTO `spell` SET
   `id` = 89842,
   `attributes` = 256,
   `attributes_ex_1` = 268435456,
@@ -15112,8 +15318,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90316 Do it Yourself: Cat's Mark - Jack
-DELETE FROM spell WHERE id = 90316;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90316;
+INSERT INTO `spell` SET
   `id` = 90316,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15159,8 +15365,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90317 Do it Yourself: Cat's Mark - Bruno
-DELETE FROM spell WHERE id = 90317;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90317;
+INSERT INTO `spell` SET
   `id` = 90317,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15206,8 +15412,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90318 Do it Yourself: Cat's Mark - Frankie
-DELETE FROM spell WHERE id = 90318;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90318;
+INSERT INTO `spell` SET
   `id` = 90318,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15253,8 +15459,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90814 The New You: Cat's Mark - Gappy Silvertooth
-DELETE FROM spell WHERE id = 90814;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90814;
+INSERT INTO `spell` SET
   `id` = 90814,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15300,8 +15506,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90816 The New You: Cat's Mark - Szabo
-DELETE FROM spell WHERE id = 90816;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90816;
+INSERT INTO `spell` SET
   `id` = 90816,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15347,8 +15553,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90818 The New You: Cat's Mark - Missa Spekkies
-DELETE FROM spell WHERE id = 90818;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90818;
+INSERT INTO `spell` SET
   `id` = 90818,
   `attributes` = 687866112,
   `attributes_ex_1` = 268436648,
@@ -15394,8 +15600,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 90940 Quest Invisibility 17
-DELETE FROM spell WHERE id = 90940;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 90940;
+INSERT INTO `spell` SET
   `id` = 90940,
   `attributes` = 256,
   `attributes_ex_1` = 268437504,
@@ -15441,8 +15647,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 91551 Keys to the Hot Rod
-DELETE FROM spell WHERE id = 91551;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 91551;
+INSERT INTO `spell` SET
   `id` = 91551,
   `attributes` = 2835349760,
   `attributes_ex_1` = 3104,
@@ -15492,8 +15698,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 91603 Subject Nine: Gizmo Helmet
-DELETE FROM spell WHERE id = 91603;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 91603;
+INSERT INTO `spell` SET
   `id` = 91603,
   `attributes` = 687866240,
   `attributes_ex_1` = 1056,
@@ -15539,8 +15745,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 92633 Last Chance Yacht Boarding Mortar
-DELETE FROM spell WHERE id = 92633;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 92633;
+INSERT INTO `spell` SET
   `id` = 92633,
   `attributes` = 256,
   `attributes_ex_1` = 0,
@@ -15586,8 +15792,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 94955 Camera Shake
-DELETE FROM spell WHERE id = 94955;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 94955;
+INSERT INTO `spell` SET
   `id` = 94955,
   `attributes` = 536871168,
   `attributes_ex_1` = 0,
@@ -15633,8 +15839,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 96840 Rocket Trail
-DELETE FROM spell WHERE id = 96840;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 96840;
+INSERT INTO `spell` SET
   `id` = 96840,
   `attributes` = 696254848,
   `attributes_ex_1` = 268436512,
@@ -15680,8 +15886,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 98240 Shadow Explosion
-DELETE FROM spell WHERE id = 98240;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 98240;
+INSERT INTO `spell` SET
   `id` = 98240,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,
@@ -15727,8 +15933,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 98707 Ride Camera - Seat 3
-DELETE FROM spell WHERE id = 98707;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 98707;
+INSERT INTO `spell` SET
   `id` = 98707,
   `attributes` = 2843804032,
   `attributes_ex_1` = 1056,
@@ -15766,7 +15972,7 @@ INSERT INTO spell SET
   `effect_apply_aura_name_1` = 236,
   `effect_amplitude_1` = 0,
   `effect_base_points_1` = 3,
-  `effect_die_sides_1` = 1,
+  `effect_die_sides_1` = 0,
   `effect_item_type_1` = 0,
   `effect_mechanic_1` = 0,
   `effect_misc_value_a_1` = 0,
@@ -15798,8 +16004,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_2` = 0;
 
 -- 98914 HMC Dummy Effect Current Target 1
-DELETE FROM spell WHERE id = 98914;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 98914;
+INSERT INTO `spell` SET
   `id` = 98914,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -15845,8 +16051,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 98915 HMC Dummy Effect Current Target 2
-DELETE FROM spell WHERE id = 98915;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 98915;
+INSERT INTO `spell` SET
   `id` = 98915,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -15892,8 +16098,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 98916 HMC Dummy Effect Current Target 3
-DELETE FROM spell WHERE id = 98916;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 98916;
+INSERT INTO `spell` SET
   `id` = 98916,
   `attributes` = 256,
   `attributes_ex_1` = 1024,
@@ -15939,8 +16145,8 @@ INSERT INTO spell SET
   `effect_spell_class_mask_c_1` = 0;
 
 -- 100615 Quest Invisibility Detection 28
-DELETE FROM spell WHERE id = 100615;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 100615;
+INSERT INTO `spell` SET
   `id` = 100615,
   `attributes` = 696254848,
   `attributes_ex_1` = 1056,

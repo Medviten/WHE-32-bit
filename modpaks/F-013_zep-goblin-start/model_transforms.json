@@ -1,0 +1,48 @@
+{
+  "CREATURE/GOBLINSHREDDERMOUNT/GOBLINSHREDDERMOUNT.M2": {
+    "note": "I-364: the client HANGS whenever this mesh plays a combat animation. Confirmed with `.morph 31484` and attacking on foot, so no vehicle is involved. Cause: sequences 5 and 6 (Attack1H) are flagged 0x40 ALIAS with no 0x20 PRIMARY bit, pointing at sequence 54 -- which is flagged 0x0 (neither primary nor alias) and whose aliasNext is ITSELF. Alias resolution therefore never reaches a sequence that claims to own the data. Both attacks in fact carry their own data (52 bones/940 keyframes and 51/835), so the repair is to stop lying about it: mark them primary (0x21). Sequence 54 (UseStandingLoop) is left at 0x0 ON PURPOSE: its keyframes live in the external GOBLINSHREDDERMOUNT0123-00.ANIM, and flagging it 0x20 made the client read them from the .m2 -> NaN bones -> NaN-positioned model sounds -> FMOD INT_DIVIDE_BY_ZERO #132 at 0x0094BF6B on every Throw Footbomb (I-248). Keeps the Nexus HD mesh -- Blizzard never updated this model's geometry (1484 verts in stock, Cata AND current retail; the HD pack is 6613), so a retail retroport cannot provide the HD look. globalFlags 0x90 -> 0x10 matches stock's flag word.",
+    "base_sha256": "d249676558010f5b4804b655afca2eff1e74a8a6c333a51f2379efa0a9b79a76",
+    "result_sha256": "82ebe673adf164d448ed0ee8e785fe39dbe8586d1268256fade9b975653449fd",
+    "ops": [
+      {
+        "op": "m2.sequence.flags",
+        "index": 5,
+        "value": 33,
+        "expect_anim_id": 16
+      },
+      {
+        "op": "m2.sequence.flags",
+        "index": 6,
+        "value": 33,
+        "expect_anim_id": 16
+      },
+      {
+        "op": "m2.global_flags.mask",
+        "mask": 31
+      }
+    ]
+  },
+  "CREATURE/ZEPSHREDDERMOUNT/ZEPSHREDDERMOUNT.M2": {
+    "note": "Same HD mesh byte-for-byte under the I-248 self-contained path (display 26559, Bilgewater Buccaneer). Identical repair.",
+    "base_sha256": "d249676558010f5b4804b655afca2eff1e74a8a6c333a51f2379efa0a9b79a76",
+    "result_sha256": "82ebe673adf164d448ed0ee8e785fe39dbe8586d1268256fade9b975653449fd",
+    "ops": [
+      {
+        "op": "m2.sequence.flags",
+        "index": 5,
+        "value": 33,
+        "expect_anim_id": 16
+      },
+      {
+        "op": "m2.sequence.flags",
+        "index": 6,
+        "value": 33,
+        "expect_anim_id": 16
+      },
+      {
+        "op": "m2.global_flags.mask",
+        "mask": 31
+      }
+    ]
+  }
+}

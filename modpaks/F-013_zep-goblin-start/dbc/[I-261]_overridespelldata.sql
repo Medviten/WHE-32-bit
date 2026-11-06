@@ -3,8 +3,8 @@
 -- the vault's Vehicle.dbc id (mnemonic) and is free in stock 3.3.5a (stock has
 -- 8 sparse rows, max 271). flags=1 mirrors stock single-quest-bar row 121
 -- (same pattern as [I-254]_overridespelldata.sql).
-DELETE FROM overridespelldata WHERE id = 476;
-INSERT INTO overridespelldata SET
+DELETE FROM `overridespelldata` WHERE id = 476;
+INSERT INTO `overridespelldata` SET
   id = 476,
   spellid_1 = 67522,
   spellid_2 = 67508,

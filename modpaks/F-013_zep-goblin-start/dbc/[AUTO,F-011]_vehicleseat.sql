@@ -9,8 +9,8 @@
 
 -- F-011 vehicleseat (one file per table; rows carry final state)
 
-DELETE FROM vehicleseat WHERE id = 4826;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 4826;
+INSERT INTO `vehicleseat` SET
   `id` = 4826,
   `flags` = -503298045,
   `attachment_id` = 13,
@@ -19,7 +19,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -32,7 +32,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = -1,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -70,8 +70,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 4946;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 4946;
+INSERT INTO `vehicleseat` SET
   `id` = 4946,
   `flags` = 3,
   `attachment_id` = 14,
@@ -80,7 +80,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -93,7 +93,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 68,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -131,8 +131,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 4947;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 4947;
+INSERT INTO `vehicleseat` SET
   `id` = 4947,
   `flags` = 3,
   `attachment_id` = 14,
@@ -141,7 +141,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -154,7 +154,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = -1,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -192,8 +192,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 4952;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 4952;
+INSERT INTO `vehicleseat` SET
   `id` = 4952,
   `flags` = 3,
   `attachment_id` = 15,
@@ -202,7 +202,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -215,7 +215,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = -1,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -253,8 +253,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 5326;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 5326;
+INSERT INTO `vehicleseat` SET
   `id` = 5326,
   `flags` = 1644169222,
   `attachment_id` = 2,
@@ -263,7 +263,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -276,7 +276,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 0,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -314,8 +314,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 5589;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 5589;
+INSERT INTO `vehicleseat` SET
   `id` = 5589,
   `flags` = 139420690,
   `attachment_id` = 13,
@@ -324,7 +324,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.8,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -337,7 +337,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 1.2,
   `exit_max_duration` = 1.2,
   `exit_min_arc_height` = 6,
@@ -346,7 +346,7 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 40,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -1.5708,
+  `passenger_pitch` = -1.570796,
   `passenger_roll` = 0,
   `passenger_attachment_id` = 34,
   `vehicle_enter_anim` = 112,
@@ -375,8 +375,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 5706;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 5706;
+INSERT INTO `vehicleseat` SET
   `id` = 5706,
   `flags` = 1074792450,
   `attachment_id` = 21,
@@ -385,7 +385,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -398,7 +398,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 213,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -436,8 +436,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 5746;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 5746;
+INSERT INTO `vehicleseat` SET
   `id` = 5746,
   `flags` = 1611672196,
   `attachment_id` = 1,
@@ -446,7 +446,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -459,7 +459,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 193,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -497,8 +497,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6026;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6026;
+INSERT INTO `vehicleseat` SET
   `id` = 6026,
   `flags` = 1081358,
   `attachment_id` = 21,
@@ -507,7 +507,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -520,7 +520,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 225,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -530,7 +530,7 @@ INSERT INTO vehicleseat SET
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
   `passenger_pitch` = 0,
-  `passenger_roll` = -0.0873,
+  `passenger_roll` = -0.087266,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,
@@ -558,8 +558,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6146;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6146;
+INSERT INTO `vehicleseat` SET
   `id` = 6146,
   `flags` = 1108346918,
   `attachment_id` = 21,
@@ -568,7 +568,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -581,7 +581,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 91,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -619,8 +619,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6846;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6846;
+INSERT INTO `vehicleseat` SET
   `id` = 6846,
   `flags` = 1645218304,
   `attachment_id` = 21,
@@ -629,7 +629,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -642,7 +642,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -680,8 +680,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6946;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6946;
+INSERT INTO `vehicleseat` SET
   `id` = 6946,
   `flags` = 33603592,
   `attachment_id` = 2,
@@ -690,7 +690,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -703,7 +703,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -741,8 +741,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6947;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6947;
+INSERT INTO `vehicleseat` SET
   `id` = 6947,
   `flags` = 33603592,
   `attachment_id` = 2,
@@ -751,7 +751,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -764,7 +764,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -802,8 +802,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6948;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6948;
+INSERT INTO `vehicleseat` SET
   `id` = 6948,
   `flags` = 33603592,
   `attachment_id` = 2,
@@ -812,7 +812,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -825,7 +825,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -863,8 +863,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6949;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6949;
+INSERT INTO `vehicleseat` SET
   `id` = 6949,
   `flags` = 33603592,
   `attachment_id` = 2,
@@ -873,7 +873,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -886,7 +886,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -924,8 +924,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 6986;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 6986;
+INSERT INTO `vehicleseat` SET
   `id` = 6986,
   `flags` = 1048580,
   `attachment_id` = 13,
@@ -934,7 +934,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -947,7 +947,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 484,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -985,8 +985,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7006;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7006;
+INSERT INTO `vehicleseat` SET
   `id` = 7006,
   `flags` = 1073872898,
   `attachment_id` = 14,
@@ -995,7 +995,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1008,7 +1008,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 97,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1046,8 +1046,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7527;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7527;
+INSERT INTO `vehicleseat` SET
   `id` = 7527,
   `flags` = 1645218432,
   `attachment_id` = 1,
@@ -1056,7 +1056,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1069,7 +1069,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1107,8 +1107,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7535;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7535;
+INSERT INTO `vehicleseat` SET
   `id` = 7535,
   `flags` = 139419666,
   `attachment_id` = 13,
@@ -1117,7 +1117,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.8,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1130,7 +1130,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 1.2,
   `exit_max_duration` = 1.2,
   `exit_min_arc_height` = 6,
@@ -1139,7 +1139,7 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 40,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -1.5708,
+  `passenger_pitch` = -1.570796,
   `passenger_roll` = 0,
   `passenger_attachment_id` = 34,
   `vehicle_enter_anim` = 112,
@@ -1168,8 +1168,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7545;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7545;
+INSERT INTO `vehicleseat` SET
   `id` = 7545,
   `flags` = 1645217807,
   `attachment_id` = 13,
@@ -1178,7 +1178,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.15,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0.5,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1191,7 +1191,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.7,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1229,8 +1229,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7562;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7562;
+INSERT INTO `vehicleseat` SET
   `id` = 7562,
   `flags` = -1040135889,
   `attachment_id` = 0,
@@ -1239,7 +1239,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 1.5,
   `enter_speed` = 12,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1252,7 +1252,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 1.5,
   `exit_speed` = 12,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1290,17 +1290,17 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7584;
-INSERT INTO vehicleseat SET
-  `id` = 7584,
-  `flags` = 1645250731,
+DELETE FROM `vehicleseat` WHERE id = 7566;
+INSERT INTO `vehicleseat` SET
+  `id` = 7566,
+  `flags` = 2,
   `attachment_id` = 13,
-  `attachment_offset_x` = -0.4,
+  `attachment_offset_x` = -0.45,
   `attachment_offset_y` = 0,
-  `attachment_offset_z` = -0.2,
+  `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1313,7 +1313,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = -1,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1322,7 +1322,190 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = 0.2618,
+  `passenger_pitch` = 0.523599,
+  `passenger_roll` = 0,
+  `passenger_attachment_id` = -1,
+  `vehicle_enter_anim` = -1,
+  `vehicle_exit_anim` = -1,
+  `vehicle_ride_anim_loop` = -1,
+  `vehicle_enter_anim_bone` = -1,
+  `vehicle_exit_anim_bone` = -1,
+  `vehicle_ride_anim_loop_bone` = -1,
+  `vehicle_enter_anim_delay` = 0,
+  `vehicle_exit_anim_delay` = 0,
+  `vehicle_ability_display` = 0,
+  `enter_ui_sound_id` = 13836,
+  `exit_ui_sound_id` = 13834,
+  `ui_skin` = 1,
+  `flags_b` = 33554432,
+  `camera_entering_delay` = 0,
+  `camera_entering_duration` = 0,
+  `camera_exiting_delay` = 0,
+  `camera_exiting_duration` = 0,
+  `camera_offset_x` = 0,
+  `camera_offset_y` = 0,
+  `camera_offset_z` = 0,
+  `camera_pos_chase_rate` = 0,
+  `camera_facing_chase_rate` = 0,
+  `camera_entering_zoom` = 0,
+  `camera_seat_zoom_min` = 0,
+  `camera_seat_zoom_max` = 0;
+
+DELETE FROM `vehicleseat` WHERE id = 7567;
+INSERT INTO `vehicleseat` SET
+  `id` = 7567,
+  `flags` = 1074825380,
+  `attachment_id` = 14,
+  `attachment_offset_x` = -2.5,
+  `attachment_offset_y` = 0,
+  `attachment_offset_z` = -3.5,
+  `enter_pre_delay` = 0,
+  `enter_speed` = 10,
+  `enter_gravity` = 19.290001,
+  `enter_min_duration` = 0,
+  `enter_max_duration` = 0,
+  `enter_min_arc_height` = 1,
+  `enter_max_arc_height` = 4,
+  `enter_anim_start` = 37,
+  `enter_anim_loop` = 38,
+  `ride_anim_start` = 40,
+  `ride_anim_loop` = 40,
+  `ride_upper_anim_start` = 215,
+  `ride_upper_anim_loop` = 215,
+  `exit_pre_delay` = 0,
+  `exit_speed` = 7,
+  `exit_gravity` = 19.290001,
+  `exit_min_duration` = 0,
+  `exit_max_duration` = 0,
+  `exit_min_arc_height` = 1,
+  `exit_max_arc_height` = 4,
+  `exit_anim_start` = 37,
+  `exit_anim_loop` = 38,
+  `exit_anim_end` = 39,
+  `passenger_yaw` = 0,
+  `passenger_pitch` = 0.698132,
+  `passenger_roll` = 0,
+  `passenger_attachment_id` = -1,
+  `vehicle_enter_anim` = -1,
+  `vehicle_exit_anim` = -1,
+  `vehicle_ride_anim_loop` = -1,
+  `vehicle_enter_anim_bone` = -1,
+  `vehicle_exit_anim_bone` = -1,
+  `vehicle_ride_anim_loop_bone` = -1,
+  `vehicle_enter_anim_delay` = 0,
+  `vehicle_exit_anim_delay` = 0,
+  `vehicle_ability_display` = 0,
+  `enter_ui_sound_id` = 13836,
+  `exit_ui_sound_id` = 13834,
+  `ui_skin` = 1,
+  `flags_b` = 402656256,
+  `camera_entering_delay` = 0,
+  `camera_entering_duration` = 0,
+  `camera_exiting_delay` = 0,
+  `camera_exiting_duration` = 0,
+  `camera_offset_x` = 0,
+  `camera_offset_y` = 0,
+  `camera_offset_z` = 0,
+  `camera_pos_chase_rate` = 0,
+  `camera_facing_chase_rate` = 1,
+  `camera_entering_zoom` = 15,
+  `camera_seat_zoom_min` = 0,
+  `camera_seat_zoom_max` = 0;
+
+DELETE FROM `vehicleseat` WHERE id = 7575;
+INSERT INTO `vehicleseat` SET
+  `id` = 7575,
+  `flags` = 1074825391,
+  `attachment_id` = 14,
+  `attachment_offset_x` = 0,
+  `attachment_offset_y` = 0,
+  `attachment_offset_z` = 0,
+  `enter_pre_delay` = 0,
+  `enter_speed` = 7,
+  `enter_gravity` = 19.290001,
+  `enter_min_duration` = 0,
+  `enter_max_duration` = 0,
+  `enter_min_arc_height` = 1,
+  `enter_max_arc_height` = 4,
+  `enter_anim_start` = 37,
+  `enter_anim_loop` = 38,
+  `ride_anim_start` = -1,
+  `ride_anim_loop` = 500,
+  `ride_upper_anim_start` = -1,
+  `ride_upper_anim_loop` = 500,
+  `exit_pre_delay` = 0,
+  `exit_speed` = 7,
+  `exit_gravity` = 19.290001,
+  `exit_min_duration` = 0,
+  `exit_max_duration` = 0,
+  `exit_min_arc_height` = 1,
+  `exit_max_arc_height` = 4,
+  `exit_anim_start` = 37,
+  `exit_anim_loop` = 38,
+  `exit_anim_end` = 39,
+  `passenger_yaw` = 0,
+  `passenger_pitch` = 0,
+  `passenger_roll` = 0,
+  `passenger_attachment_id` = -1,
+  `vehicle_enter_anim` = -1,
+  `vehicle_exit_anim` = -1,
+  `vehicle_ride_anim_loop` = -1,
+  `vehicle_enter_anim_bone` = -1,
+  `vehicle_exit_anim_bone` = -1,
+  `vehicle_ride_anim_loop_bone` = -1,
+  `vehicle_enter_anim_delay` = 0,
+  `vehicle_exit_anim_delay` = 0,
+  `vehicle_ability_display` = 0,
+  `enter_ui_sound_id` = 13836,
+  `exit_ui_sound_id` = 13834,
+  `ui_skin` = 1,
+  `flags_b` = 402656256,
+  `camera_entering_delay` = 0,
+  `camera_entering_duration` = 0,
+  `camera_exiting_delay` = 0,
+  `camera_exiting_duration` = 0,
+  `camera_offset_x` = 0,
+  `camera_offset_y` = 0,
+  `camera_offset_z` = 0,
+  `camera_pos_chase_rate` = 0,
+  `camera_facing_chase_rate` = 1,
+  `camera_entering_zoom` = 15,
+  `camera_seat_zoom_min` = 0,
+  `camera_seat_zoom_max` = 0;
+
+DELETE FROM `vehicleseat` WHERE id = 7584;
+INSERT INTO `vehicleseat` SET
+  `id` = 7584,
+  `flags` = 1645250731,
+  `attachment_id` = 13,
+  `attachment_offset_x` = -0.4,
+  `attachment_offset_y` = 0,
+  `attachment_offset_z` = -0.2,
+  `enter_pre_delay` = 0,
+  `enter_speed` = 7,
+  `enter_gravity` = 19.290001,
+  `enter_min_duration` = 0,
+  `enter_max_duration` = 0,
+  `enter_min_arc_height` = 1,
+  `enter_max_arc_height` = 4,
+  `enter_anim_start` = 37,
+  `enter_anim_loop` = 38,
+  `ride_anim_start` = -1,
+  `ride_anim_loop` = 484,
+  `ride_upper_anim_start` = -1,
+  `ride_upper_anim_loop` = -1,
+  `exit_pre_delay` = 0,
+  `exit_speed` = 7,
+  `exit_gravity` = 19.290001,
+  `exit_min_duration` = 0,
+  `exit_max_duration` = 0,
+  `exit_min_arc_height` = 1,
+  `exit_max_arc_height` = 4,
+  `exit_anim_start` = 37,
+  `exit_anim_loop` = 38,
+  `exit_anim_end` = 39,
+  `passenger_yaw` = 0,
+  `passenger_pitch` = 0.261799,
   `passenger_roll` = 0,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
@@ -1351,8 +1534,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7625;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7625;
+INSERT INTO `vehicleseat` SET
   `id` = 7625,
   `flags` = 1074825391,
   `attachment_id` = 2,
@@ -1361,7 +1544,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.5,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1374,7 +1557,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 0,
   `exit_speed` = 14,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1412,8 +1595,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7626;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7626;
+INSERT INTO `vehicleseat` SET
   `id` = 7626,
   `flags` = 32943,
   `attachment_id` = 2,
@@ -1422,7 +1605,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.5,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1435,7 +1618,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 0,
   `exit_speed` = 28,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1473,8 +1656,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7627;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7627;
+INSERT INTO `vehicleseat` SET
   `id` = 7627,
   `flags` = 32943,
   `attachment_id` = 2,
@@ -1483,7 +1666,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.5,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1496,7 +1679,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 0,
   `exit_speed` = 28,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1534,8 +1717,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7628;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7628;
+INSERT INTO `vehicleseat` SET
   `id` = 7628,
   `flags` = 32943,
   `attachment_id` = 2,
@@ -1544,7 +1727,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.5,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1557,7 +1740,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 0,
   `exit_speed` = 28,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1595,8 +1778,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7629;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7629;
+INSERT INTO `vehicleseat` SET
   `id` = 7629,
   `flags` = 32943,
   `attachment_id` = 2,
@@ -1605,7 +1788,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0.5,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1618,7 +1801,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 40,
   `exit_pre_delay` = 0,
   `exit_speed` = 28,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1656,8 +1839,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 7638;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7638;
+INSERT INTO `vehicleseat` SET
   `id` = 7638,
   `flags` = -502257010,
   `attachment_id` = 1,
@@ -1666,7 +1849,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = 0,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1679,7 +1862,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0,
   `exit_max_duration` = 0,
   `exit_min_arc_height` = 1,
@@ -1717,8 +1900,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 9090;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 9090;
+INSERT INTO `vehicleseat` SET
   `id` = 9090,
   `flags` = 34635791,
   `attachment_id` = 4,
@@ -1727,7 +1910,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.1,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1740,7 +1923,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 7,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.5,
   `exit_max_duration` = 0.5,
   `exit_min_arc_height` = 1,
@@ -1749,8 +1932,8 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -0.2618,
-  `passenger_roll` = -1.8326,
+  `passenger_pitch` = -0.261799,
+  `passenger_roll` = -1.832596,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,
@@ -1778,8 +1961,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 9095;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 9095;
+INSERT INTO `vehicleseat` SET
   `id` = 9095,
   `flags` = 34635791,
   `attachment_id` = 4,
@@ -1788,7 +1971,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.05,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1801,7 +1984,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 3,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.5,
   `exit_max_duration` = 0.5,
   `exit_min_arc_height` = 1,
@@ -1810,8 +1993,8 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -0.2618,
-  `passenger_roll` = -1.8326,
+  `passenger_pitch` = -0.261799,
+  `passenger_roll` = -1.832596,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,
@@ -1839,8 +2022,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 9096;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 9096;
+INSERT INTO `vehicleseat` SET
   `id` = 9096,
   `flags` = 34635791,
   `attachment_id` = 4,
@@ -1849,7 +2032,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.15,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1862,7 +2045,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 3,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.5,
   `exit_max_duration` = 0.5,
   `exit_min_arc_height` = 1,
@@ -1871,8 +2054,8 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -0.2618,
-  `passenger_roll` = -1.8326,
+  `passenger_pitch` = -0.261799,
+  `passenger_roll` = -1.832596,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,
@@ -1900,8 +2083,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 9097;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 9097;
+INSERT INTO `vehicleseat` SET
   `id` = 9097,
   `flags` = 34635791,
   `attachment_id` = 4,
@@ -1910,7 +2093,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.25,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1923,7 +2106,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 3,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.5,
   `exit_max_duration` = 0.5,
   `exit_min_arc_height` = 1,
@@ -1932,8 +2115,8 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -0.2618,
-  `passenger_roll` = -1.8326,
+  `passenger_pitch` = -0.261799,
+  `passenger_roll` = -1.832596,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,
@@ -1961,8 +2144,8 @@ INSERT INTO vehicleseat SET
   `camera_seat_zoom_min` = 0,
   `camera_seat_zoom_max` = 0;
 
-DELETE FROM vehicleseat WHERE id = 9098;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 9098;
+INSERT INTO `vehicleseat` SET
   `id` = 9098,
   `flags` = 34635791,
   `attachment_id` = 4,
@@ -1971,7 +2154,7 @@ INSERT INTO vehicleseat SET
   `attachment_offset_z` = -0.05,
   `enter_pre_delay` = 0,
   `enter_speed` = 7,
-  `enter_gravity` = 19.29,
+  `enter_gravity` = 19.290001,
   `enter_min_duration` = 0,
   `enter_max_duration` = 0,
   `enter_min_arc_height` = 1,
@@ -1984,7 +2167,7 @@ INSERT INTO vehicleseat SET
   `ride_upper_anim_loop` = 123,
   `exit_pre_delay` = 0,
   `exit_speed` = 3,
-  `exit_gravity` = 19.29,
+  `exit_gravity` = 19.290001,
   `exit_min_duration` = 0.5,
   `exit_max_duration` = 0.5,
   `exit_min_arc_height` = 1,
@@ -1993,8 +2176,8 @@ INSERT INTO vehicleseat SET
   `exit_anim_loop` = 38,
   `exit_anim_end` = 39,
   `passenger_yaw` = 0,
-  `passenger_pitch` = -0.2618,
-  `passenger_roll` = -1.8326,
+  `passenger_pitch` = -0.261799,
+  `passenger_roll` = -1.832596,
   `passenger_attachment_id` = -1,
   `vehicle_enter_anim` = -1,
   `vehicle_exit_anim` = -1,

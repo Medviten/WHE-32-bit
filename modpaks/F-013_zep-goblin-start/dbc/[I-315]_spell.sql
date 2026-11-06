@@ -31,4 +31,4 @@
 -- (71091 amplitude) change. Erring long = cosmetic tail; erring short = a small
 -- damage chip (~12% at 3s early), no longer a death.
 
-UPDATE spell SET duration_index = 575 WHERE id = 70988;
+UPDATE `spell` SET duration_index = 575 WHERE id = 70988;

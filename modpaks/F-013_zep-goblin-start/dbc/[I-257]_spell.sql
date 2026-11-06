@@ -39,8 +39,8 @@
 --
 -- Ships in PATCH-Z; server side needs a worldserver restart only (no core
 -- rebuild).
-DELETE FROM spell WHERE id = 66301;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66301;
+INSERT INTO `spell` SET
   id = 66301,
   spell_name_enus = 'Rolling with my Homies: Hot Rod - Knockback',
   school_mask = 1,
@@ -67,8 +67,8 @@ INSERT INTO spell SET
 -- duration_index 39 = 2000ms (covers the 1500ms until the linked death);
 -- attributes 0x10 (CANT_BE_REFLECTED-adjacent unused here) omitted — keep it
 -- plain so it always lands on the lvl-5 looters (no immunities).
-DELETE FROM spell WHERE id = 66302;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66302;
+INSERT INTO `spell` SET
   id = 66302,
   spell_name_enus = 'Robbing Hoods: Run Them Over!',
   spell_desc_enus = 'Stunned after being flattened by a Hot Rod.',
@@ -89,21 +89,39 @@ INSERT INTO spell SET
 -- UPDATE per id. eff2 = the run-over driver: aura 23, 250ms periodic, cast on
 -- the CASTER (the boarding player), stripped on exit by the Hot Rod's
 -- PASSENGER_REMOVED SAI (zz_[I-257]_robbing_hoods_runover.sql).
-UPDATE spell SET
+--
+-- aura_interrupt_flags: AuraInterruptFlags is a SPELL-level field, so the
+-- donor value written for 66392's vehicle-side aura also governs the
+-- driver-side aura we hang off eff2. The ported value 17322115 = 0x01085083 =
+-- HITBYSPELL|TAKE_DAMAGE|DIRECT_DAMAGE|MELEE_ATTACK|NOT_ABOVEWATER|UNK14|
+-- CHANGE_MAP. On the car that is inert (34840 is IMMUNE_TO_PC|IMMUNE_TO_NPC,
+-- unit_flags 0x300, so it can never be damaged); on the PLAYER the first
+-- Torch Toss or melee swing a looter lands calls
+-- Unit::RemoveAurasWithInterruptFlags(TAKE_DAMAGE) (Unit.cpp:1128/1131) and
+-- deletes the 250ms trigger for the rest of that Hot Rod's life — one looter
+-- per summon, then nothing. That is exactly what regressed: 66392 shipped
+-- with the column at its 0 default until I-315 (2026-08-07) wired
+-- SpellInterrupts.dbc into the goblin gen and the 2026-08-08 re-emit gave it
+-- the real donor value. Keep only the bits that are meaningful for a
+-- permanent (duration_index 21) driver-held aura: CHANGE_MAP 0x80000 plus the
+-- inert donor UNK14 0x4000 = 540672. NOT_ABOVEWATER goes too — the Kezan
+-- harbour would otherwise silently disarm the car.
+UPDATE `spell` SET
   effect_2 = 6,
   effect_apply_aura_name_2 = 23,
   effect_amplitude_2 = 250,
   effect_trigger_spell_2 = 66301,
   effect_die_sides_2 = 1,
-  effect_implicit_target_a_2 = 1
+  effect_implicit_target_a_2 = 1,
+  aura_interrupt_flags = 540672
 WHERE id = 66392;
 
-UPDATE spell SET
+UPDATE `spell` SET
   effect_base_points_1 = 66391
 WHERE id = 66393;
 
-DELETE FROM spell WHERE id = 67041;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 67041;
+INSERT INTO `spell` SET
   id = 67041,
   spell_name_enus = 'Robbing Hoods: Create Stolen Loot',
   school_mask = 1,

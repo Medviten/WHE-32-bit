@@ -5,8 +5,8 @@
 --   advanced_id 4361 (Cata SoundEntriesAdvanced row) is not ported -> 0.
 -- Audio files ship in zep-goblin-start mpq/source-assets/Sound/... (PATCH-Z).
 
-DELETE FROM soundentries WHERE id = 22491;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 22491;
+INSERT INTO `soundentries` SET
   id = 22491,
   sound_type = 1,
   name = 'GoblinHotrod_Horn',
@@ -20,8 +20,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 23406;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 23406;
+INSERT INTO `soundentries` SET
   id = 23406,
   sound_type = 28,
   name = 'MUS_GoblinHotrodRadioLoop_EU',
@@ -42,10 +42,10 @@ INSERT INTO soundentries SET
 -- goblinhotrod oggs ship in the zpak; the motorcyclevehicle .ogg files (18245/18266/
 -- 18267) are Cata-only too (stock 3.3.5a has .wav variants) and ship as well.
 -- (22492/22493 'GoblinhotrodStand/WalkRun' were a retired name-binding experiment.)
-DELETE FROM soundentries WHERE id IN (22492, 22493);
+DELETE FROM `soundentries` WHERE id IN (22492, 22493);
 
-DELETE FROM soundentries WHERE id = 18095;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18095;
+INSERT INTO `soundentries` SET
   id = 18095,
   sound_type = 53,
   name = 'Goblinhotrod_Engine_Backfire',
@@ -61,8 +61,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18096;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18096;
+INSERT INTO `soundentries` SET
   id = 18096,
   sound_type = 53,
   name = 'Goblinhotrod_Engine_Drive_LP',
@@ -76,8 +76,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18097;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18097;
+INSERT INTO `soundentries` SET
   id = 18097,
   sound_type = 53,
   name = 'Goblinhotrod_Engine_Idle_LP',
@@ -93,8 +93,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18099;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18099;
+INSERT INTO `soundentries` SET
   id = 18099,
   sound_type = 53,
   name = 'Goblinhotrod_Engine_Sputters_OS',
@@ -112,8 +112,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18245;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18245;
+INSERT INTO `soundentries` SET
   id = 18245,
   sound_type = 53,
   name = 'Goblinhotrod_Rev',
@@ -127,8 +127,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18266;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18266;
+INSERT INTO `soundentries` SET
   id = 18266,
   sound_type = 53,
   name = 'HotRodVehicleJumpEnd',
@@ -144,8 +144,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18267;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18267;
+INSERT INTO `soundentries` SET
   id = 18267,
   sound_type = 53,
   name = 'MotorCycleRev_Shared_LowerVol',
@@ -159,8 +159,8 @@ INSERT INTO soundentries SET
   eax_def = 0,
   advanced_id = 0;
 
-DELETE FROM soundentries WHERE id = 18271;
-INSERT INTO soundentries SET
+DELETE FROM `soundentries` WHERE id = 18271;
+INSERT INTO `soundentries` SET
   id = 18271,
   sound_type = 53,
   name = 'Goblinhotrod_Engine_Accel_OS',

@@ -10,8 +10,8 @@
 -- F-011 spellvisualkit (one file per table; rows carry final state)
 
 -- 12366 <- visual 13302
-DELETE FROM spellvisualkit WHERE id = 12366;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 12366;
+INSERT INTO `spellvisualkit` SET
   `id` = 12366,
   `start_anim_id` = 4294967295,
   `anim_id` = 53,
@@ -52,8 +52,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 12880 <- visual 13302
-DELETE FROM spellvisualkit WHERE id = 12880;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 12880;
+INSERT INTO `spellvisualkit` SET
   `id` = 12880,
   `start_anim_id` = 4294967295,
   `anim_id` = 125,
@@ -94,8 +94,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 12904 <- visual 14796
-DELETE FROM spellvisualkit WHERE id = 12904;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 12904;
+INSERT INTO `spellvisualkit` SET
   `id` = 12904,
   `start_anim_id` = 4294967295,
   `anim_id` = 95,
@@ -136,8 +136,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 12922 <- visual 13960
-DELETE FROM spellvisualkit WHERE id = 12922;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 12922;
+INSERT INTO `spellvisualkit` SET
   `id` = 12922,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -178,8 +178,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13146 <- visual 15557
-DELETE FROM spellvisualkit WHERE id = 13146;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13146;
+INSERT INTO `spellvisualkit` SET
   `id` = 13146,
   `start_anim_id` = 4294967295,
   `anim_id` = 16,
@@ -220,8 +220,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13151 <- visual 14214
-DELETE FROM spellvisualkit WHERE id = 13151;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13151;
+INSERT INTO `spellvisualkit` SET
   `id` = 13151,
   `start_anim_id` = 4294967295,
   `anim_id` = 69,
@@ -262,8 +262,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13259 <- visual 14348
-DELETE FROM spellvisualkit WHERE id = 13259;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13259;
+INSERT INTO `spellvisualkit` SET
   `id` = 13259,
   `start_anim_id` = 4294967295,
   `anim_id` = 61,
@@ -304,8 +304,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13280 <- visual 14403
-DELETE FROM spellvisualkit WHERE id = 13280;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13280;
+INSERT INTO `spellvisualkit` SET
   `id` = 13280,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -346,8 +346,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13434 <- visual 14567
-DELETE FROM spellvisualkit WHERE id = 13434;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13434;
+INSERT INTO `spellvisualkit` SET
   `id` = 13434,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -388,8 +388,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13467 <- visual 14605
-DELETE FROM spellvisualkit WHERE id = 13467;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13467;
+INSERT INTO `spellvisualkit` SET
   `id` = 13467,
   `start_anim_id` = 4294967295,
   `anim_id` = 126,
@@ -430,8 +430,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13504 <- visual 14638
-DELETE FROM spellvisualkit WHERE id = 13504;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13504;
+INSERT INTO `spellvisualkit` SET
   `id` = 13504,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -472,8 +472,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13505 <- visual 14639
-DELETE FROM spellvisualkit WHERE id = 13505;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13505;
+INSERT INTO `spellvisualkit` SET
   `id` = 13505,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -514,8 +514,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13506 <- visual 14407
-DELETE FROM spellvisualkit WHERE id = 13506;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13506;
+INSERT INTO `spellvisualkit` SET
   `id` = 13506,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -556,8 +556,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13589 <- visual 14735
-DELETE FROM spellvisualkit WHERE id = 13589;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13589;
+INSERT INTO `spellvisualkit` SET
   `id` = 13589,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -598,8 +598,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13612 <- visual 14758
-DELETE FROM spellvisualkit WHERE id = 13612;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13612;
+INSERT INTO `spellvisualkit` SET
   `id` = 13612,
   `start_anim_id` = 4294967295,
   `anim_id` = 124,
@@ -640,8 +640,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13618 <- visual 14758
-DELETE FROM spellvisualkit WHERE id = 13618;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13618;
+INSERT INTO `spellvisualkit` SET
   `id` = 13618,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -682,8 +682,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13689 <- visual 14839
-DELETE FROM spellvisualkit WHERE id = 13689;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13689;
+INSERT INTO `spellvisualkit` SET
   `id` = 13689,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -724,8 +724,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13692 <- visual 14841
-DELETE FROM spellvisualkit WHERE id = 13692;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13692;
+INSERT INTO `spellvisualkit` SET
   `id` = 13692,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -766,8 +766,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13693 <- visual 14841
-DELETE FROM spellvisualkit WHERE id = 13693;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13693;
+INSERT INTO `spellvisualkit` SET
   `id` = 13693,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -808,8 +808,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13694 <- visual 14842
-DELETE FROM spellvisualkit WHERE id = 13694;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13694;
+INSERT INTO `spellvisualkit` SET
   `id` = 13694,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -850,8 +850,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13703 <- visual 14851
-DELETE FROM spellvisualkit WHERE id = 13703;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13703;
+INSERT INTO `spellvisualkit` SET
   `id` = 13703,
   `start_anim_id` = 4294967295,
   `anim_id` = 124,
@@ -892,8 +892,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13735 <- visual 14885
-DELETE FROM spellvisualkit WHERE id = 13735;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13735;
+INSERT INTO `spellvisualkit` SET
   `id` = 13735,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -934,8 +934,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13736 <- visual 14885
-DELETE FROM spellvisualkit WHERE id = 13736;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13736;
+INSERT INTO `spellvisualkit` SET
   `id` = 13736,
   `start_anim_id` = 4294967295,
   `anim_id` = 64,
@@ -976,8 +976,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13737 <- visual 14885
-DELETE FROM spellvisualkit WHERE id = 13737;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13737;
+INSERT INTO `spellvisualkit` SET
   `id` = 13737,
   `start_anim_id` = 4294967295,
   `anim_id` = 61,
@@ -1018,8 +1018,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13739 <- visual 14885
-DELETE FROM spellvisualkit WHERE id = 13739;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13739;
+INSERT INTO `spellvisualkit` SET
   `id` = 13739,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1060,8 +1060,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13785 <- visual 14931
-DELETE FROM spellvisualkit WHERE id = 13785;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13785;
+INSERT INTO `spellvisualkit` SET
   `id` = 13785,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1102,8 +1102,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13796 <- visual 14943
-DELETE FROM spellvisualkit WHERE id = 13796;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13796;
+INSERT INTO `spellvisualkit` SET
   `id` = 13796,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1144,8 +1144,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13888 <- visual 15041
-DELETE FROM spellvisualkit WHERE id = 13888;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13888;
+INSERT INTO `spellvisualkit` SET
   `id` = 13888,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1186,8 +1186,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13889 <- visual 15042
-DELETE FROM spellvisualkit WHERE id = 13889;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13889;
+INSERT INTO `spellvisualkit` SET
   `id` = 13889,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1228,8 +1228,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13890 <- visual 15043
-DELETE FROM spellvisualkit WHERE id = 13890;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13890;
+INSERT INTO `spellvisualkit` SET
   `id` = 13890,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1270,8 +1270,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13946 <- visual 15091
-DELETE FROM spellvisualkit WHERE id = 13946;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13946;
+INSERT INTO `spellvisualkit` SET
   `id` = 13946,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1312,8 +1312,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13947 <- visual 15092
-DELETE FROM spellvisualkit WHERE id = 13947;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13947;
+INSERT INTO `spellvisualkit` SET
   `id` = 13947,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1354,8 +1354,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13963 <- visual 15108
-DELETE FROM spellvisualkit WHERE id = 13963;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13963;
+INSERT INTO `spellvisualkit` SET
   `id` = 13963,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1396,8 +1396,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 13971 <- visual 15117
-DELETE FROM spellvisualkit WHERE id = 13971;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 13971;
+INSERT INTO `spellvisualkit` SET
   `id` = 13971,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1438,8 +1438,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14009 <- visual 15154
-DELETE FROM spellvisualkit WHERE id = 14009;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14009;
+INSERT INTO `spellvisualkit` SET
   `id` = 14009,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1480,8 +1480,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14016 <- visual 15159
-DELETE FROM spellvisualkit WHERE id = 14016;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14016;
+INSERT INTO `spellvisualkit` SET
   `id` = 14016,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1522,8 +1522,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14050 <- visual 15195
-DELETE FROM spellvisualkit WHERE id = 14050;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14050;
+INSERT INTO `spellvisualkit` SET
   `id` = 14050,
   `start_anim_id` = 4294967295,
   `anim_id` = 0,
@@ -1564,8 +1564,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14052 <- visual 15198
-DELETE FROM spellvisualkit WHERE id = 14052;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14052;
+INSERT INTO `spellvisualkit` SET
   `id` = 14052,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1605,9 +1605,51 @@ INSERT INTO spellvisualkit SET
   `char_param_3_4` = 0,
   `flags` = 0;
 
+-- 14089 <- visual 15233
+DELETE FROM `spellvisualkit` WHERE id = 14089;
+INSERT INTO `spellvisualkit` SET
+  `id` = 14089,
+  `start_anim_id` = 4294967295,
+  `anim_id` = 4294967295,
+  `head_effect` = 0,
+  `chest_effect` = 0,
+  `base_effect` = 0,
+  `left_hand_effect` = 0,
+  `right_hand_effect` = 0,
+  `breath_effect` = 0,
+  `left_weapon_effect` = 0,
+  `right_weapon_effect` = 0,
+  `special_effect_1` = 0,
+  `special_effect_2` = 0,
+  `special_effect_3` = 0,
+  `world_effect` = 0,
+  `sound_id` = 0,
+  `shake_id` = 0,
+  `char_proc_1` = 4294967295,
+  `char_proc_2` = 4294967295,
+  `char_proc_3` = 4294967295,
+  `char_proc_4` = 4294967295,
+  `char_param_0_1` = 0,
+  `char_param_0_2` = 0,
+  `char_param_0_3` = 0,
+  `char_param_0_4` = 0,
+  `char_param_1_1` = 0,
+  `char_param_1_2` = 0,
+  `char_param_1_3` = 0,
+  `char_param_1_4` = 0,
+  `char_param_2_1` = 0,
+  `char_param_2_2` = 0,
+  `char_param_2_3` = 0,
+  `char_param_2_4` = 0,
+  `char_param_3_1` = 0,
+  `char_param_3_2` = 0,
+  `char_param_3_3` = 0,
+  `char_param_3_4` = 0,
+  `flags` = 0;
+
 -- 14098 <- visual 15241
-DELETE FROM spellvisualkit WHERE id = 14098;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14098;
+INSERT INTO `spellvisualkit` SET
   `id` = 14098,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1648,8 +1690,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14100 <- visual 15245
-DELETE FROM spellvisualkit WHERE id = 14100;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14100;
+INSERT INTO `spellvisualkit` SET
   `id` = 14100,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1690,8 +1732,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14106 <- visual 15242
-DELETE FROM spellvisualkit WHERE id = 14106;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14106;
+INSERT INTO `spellvisualkit` SET
   `id` = 14106,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1732,8 +1774,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14158 <- visual 15305
-DELETE FROM spellvisualkit WHERE id = 14158;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14158;
+INSERT INTO `spellvisualkit` SET
   `id` = 14158,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1774,8 +1816,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14164 <- visual 15311
-DELETE FROM spellvisualkit WHERE id = 14164;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14164;
+INSERT INTO `spellvisualkit` SET
   `id` = 14164,
   `start_anim_id` = 4294967295,
   `anim_id` = 41,
@@ -1816,8 +1858,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14165 <- visual 15309
-DELETE FROM spellvisualkit WHERE id = 14165;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14165;
+INSERT INTO `spellvisualkit` SET
   `id` = 14165,
   `start_anim_id` = 4294967295,
   `anim_id` = 124,
@@ -1858,8 +1900,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14218 <- visual 15372
-DELETE FROM spellvisualkit WHERE id = 14218;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14218;
+INSERT INTO `spellvisualkit` SET
   `id` = 14218,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1900,8 +1942,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14219 <- visual 15373
-DELETE FROM spellvisualkit WHERE id = 14219;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14219;
+INSERT INTO `spellvisualkit` SET
   `id` = 14219,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -1942,8 +1984,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14229 <- visual 15388
-DELETE FROM spellvisualkit WHERE id = 14229;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14229;
+INSERT INTO `spellvisualkit` SET
   `id` = 14229,
   `start_anim_id` = 4294967295,
   `anim_id` = 474,
@@ -1983,9 +2025,51 @@ INSERT INTO spellvisualkit SET
   `char_param_3_4` = 0,
   `flags` = 0;
 
+-- 14268 <- visual 15427
+DELETE FROM `spellvisualkit` WHERE id = 14268;
+INSERT INTO `spellvisualkit` SET
+  `id` = 14268,
+  `start_anim_id` = 4294967295,
+  `anim_id` = 4294967295,
+  `head_effect` = 0,
+  `chest_effect` = 0,
+  `base_effect` = 0,
+  `left_hand_effect` = 0,
+  `right_hand_effect` = 0,
+  `breath_effect` = 0,
+  `left_weapon_effect` = 0,
+  `right_weapon_effect` = 0,
+  `special_effect_1` = 0,
+  `special_effect_2` = 0,
+  `special_effect_3` = 0,
+  `world_effect` = 0,
+  `sound_id` = 0,
+  `shake_id` = 0,
+  `char_proc_1` = 4294967295,
+  `char_proc_2` = 4294967295,
+  `char_proc_3` = 4294967295,
+  `char_proc_4` = 4294967295,
+  `char_param_0_1` = 0,
+  `char_param_0_2` = 0,
+  `char_param_0_3` = 0,
+  `char_param_0_4` = 0,
+  `char_param_1_1` = 0,
+  `char_param_1_2` = 0,
+  `char_param_1_3` = 0,
+  `char_param_1_4` = 0,
+  `char_param_2_1` = 0,
+  `char_param_2_2` = 0,
+  `char_param_2_3` = 0,
+  `char_param_2_4` = 0,
+  `char_param_3_1` = 0,
+  `char_param_3_2` = 0,
+  `char_param_3_3` = 0,
+  `char_param_3_4` = 0,
+  `flags` = 0;
+
 -- 14313 <- visual 15469
-DELETE FROM spellvisualkit WHERE id = 14313;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14313;
+INSERT INTO `spellvisualkit` SET
   `id` = 14313,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2026,8 +2110,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14318 <- visual 15476
-DELETE FROM spellvisualkit WHERE id = 14318;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14318;
+INSERT INTO `spellvisualkit` SET
   `id` = 14318,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2068,8 +2152,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14321 <- visual 15478
-DELETE FROM spellvisualkit WHERE id = 14321;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14321;
+INSERT INTO `spellvisualkit` SET
   `id` = 14321,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2110,8 +2194,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14326 <- visual 15469
-DELETE FROM spellvisualkit WHERE id = 14326;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14326;
+INSERT INTO `spellvisualkit` SET
   `id` = 14326,
   `start_anim_id` = 4294967295,
   `anim_id` = 9,
@@ -2152,8 +2236,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 1;
 
 -- 14341 <- visual 15497
-DELETE FROM spellvisualkit WHERE id = 14341;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14341;
+INSERT INTO `spellvisualkit` SET
   `id` = 14341,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2194,8 +2278,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14362 <- visual 15533
-DELETE FROM spellvisualkit WHERE id = 14362;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14362;
+INSERT INTO `spellvisualkit` SET
   `id` = 14362,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2236,8 +2320,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14364 <- visual 15533
-DELETE FROM spellvisualkit WHERE id = 14364;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14364;
+INSERT INTO `spellvisualkit` SET
   `id` = 14364,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2278,8 +2362,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14379 <- visual 15550
-DELETE FROM spellvisualkit WHERE id = 14379;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14379;
+INSERT INTO `spellvisualkit` SET
   `id` = 14379,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2320,8 +2404,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14380 <- visual 15551
-DELETE FROM spellvisualkit WHERE id = 14380;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14380;
+INSERT INTO `spellvisualkit` SET
   `id` = 14380,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2362,8 +2446,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14386 <- visual 15558
-DELETE FROM spellvisualkit WHERE id = 14386;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14386;
+INSERT INTO `spellvisualkit` SET
   `id` = 14386,
   `start_anim_id` = 4294967295,
   `anim_id` = 52,
@@ -2404,8 +2488,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14387 <- visual 15561
-DELETE FROM spellvisualkit WHERE id = 14387;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14387;
+INSERT INTO `spellvisualkit` SET
   `id` = 14387,
   `start_anim_id` = 4294967295,
   `anim_id` = 54,
@@ -2446,8 +2530,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14418 <- visual 15595
-DELETE FROM spellvisualkit WHERE id = 14418;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14418;
+INSERT INTO `spellvisualkit` SET
   `id` = 14418,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2488,8 +2572,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14451 <- visual 15642
-DELETE FROM spellvisualkit WHERE id = 14451;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14451;
+INSERT INTO `spellvisualkit` SET
   `id` = 14451,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2530,8 +2614,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14540 <- visual 15153
-DELETE FROM spellvisualkit WHERE id = 14540;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14540;
+INSERT INTO `spellvisualkit` SET
   `id` = 14540,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2572,8 +2656,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14942 <- visual 16098
-DELETE FROM spellvisualkit WHERE id = 14942;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14942;
+INSERT INTO `spellvisualkit` SET
   `id` = 14942,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2614,8 +2698,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14944 <- visual 16101
-DELETE FROM spellvisualkit WHERE id = 14944;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14944;
+INSERT INTO `spellvisualkit` SET
   `id` = 14944,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2656,8 +2740,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 14957 <- visual 16111
-DELETE FROM spellvisualkit WHERE id = 14957;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 14957;
+INSERT INTO `spellvisualkit` SET
   `id` = 14957,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2698,8 +2782,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 15268 <- visual 16397
-DELETE FROM spellvisualkit WHERE id = 15268;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 15268;
+INSERT INTO `spellvisualkit` SET
   `id` = 15268,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2740,8 +2824,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 15652 <- visual 16776
-DELETE FROM spellvisualkit WHERE id = 15652;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 15652;
+INSERT INTO `spellvisualkit` SET
   `id` = 15652,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2782,8 +2866,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 15671 <- visual 16791
-DELETE FROM spellvisualkit WHERE id = 15671;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 15671;
+INSERT INTO `spellvisualkit` SET
   `id` = 15671,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2824,8 +2908,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 15873 <- visual 17009
-DELETE FROM spellvisualkit WHERE id = 15873;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 15873;
+INSERT INTO `spellvisualkit` SET
   `id` = 15873,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2866,8 +2950,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16054 <- visual 17188
-DELETE FROM spellvisualkit WHERE id = 16054;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16054;
+INSERT INTO `spellvisualkit` SET
   `id` = 16054,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2908,8 +2992,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16137 <- visual 17260
-DELETE FROM spellvisualkit WHERE id = 16137;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16137;
+INSERT INTO `spellvisualkit` SET
   `id` = 16137,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2950,8 +3034,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16282 <- visual 17398
-DELETE FROM spellvisualkit WHERE id = 16282;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16282;
+INSERT INTO `spellvisualkit` SET
   `id` = 16282,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -2992,8 +3076,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16404 <- visual 17521
-DELETE FROM spellvisualkit WHERE id = 16404;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16404;
+INSERT INTO `spellvisualkit` SET
   `id` = 16404,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3034,8 +3118,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16405 <- visual 17522
-DELETE FROM spellvisualkit WHERE id = 16405;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16405;
+INSERT INTO `spellvisualkit` SET
   `id` = 16405,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3076,8 +3160,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16408 <- visual 17524
-DELETE FROM spellvisualkit WHERE id = 16408;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16408;
+INSERT INTO `spellvisualkit` SET
   `id` = 16408,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3118,8 +3202,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16409 <- visual 17524
-DELETE FROM spellvisualkit WHERE id = 16409;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16409;
+INSERT INTO `spellvisualkit` SET
   `id` = 16409,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3160,8 +3244,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16410 <- visual 17521
-DELETE FROM spellvisualkit WHERE id = 16410;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16410;
+INSERT INTO `spellvisualkit` SET
   `id` = 16410,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3202,8 +3286,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16429 <- visual 17539
-DELETE FROM spellvisualkit WHERE id = 16429;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16429;
+INSERT INTO `spellvisualkit` SET
   `id` = 16429,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3244,8 +3328,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 16476 <- visual 15198
-DELETE FROM spellvisualkit WHERE id = 16476;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 16476;
+INSERT INTO `spellvisualkit` SET
   `id` = 16476,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3286,8 +3370,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17127 <- visual 18167
-DELETE FROM spellvisualkit WHERE id = 17127;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17127;
+INSERT INTO `spellvisualkit` SET
   `id` = 17127,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3328,8 +3412,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17242 <- visual 15413
-DELETE FROM spellvisualkit WHERE id = 17242;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17242;
+INSERT INTO `spellvisualkit` SET
   `id` = 17242,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3370,8 +3454,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17245 <- visual 15413
-DELETE FROM spellvisualkit WHERE id = 17245;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17245;
+INSERT INTO `spellvisualkit` SET
   `id` = 17245,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3412,8 +3496,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17327 <- visual 15938
-DELETE FROM spellvisualkit WHERE id = 17327;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17327;
+INSERT INTO `spellvisualkit` SET
   `id` = 17327,
   `start_anim_id` = 4294967295,
   `anim_id` = 107,
@@ -3454,8 +3538,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17328 <- visual 15938
-DELETE FROM spellvisualkit WHERE id = 17328;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17328;
+INSERT INTO `spellvisualkit` SET
   `id` = 17328,
   `start_anim_id` = 4294967295,
   `anim_id` = 10,
@@ -3496,8 +3580,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17338 <- visual 14638
-DELETE FROM spellvisualkit WHERE id = 17338;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17338;
+INSERT INTO `spellvisualkit` SET
   `id` = 17338,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3538,8 +3622,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 17829 <- visual 18677
-DELETE FROM spellvisualkit WHERE id = 17829;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 17829;
+INSERT INTO `spellvisualkit` SET
   `id` = 17829,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3580,8 +3664,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 18189 <- visual 18936
-DELETE FROM spellvisualkit WHERE id = 18189;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 18189;
+INSERT INTO `spellvisualkit` SET
   `id` = 18189,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3622,8 +3706,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 18367 <- visual 19114
-DELETE FROM spellvisualkit WHERE id = 18367;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 18367;
+INSERT INTO `spellvisualkit` SET
   `id` = 18367,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3664,8 +3748,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 18582 <- visual 19328
-DELETE FROM spellvisualkit WHERE id = 18582;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 18582;
+INSERT INTO `spellvisualkit` SET
   `id` = 18582,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3706,8 +3790,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 18616 <- visual 19346
-DELETE FROM spellvisualkit WHERE id = 18616;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 18616;
+INSERT INTO `spellvisualkit` SET
   `id` = 18616,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3748,8 +3832,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 18662 <- visual 19393
-DELETE FROM spellvisualkit WHERE id = 18662;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 18662;
+INSERT INTO `spellvisualkit` SET
   `id` = 18662,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3790,8 +3874,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 19509 <- visual 15152
-DELETE FROM spellvisualkit WHERE id = 19509;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19509;
+INSERT INTO `spellvisualkit` SET
   `id` = 19509,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3832,8 +3916,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 19510 <- visual 15152
-DELETE FROM spellvisualkit WHERE id = 19510;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19510;
+INSERT INTO `spellvisualkit` SET
   `id` = 19510,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3874,8 +3958,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 19578 <- visual 20129
-DELETE FROM spellvisualkit WHERE id = 19578;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19578;
+INSERT INTO `spellvisualkit` SET
   `id` = 19578,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3916,8 +4000,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 4096;
 
 -- 19720 <- visual 20268
-DELETE FROM spellvisualkit WHERE id = 19720;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19720;
+INSERT INTO `spellvisualkit` SET
   `id` = 19720,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -3958,8 +4042,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 20175 <- visual 20652
-DELETE FROM spellvisualkit WHERE id = 20175;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 20175;
+INSERT INTO `spellvisualkit` SET
   `id` = 20175,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -4000,8 +4084,8 @@ INSERT INTO spellvisualkit SET
   `flags` = 0;
 
 -- 20751 <- visual 20652
-DELETE FROM spellvisualkit WHERE id = 20751;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 20751;
+INSERT INTO `spellvisualkit` SET
   `id` = 20751,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,

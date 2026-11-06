@@ -10,8 +10,8 @@
 -- 5s duration needing a refresh ticker). Clone of 54950's aura 208 with no
 -- visual, hidden aura icon (attr_ex_1 0x10000000, I-249 Cata pattern) and
 -- duration -1; it dies with the cyclone's despawn at the Wild Overlook.
-DELETE FROM spell WHERE id = 900882;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 900882;
+INSERT INTO `spell` SET
   `id` = 900882,
   `attributes` = 262160,
   `attributes_ex_1` = 268435488,
@@ -29,8 +29,8 @@ INSERT INTO spell SET
   `spell_name_enus` = 'Cyclone Tailwind',
   `school_mask` = 8;
 
-DELETE FROM spell WHERE id = 900881;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 900881;
+INSERT INTO `spell` SET
   `id` = 900881,
   `attributes` = 2281701376,
   `attributes_ex_1` = 32,

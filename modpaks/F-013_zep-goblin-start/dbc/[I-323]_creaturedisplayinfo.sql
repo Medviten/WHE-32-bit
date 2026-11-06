@@ -43,8 +43,8 @@
 --
 -- All other columns are model 5044's verbatim: same mesh, same collision and geo box, so
 -- bounding/mount/footprint behaviour is unchanged.
-DELETE FROM creaturemodeldata WHERE id = 900008;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 900008;
+INSERT INTO `creaturemodeldata` SET
   `id` = 900008,
   `flags` = 0,
   `model_path` = 'Creature\\Mechachicken\\Mechachicken.mdx',
@@ -74,7 +74,7 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0.0,
   `missile_collision_raise` = 0.0;
 
-UPDATE creaturedisplayinfo SET
+UPDATE `creaturedisplayinfo` SET
   model_id = 900008,
   texture_variation_1 = 'ChickenSkinRobot',
   texture_variation_2 = ''

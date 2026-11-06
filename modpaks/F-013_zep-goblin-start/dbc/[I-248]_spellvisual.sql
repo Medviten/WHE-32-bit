@@ -15,7 +15,7 @@
 --     reference is a value edit, not a custom id.
 -- Shared-row note: Ulduar's Hurl Pyrite Barrel (62490) also uses 13175 and
 -- loses its wind-up; its own model resolves anim 107 natively. Cosmetic.
-UPDATE spellvisual SET
+UPDATE `spellvisual` SET
   precast_kit = 0,
   cast_kit = 314
 WHERE id = 13175;
@@ -28,5 +28,5 @@ WHERE id = 13175;
 -- release now — cosmetic.
 
 -- Custom visuals/kits RETIRED (DELETE-only cleanup of previously applied rows).
-DELETE FROM spellvisual WHERE id = 90175;
-DELETE FROM spellvisual WHERE id = 90115;
+DELETE FROM `spellvisual` WHERE id = 90175;
+DELETE FROM `spellvisual` WHERE id = 90115;

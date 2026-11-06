@@ -9,8 +9,8 @@
 
 -- F-011 creaturemodeldata (one file per table; rows carry final state)
 
-DELETE FROM creaturemodeldata WHERE id = 611;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 611;
+INSERT INTO `creaturemodeldata` SET
   `id` = 611,
   `flags` = 4097,
   `model_path` = 'CREATURE\\PARROT\\PARROT.M2',
@@ -28,20 +28,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -1.5626,
-  `geo_box_min_y` = -2.9813,
-  `geo_box_min_z` = 0.6814,
-  `geo_box_max_x` = 1.5676,
-  `geo_box_max_y` = 3.0621,
-  `geo_box_max_z` = 6.3041,
+  `geo_box_min_x` = -1.56263,
+  `geo_box_min_y` = -2.981339,
+  `geo_box_min_z` = 0.681411,
+  `geo_box_max_x` = 1.567613,
+  `geo_box_max_y` = 3.062079,
+  `geo_box_max_z` = 6.304081,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 831;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 831;
+INSERT INTO `creaturemodeldata` SET
   `id` = 831,
   `flags` = 4,
   `model_path` = 'CHARACTER\\GOBLIN\\MALE\\GOBLINMALE.M2',
@@ -56,23 +56,23 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3131,
-  `collision_width` = 0.5133,
-  `collision_height` = 1.2736,
-  `mount_height` = 0.5959,
-  `geo_box_min_x` = -0.5046,
-  `geo_box_min_y` = -0.5456,
-  `geo_box_min_z` = -0.0832,
-  `geo_box_max_x` = 0.4719,
-  `geo_box_max_y` = 0.6963,
-  `geo_box_max_z` = 1.3971,
+  `collision_width` = 0.513334,
+  `collision_height` = 1.27361,
+  `mount_height` = 0.595911,
+  `geo_box_min_x` = -0.504624,
+  `geo_box_min_y` = -0.545649,
+  `geo_box_min_z` = -0.08322,
+  `geo_box_max_x` = 0.47189,
+  `geo_box_max_y` = 0.696349,
+  `geo_box_max_z` = 1.39712,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 832;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 832;
+INSERT INTO `creaturemodeldata` SET
   `id` = 832,
   `flags` = 4,
   `model_path` = 'CHARACTER\\GOBLIN\\FEMALE\\GOBLINFEMALE.M2',
@@ -87,23 +87,23 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3132,
-  `collision_width` = 0.6111,
-  `collision_height` = 1.4422,
-  `mount_height` = 0.5868,
-  `geo_box_min_x` = -0.7506,
-  `geo_box_min_y` = -0.5777,
-  `geo_box_min_z` = -0.0676,
-  `geo_box_max_x` = 0.5402,
-  `geo_box_max_y` = 0.5985,
-  `geo_box_max_z` = 1.5489,
+  `collision_width` = 0.611112,
+  `collision_height` = 1.442209,
+  `mount_height` = 0.586792,
+  `geo_box_min_x` = -0.750619,
+  `geo_box_min_y` = -0.577678,
+  `geo_box_min_z` = -0.067604,
+  `geo_box_max_x` = 0.540173,
+  `geo_box_max_y` = 0.598492,
+  `geo_box_max_z` = 1.548869,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 2353;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 2353;
+INSERT INTO `creaturemodeldata` SET
   `id` = 2353,
   `flags` = 0,
   `model_path` = 'CHARACTER\\NAGA_\\MALE\\NAGA_MALE.M2',
@@ -120,21 +120,21 @@ INSERT INTO creaturemodeldata SET
   `sound_data` = 2281,
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
-  `mount_height` = 1.319,
-  `geo_box_min_x` = -1.6484,
-  `geo_box_min_y` = -1.1039,
-  `geo_box_min_z` = -0.0452,
-  `geo_box_max_x` = 0.8001,
-  `geo_box_max_y` = 1.1142,
-  `geo_box_max_z` = 2.8154,
+  `mount_height` = 1.318969,
+  `geo_box_min_x` = -1.648441,
+  `geo_box_min_y` = -1.10391,
+  `geo_box_min_z` = -0.045229,
+  `geo_box_max_x` = 0.800145,
+  `geo_box_max_y` = 1.114195,
+  `geo_box_max_z` = 2.815387,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 2354;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 2354;
+INSERT INTO `creaturemodeldata` SET
   `id` = 2354,
   `flags` = 4,
   `model_path` = 'CHARACTER\\NAGA_\\FEMALE\\NAGA_FEMALE.M2',
@@ -151,21 +151,21 @@ INSERT INTO creaturemodeldata SET
   `sound_data` = 2282,
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
-  `mount_height` = 2.0049,
-  `geo_box_min_x` = -1.8063,
-  `geo_box_min_y` = -0.7383,
-  `geo_box_min_z` = -0.0201,
-  `geo_box_max_x` = 0.6028,
-  `geo_box_max_y` = 0.7472,
-  `geo_box_max_z` = 2.6312,
+  `mount_height` = 2.004945,
+  `geo_box_min_x` = -1.806274,
+  `geo_box_min_y` = -0.73834,
+  `geo_box_min_z` = -0.020102,
+  `geo_box_max_x` = 0.602764,
+  `geo_box_max_y` = 0.747194,
+  `geo_box_max_z` = 2.631167,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 2923;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 2923;
+INSERT INTO `creaturemodeldata` SET
   `id` = 2923,
   `flags` = 0,
   `model_path` = 'CREATURE\\GOBLINSHREDDERMOUNT\\GOBLINSHREDDERMOUNT.M2',
@@ -183,20 +183,19 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -1.3654,
-  `geo_box_min_y` = -2.9835,
-  `geo_box_min_z` = -0.1596,
-  `geo_box_max_x` = 3.5277,
-  `geo_box_max_y` = 2.685,
-  `geo_box_max_z` = 4.6777,
+  `geo_box_min_x` = -1.365351,
+  `geo_box_min_y` = -2.983518,
+  `geo_box_min_z` = -0.159598,
+  `geo_box_max_x` = 3.527669,
+  `geo_box_max_y` = 2.685005,
+  `geo_box_max_z` = 4.677749,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3141;
-INSERT INTO creaturemodeldata SET
+INSERT IGNORE INTO `creaturemodeldata` SET
   `id` = 3141,
   `flags` = 4,
   `model_path` = 'CHARACTER\\WORGEN\\MALE\\WORGENMALE.M2',
@@ -211,23 +210,23 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3058,
-  `collision_width` = 0.6111,
-  `collision_height` = 2.0313,
-  `mount_height` = 1.3874,
-  `geo_box_min_x` = -0.7233,
-  `geo_box_min_y` = -0.9677,
-  `geo_box_min_z` = -0.0194,
-  `geo_box_max_x` = 0.8337,
-  `geo_box_max_y` = 1.0034,
-  `geo_box_max_z` = 2.4631,
+  `collision_width` = 0.611112,
+  `collision_height` = 2.03128,
+  `mount_height` = 1.387397,
+  `geo_box_min_x` = -0.723272,
+  `geo_box_min_y` = -0.967696,
+  `geo_box_min_z` = -0.019412,
+  `geo_box_max_x` = 0.83373,
+  `geo_box_max_y` = 1.003406,
+  `geo_box_max_z` = 2.463081,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3171;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3171;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3171,
   `flags` = 4097,
   `model_path` = 'CREATURE\\LOSTISLES_CARNIVOROUSPLANT\\LOSTISLES_CARNIVOROUSPLANT01_CREATURE.M2',
@@ -245,20 +244,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -1.5728,
-  `geo_box_min_y` = -1.2059,
-  `geo_box_min_z` = -0.1949,
-  `geo_box_max_x` = 1.746,
-  `geo_box_max_y` = 1.3029,
-  `geo_box_max_z` = 2.7548,
+  `geo_box_min_x` = -1.572787,
+  `geo_box_min_y` = -1.205918,
+  `geo_box_min_z` = -0.19493,
+  `geo_box_max_x` = 1.74604,
+  `geo_box_max_y` = 1.302909,
+  `geo_box_max_z` = 2.75478,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3172;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3172;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3172,
   `flags` = 4097,
   `model_path` = 'CREATURE\\LOSTISLES_CARNIVOROUSPLANT\\LOSTISLES_CARNIVOROUSPLANT02_CREATURE.M2',
@@ -276,20 +275,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -1.0306,
-  `geo_box_min_y` = -1.2324,
-  `geo_box_min_z` = -0.0666,
-  `geo_box_max_x` = 1.3675,
-  `geo_box_max_y` = 1.2709,
-  `geo_box_max_z` = 3.0095,
+  `geo_box_min_x` = -1.030583,
+  `geo_box_min_y` = -1.232358,
+  `geo_box_min_z` = -0.06664,
+  `geo_box_max_x` = 1.367542,
+  `geo_box_max_y` = 1.270938,
+  `geo_box_max_z` = 3.009466,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3183;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3183;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3183,
   `flags` = 0,
   `model_path` = 'CREATURE\\YOGGSARON\\YOGGSARONTENTACLETHIN.M2',
@@ -319,8 +318,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3185;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3185;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3185,
   `flags` = 4096,
   `model_path` = 'CREATURE\\MONKEY\\MONKEY.M2',
@@ -335,23 +334,22 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3054,
-  `collision_width` = 0.6111,
-  `collision_height` = 2.0313,
+  `collision_width` = 0.611112,
+  `collision_height` = 2.03128,
   `mount_height` = 0,
-  `geo_box_min_x` = -2.7266,
-  `geo_box_min_y` = -1.3435,
-  `geo_box_min_z` = -0.1322,
-  `geo_box_max_x` = 0.8943,
-  `geo_box_max_y` = 1.3394,
-  `geo_box_max_z` = 2.1282,
+  `geo_box_min_x` = -2.726615,
+  `geo_box_min_y` = -1.343504,
+  `geo_box_min_z` = -0.132223,
+  `geo_box_max_x` = 0.894282,
+  `geo_box_max_y` = 1.339386,
+  `geo_box_max_z` = 2.128219,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3194;
-INSERT INTO creaturemodeldata SET
+INSERT IGNORE INTO `creaturemodeldata` SET
   `id` = 3194,
   `flags` = 0,
   `model_path` = 'CREATURE\\HOBGOBLIN\\HOBGOBLIN.M2',
@@ -368,21 +366,21 @@ INSERT INTO creaturemodeldata SET
   `sound_data` = 3110,
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
-  `mount_height` = 1.3467,
-  `geo_box_min_x` = -0.5712,
-  `geo_box_min_y` = -0.9941,
-  `geo_box_min_z` = -0.0106,
-  `geo_box_max_x` = 0.59,
-  `geo_box_max_y` = 0.9899,
-  `geo_box_max_z` = 2.8104,
+  `mount_height` = 1.346687,
+  `geo_box_min_x` = -0.571247,
+  `geo_box_min_y` = -0.994102,
+  `geo_box_min_z` = -0.01056,
+  `geo_box_max_x` = 0.590039,
+  `geo_box_max_y` = 0.989905,
+  `geo_box_max_z` = 2.810367,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3227;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3227;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3227,
   `flags` = 12291,
   `model_path` = 'WORLD\\GENERIC\\GOBLIN\\PASSIVEDOODADS\\KEZAN\\TARGETDUMMY\\GOBLIN_KEZAN_TARGET_DUMMY_01.M2',
@@ -412,8 +410,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3262;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3262;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3262,
   `flags` = 0,
   `model_path` = 'CREATURE\\BUSHCHICKEN\\BUSHCHICKEN.M2',
@@ -431,20 +429,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.2258,
-  `geo_box_min_y` = -0.1747,
-  `geo_box_min_z` = 0.005,
-  `geo_box_max_x` = 0.181,
-  `geo_box_max_y` = 0.1867,
-  `geo_box_max_z` = 0.7557,
+  `geo_box_min_x` = -0.225831,
+  `geo_box_min_y` = -0.174672,
+  `geo_box_min_z` = 0.004951,
+  `geo_box_max_x` = 0.180996,
+  `geo_box_max_y` = 0.186714,
+  `geo_box_max_z` = 0.755716,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3302;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3302;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3302,
   `flags` = 12288,
   `model_path` = 'WORLD\\GENERIC\\GOBLIN\\PASSIVEDOODADS\\LOSTISLES\\GOBLIN_LOSTISLES_MINECART.M2',
@@ -474,8 +472,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3327;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3327;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3327,
   `flags` = 0,
   `model_path` = 'CREATURE\\FACELESSONEAQUATIC\\FACELESSONEAQUATIC.M2',
@@ -505,8 +503,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3336;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3336;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3336,
   `flags` = 12291,
   `model_path` = 'CREATURE\\GOBLINHOTAIRBALLOONVEHICLE\\GOBLINHOTAIRBALLOONVEHICLE.M2',
@@ -524,20 +522,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -6.6994,
-  `geo_box_min_y` = -6.688,
-  `geo_box_min_z` = -0.125,
-  `geo_box_max_x` = 7.1072,
-  `geo_box_max_y` = 7.1185,
-  `geo_box_max_z` = 23.4874,
+  `geo_box_min_x` = -6.699376,
+  `geo_box_min_y` = -6.687992,
+  `geo_box_min_z` = -0.12502,
+  `geo_box_max_x` = 7.10718,
+  `geo_box_max_y` = 7.11854,
+  `geo_box_max_z` = 23.487383,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3338;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3338;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3338,
   `flags` = 0,
   `model_path` = 'CREATURE\\GOBLIN\\GOBLINSHREDDER_LOW.M2',
@@ -567,8 +565,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3366;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3366;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3366,
   `flags` = 9219,
   `model_path` = 'CREATURE\\GOBLINHOTROD\\GOBLINHOTROD.M2',
@@ -586,20 +584,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -3.1972,
-  `geo_box_min_y` = -1.9608,
-  `geo_box_min_z` = -0.0964,
-  `geo_box_max_x` = 3.2702,
-  `geo_box_max_y` = 1.9607,
-  `geo_box_max_z` = 3.0375,
+  `geo_box_min_x` = -3.197166,
+  `geo_box_min_y` = -1.960801,
+  `geo_box_min_z` = -0.096408,
+  `geo_box_max_x` = 3.270184,
+  `geo_box_max_y` = 1.960677,
+  `geo_box_max_z` = 3.037473,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3380;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3380;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3380,
   `flags` = 0,
   `model_path` = 'CREATURE\\PYGMY\\PYGMYBASE.M2',
@@ -617,20 +615,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.4241,
-  `geo_box_min_y` = -0.8339,
-  `geo_box_min_z` = -0.0405,
-  `geo_box_max_x` = 0.5188,
-  `geo_box_max_y` = 0.7834,
-  `geo_box_max_z` = 1.3859,
+  `geo_box_min_x` = -0.42411,
+  `geo_box_min_y` = -0.833903,
+  `geo_box_min_z` = -0.040477,
+  `geo_box_max_x` = 0.518804,
+  `geo_box_max_y` = 0.783387,
+  `geo_box_max_z` = 1.385869,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3381;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3381;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3381,
   `flags` = 0,
   `model_path` = 'CREATURE\\PYGMY\\PYGMYHUNTER.M2',
@@ -648,20 +646,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.4878,
-  `geo_box_min_y` = -0.8339,
-  `geo_box_min_z` = -0.0385,
-  `geo_box_max_x` = 0.496,
-  `geo_box_max_y` = 0.8126,
-  `geo_box_max_z` = 1.3858,
+  `geo_box_min_x` = -0.487829,
+  `geo_box_min_y` = -0.833903,
+  `geo_box_min_z` = -0.038493,
+  `geo_box_max_x` = 0.495974,
+  `geo_box_max_y` = 0.812564,
+  `geo_box_max_z` = 1.385751,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3382;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3382;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3382,
   `flags` = 0,
   `model_path` = 'CREATURE\\PYGMY\\PYGMYROADIE.M2',
@@ -679,20 +677,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.4878,
-  `geo_box_min_y` = -0.8339,
-  `geo_box_min_z` = -0.0385,
-  `geo_box_max_x` = 0.525,
-  `geo_box_max_y` = 0.8075,
-  `geo_box_max_z` = 1.4993,
+  `geo_box_min_x` = -0.487829,
+  `geo_box_min_y` = -0.833903,
+  `geo_box_min_z` = -0.038493,
+  `geo_box_max_x` = 0.525043,
+  `geo_box_max_y` = 0.807515,
+  `geo_box_max_z` = 1.499319,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3383;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3383;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3383,
   `flags` = 0,
   `model_path` = 'CREATURE\\PYGMY\\PYGMYSHAMAN.M2',
@@ -710,20 +708,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.3837,
-  `geo_box_min_y` = -0.8662,
-  `geo_box_min_z` = -0,
-  `geo_box_max_x` = 0.5548,
-  `geo_box_max_y` = 0.803,
-  `geo_box_max_z` = 1.8325,
+  `geo_box_min_x` = -0.383719,
+  `geo_box_min_y` = -0.866204,
+  `geo_box_min_z` = -0.000002,
+  `geo_box_max_x` = 0.554778,
+  `geo_box_max_y` = 0.802969,
+  `geo_box_max_z` = 1.832529,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3384;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3384;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3384,
   `flags` = 0,
   `model_path` = 'CREATURE\\PYGMY\\PYGMYWARRIOR.M2',
@@ -741,20 +739,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.4878,
-  `geo_box_min_y` = -0.8339,
-  `geo_box_min_z` = -0.0385,
-  `geo_box_max_x` = 0.525,
-  `geo_box_max_y` = 0.8075,
-  `geo_box_max_z` = 1.6095,
+  `geo_box_min_x` = -0.48783,
+  `geo_box_min_y` = -0.833903,
+  `geo_box_min_z` = -0.038493,
+  `geo_box_max_x` = 0.525043,
+  `geo_box_max_y` = 0.807515,
+  `geo_box_max_z` = 1.609514,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3402;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3402;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3402,
   `flags` = 12291,
   `model_path` = 'CREATURE\\GOBLINHOTAIRBALLOONVEHICLE\\GOBLINHOTAIRBALLOONVEHICLE.M2',
@@ -772,20 +770,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -6.6994,
-  `geo_box_min_y` = -6.688,
-  `geo_box_min_z` = -0.125,
-  `geo_box_max_x` = 7.1072,
-  `geo_box_max_y` = 7.1185,
-  `geo_box_max_z` = 23.4874,
+  `geo_box_min_x` = -6.699376,
+  `geo_box_min_y` = -6.687992,
+  `geo_box_min_z` = -0.12502,
+  `geo_box_max_x` = 7.10718,
+  `geo_box_max_y` = 7.11854,
+  `geo_box_max_z` = 23.487383,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3513;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3513;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3513,
   `flags` = 4096,
   `model_path` = 'CREATURE\\MECHANICALRABBIT\\MECHANICALRABBIT.M2',
@@ -803,20 +801,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -0.743,
-  `geo_box_min_y` = -0.2758,
-  `geo_box_min_z` = -0.0389,
-  `geo_box_max_x` = 0.3412,
-  `geo_box_max_y` = 0.2728,
-  `geo_box_max_z` = 0.5606,
+  `geo_box_min_x` = -0.743019,
+  `geo_box_min_y` = -0.275825,
+  `geo_box_min_z` = -0.038939,
+  `geo_box_max_x` = 0.341162,
+  `geo_box_max_y` = 0.272787,
+  `geo_box_max_z` = 0.560641,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 0.5,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3523;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3523;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3523,
   `flags` = 12288,
   `model_path` = 'CREATURE\\RINGWORM\\RINGWORM.M2',
@@ -834,20 +832,20 @@ INSERT INTO creaturemodeldata SET
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
   `mount_height` = 0,
-  `geo_box_min_x` = -3.9909,
-  `geo_box_min_y` = -1.6718,
-  `geo_box_min_z` = -0.9981,
-  `geo_box_max_x` = 3.0834,
-  `geo_box_max_y` = 1.7964,
-  `geo_box_max_z` = 4.0673,
+  `geo_box_min_x` = -3.990919,
+  `geo_box_min_y` = -1.671837,
+  `geo_box_min_z` = -0.99806,
+  `geo_box_max_x` = 3.08344,
+  `geo_box_max_y` = 1.79635,
+  `geo_box_max_z` = 4.067264,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3543;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3543;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3543,
   `flags` = 0,
   `model_path` = 'CREATURE\\YOGGSARON\\CATACLYSM_TENTACLE.M2',
@@ -877,8 +875,8 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3569;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3569;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3569,
   `flags` = 12323,
   `model_path` = 'WORLD\\GENERIC\\GOBLIN\\PASSIVEDOODADS\\GOBLIN_TRADESKILLTRAINER\\GOBLIN_TRADESKILLTRAINER.M2',
@@ -908,8 +906,7 @@ INSERT INTO creaturemodeldata SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3624;
-INSERT INTO creaturemodeldata SET
+INSERT IGNORE INTO `creaturemodeldata` SET
   `id` = 3624,
   `flags` = 12291,
   `model_path` = 'CREATURE\\GOBLINTRIKE\\GOBLINTRIKE02.M2',
@@ -926,21 +923,21 @@ INSERT INTO creaturemodeldata SET
   `sound_data` = 0,
   `collision_width` = 0.6112,
   `collision_height` = 2.031,
-  `mount_height` = 0.5403,
-  `geo_box_min_x` = -1.7678,
-  `geo_box_min_y` = -1.0801,
-  `geo_box_min_z` = -0.0066,
-  `geo_box_max_x` = 1.3201,
-  `geo_box_max_y` = 1.0801,
-  `geo_box_max_z` = 1.5196,
+  `mount_height` = 0.540327,
+  `geo_box_min_x` = -1.767787,
+  `geo_box_min_y` = -1.080142,
+  `geo_box_min_z` = -0.006577,
+  `geo_box_max_x` = 1.320113,
+  `geo_box_max_y` = 1.080142,
+  `geo_box_max_z` = 1.519568,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3631;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3631;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3631,
   `flags` = 0,
   `model_path` = 'CREATURE\\ANCIENTSEATURTLEFIRE\\ANCIENTSEATURTLEFIRE.M2',
@@ -955,23 +952,23 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3272,
-  `collision_width` = 0.6111,
-  `collision_height` = 2.0313,
+  `collision_width` = 0.611112,
+  `collision_height` = 2.03128,
   `mount_height` = 0,
-  `geo_box_min_x` = -3.3693,
-  `geo_box_min_y` = -1.435,
-  `geo_box_min_z` = -0.1156,
-  `geo_box_max_x` = 1.4801,
-  `geo_box_max_y` = 1.4268,
-  `geo_box_max_z` = 2.4107,
+  `geo_box_min_x` = -3.369294,
+  `geo_box_min_y` = -1.435046,
+  `geo_box_min_z` = -0.115618,
+  `geo_box_max_x` = 1.48014,
+  `geo_box_max_y` = 1.426783,
+  `geo_box_max_z` = 2.410735,
   `world_effect_scale` = 0.31,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3648;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3648;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3648,
   `flags` = 0,
   `model_path` = 'CREATURE\\SHAMAN_THRALL\\SHAMAN_THRALL.M2',
@@ -986,23 +983,23 @@ INSERT INTO creaturemodeldata SET
   `footstep_shake_size` = 0,
   `death_thud_shake_size` = 0,
   `sound_data` = 3033,
-  `collision_width` = 0.6111,
-  `collision_height` = 2.0313,
-  `mount_height` = 1.117,
-  `geo_box_min_x` = -0.6345,
-  `geo_box_min_y` = -0.7853,
-  `geo_box_min_z` = -0,
-  `geo_box_max_x` = 0.648,
-  `geo_box_max_y` = 0.8801,
-  `geo_box_max_z` = 2.7848,
+  `collision_width` = 0.611112,
+  `collision_height` = 2.03128,
+  `mount_height` = 1.117047,
+  `geo_box_min_x` = -0.63445,
+  `geo_box_min_y` = -0.785338,
+  `geo_box_min_z` = -0.000037,
+  `geo_box_max_x` = 0.648048,
+  `geo_box_max_y` = 0.880098,
+  `geo_box_max_z` = 2.784783,
   `world_effect_scale` = 1,
   `attached_effect_scale` = 1,
   `missile_collision_radius` = 0,
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM creaturemodeldata WHERE id = 3708;
-INSERT INTO creaturemodeldata SET
+DELETE FROM `creaturemodeldata` WHERE id = 3708;
+INSERT INTO `creaturemodeldata` SET
   `id` = 3708,
   `flags` = 12288,
   `model_path` = 'WORLD\\GENERIC\\GOBLIN\\PASSIVEDOODADS\\CRAZYMACHINES\\GOBLIN_CRAZYMACHINE_02.M2',

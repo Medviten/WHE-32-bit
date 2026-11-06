@@ -10,8 +10,8 @@
 -- F-011 screeneffect (one file per table; rows carry final state)
 
 -- 623 <- spell 68376
-DELETE FROM screeneffect WHERE id = 623;
-INSERT INTO screeneffect SET
+DELETE FROM `screeneffect` WHERE id = 623;
+INSERT INTO `screeneffect` SET
   `id` = 623,
   `name` = 'The Lost Isles - Infrared Heatfocals',
   `type` = 3,
@@ -24,8 +24,8 @@ INSERT INTO screeneffect SET
   `sound_music_id` = 0;
 
 -- 722 <- spell 70649
-DELETE FROM screeneffect WHERE id = 722;
-INSERT INTO screeneffect SET
+DELETE FROM `screeneffect` WHERE id = 722;
+INSERT INTO `screeneffect` SET
   `id` = 722,
   `name` = 'The Lost Isles - "Capturing The Unknown"',
   `type` = 3,
@@ -38,8 +38,8 @@ INSERT INTO screeneffect SET
   `sound_music_id` = 0;
 
 -- 762 <- spell 74025
-DELETE FROM screeneffect WHERE id = 762;
-INSERT INTO screeneffect SET
+DELETE FROM `screeneffect` WHERE id = 762;
+INSERT INTO `screeneffect` SET
   `id` = 762,
   `name` = 'The Lost Isles - Phase 8+ Skybox',
   `type` = 0,

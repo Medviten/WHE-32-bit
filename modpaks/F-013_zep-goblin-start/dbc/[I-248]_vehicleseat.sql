@@ -14,7 +14,7 @@
 -- by dbc/[AUTO,F-011]_vehicleseat.sql -> consolidated UPDATE here.
 -- Side effect to verify in-game: dropping Cata bit-soup may newly SHOW the
 -- goblin in the seat (WotLK HIDE_PASSENGER 0x200 was set by accident).
-UPDATE vehicleseat SET
+UPDATE `vehicleseat` SET
   flags = 1729136651,
   flags_b = 0
 WHERE id = 6846;

@@ -7,31 +7,38 @@
 -- Loads after [AUTO,F-011]_creaturedisplayinfoextra.sql (I > A in filename sort) and overrides
 -- the `texture` field only. Donor '_HD' files already ship in PATCH-Q -- no new art.
 -- Requires: dbc db rebuild -t creaturedisplayinfoextra + PATCH-Z rebuild to reach the client.
+--
+-- NOTE (2026-08-27): the generator now does this repoint itself -- npc_appearance.py
+-- HD-repoints every race 1-8 extra at a matched, shipped `_HD` donor, so newly shipped
+-- NPCs no longer need an override file. This file is kept only to PIN the hand-picked
+-- donors below, which were verified in-game; the generator's own pick differs on some
+-- rows (better facial_hair tie-break, same exact race/sex/skin/face face match).
+-- Delete this file if you ever want the generator's picks to take over.
 
 -- Pirate Party Crasher / Hired Looter / Southsea Mercenary variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-09212_HD.blp' WHERE id = 19681;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-05936_HD.blp' WHERE id = 19682;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-09212_HD.blp' WHERE id = 19681;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-05936_HD.blp' WHERE id = 19682;
 -- Orc Survivor variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-19579_HD.blp' WHERE id = 19836;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-01934_HD.blp' WHERE id = 19837;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-17555_HD.blp' WHERE id = 19838;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-19579_HD.blp' WHERE id = 19836;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-01934_HD.blp' WHERE id = 19837;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-17555_HD.blp' WHERE id = 19838;
 -- Orc Scout variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00096_HD.blp' WHERE id = 19843;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00091_HD.blp' WHERE id = 19844;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-09486_HD.blp' WHERE id = 19845;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00096_HD.blp' WHERE id = 19843;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00091_HD.blp' WHERE id = 19844;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-09486_HD.blp' WHERE id = 19845;
 -- SI:7 Assassin variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00180_HD.blp' WHERE id = 19861;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00155_HD.blp' WHERE id = 19862;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00869_HD.blp' WHERE id = 19863;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00180_HD.blp' WHERE id = 19861;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00155_HD.blp' WHERE id = 19862;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00869_HD.blp' WHERE id = 19863;
 -- SI:7 Operative variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00155_HD.blp' WHERE id = 19875;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00869_HD.blp' WHERE id = 19876;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-00180_HD.blp' WHERE id = 19877;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00155_HD.blp' WHERE id = 19875;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00869_HD.blp' WHERE id = 19876;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-00180_HD.blp' WHERE id = 19877;
 -- Orc Battlesworn variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-11743_HD.blp' WHERE id = 19879;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-02652_HD.blp' WHERE id = 19880;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-06807_HD.blp' WHERE id = 19881;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-11743_HD.blp' WHERE id = 19879;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-02652_HD.blp' WHERE id = 19880;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-06807_HD.blp' WHERE id = 19881;
 -- Alliance Sailor variants
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-15540_HD.blp' WHERE id = 19889;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-02917_HD.blp' WHERE id = 19890;
-UPDATE creaturedisplayinfoextra SET texture = 'CreatureDisplayExtra-17094_HD.blp' WHERE id = 19891;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-15540_HD.blp' WHERE id = 19889;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-02917_HD.blp' WHERE id = 19890;
+UPDATE `creaturedisplayinfoextra` SET texture = 'CreatureDisplayExtra-17094_HD.blp' WHERE id = 19891;

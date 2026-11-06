@@ -1,0 +1,43 @@
+-- I-343 round 2: let a player sit in the bomber's rope-ladder and back seats.
+--
+-- Vehicle 657 (38918 Flying Bomber) seats, as ported:
+--
+--   idx 0  7566  flags 0x00000002  flagsB 0x02000000  attach 13  off (-0.45, 0, 0)
+--                rideAnimLoop 484 ReclinedMount                        <- the PILOT seat
+--   idx 1  7567  flags 0x401088A4  flagsB 0x18000C00  attach 14  off (-2.5, 0, -3.5)
+--                rideAnim 40 Fall + upper 215, pitch 0.6981            <- the LADDER seat
+--   idx 2  7575  flags 0x401088AF  flagsB 0x18000C00  attach 14  off (0, 0, 0)
+--                rideAnimLoop 500 ReclinedMountPassenger               <- the BACK seat
+--
+-- The donor puts the player in seat 1 for the climb out of the lair (hanging off the
+-- ladder, below and behind the plane) and swaps him to seat 2 at the "get in the back
+-- seat" beat. Both of those seats carry VEHICLE_SEAT_FLAG_CAN_CONTROL (0x800), and on
+-- AzerothCore a PLAYER entering a 0x800 seat charms the vehicle:
+--
+--   Vehicle::AddPassenger (Vehicle.cpp:433) -> Creature::SetCharmedBy(CHARM_TYPE_VEHICLE)
+--   SmartAI::OnCharmed    (SmartAI.cpp:1062) -> EndPath(true) if escorting
+--   SmartAI::StartPath    (SmartAI.cpp)      -> refuses while mIsCharmed
+--
+-- so the escort either never starts or is killed the moment the player boards. That is
+-- why round 1 parked the player in seat 0 and dropped the seat swap entirely. The
+-- consequences of that workaround were the reported bug: the player rode in the pilot's
+-- recliner instead of the ladder, and (because seat 0 is the ONLY seat on this vehicle
+-- that Vehicle::AddPassenger will hand out for seatId -1 — 1 and 2 have neither
+-- CAN_ENTER_OR_EXIT nor a USABLE_FORCED flagsB bit) Sassy's 46598 found no seat at all
+-- and she was left standing at the lair.
+--
+-- Clear 0x800 and keep every other bit. Blast radius is nil: vehicle 657 is the only
+-- vehicle referencing 7566/7567/7575, and 38918 is the only creature on vehicle 657.
+-- Neither seat has CAN_CAST (0x20000000) so no action bar appears, and neither has
+-- CAN_ENTER_OR_EXIT (0x02000000) so the player still cannot step off in mid-air.
+-- A creature passenger never charms (the gate is unit->IsPlayer()), so Sassy in seat 0
+-- was never the problem and seat 0 is untouched.
+--
+-- The SERVER reads VehicleSeat.dbc too, so this needs the PATCH-Z rebuild and a
+-- worldserver restart, not just `dbc db apply`.
+
+-- 0x401088A4 -> 0x401080A4
+UPDATE `vehicleseat` SET flags = 1074823332 WHERE id = 7567;
+
+-- 0x401088AF -> 0x401080AF
+UPDATE `vehicleseat` SET flags = 1074823343 WHERE id = 7575;

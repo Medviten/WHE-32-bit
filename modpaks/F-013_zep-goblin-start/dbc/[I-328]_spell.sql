@@ -17,6 +17,6 @@
 --
 -- AUTO-owned row -> one consolidated UPDATE. DieSides 0 (not BasePoints 71660) so the
 -- stored value stays the literal spell id the effect names.
-UPDATE spell SET
+UPDATE `spell` SET
   `effect_die_sides_1` = 0
 WHERE id = 71648;

@@ -20,8 +20,8 @@
 -- Id 91004, NOT the next free 90xxx: `[AUTO,F-011]_spellvisualkitmodelattach.sql`
 -- opens with `DELETE ... WHERE id BETWEEN 90001 AND 90999`, so anything added inside
 -- that band is wiped the next time the AUTO file applies. 91001-91003 are I-328's.
-DELETE FROM spellvisualkitmodelattach WHERE id = 91004;
-INSERT INTO spellvisualkitmodelattach SET
+DELETE FROM `spellvisualkitmodelattach` WHERE id = 91004;
+INSERT INTO `spellvisualkitmodelattach` SET
   `id` = 91004,
   `parent_spell_vis_kit_id` = 14052,
   `spell_vis_effect_name_id` = 90105,

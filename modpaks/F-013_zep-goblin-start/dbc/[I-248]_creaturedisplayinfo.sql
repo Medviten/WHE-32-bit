@@ -3,4 +3,4 @@
 -- The HD zpaks' [BASE,F-049] file sets this row's texture_variation_1-3
 -- ('Shreddermountred1-3') — different columns, no conflict; the red variation
 -- BLPs ship in the new model folder (variations resolve model-folder-relative).
-UPDATE creaturedisplayinfo SET model_id = 90001 WHERE id = 26559;
+UPDATE `creaturedisplayinfo` SET model_id = 90001 WHERE id = 26559;

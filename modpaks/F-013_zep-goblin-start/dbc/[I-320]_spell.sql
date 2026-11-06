@@ -29,7 +29,7 @@
 --   (the port forces DieSides to at least 1), so BasePoints 1 calculated to TWO
 --   eggs per click. 0 with DieSides 1 is the 3.3.5a encoding of "one" — the same
 --   correction already applied to 66137 in the escape-pod port.
-UPDATE spell SET
+UPDATE `spell` SET
   effect_misc_value_b_1 = 64,
   effect_base_points_1 = 0
 WHERE id = 56576;
@@ -52,8 +52,8 @@ WHERE id = 56576;
 -- GO 201974 is created as a WILD object ("Wild object not have owner",
 -- SpellEffects.cpp:3850), so it outlives the egg despawning 500ms later and
 -- stays lootable by the player. Duration index 3 = 60s to loot it.
-DELETE FROM spell WHERE id = 66726;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 66726;
+INSERT INTO `spell` SET
   `id` = 66726,
   `attributes` = 384,
   `attributes_ex_1` = 1024,

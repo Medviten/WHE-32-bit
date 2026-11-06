@@ -32,8 +32,8 @@
 -- (`spells\Missle_Rocket.mdx`) at the wrong size: 3088 is scale 1.0, the Cata row 6279
 -- the donor actually used is scale 1.25. Ship 6279's values under a custom id rather
 -- than editing stock 3088, which 40+ other spells share.
-DELETE FROM spellvisualeffectname WHERE id = 90102;
-INSERT INTO spellvisualeffectname SET
+DELETE FROM `spellvisualeffectname` WHERE id = 90102;
+INSERT INTO `spellvisualeffectname` SET
   `id` = 90102,
   `name` = 'Missile: Rocket (I-328 Mechashark, Cata 6279 scale)',
   `file_name` = 'spells\\Missle_Rocket.mdx',
@@ -45,8 +45,8 @@ INSERT INTO spellvisualeffectname SET
 -- 4.3.4 effectname 6275 verbatim. Note scale 0.1 with min_allowed 0.1 — the pipe doodad
 -- is world-sized and gets shrunk to periscope scale; min/max are NOT 0/0, which would
 -- render it invisible (reference_item_cast_spellvisual_kit).
-DELETE FROM spellvisualeffectname WHERE id = 90103;
-INSERT INTO spellvisualeffectname SET
+DELETE FROM `spellvisualeffectname` WHERE id = 90103;
+INSERT INTO `spellvisualeffectname` SET
   `id` = 90103,
   `name` = 'Goblin Kezan Pipe 04 (I-328 Mechashark periscope)',
   `file_name` = 'world\\generic\\goblin\\passivedoodads\\lostisles\\goblin_kezan_pipe_04.mdx',
@@ -65,8 +65,8 @@ INSERT INTO spellvisualeffectname SET
 --
 -- The donor names this "Ulduar Light Effect Yellow" while the file is the green variant;
 -- kept the file, dropped the misleading half of the name.
-DELETE FROM spellvisualeffectname WHERE id = 90104;
-INSERT INTO spellvisualeffectname SET
+DELETE FROM `spellvisualeffectname` WHERE id = 90104;
+INSERT INTO `spellvisualeffectname` SET
   `id` = 90104,
   `name` = 'UL Light Effect Green (I-328 Mechashark eye lights)',
   `file_name` = 'world\\expansion02\\doodads\\ulduar\\ul_light_effect_green.mdx',

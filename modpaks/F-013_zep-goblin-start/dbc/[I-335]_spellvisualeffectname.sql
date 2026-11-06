@@ -29,8 +29,8 @@
 -- waist-sized, which is what attachment 10 (hips, z 0.658 on GOBLINMALE.M2) wants.
 -- min/max 0.1/10, NOT 0/0, which would render it invisible
 -- (reference_item_cast_spellvisual_kit).
-DELETE FROM spellvisualeffectname WHERE id = 90105;
-INSERT INTO spellvisualeffectname SET
+DELETE FROM `spellvisualeffectname` WHERE id = 90105;
+INSERT INTO `spellvisualeffectname` SET
   `id` = 90105,
   `name` = 'Floating Orange Pool Pony (I-335 quest 24864)',
   `file_name` = 'world\\generic\\goblin\\passivedoodads\\kezan\\poolpony\\goblin_kezan_poolpony_floating_orange_01.mdx',

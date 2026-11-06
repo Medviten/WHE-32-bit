@@ -9,12 +9,12 @@
 
 -- F-011 vehicle (one file per table; rows carry final state)
 
-DELETE FROM vehicle WHERE id = 448;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 448;
+INSERT INTO `vehicle` SET
   `id` = 448,
   `flags` = 1614811173,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 4826,
@@ -25,7 +25,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -52,12 +52,12 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 476;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 476;
+INSERT INTO `vehicle` SET
   `id` = 476,
   `flags` = 1074794535,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 5326,
@@ -68,7 +68,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -95,8 +95,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 500;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 500;
+INSERT INTO `vehicle` SET
   `id` = 500,
   `flags` = 1073741827,
   `turn_speed` = 3.142,
@@ -111,7 +111,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -138,8 +138,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 505;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 505;
+INSERT INTO `vehicle` SET
   `id` = 505,
   `flags` = 1073741864,
   `turn_speed` = 3.142,
@@ -154,7 +154,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -181,8 +181,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 508;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 508;
+INSERT INTO `vehicle` SET
   `id` = 508,
   `flags` = 1732771883,
   `turn_speed` = 3.142,
@@ -197,7 +197,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -224,8 +224,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 524;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 524;
+INSERT INTO `vehicle` SET
   `id` = 524,
   `flags` = 1073877031,
   `turn_speed` = 3.142,
@@ -240,7 +240,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -267,12 +267,12 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 530;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 530;
+INSERT INTO `vehicle` SET
   `id` = 530,
   `flags` = 1611194408,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 6146,
@@ -310,8 +310,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 582;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 582;
+INSERT INTO `vehicle` SET
   `id` = 582,
   `flags` = 1619525632,
   `turn_speed` = 3.142,
@@ -353,8 +353,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 590;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 590;
+INSERT INTO `vehicle` SET
   `id` = 590,
   `flags` = 1073745959,
   `turn_speed` = 3.142,
@@ -369,7 +369,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -396,8 +396,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 592;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 592;
+INSERT INTO `vehicle` SET
   `id` = 592,
   `flags` = 1073877031,
   `turn_speed` = 3.142,
@@ -415,7 +415,7 @@ INSERT INTO vehicle SET
   `mouse_look_offset_pitch` = 0,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.0873,
+  `camera_pitch_offset` = 0.087266,
   `facing_limit_right` = 0,
   `facing_limit_left` = 0,
   `mssl_trgt_turn_lingering` = 0,
@@ -439,8 +439,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 628;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 628;
+INSERT INTO `vehicle` SET
   `id` = 628,
   `flags` = 1610657807,
   `turn_speed` = 3.142,
@@ -455,10 +455,10 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.2618,
+  `camera_pitch_offset` = 0.261799,
   `facing_limit_right` = 0,
   `facing_limit_left` = 0,
   `mssl_trgt_turn_lingering` = 0,
@@ -482,8 +482,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 633;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 633;
+INSERT INTO `vehicle` SET
   `id` = 633,
   `flags` = 1073741827,
   `turn_speed` = 3.142,
@@ -498,7 +498,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,
@@ -525,8 +525,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 640;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 640;
+INSERT INTO `vehicle` SET
   `id` = 640,
   `flags` = 1730950775,
   `turn_speed` = 2.094,
@@ -541,12 +541,12 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.6109,
+  `mouse_look_offset_pitch` = 0.610865,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.2967,
-  `facing_limit_right` = 0.4363,
-  `facing_limit_left` = 0.4363,
+  `camera_pitch_offset` = 0.296706,
+  `facing_limit_right` = 0.436332,
+  `facing_limit_left` = 0.436332,
   `mssl_trgt_turn_lingering` = 1.5,
   `mssl_trgt_pitch_lingering` = 1.5,
   `mssl_trgt_mouse_lingering` = 1,
@@ -560,7 +560,7 @@ INSERT INTO vehicle SET
   `mssl_trgt_impact_texture` = 'Spells\\Textures\\Reticle_BrightGround.blp',
   `mssl_trgt_impact_model_1` = 'Interface\\Vehicles\\Vehicle_Target_02.mdx',
   `mssl_trgt_impact_model_2` = '',
-  `camera_yaw_offset` = 0.0698,
+  `camera_yaw_offset` = 0.069813,
   `ui_locomotion_type` = 0,
   `mssl_trgt_impact_tex_radius` = 15,
   `ui_seat_indicator_type` = 0,
@@ -568,12 +568,12 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 653;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 653;
+INSERT INTO `vehicle` SET
   `id` = 653,
   `flags` = 1614807048,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 7562,
@@ -611,14 +611,57 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 669;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 657;
+INSERT INTO `vehicle` SET
+  `id` = 657,
+  `flags` = 1611137071,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
+  `pitch_min` = 0,
+  `pitch_max` = 0,
+  `seat_id_1` = 7566,
+  `seat_id_2` = 7567,
+  `seat_id_3` = 7575,
+  `seat_id_4` = 0,
+  `seat_id_5` = 0,
+  `seat_id_6` = 0,
+  `seat_id_7` = 0,
+  `seat_id_8` = 0,
+  `mouse_look_offset_pitch` = 0.785398,
+  `camera_fade_dist_scalar_min` = 1,
+  `camera_fade_dist_scalar_max` = 1.5,
+  `camera_pitch_offset` = 0,
+  `facing_limit_right` = 0,
+  `facing_limit_left` = 0,
+  `mssl_trgt_turn_lingering` = 0,
+  `mssl_trgt_pitch_lingering` = 0,
+  `mssl_trgt_mouse_lingering` = 0,
+  `mssl_trgt_end_opacity` = 0,
+  `mssl_trgt_arc_speed` = 0,
+  `mssl_trgt_arc_repeat` = 0,
+  `mssl_trgt_arc_width` = 0,
+  `mssl_trgt_impact_radius_1` = 0,
+  `mssl_trgt_impact_radius_2` = 0,
+  `mssl_trgt_arc_texture` = '',
+  `mssl_trgt_impact_texture` = '',
+  `mssl_trgt_impact_model_1` = '',
+  `mssl_trgt_impact_model_2` = '',
+  `camera_yaw_offset` = 0,
+  `ui_locomotion_type` = 0,
+  `mssl_trgt_impact_tex_radius` = 0,
+  `ui_seat_indicator_type` = 0,
+  `power_display_1` = 0,
+  `power_display_2` = 0,
+  `power_display_3` = 0;
+
+DELETE FROM `vehicle` WHERE id = 669;
+INSERT INTO `vehicle` SET
   `id` = 669,
   `flags` = 1892216924,
-  `turn_speed` = 3.927,
-  `pitch_speed` = 3.1416,
-  `pitch_min` = -1.4835,
-  `pitch_max` = 1.4835,
+  `turn_speed` = 3.926991,
+  `pitch_speed` = 3.141593,
+  `pitch_min` = -1.48353,
+  `pitch_max` = 1.48353,
   `seat_id_1` = 7584,
   `seat_id_2` = 0,
   `seat_id_3` = 0,
@@ -627,10 +670,10 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.4363,
+  `mouse_look_offset_pitch` = 0.436332,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.2618,
+  `camera_pitch_offset` = 0.261799,
   `facing_limit_right` = 0,
   `facing_limit_left` = 0,
   `mssl_trgt_turn_lingering` = 1.5,
@@ -646,7 +689,7 @@ INSERT INTO vehicle SET
   `mssl_trgt_impact_texture` = '',
   `mssl_trgt_impact_model_1` = 'Interface\\Vehicles\\Vehicle_Target_02.mdx',
   `mssl_trgt_impact_model_2` = '',
-  `camera_yaw_offset` = 0.0524,
+  `camera_yaw_offset` = 0.05236,
   `ui_locomotion_type` = 1,
   `mssl_trgt_impact_tex_radius` = 1,
   `ui_seat_indicator_type` = 0,
@@ -654,8 +697,8 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 688;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 688;
+INSERT INTO `vehicle` SET
   `id` = 688,
   `flags` = 1611141159,
   `turn_speed` = 3.142,
@@ -673,7 +716,7 @@ INSERT INTO vehicle SET
   `mouse_look_offset_pitch` = 0,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.0873,
+  `camera_pitch_offset` = 0.087266,
   `facing_limit_right` = 0,
   `facing_limit_left` = 0,
   `mssl_trgt_turn_lingering` = 0,
@@ -697,12 +740,12 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 696;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 696;
+INSERT INTO `vehicle` SET
   `id` = 696,
   `flags` = 1615376420,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 7638,
@@ -713,10 +756,10 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
-  `camera_pitch_offset` = 0.2618,
+  `camera_pitch_offset` = 0.261799,
   `facing_limit_right` = 0,
   `facing_limit_left` = 0,
   `mssl_trgt_turn_lingering` = 0,
@@ -740,12 +783,12 @@ INSERT INTO vehicle SET
   `power_display_2` = 0,
   `power_display_3` = 0;
 
-DELETE FROM vehicle WHERE id = 1322;
-INSERT INTO vehicle SET
+DELETE FROM `vehicle` WHERE id = 1322;
+INSERT INTO `vehicle` SET
   `id` = 1322,
   `flags` = 1073877031,
-  `turn_speed` = 3.1416,
-  `pitch_speed` = 3.1416,
+  `turn_speed` = 3.141593,
+  `pitch_speed` = 3.141593,
   `pitch_min` = 0,
   `pitch_max` = 0,
   `seat_id_1` = 9090,
@@ -756,7 +799,7 @@ INSERT INTO vehicle SET
   `seat_id_6` = 0,
   `seat_id_7` = 0,
   `seat_id_8` = 0,
-  `mouse_look_offset_pitch` = 0.7854,
+  `mouse_look_offset_pitch` = 0.785398,
   `camera_fade_dist_scalar_min` = 1,
   `camera_fade_dist_scalar_max` = 1.5,
   `camera_pitch_offset` = 0,

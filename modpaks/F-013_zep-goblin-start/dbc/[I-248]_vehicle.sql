@@ -16,7 +16,7 @@
 --   impact marker: radius 6 -> 15 / tex radius 6 -> 15 / secondary ring 10
 --     (the "big yellow target"; arc + marker art fields already matched stock)
 --   ui_seat_indicator_type 0 -> 222 (stock demolisher seat indicator)
-UPDATE vehicle SET
+UPDATE `vehicle` SET
   flags = 1594726007,
   turn_speed = 1.0470000505447388,
   pitch_speed = 1.0470000505447388,

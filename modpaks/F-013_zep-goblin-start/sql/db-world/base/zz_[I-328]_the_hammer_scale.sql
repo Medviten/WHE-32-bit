@@ -1,0 +1,24 @@
+-- I-328 / F-011 -- "A Goblin in Shark's Clothing" (quest 24817), objective 2:
+-- The Hammer (36682) shipped at a fifth of its retail size.
+--
+-- Rendered size = creature_template_model.DisplayScale (server)
+--               x CreatureDisplayInfo.CreatureModelScale (client DBC)
+--               x CreatureModelData.ModelScale (client DBC).
+-- The donor template asks for scale 1.0 and display 26216, and 26216 already exists
+-- in 3.3.5a (Ravenous Jaws) -- so gen took the stock row as-is. But Blizzard grew that
+-- display for Cataclysm: 3.3.5a carries CreatureModelScale 1.5, the 4.3.4 client carries
+-- 7.5. Retail's own hitbox confirms the intent -- donor creature_model_info 26216 is
+-- bounding_radius 7.5 / combat_reach 15.0, exactly 5x our stock 1.5 / 3.0.
+--
+-- Fixed at source too (goblin_gen/creatures.py _size_fix): gen now multiplies DisplayScale
+-- by the Cata/3.3.5a CreatureModelScale ratio whenever a display resolves to a stock row
+-- that is the same mesh in both clients. This UPDATE carries the fix until the next regen
+-- and is the value that regen emits, so the two agree.
+--
+-- NOT fixed by editing CreatureDisplayInfo 26216 in the DBC: that row is shared with stock
+-- Ravenous Jaws (29392) and would need a PATCH-Z rebuild. DisplayScale is per-creature and
+-- server-side.
+--
+-- creature_template_model is load-time only -- worldserver restart to take effect.
+
+UPDATE `creature_template_model` SET `DisplayScale` = 5 WHERE `CreatureID` = 36682 AND `Idx` = 0;

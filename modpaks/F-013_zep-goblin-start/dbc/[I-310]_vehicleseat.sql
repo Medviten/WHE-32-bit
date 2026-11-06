@@ -13,4 +13,14 @@
 -- Donor: Oculus drake seat 1323 (vehicle 70) -- stock WotLK player-driven
 -- FLYING vehicle -- flags 0x62110817, flags_b 0, adopted wholesale per the
 -- established fix pattern (keep Cata anim/attachment/camera columns).
-UPDATE vehicleseat SET flags = 1645283351, flags_b = 0 WHERE id = 5706;
+--
+-- Round 5 (I-310 auto-flight): CAN_CONTROL 0x800 comes back OUT, so the value is the
+-- Oculus drake profile minus that one bit: 0x62110817 -> 0x62110017 (1645281303). The
+-- Precious Cargo run now flies itself (sql/zz_[I-310]_precious_cargo_autoflight.sql), and
+-- Vehicle::AddPassenger (Vehicle.cpp:433) charms the vehicle the moment a PLAYER takes a
+-- CAN_CONTROL seat, which makes SmartAI::UpdateAI early-return on !IsAIControlled() --
+-- the escort would never move. Both bits round 4 was actually after are untouched:
+-- CAN_ENTER_OR_EXIT 0x2000000 (the server checks it on voluntary exit) and CAN_CAST
+-- 0x20000000 (the vehicle bar, hence the Leave Vehicle button -- the core serves that bar
+-- on cast-capable seats without CAN_CONTROL too, Vehicle.cpp:454, I-311).
+UPDATE `vehicleseat` SET flags = 1645281303, flags_b = 0 WHERE id = 5706;

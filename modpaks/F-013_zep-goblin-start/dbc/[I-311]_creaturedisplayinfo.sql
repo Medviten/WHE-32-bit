@@ -7,7 +7,7 @@
 -- Cyclone 18404 scale 3.25, Howling Cyclone 14502 scale 2) — at vehicle scale.
 -- texture_variation_1 is required: model 591 resolves its skin at runtime and
 -- renders untextured without it (I-249). AUTO-owned row -> one consolidated UPDATE.
-UPDATE creaturedisplayinfo SET
+UPDATE `creaturedisplayinfo` SET
   `model_id` = 591,
   `sound_id` = 0,
   `creature_model_scale` = 3,

@@ -10,8 +10,8 @@
 -- F-011 spellvisual (one file per table; rows carry final state)
 
 -- 13302 <- spell 71812
-DELETE FROM spellvisual WHERE id = 13302;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 13302;
+INSERT INTO `spellvisual` SET
   `id` = 13302,
   `precast_kit` = 12880,
   `cast_kit` = 12366,
@@ -46,8 +46,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 13960 <- spell 65734
-DELETE FROM spellvisual WHERE id = 13960;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 13960;
+INSERT INTO `spellvisual` SET
   `id` = 13960,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -82,8 +82,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14214 <- spell 66911
-DELETE FROM spellvisual WHERE id = 14214;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14214;
+INSERT INTO `spellvisual` SET
   `id` = 14214,
   `precast_kit` = 380,
   `cast_kit` = 10548,
@@ -118,8 +118,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14300 <- spell 67522
-DELETE FROM spellvisual WHERE id = 14300;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14300;
+INSERT INTO `spellvisual` SET
   `id` = 14300,
   `precast_kit` = 7412,
   `cast_kit` = 0,
@@ -154,8 +154,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14304 <- spell 67526
-DELETE FROM spellvisual WHERE id = 14304;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14304;
+INSERT INTO `spellvisual` SET
   `id` = 14304,
   `precast_kit` = 0,
   `cast_kit` = 358,
@@ -190,8 +190,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14307 <- spell 67682
-DELETE FROM spellvisual WHERE id = 14307;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14307;
+INSERT INTO `spellvisual` SET
   `id` = 14307,
   `precast_kit` = 171,
   `cast_kit` = 172,
@@ -226,8 +226,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14348 <- spell 67919, 68935
-DELETE FROM spellvisual WHERE id = 14348;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14348;
+INSERT INTO `spellvisual` SET
   `id` = 14348,
   `precast_kit` = 13259,
   `cast_kit` = 836,
@@ -262,8 +262,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14351 <- spell 67917
-DELETE FROM spellvisual WHERE id = 14351;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14351;
+INSERT INTO `spellvisual` SET
   `id` = 14351,
   `precast_kit` = 0,
   `cast_kit` = 9579,
@@ -298,8 +298,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14403 <- spell 68295
-DELETE FROM spellvisual WHERE id = 14403;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14403;
+INSERT INTO `spellvisual` SET
   `id` = 14403,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -334,8 +334,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14407 <- spell 68327
-DELETE FROM spellvisual WHERE id = 14407;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14407;
+INSERT INTO `spellvisual` SET
   `id` = 14407,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -370,8 +370,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14567 <- spell 68436
-DELETE FROM spellvisual WHERE id = 14567;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14567;
+INSERT INTO `spellvisual` SET
   `id` = 14567,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -406,8 +406,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14605 <- spell 68212
-DELETE FROM spellvisual WHERE id = 14605;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14605;
+INSERT INTO `spellvisual` SET
   `id` = 14605,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -442,8 +442,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14638 <- spell 69303
-DELETE FROM spellvisual WHERE id = 14638;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14638;
+INSERT INTO `spellvisual` SET
   `id` = 14638,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -478,8 +478,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14639 <- spell 68322
-DELETE FROM spellvisual WHERE id = 14639;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14639;
+INSERT INTO `spellvisual` SET
   `id` = 14639,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -514,8 +514,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14699 <- spell 69626
-DELETE FROM spellvisual WHERE id = 14699;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14699;
+INSERT INTO `spellvisual` SET
   `id` = 14699,
   `precast_kit` = 124,
   `cast_kit` = 72,
@@ -550,8 +550,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14735 <- spell 66772
-DELETE FROM spellvisual WHERE id = 14735;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14735;
+INSERT INTO `spellvisual` SET
   `id` = 14735,
   `precast_kit` = 0,
   `cast_kit` = 13589,
@@ -586,8 +586,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14758 <- spell 69813
-DELETE FROM spellvisual WHERE id = 14758;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14758;
+INSERT INTO `spellvisual` SET
   `id` = 14758,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -622,8 +622,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14788 <- spell 69992
-DELETE FROM spellvisual WHERE id = 14788;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14788;
+INSERT INTO `spellvisual` SET
   `id` = 14788,
   `precast_kit` = 171,
   `cast_kit` = 172,
@@ -658,8 +658,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14796 <- spell 73994
-DELETE FROM spellvisual WHERE id = 14796;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14796;
+INSERT INTO `spellvisual` SET
   `id` = 14796,
   `precast_kit` = 0,
   `cast_kit` = 12904,
@@ -694,8 +694,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14839 <- spell 70226
-DELETE FROM spellvisual WHERE id = 14839;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14839;
+INSERT INTO `spellvisual` SET
   `id` = 14839,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -730,8 +730,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14841 <- spell 70236
-DELETE FROM spellvisual WHERE id = 14841;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14841;
+INSERT INTO `spellvisual` SET
   `id` = 14841,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -766,8 +766,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14842 <- spell 70250
-DELETE FROM spellvisual WHERE id = 14842;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14842;
+INSERT INTO `spellvisual` SET
   `id` = 14842,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -802,8 +802,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14846 <- spell 70262
-DELETE FROM spellvisual WHERE id = 14846;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14846;
+INSERT INTO `spellvisual` SET
   `id` = 14846,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -838,8 +838,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14851 <- spell 70256
-DELETE FROM spellvisual WHERE id = 14851;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14851;
+INSERT INTO `spellvisual` SET
   `id` = 14851,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -874,8 +874,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14885 <- spell 70478, 73599
-DELETE FROM spellvisual WHERE id = 14885;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14885;
+INSERT INTO `spellvisual` SET
   `id` = 14885,
   `precast_kit` = 13737,
   `cast_kit` = 13739,
@@ -910,8 +910,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14931 <- spell 68296
-DELETE FROM spellvisual WHERE id = 14931;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14931;
+INSERT INTO `spellvisual` SET
   `id` = 14931,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -946,8 +946,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 14943 <- spell 68231, 70686, 70687, 70688
-DELETE FROM spellvisual WHERE id = 14943;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 14943;
+INSERT INTO `spellvisual` SET
   `id` = 14943,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -982,8 +982,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15041 <- spell 71064
-DELETE FROM spellvisual WHERE id = 15041;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15041;
+INSERT INTO `spellvisual` SET
   `id` = 15041,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1018,8 +1018,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15042 <- spell 71065
-DELETE FROM spellvisual WHERE id = 15042;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15042;
+INSERT INTO `spellvisual` SET
   `id` = 15042,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1054,8 +1054,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15043 <- spell 71066
-DELETE FROM spellvisual WHERE id = 15043;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15043;
+INSERT INTO `spellvisual` SET
   `id` = 15043,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1090,8 +1090,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15069 <- spell 71240
-DELETE FROM spellvisual WHERE id = 15069;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15069;
+INSERT INTO `spellvisual` SET
   `id` = 15069,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1126,8 +1126,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15091 <- spell 71333
-DELETE FROM spellvisual WHERE id = 15091;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15091;
+INSERT INTO `spellvisual` SET
   `id` = 15091,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1162,8 +1162,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15092 <- spell 66727
-DELETE FROM spellvisual WHERE id = 15092;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15092;
+INSERT INTO `spellvisual` SET
   `id` = 15092,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1198,8 +1198,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15108 <- spell 71409
-DELETE FROM spellvisual WHERE id = 15108;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15108;
+INSERT INTO `spellvisual` SET
   `id` = 15108,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1234,8 +1234,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15117 <- spell 71423
-DELETE FROM spellvisual WHERE id = 15117;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15117;
+INSERT INTO `spellvisual` SET
   `id` = 15117,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1270,8 +1270,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15152 <- spell 71657
-DELETE FROM spellvisual WHERE id = 15152;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15152;
+INSERT INTO `spellvisual` SET
   `id` = 15152,
   `precast_kit` = 60,
   `cast_kit` = 0,
@@ -1306,8 +1306,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15153 <- spell 71659
-DELETE FROM spellvisual WHERE id = 15153;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15153;
+INSERT INTO `spellvisual` SET
   `id` = 15153,
   `precast_kit` = 0,
   `cast_kit` = 14540,
@@ -1342,8 +1342,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15154 <- spell 71660
-DELETE FROM spellvisual WHERE id = 15154;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15154;
+INSERT INTO `spellvisual` SET
   `id` = 15154,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1378,8 +1378,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15156 <- spell 71658
-DELETE FROM spellvisual WHERE id = 15156;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15156;
+INSERT INTO `spellvisual` SET
   `id` = 15156,
   `precast_kit` = 60,
   `cast_kit` = 0,
@@ -1414,8 +1414,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15159 <- spell 71663
-DELETE FROM spellvisual WHERE id = 15159;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15159;
+INSERT INTO `spellvisual` SET
   `id` = 15159,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1450,8 +1450,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15191 <- spell 71857
-DELETE FROM spellvisual WHERE id = 15191;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15191;
+INSERT INTO `spellvisual` SET
   `id` = 15191,
   `precast_kit` = 0,
   `cast_kit` = 9579,
@@ -1486,8 +1486,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15195 <- spell 71910
-DELETE FROM spellvisual WHERE id = 15195;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15195;
+INSERT INTO `spellvisual` SET
   `id` = 15195,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1522,8 +1522,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15198 <- spell 71914
-DELETE FROM spellvisual WHERE id = 15198;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15198;
+INSERT INTO `spellvisual` SET
   `id` = 15198,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1557,9 +1557,45 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_y` = 0,
   `missile_impact_offset_z` = 0;
 
+-- 15233 <- spell 72077
+DELETE FROM `spellvisual` WHERE id = 15233;
+INSERT INTO `spellvisual` SET
+  `id` = 15233,
+  `precast_kit` = 0,
+  `cast_kit` = 0,
+  `impact_kit` = 0,
+  `state_kit` = 14089,
+  `state_done_kit` = 0,
+  `channel_kit` = 0,
+  `has_missile` = 0,
+  `missile_model` = 0,
+  `missile_path_type` = 0,
+  `missile_dest_attachment` = 1,
+  `missile_sound` = 0,
+  `anim_event_sound_id` = 0,
+  `flags` = 0,
+  `caster_impact_kit` = 0,
+  `target_impact_kid` = 0,
+  `missile_attachment` = 4294967295,
+  `missile_follow_ground_height` = 0,
+  `missile_follow_drop_speed` = 300,
+  `missile_follow_approach` = 750,
+  `missile_follow_ground_flags` = 4,
+  `missile_motion` = 0,
+  `missile_targeting_kit` = 0,
+  `instant_area_kit` = 0,
+  `impact_area_kit` = 0,
+  `persistent_area_kit` = 0,
+  `missile_cast_offset_x` = 0,
+  `missile_cast_offset_y` = 0,
+  `missile_cast_offset_z` = 0,
+  `missile_impact_offset_x` = 0,
+  `missile_impact_offset_y` = 0,
+  `missile_impact_offset_z` = 0;
+
 -- 15241 <- spell 72055
-DELETE FROM spellvisual WHERE id = 15241;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15241;
+INSERT INTO `spellvisual` SET
   `id` = 15241,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1594,8 +1630,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15242 <- spell 72076
-DELETE FROM spellvisual WHERE id = 15242;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15242;
+INSERT INTO `spellvisual` SET
   `id` = 15242,
   `precast_kit` = 0,
   `cast_kit` = 8150,
@@ -1630,8 +1666,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15245 <- spell 72126
-DELETE FROM spellvisual WHERE id = 15245;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15245;
+INSERT INTO `spellvisual` SET
   `id` = 15245,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1666,8 +1702,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15305 <- spell 72381
-DELETE FROM spellvisual WHERE id = 15305;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15305;
+INSERT INTO `spellvisual` SET
   `id` = 15305,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1702,8 +1738,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15309 <- spell 72518
-DELETE FROM spellvisual WHERE id = 15309;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15309;
+INSERT INTO `spellvisual` SET
   `id` = 15309,
   `precast_kit` = 0,
   `cast_kit` = 181,
@@ -1738,8 +1774,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15311 <- spell 72522
-DELETE FROM spellvisual WHERE id = 15311;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15311;
+INSERT INTO `spellvisual` SET
   `id` = 15311,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1774,8 +1810,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15365 <- spell 72778
-DELETE FROM spellvisual WHERE id = 15365;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15365;
+INSERT INTO `spellvisual` SET
   `id` = 15365,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1810,8 +1846,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15372 <- spell 72885
-DELETE FROM spellvisual WHERE id = 15372;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15372;
+INSERT INTO `spellvisual` SET
   `id` = 15372,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1846,8 +1882,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15373 <- spell 72886
-DELETE FROM spellvisual WHERE id = 15373;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15373;
+INSERT INTO `spellvisual` SET
   `id` = 15373,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1882,8 +1918,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15380 <- spell 72889
-DELETE FROM spellvisual WHERE id = 15380;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15380;
+INSERT INTO `spellvisual` SET
   `id` = 15380,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -1918,8 +1954,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15388 <- spell 72935
-DELETE FROM spellvisual WHERE id = 15388;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15388;
+INSERT INTO `spellvisual` SET
   `id` = 15388,
   `precast_kit` = 345,
   `cast_kit` = 181,
@@ -1954,8 +1990,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15397 <- spell 72971, 74028
-DELETE FROM spellvisual WHERE id = 15397;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15397;
+INSERT INTO `spellvisual` SET
   `id` = 15397,
   `precast_kit` = 0,
   `cast_kit` = 836,
@@ -1990,8 +2026,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15413 <- spell 73066, 73477
-DELETE FROM spellvisual WHERE id = 15413;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15413;
+INSERT INTO `spellvisual` SET
   `id` = 15413,
   `precast_kit` = 7071,
   `cast_kit` = 17245,
@@ -2025,9 +2061,45 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_y` = 0,
   `missile_impact_offset_z` = 0;
 
+-- 15427 <- spell 73149
+DELETE FROM `spellvisual` WHERE id = 15427;
+INSERT INTO `spellvisual` SET
+  `id` = 15427,
+  `precast_kit` = 0,
+  `cast_kit` = 0,
+  `impact_kit` = 0,
+  `state_kit` = 14268,
+  `state_done_kit` = 0,
+  `channel_kit` = 0,
+  `has_missile` = 0,
+  `missile_model` = 0,
+  `missile_path_type` = 0,
+  `missile_dest_attachment` = 1,
+  `missile_sound` = 0,
+  `anim_event_sound_id` = 0,
+  `flags` = 0,
+  `caster_impact_kit` = 0,
+  `target_impact_kid` = 0,
+  `missile_attachment` = 4294967295,
+  `missile_follow_ground_height` = 0,
+  `missile_follow_drop_speed` = 300,
+  `missile_follow_approach` = 750,
+  `missile_follow_ground_flags` = 4,
+  `missile_motion` = 0,
+  `missile_targeting_kit` = 0,
+  `instant_area_kit` = 0,
+  `impact_area_kit` = 0,
+  `persistent_area_kit` = 0,
+  `missile_cast_offset_x` = 0,
+  `missile_cast_offset_y` = 0,
+  `missile_cast_offset_z` = 0,
+  `missile_impact_offset_x` = 0,
+  `missile_impact_offset_y` = 0,
+  `missile_impact_offset_z` = 0;
+
 -- 15463 <- spell 73417
-DELETE FROM spellvisual WHERE id = 15463;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15463;
+INSERT INTO `spellvisual` SET
   `id` = 15463,
   `precast_kit` = 171,
   `cast_kit` = 172,
@@ -2062,8 +2134,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15469 <- spell 73456
-DELETE FROM spellvisual WHERE id = 15469;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15469;
+INSERT INTO `spellvisual` SET
   `id` = 15469,
   `precast_kit` = 0,
   `cast_kit` = 14313,
@@ -2098,8 +2170,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15476 <- spell 73490
-DELETE FROM spellvisual WHERE id = 15476;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15476;
+INSERT INTO `spellvisual` SET
   `id` = 15476,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2134,8 +2206,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15478 <- spell 73493
-DELETE FROM spellvisual WHERE id = 15478;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15478;
+INSERT INTO `spellvisual` SET
   `id` = 15478,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2170,8 +2242,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15497 <- spell 73558
-DELETE FROM spellvisual WHERE id = 15497;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15497;
+INSERT INTO `spellvisual` SET
   `id` = 15497,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2206,8 +2278,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15509 <- spell 73583
-DELETE FROM spellvisual WHERE id = 15509;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15509;
+INSERT INTO `spellvisual` SET
   `id` = 15509,
   `precast_kit` = 0,
   `cast_kit` = 172,
@@ -2242,8 +2314,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15525 <- spell 73702
-DELETE FROM spellvisual WHERE id = 15525;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15525;
+INSERT INTO `spellvisual` SET
   `id` = 15525,
   `precast_kit` = 171,
   `cast_kit` = 172,
@@ -2278,8 +2350,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15528 <- spell 73723
-DELETE FROM spellvisual WHERE id = 15528;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15528;
+INSERT INTO `spellvisual` SET
   `id` = 15528,
   `precast_kit` = 217,
   `cast_kit` = 218,
@@ -2314,8 +2386,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15533 <- spell 73852
-DELETE FROM spellvisual WHERE id = 15533;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15533;
+INSERT INTO `spellvisual` SET
   `id` = 15533,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2350,8 +2422,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15550 <- spell 73926
-DELETE FROM spellvisual WHERE id = 15550;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15550;
+INSERT INTO `spellvisual` SET
   `id` = 15550,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2386,8 +2458,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15551 <- spell 73948
-DELETE FROM spellvisual WHERE id = 15551;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15551;
+INSERT INTO `spellvisual` SET
   `id` = 15551,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2422,8 +2494,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15557 <- spell 73998
-DELETE FROM spellvisual WHERE id = 15557;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15557;
+INSERT INTO `spellvisual` SET
   `id` = 15557,
   `precast_kit` = 0,
   `cast_kit` = 13146,
@@ -2458,8 +2530,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15558 <- spell 74003
-DELETE FROM spellvisual WHERE id = 15558;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15558;
+INSERT INTO `spellvisual` SET
   `id` = 15558,
   `precast_kit` = 14386,
   `cast_kit` = 218,
@@ -2494,8 +2566,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15559 <- spell 74005
-DELETE FROM spellvisual WHERE id = 15559;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15559;
+INSERT INTO `spellvisual` SET
   `id` = 15559,
   `precast_kit` = 0,
   `cast_kit` = 11750,
@@ -2530,8 +2602,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15560 <- spell 74006
-DELETE FROM spellvisual WHERE id = 15560;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15560;
+INSERT INTO `spellvisual` SET
   `id` = 15560,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2566,8 +2638,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15561 <- spell 74004
-DELETE FROM spellvisual WHERE id = 15561;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15561;
+INSERT INTO `spellvisual` SET
   `id` = 15561,
   `precast_kit` = 60,
   `cast_kit` = 14387,
@@ -2602,8 +2674,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15562 <- spell 74036
-DELETE FROM spellvisual WHERE id = 15562;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15562;
+INSERT INTO `spellvisual` SET
   `id` = 15562,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2638,8 +2710,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15564 <- spell 74038
-DELETE FROM spellvisual WHERE id = 15564;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15564;
+INSERT INTO `spellvisual` SET
   `id` = 15564,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2674,8 +2746,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15595 <- spell 74177
-DELETE FROM spellvisual WHERE id = 15595;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15595;
+INSERT INTO `spellvisual` SET
   `id` = 15595,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2710,8 +2782,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15642 <- spell 94955
-DELETE FROM spellvisual WHERE id = 15642;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15642;
+INSERT INTO `spellvisual` SET
   `id` = 15642,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2746,8 +2818,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15936 <- spell 75761
-DELETE FROM spellvisual WHERE id = 15936;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15936;
+INSERT INTO `spellvisual` SET
   `id` = 15936,
   `precast_kit` = 196,
   `cast_kit` = 202,
@@ -2782,8 +2854,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 15938 <- spell 75775
-DELETE FROM spellvisual WHERE id = 15938;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15938;
+INSERT INTO `spellvisual` SET
   `id` = 15938,
   `precast_kit` = 8004,
   `cast_kit` = 17327,
@@ -2818,8 +2890,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16098 <- spell 76356
-DELETE FROM spellvisual WHERE id = 16098;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16098;
+INSERT INTO `spellvisual` SET
   `id` = 16098,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2854,8 +2926,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16101 <- spell 76354
-DELETE FROM spellvisual WHERE id = 16101;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16101;
+INSERT INTO `spellvisual` SET
   `id` = 16101,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2890,8 +2962,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16111 <- spell 76371
-DELETE FROM spellvisual WHERE id = 16111;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16111;
+INSERT INTO `spellvisual` SET
   `id` = 16111,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2926,8 +2998,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16397 <- spell 77589
-DELETE FROM spellvisual WHERE id = 16397;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16397;
+INSERT INTO `spellvisual` SET
   `id` = 16397,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2962,8 +3034,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16776 <- spell 66146, 90316, 90317, 90318, 90814, 90816, 90818
-DELETE FROM spellvisual WHERE id = 16776;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16776;
+INSERT INTO `spellvisual` SET
   `id` = 16776,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -2998,8 +3070,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 16791 <- spell 79304
-DELETE FROM spellvisual WHERE id = 16791;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 16791;
+INSERT INTO `spellvisual` SET
   `id` = 16791,
   `precast_kit` = 0,
   `cast_kit` = 15671,
@@ -3034,8 +3106,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17009 <- spell 71917
-DELETE FROM spellvisual WHERE id = 17009;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17009;
+INSERT INTO `spellvisual` SET
   `id` = 17009,
   `precast_kit` = 0,
   `cast_kit` = 15873,
@@ -3070,8 +3142,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17188 <- spell 83142
-DELETE FROM spellvisual WHERE id = 17188;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17188;
+INSERT INTO `spellvisual` SET
   `id` = 17188,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3106,8 +3178,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17260 <- spell 68281
-DELETE FROM spellvisual WHERE id = 17260;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17260;
+INSERT INTO `spellvisual` SET
   `id` = 17260,
   `precast_kit` = 0,
   `cast_kit` = 16137,
@@ -3142,8 +3214,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17398 <- spell 66393
-DELETE FROM spellvisual WHERE id = 17398;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17398;
+INSERT INTO `spellvisual` SET
   `id` = 17398,
   `precast_kit` = 0,
   `cast_kit` = 16282,
@@ -3178,8 +3250,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17521 <- spell 66928
-DELETE FROM spellvisual WHERE id = 17521;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17521;
+INSERT INTO `spellvisual` SET
   `id` = 17521,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3214,8 +3286,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17522 <- spell 66927
-DELETE FROM spellvisual WHERE id = 17522;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17522;
+INSERT INTO `spellvisual` SET
   `id` = 17522,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3250,8 +3322,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17524 <- spell 66985
-DELETE FROM spellvisual WHERE id = 17524;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17524;
+INSERT INTO `spellvisual` SET
   `id` = 17524,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3286,8 +3358,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 17539 <- spell 66987
-DELETE FROM spellvisual WHERE id = 17539;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 17539;
+INSERT INTO `spellvisual` SET
   `id` = 17539,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3322,8 +3394,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 18167 <- spell 71170
-DELETE FROM spellvisual WHERE id = 18167;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 18167;
+INSERT INTO `spellvisual` SET
   `id` = 18167,
   `precast_kit` = 0,
   `cast_kit` = 17127,
@@ -3358,8 +3430,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 18677 <- spell 88223
-DELETE FROM spellvisual WHERE id = 18677;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 18677;
+INSERT INTO `spellvisual` SET
   `id` = 18677,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3394,8 +3466,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 18936 <- spell 89196
-DELETE FROM spellvisual WHERE id = 18936;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 18936;
+INSERT INTO `spellvisual` SET
   `id` = 18936,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3430,8 +3502,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 19114 <- spell 89842
-DELETE FROM spellvisual WHERE id = 19114;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 19114;
+INSERT INTO `spellvisual` SET
   `id` = 19114,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3466,8 +3538,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 19328 <- spell 89138
-DELETE FROM spellvisual WHERE id = 19328;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 19328;
+INSERT INTO `spellvisual` SET
   `id` = 19328,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3502,8 +3574,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 19346 <- spell 91603
-DELETE FROM spellvisual WHERE id = 19346;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 19346;
+INSERT INTO `spellvisual` SET
   `id` = 19346,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3538,8 +3610,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 19393 <- spell 69993
-DELETE FROM spellvisual WHERE id = 19393;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 19393;
+INSERT INTO `spellvisual` SET
   `id` = 19393,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3574,8 +3646,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 20129 <- spell 78607
-DELETE FROM spellvisual WHERE id = 20129;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 20129;
+INSERT INTO `spellvisual` SET
   `id` = 20129,
   `precast_kit` = 0,
   `cast_kit` = 19578,
@@ -3610,8 +3682,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 20268 <- spell 96840
-DELETE FROM spellvisual WHERE id = 20268;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 20268;
+INSERT INTO `spellvisual` SET
   `id` = 20268,
   `precast_kit` = 0,
   `cast_kit` = 0,
@@ -3646,8 +3718,8 @@ INSERT INTO spellvisual SET
   `missile_impact_offset_z` = 0;
 
 -- 20652 <- spell 98240
-DELETE FROM spellvisual WHERE id = 20652;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 20652;
+INSERT INTO `spellvisual` SET
   `id` = 20652,
   `precast_kit` = 0,
   `cast_kit` = 20175,

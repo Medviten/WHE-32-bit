@@ -20,10 +20,10 @@
 -- Hand-authored NEW icons keep using the 5815+ custom block; this file is only
 -- for verbatim Cata ports at Cata ids.
 
-DELETE FROM spellicon WHERE id IN (3962, 3969, 4012, 4013, 4014, 4015, 4026,
+DELETE FROM `spellicon` WHERE id IN (3962, 3969, 4012, 4013, 4014, 4015, 4026,
   4028, 4029, 4032, 4136, 4137, 4138, 4183, 4186, 4187, 4209, 4210, 4213,
   4275, 4281);
-INSERT INTO spellicon (`id`, `name`) VALUES
+INSERT INTO `spellicon` (`id`, `name`) VALUES
   (3962, 'Interface\\Icons\\Trade_Engineering'),
   (3969, 'Interface\\Icons\\Trade_Engineering'),
   (4012, 'Interface\\Icons\\inv_misc_ear_nightelf_02'),

@@ -11,8 +11,8 @@
 --           HIDE_PASSENGER 0x200 + PASSENGER_NOT_SELECTABLE 0x100000 (you ARE the shark).
 --   flags_b 0x1A000C00 -> 0: Cata noise, no valid 3.3.5a VehicleSeatFlagsB bits.
 -- Cata anim/attachment/camera columns kept verbatim.
-DELETE FROM vehicleseat WHERE id = 7527;
-INSERT INTO vehicleseat SET
+DELETE FROM `vehicleseat` WHERE id = 7527;
+INSERT INTO `vehicleseat` SET
   `id` = 7527,
   `flags` = -502265216,
   `attachment_id` = 1,

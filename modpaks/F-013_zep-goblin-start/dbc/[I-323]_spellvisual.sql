@@ -38,8 +38,8 @@
 -- 0.35 — area size 1.0, min/max allowed scale 0.01/100). Note min/max are NOT 0/0:
 -- that clamp renders the model invisible (reference_item_cast_spellvisual_kit).
 -- Custom id 90101 follows 90100; 90xxx is the hand-authored block the emitter skips.
-DELETE FROM spellvisualeffectname WHERE id = 90101;
-INSERT INTO spellvisualeffectname SET
+DELETE FROM `spellvisualeffectname` WHERE id = 90101;
+INSERT INTO `spellvisualeffectname` SET
   `id` = 90101,
   `name` = 'Missile: EasterEgg05 (I-323 Deadly Egg Barrage)',
   `file_name` = 'world\\generic\\passivedoodads\\eastereggs\\easteregg05.mdx',
@@ -54,8 +54,8 @@ INSERT INTO spellvisualeffectname SET
 -- 19510 is the impact kit, 19509 the impact-AREA kit. Cata-only shake id 3 on 19509 was
 -- dropped to 0 by the emitter (no 3.3.5a equivalent). char_proc_1-4 stay 4294967295 (-1).
 
-DELETE FROM spellvisualkit WHERE id = 19509;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19509;
+INSERT INTO `spellvisualkit` SET
   `id` = 19509,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -95,8 +95,8 @@ INSERT INTO spellvisualkit SET
   `char_param_3_4` = 0,
   `flags` = 0;
 
-DELETE FROM spellvisualkit WHERE id = 19510;
-INSERT INTO spellvisualkit SET
+DELETE FROM `spellvisualkit` WHERE id = 19510;
+INSERT INTO `spellvisualkit` SET
   `id` = 19510,
   `start_anim_id` = 4294967295,
   `anim_id` = 4294967295,
@@ -144,8 +144,8 @@ INSERT INTO spellvisualkit SET
 -- `RocketMultipleMissilesLoop.wav` — same clip, different container, the .wav/.ogg stem
 -- trap that would otherwise have zeroed a perfectly stock sound.
 
-DELETE FROM spellvisual WHERE id = 15152;
-INSERT INTO spellvisual SET
+DELETE FROM `spellvisual` WHERE id = 15152;
+INSERT INTO `spellvisual` SET
   `id` = 15152,
   `precast_kit` = 60,
   `cast_kit` = 0,

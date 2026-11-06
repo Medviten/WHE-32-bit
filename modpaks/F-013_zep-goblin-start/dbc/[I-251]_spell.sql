@@ -13,8 +13,8 @@
 -- parried/dodged/blocked by the vehicle. ID 70027 free in stock 3.3.5a spell
 -- table. Ships in PATCH-Z; server side needs a worldserver restart only (no
 -- core rebuild).
-DELETE FROM spell WHERE id = 70027;
-INSERT INTO spell SET
+DELETE FROM `spell` WHERE id = 70027;
+INSERT INTO `spell` SET
   id = 70027,
   spell_name_enus = 'Sharkblade',
   spell_desc_enus = 'Shoot a sawblade at the target causing $s1 damage.',

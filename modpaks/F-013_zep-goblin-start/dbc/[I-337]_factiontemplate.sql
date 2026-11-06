@@ -20,30 +20,30 @@
 -- (e.g. template 2 = the Orc player template is flags 72 / group 5 / friend 4 / enemy 10,
 -- byte-identical in shape to 2204 "PLAYER, Goblin").
 
-DELETE FROM factiontemplate WHERE id IN (2159, 2160, 2200, 2204, 2227, 2228, 2231, 2238);
+DELETE FROM `factiontemplate` WHERE id IN (@BilgewaterCivilianFactionTemplate, @BilgewaterCivilian2FactionTemplate, @PredatorFactionTemplate, @BilgewaterFighterFactionTemplate, @OomlotFactionTemplate, @TownInABoxFactionTemplate, @OrgrimmarAlliedFactionTemplate);
 
 -- Bilgewater civilians (103 templates) — Horde-side, no enemies of their own.
-INSERT INTO factiontemplate SET
-  id = 2159,
-  faction = 1133,
+INSERT INTO `factiontemplate` SET
+  id = @BilgewaterCivilianFactionTemplate,
+  faction = @GoblinFaction,
   flags = 0,
   faction_group = 4,
   friend_group = 4,
   enemy_group = 2,
-  friends_1 = 1133;
+  friends_1 = @GoblinFaction;
 
-INSERT INTO factiontemplate SET
-  id = 2160,
-  faction = 1133,
+INSERT INTO `factiontemplate` SET
+  id = @BilgewaterCivilian2FactionTemplate,
+  faction = @GoblinFaction,
   flags = 0,
   faction_group = 4,
   friend_group = 4,
   enemy_group = 2,
-  friends_1 = 1133;
+  friends_1 = @GoblinFaction;
 
 -- Wildlife predator/prey pair.
-INSERT INTO factiontemplate SET
-  id = 2200,
+INSERT INTO `factiontemplate` SET
+  id = @PredatorFactionTemplate,
   faction = 973,
   flags = 65,
   faction_group = 0,
@@ -53,51 +53,42 @@ INSERT INTO factiontemplate SET
   enemies_2 = 28,
   friends_1 = 973;
 
--- "PLAYER, Goblin" — player-controlled vehicles and props.
-INSERT INTO factiontemplate SET
-  id = 2204,
-  faction = 1152,
-  flags = 72,
-  faction_group = 5,
-  friend_group = 4,
-  enemy_group = 10;
-
 -- Bilgewater goblins that fight the Oomlot (1157).
-INSERT INTO factiontemplate SET
-  id = 2227,
-  faction = 1133,
+INSERT INTO `factiontemplate` SET
+  id = @BilgewaterFighterFactionTemplate,
+  faction = @GoblinFaction,
   flags = 0,
   faction_group = 4,
   friend_group = 4,
   enemy_group = 2,
-  enemies_1 = 1157,
-  friends_1 = 1133;
+  enemies_1 = @PygmyFaction,
+  friends_1 = @GoblinFaction;
 
-INSERT INTO factiontemplate SET
-  id = 2231,
-  faction = 1133,
+INSERT INTO `factiontemplate` SET
+  id = @TownInABoxFactionTemplate,
+  faction = @GoblinFaction,
   flags = 129,
   faction_group = 4,
   friend_group = 4,
   enemy_group = 2,
-  enemies_1 = 1157,
-  friends_1 = 1133;
+  enemies_1 = @PygmyFaction,
+  friends_1 = @GoblinFaction;
 
 -- Oomlot tribe.
-INSERT INTO factiontemplate SET
-  id = 2228,
-  faction = 1157,
+INSERT INTO `factiontemplate` SET
+  id = @OomlotFactionTemplate,
+  faction = @PygmyFaction,
   flags = 16,
   faction_group = 8,
   friend_group = 0,
   enemy_group = 1,
-  enemies_1 = 1133,
-  friends_1 = 1157;
+  enemies_1 = @GoblinFaction,
+  friends_1 = @PygmyFaction;
 
 -- Orgrimmar-aligned, hostile to Monster (14).
-INSERT INTO factiontemplate SET
-  id = 2238,
-  faction = 76,
+INSERT INTO `factiontemplate` SET
+  id = @OrgrimmarAlliedFactionTemplate,
+  faction = @OrcFaction,
   flags = 32,
   faction_group = 4,
   friend_group = 4,

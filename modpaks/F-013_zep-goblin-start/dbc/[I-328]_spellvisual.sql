@@ -17,7 +17,7 @@
 -- 3.3.5a counterpart, and 0 (straight line) is the safe default.
 --
 -- AUTO-owned row -> one consolidated UPDATE.
-UPDATE spellvisual SET
+UPDATE `spellvisual` SET
   `missile_model` = 90101,
   `missile_sound` = 14336,
   `impact_area_kit` = 11162,

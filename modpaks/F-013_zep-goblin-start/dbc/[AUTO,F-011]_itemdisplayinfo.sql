@@ -9,8 +9,8 @@
 
 -- F-011 itemdisplayinfo (one file per table; rows carry final state)
 
-DELETE FROM itemdisplayinfo WHERE id = 60001;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60001;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60001,
   `left_model` = '',
   `right_model` = '',
@@ -37,8 +37,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60002;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60002;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60002,
   `left_model` = '',
   `right_model` = '',
@@ -65,8 +65,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60084;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60084;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60084,
   `left_model` = '',
   `right_model` = '',
@@ -93,8 +93,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60085;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60085;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60085,
   `left_model` = '',
   `right_model` = '',
@@ -121,8 +121,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60105;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60105;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60105,
   `left_model` = '',
   `right_model` = '',
@@ -149,8 +149,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60107;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60107;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60107,
   `left_model` = '',
   `right_model` = '',
@@ -177,8 +177,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60108;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60108;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60108,
   `left_model` = '',
   `right_model` = '',
@@ -205,8 +205,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60114;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60114;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60114,
   `left_model` = '',
   `right_model` = '',
@@ -233,8 +233,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60115;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60115;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60115,
   `left_model` = '',
   `right_model` = '',
@@ -261,8 +261,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60116;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60116;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60116,
   `left_model` = '',
   `right_model` = '',
@@ -289,8 +289,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60117;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60117;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60117,
   `left_model` = '',
   `right_model` = '',
@@ -317,8 +317,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60118;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60118;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60118,
   `left_model` = '',
   `right_model` = '',
@@ -345,8 +345,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60119;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60119;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60119,
   `left_model` = '',
   `right_model` = '',
@@ -373,8 +373,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60120;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60120;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60120,
   `left_model` = '',
   `right_model` = '',
@@ -401,8 +401,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60121;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60121;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60121,
   `left_model` = '',
   `right_model` = '',
@@ -429,8 +429,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60122;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60122;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60122,
   `left_model` = '',
   `right_model` = '',
@@ -457,8 +457,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60123;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60123;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60123,
   `left_model` = '',
   `right_model` = '',
@@ -485,8 +485,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60124;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60124;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60124,
   `left_model` = '',
   `right_model` = '',
@@ -513,8 +513,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60125;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60125;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60125,
   `left_model` = '',
   `right_model` = '',
@@ -541,8 +541,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60131;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60131;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60131,
   `left_model` = '',
   `right_model` = '',
@@ -569,8 +569,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60133;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60133;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60133,
   `left_model` = '',
   `right_model` = '',
@@ -597,8 +597,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60134;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60134;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60134,
   `left_model` = '',
   `right_model` = '',
@@ -625,8 +625,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60141;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60141;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60141,
   `left_model` = '',
   `right_model` = '',
@@ -653,8 +653,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60142;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60142;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60142,
   `left_model` = '',
   `right_model` = '',
@@ -681,8 +681,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60233;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60233;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60233,
   `left_model` = '',
   `right_model` = '',
@@ -709,8 +709,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60287;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60287;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60287,
   `left_model` = '',
   `right_model` = '',
@@ -737,8 +737,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60290;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60290;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60290,
   `left_model` = '',
   `right_model` = '',
@@ -765,8 +765,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60310;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60310;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60310,
   `left_model` = '',
   `right_model` = '',
@@ -793,8 +793,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60311;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60311;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60311,
   `left_model` = '',
   `right_model` = '',
@@ -821,8 +821,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60312;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60312;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60312,
   `left_model` = '',
   `right_model` = '',
@@ -849,8 +849,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60313;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60313;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60313,
   `left_model` = '',
   `right_model` = '',
@@ -877,8 +877,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60335;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60335;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60335,
   `left_model` = '',
   `right_model` = '',
@@ -905,8 +905,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60341;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60341;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60341,
   `left_model` = '',
   `right_model` = '',
@@ -933,8 +933,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60342;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60342;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60342,
   `left_model` = '',
   `right_model` = '',
@@ -961,8 +961,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60366;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60366;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60366,
   `left_model` = '',
   `right_model` = '',
@@ -989,8 +989,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60367;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60367;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60367,
   `left_model` = '',
   `right_model` = '',
@@ -1017,8 +1017,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60371;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60371;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60371,
   `left_model` = '',
   `right_model` = '',
@@ -1045,8 +1045,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60372;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60372;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60372,
   `left_model` = '',
   `right_model` = '',
@@ -1073,8 +1073,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60373;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60373;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60373,
   `left_model` = '',
   `right_model` = '',
@@ -1101,8 +1101,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60374;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60374;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60374,
   `left_model` = '',
   `right_model` = '',
@@ -1129,8 +1129,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60375;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60375;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60375,
   `left_model` = '',
   `right_model` = '',
@@ -1157,8 +1157,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60377;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60377;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60377,
   `left_model` = '',
   `right_model` = '',
@@ -1185,8 +1185,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60378;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60378;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60378,
   `left_model` = '',
   `right_model` = '',
@@ -1213,8 +1213,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60379;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60379;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60379,
   `left_model` = '',
   `right_model` = '',
@@ -1241,8 +1241,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60381;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60381;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60381,
   `left_model` = '',
   `right_model` = '',
@@ -1269,8 +1269,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60382;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60382;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60382,
   `left_model` = '',
   `right_model` = '',
@@ -1297,8 +1297,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60387;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60387;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60387,
   `left_model` = '',
   `right_model` = '',
@@ -1325,8 +1325,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60389;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60389;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60389,
   `left_model` = '',
   `right_model` = '',
@@ -1353,8 +1353,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60390;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60390;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60390,
   `left_model` = '',
   `right_model` = '',
@@ -1381,8 +1381,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60391;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60391;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60391,
   `left_model` = '',
   `right_model` = '',
@@ -1409,8 +1409,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60412;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60412;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60412,
   `left_model` = '',
   `right_model` = '',
@@ -1437,8 +1437,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60413;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60413;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60413,
   `left_model` = '',
   `right_model` = '',
@@ -1465,8 +1465,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 60414;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 60414;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 60414,
   `left_model` = '',
   `right_model` = '',
@@ -1493,8 +1493,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61038;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61038;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61038,
   `left_model` = '',
   `right_model` = '',
@@ -1521,8 +1521,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61048;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61048;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61048,
   `left_model` = '',
   `right_model` = '',
@@ -1549,8 +1549,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61049;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61049;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61049,
   `left_model` = '',
   `right_model` = '',
@@ -1577,8 +1577,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61050;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61050;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61050,
   `left_model` = '',
   `right_model` = '',
@@ -1605,8 +1605,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61051;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61051;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61051,
   `left_model` = '',
   `right_model` = '',
@@ -1633,8 +1633,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61057;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61057;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61057,
   `left_model` = '',
   `right_model` = '',
@@ -1661,8 +1661,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61059;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61059;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61059,
   `left_model` = '',
   `right_model` = '',
@@ -1689,8 +1689,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61060;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61060;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61060,
   `left_model` = '',
   `right_model` = '',
@@ -1717,8 +1717,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61061;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61061;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61061,
   `left_model` = '',
   `right_model` = '',
@@ -1745,8 +1745,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61065;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61065;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61065,
   `left_model` = '',
   `right_model` = '',
@@ -1773,8 +1773,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61066;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61066;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61066,
   `left_model` = '',
   `right_model` = '',
@@ -1801,8 +1801,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61067;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61067;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61067,
   `left_model` = '',
   `right_model` = '',
@@ -1829,8 +1829,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61068;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61068;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61068,
   `left_model` = '',
   `right_model` = '',
@@ -1857,8 +1857,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61069;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61069;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61069,
   `left_model` = '',
   `right_model` = '',
@@ -1885,8 +1885,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61083;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61083;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61083,
   `left_model` = 'helm_cloth_b_05.mdx',
   `right_model` = '',
@@ -1913,8 +1913,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61084;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61084;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61084,
   `left_model` = '',
   `right_model` = '',
@@ -1941,8 +1941,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61086;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61086;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61086,
   `left_model` = '',
   `right_model` = '',
@@ -1969,8 +1969,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61152;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61152;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61152,
   `left_model` = '',
   `right_model` = '',
@@ -1997,8 +1997,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61153;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61153;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61153,
   `left_model` = '',
   `right_model` = '',
@@ -2025,8 +2025,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61154;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61154;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61154,
   `left_model` = '',
   `right_model` = '',
@@ -2053,8 +2053,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61155;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61155;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61155,
   `left_model` = '',
   `right_model` = '',
@@ -2081,8 +2081,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61156;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61156;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61156,
   `left_model` = '',
   `right_model` = '',
@@ -2109,8 +2109,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 61158;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 61158;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 61158,
   `left_model` = '',
   `right_model` = '',
@@ -2137,8 +2137,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62229;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62229;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62229,
   `left_model` = '',
   `right_model` = '',
@@ -2165,8 +2165,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62230;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62230;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62230,
   `left_model` = '',
   `right_model` = '',
@@ -2193,8 +2193,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62231;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62231;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62231,
   `left_model` = '',
   `right_model` = '',
@@ -2221,8 +2221,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62489;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62489;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62489,
   `left_model` = '',
   `right_model` = '',
@@ -2249,8 +2249,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62490;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62490;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62490,
   `left_model` = '',
   `right_model` = '',
@@ -2277,8 +2277,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62491;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62491;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62491,
   `left_model` = '',
   `right_model` = '',
@@ -2305,8 +2305,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62492;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62492;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62492,
   `left_model` = '',
   `right_model` = '',
@@ -2333,8 +2333,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62493;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62493;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62493,
   `left_model` = '',
   `right_model` = '',
@@ -2361,8 +2361,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62494;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62494;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62494,
   `left_model` = '',
   `right_model` = '',
@@ -2389,8 +2389,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62495;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62495;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62495,
   `left_model` = '',
   `right_model` = '',
@@ -2417,8 +2417,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62532;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62532;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62532,
   `left_model` = '',
   `right_model` = '',
@@ -2445,8 +2445,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62570;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62570;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62570,
   `left_model` = '',
   `right_model` = '',
@@ -2473,8 +2473,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62572;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62572;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62572,
   `left_model` = '',
   `right_model` = '',
@@ -2501,8 +2501,7 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62573;
-INSERT INTO itemdisplayinfo SET
+INSERT IGNORE INTO `itemdisplayinfo` SET
   `id` = 62573,
   `left_model` = '',
   `right_model` = '',
@@ -2529,8 +2528,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62582;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62582;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62582,
   `left_model` = '',
   `right_model` = '',
@@ -2557,8 +2556,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62583;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62583;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62583,
   `left_model` = '',
   `right_model` = '',
@@ -2585,8 +2584,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62584;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62584;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62584,
   `left_model` = '',
   `right_model` = '',
@@ -2613,8 +2612,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62585;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62585;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62585,
   `left_model` = '',
   `right_model` = '',
@@ -2641,8 +2640,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62586;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62586;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62586,
   `left_model` = '',
   `right_model` = '',
@@ -2669,8 +2668,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62587;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62587;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62587,
   `left_model` = '',
   `right_model` = '',
@@ -2697,8 +2696,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62594;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62594;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62594,
   `left_model` = '',
   `right_model` = '',
@@ -2725,8 +2724,7 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62614;
-INSERT INTO itemdisplayinfo SET
+INSERT IGNORE INTO `itemdisplayinfo` SET
   `id` = 62614,
   `left_model` = '',
   `right_model` = '',
@@ -2753,8 +2751,7 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62617;
-INSERT INTO itemdisplayinfo SET
+INSERT IGNORE INTO `itemdisplayinfo` SET
   `id` = 62617,
   `left_model` = '',
   `right_model` = '',
@@ -2781,8 +2778,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62628;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62628;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62628,
   `left_model` = '',
   `right_model` = '',
@@ -2809,8 +2806,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62635;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62635;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62635,
   `left_model` = '',
   `right_model` = '',
@@ -2837,8 +2834,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62657;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62657;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62657,
   `left_model` = '',
   `right_model` = '',
@@ -2865,8 +2862,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62658;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62658;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62658,
   `left_model` = '',
   `right_model` = '',
@@ -2893,8 +2890,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62659;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62659;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62659,
   `left_model` = '',
   `right_model` = '',
@@ -2921,8 +2918,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62660;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62660;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62660,
   `left_model` = '',
   `right_model` = '',
@@ -2949,8 +2946,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62661;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62661;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62661,
   `left_model` = '',
   `right_model` = '',
@@ -2977,8 +2974,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62662;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62662;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62662,
   `left_model` = '',
   `right_model` = '',
@@ -3005,8 +3002,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62663;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62663;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62663,
   `left_model` = '',
   `right_model` = '',
@@ -3033,8 +3030,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62664;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62664;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62664,
   `left_model` = '',
   `right_model` = '',
@@ -3061,8 +3058,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62665;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62665;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62665,
   `left_model` = '',
   `right_model` = '',
@@ -3089,8 +3086,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62666;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62666;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62666,
   `left_model` = '',
   `right_model` = '',
@@ -3117,8 +3114,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62667;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62667;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62667,
   `left_model` = '',
   `right_model` = '',
@@ -3145,8 +3142,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62668;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62668;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62668,
   `left_model` = '',
   `right_model` = '',
@@ -3173,8 +3170,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62669;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62669;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62669,
   `left_model` = '',
   `right_model` = '',
@@ -3201,8 +3198,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62670;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62670;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62670,
   `left_model` = '',
   `right_model` = '',
@@ -3229,8 +3226,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62671;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62671;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62671,
   `left_model` = '',
   `right_model` = '',
@@ -3257,8 +3254,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62672;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62672;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62672,
   `left_model` = '',
   `right_model` = '',
@@ -3285,8 +3282,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62673;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62673;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62673,
   `left_model` = '',
   `right_model` = '',
@@ -3313,8 +3310,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62674;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62674;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62674,
   `left_model` = '',
   `right_model` = '',
@@ -3341,8 +3338,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62675;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62675;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62675,
   `left_model` = '',
   `right_model` = '',
@@ -3369,8 +3366,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62676;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62676;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62676,
   `left_model` = '',
   `right_model` = '',
@@ -3397,8 +3394,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62677;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62677;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62677,
   `left_model` = '',
   `right_model` = '',
@@ -3425,8 +3422,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62678;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62678;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62678,
   `left_model` = '',
   `right_model` = '',
@@ -3453,8 +3450,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62679;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62679;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62679,
   `left_model` = '',
   `right_model` = '',
@@ -3481,8 +3478,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62680;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62680;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62680,
   `left_model` = '',
   `right_model` = '',
@@ -3509,8 +3506,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62681;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62681;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62681,
   `left_model` = '',
   `right_model` = '',
@@ -3537,8 +3534,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62682;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62682;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62682,
   `left_model` = '',
   `right_model` = '',
@@ -3565,8 +3562,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62683;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62683;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62683,
   `left_model` = '',
   `right_model` = '',
@@ -3593,8 +3590,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62684;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62684;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62684,
   `left_model` = '',
   `right_model` = '',
@@ -3621,8 +3618,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62685;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62685;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62685,
   `left_model` = '',
   `right_model` = '',
@@ -3649,8 +3646,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62686;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62686;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62686,
   `left_model` = '',
   `right_model` = '',
@@ -3677,8 +3674,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62687;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62687;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62687,
   `left_model` = '',
   `right_model` = '',
@@ -3705,8 +3702,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62688;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62688;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62688,
   `left_model` = '',
   `right_model` = '',
@@ -3733,8 +3730,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62689;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62689;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62689,
   `left_model` = '',
   `right_model` = '',
@@ -3761,8 +3758,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62691;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62691;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62691,
   `left_model` = '',
   `right_model` = '',
@@ -3789,8 +3786,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62692;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62692;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62692,
   `left_model` = '',
   `right_model` = '',
@@ -3817,8 +3814,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 354;
 
-DELETE FROM itemdisplayinfo WHERE id = 62693;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62693;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62693,
   `left_model` = '',
   `right_model` = '',
@@ -3845,8 +3842,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62694;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62694;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62694,
   `left_model` = '',
   `right_model` = '',
@@ -3873,8 +3870,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62695;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62695;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62695,
   `left_model` = '',
   `right_model` = '',
@@ -3901,8 +3898,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62696;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62696;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62696,
   `left_model` = '',
   `right_model` = '',
@@ -3929,8 +3926,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62697;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62697;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62697,
   `left_model` = '',
   `right_model` = '',
@@ -3957,8 +3954,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62728;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62728;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62728,
   `left_model` = '',
   `right_model` = '',
@@ -3985,8 +3982,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62734;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62734;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62734,
   `left_model` = '',
   `right_model` = '',
@@ -4013,8 +4010,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62939;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62939;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62939,
   `left_model` = '',
   `right_model` = '',
@@ -4041,8 +4038,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 62940;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 62940;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 62940,
   `left_model` = '',
   `right_model` = '',
@@ -4069,8 +4066,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63067;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63067;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63067,
   `left_model` = '',
   `right_model` = '',
@@ -4097,8 +4094,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63068;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63068;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63068,
   `left_model` = '',
   `right_model` = '',
@@ -4125,8 +4122,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63069;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63069;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63069,
   `left_model` = '',
   `right_model` = '',
@@ -4153,8 +4150,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63070;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63070;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63070,
   `left_model` = '',
   `right_model` = '',
@@ -4181,8 +4178,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63071;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63071;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63071,
   `left_model` = '',
   `right_model` = '',
@@ -4209,8 +4206,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63072;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63072;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63072,
   `left_model` = '',
   `right_model` = '',
@@ -4237,8 +4234,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63073;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63073;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63073,
   `left_model` = '',
   `right_model` = '',
@@ -4265,8 +4262,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63074;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63074;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63074,
   `left_model` = '',
   `right_model` = '',
@@ -4293,8 +4290,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63075;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63075;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63075,
   `left_model` = '',
   `right_model` = '',
@@ -4321,8 +4318,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63076;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63076;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63076,
   `left_model` = '',
   `right_model` = '',
@@ -4349,8 +4346,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63113;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63113;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63113,
   `left_model` = '',
   `right_model` = '',
@@ -4377,8 +4374,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63114;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63114;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63114,
   `left_model` = '',
   `right_model` = '',
@@ -4405,8 +4402,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63142;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63142;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63142,
   `left_model` = '',
   `right_model` = '',
@@ -4433,8 +4430,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63143;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63143;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63143,
   `left_model` = '',
   `right_model` = '',
@@ -4461,8 +4458,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63287;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63287;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63287,
   `left_model` = '',
   `right_model` = '',
@@ -4489,8 +4486,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 63429;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 63429;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 63429,
   `left_model` = '',
   `right_model` = '',
@@ -4517,8 +4514,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 64022;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 64022;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 64022,
   `left_model` = '',
   `right_model` = '',
@@ -4545,8 +4542,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65497;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65497;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65497,
   `left_model` = '',
   `right_model` = '',
@@ -4573,8 +4570,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65506;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65506;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65506,
   `left_model` = '',
   `right_model` = '',
@@ -4601,8 +4598,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65541;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65541;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65541,
   `left_model` = '',
   `right_model` = '',
@@ -4629,8 +4626,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65542;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65542;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65542,
   `left_model` = '',
   `right_model` = '',
@@ -4657,8 +4654,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65543;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65543;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65543,
   `left_model` = '',
   `right_model` = '',
@@ -4685,8 +4682,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65544;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65544;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65544,
   `left_model` = '',
   `right_model` = '',
@@ -4713,8 +4710,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65545;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65545;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65545,
   `left_model` = '',
   `right_model` = '',
@@ -4741,8 +4738,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 65809;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 65809;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 65809,
   `left_model` = '',
   `right_model` = '',
@@ -4769,8 +4766,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66266;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66266;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66266,
   `left_model` = '',
   `right_model` = '',
@@ -4797,8 +4794,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66267;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66267;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66267,
   `left_model` = '',
   `right_model` = '',
@@ -4825,8 +4822,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66268;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66268;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66268,
   `left_model` = '',
   `right_model` = '',
@@ -4853,8 +4850,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66271;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66271;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66271,
   `left_model` = '',
   `right_model` = '',
@@ -4881,8 +4878,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66272;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66272;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66272,
   `left_model` = '',
   `right_model` = '',
@@ -4909,8 +4906,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66467;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66467;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66467,
   `left_model` = '',
   `right_model` = '',
@@ -4937,8 +4934,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66592;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66592;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66592,
   `left_model` = 'helm_sunglasses_a_01.mdx',
   `right_model` = '',
@@ -4965,8 +4962,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66661;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66661;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66661,
   `left_model` = '',
   `right_model` = '',
@@ -4993,8 +4990,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66662;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66662;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66662,
   `left_model` = '',
   `right_model` = '',
@@ -5021,8 +5018,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66663;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66663;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66663,
   `left_model` = '',
   `right_model` = '',
@@ -5049,8 +5046,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66664;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66664;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66664,
   `left_model` = '',
   `right_model` = '',
@@ -5077,8 +5074,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66665;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66665;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66665,
   `left_model` = '',
   `right_model` = '',
@@ -5105,8 +5102,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 66990;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 66990;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 66990,
   `left_model` = 'lshoulder_plate_common_b_01.mdx',
   `right_model` = 'rshoulder_plate_common_b_01.mdx',
@@ -5133,8 +5130,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 67386;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 67386;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 67386,
   `left_model` = '',
   `right_model` = '',
@@ -5161,8 +5158,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 67599;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 67599;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 67599,
   `left_model` = '',
   `right_model` = '',
@@ -5189,8 +5186,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 67600;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 67600;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 67600,
   `left_model` = '',
   `right_model` = '',
@@ -5217,8 +5214,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 67601;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 67601;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 67601,
   `left_model` = '',
   `right_model` = '',
@@ -5245,8 +5242,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 68659;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 68659;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 68659,
   `left_model` = '',
   `right_model` = '',
@@ -5273,8 +5270,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 69854;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 69854;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 69854,
   `left_model` = '',
   `right_model` = '',
@@ -5301,8 +5298,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 69855;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 69855;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 69855,
   `left_model` = '',
   `right_model` = '',
@@ -5329,8 +5326,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 70971;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 70971;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 70971,
   `left_model` = '',
   `right_model` = '',
@@ -5357,8 +5354,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 71290;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 71290;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 71290,
   `left_model` = '',
   `right_model` = '',
@@ -5385,8 +5382,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 73498;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 73498;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 73498,
   `left_model` = '',
   `right_model` = '',
@@ -5413,8 +5410,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74747;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74747;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74747,
   `left_model` = '',
   `right_model` = '',
@@ -5441,8 +5438,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74748;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74748;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74748,
   `left_model` = '',
   `right_model` = '',
@@ -5469,8 +5466,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74757;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74757;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74757,
   `left_model` = '',
   `right_model` = '',
@@ -5497,8 +5494,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74825;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74825;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74825,
   `left_model` = '',
   `right_model` = '',
@@ -5525,8 +5522,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74826;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74826;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74826,
   `left_model` = '',
   `right_model` = '',
@@ -5553,8 +5550,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74827;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74827;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74827,
   `left_model` = '',
   `right_model` = '',
@@ -5581,8 +5578,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74828;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74828;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74828,
   `left_model` = '',
   `right_model` = '',
@@ -5609,8 +5606,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 74829;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 74829;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 74829,
   `left_model` = '',
   `right_model` = '',
@@ -5637,134 +5634,134 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 200100;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200100;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200100,
   `icon_1` = 'inv_misc_pelt_13',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200101;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200101;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200101,
   `icon_1` = 'achievement_character_human_male',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200102;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200102;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200102,
   `icon_1` = 'achievement_character_nightelf_female',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200103;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200103;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200103,
   `icon_1` = 'ability_racial_viciousness',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200104;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200104;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200104,
   `icon_1` = 'spell_nature_moonkey',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200105;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200105;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200105,
   `icon_1` = 'inv_mace_121',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200106;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200106;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200106,
   `icon_1` = 'inv_misc_clothscrap_02',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200107;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200107;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200107,
   `icon_1` = 'inv_drink_waterskin_04',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200108;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200108;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200108,
   `icon_1` = 'achievement_reputation_tuskarr',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200109;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200109;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200109,
   `icon_1` = 'inv_helmet_176',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200110;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200110;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200110,
   `icon_1` = 'achievement_character_orc_female',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200111;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200111;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200111,
   `icon_1` = 'inv_misc_potionsetc',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200112;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200112;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200112,
   `icon_1` = 'inv_potionc_3',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200113;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200113;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200113,
   `icon_1` = 'inv_potione_1',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200114;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200114;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200114,
   `icon_1` = 'inv_potione_5',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200115;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200115;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200115,
   `icon_1` = 'inv_potione_2',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200116;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200116;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200116,
   `icon_1` = 'inv_potione_6',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200117;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200117;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200117,
   `icon_1` = 'inv_potiond_3',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200118;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200118;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200118,
   `icon_1` = 'inv_potiond_4',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200119;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200119;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200119,
   `icon_1` = 'inv_potiond_1',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 200120;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 200120;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 200120,
   `icon_1` = 'inv_misc_fortunecookie',
   `icon_2` = '';
 
-DELETE FROM itemdisplayinfo WHERE id = 201000;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201000;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201000,
   `left_model` = '',
   `right_model` = '',
@@ -5791,8 +5788,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201001;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201001;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201001,
   `left_model` = '',
   `right_model` = '',
@@ -5819,8 +5816,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201002;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201002;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201002,
   `left_model` = '',
   `right_model` = '',
@@ -5847,8 +5844,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201003;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201003;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201003,
   `left_model` = '',
   `right_model` = '',
@@ -5875,8 +5872,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201004;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201004;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201004,
   `left_model` = '',
   `right_model` = '',
@@ -5903,8 +5900,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201005;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201005;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201005,
   `left_model` = '',
   `right_model` = '',
@@ -5931,8 +5928,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201006;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201006;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201006,
   `left_model` = '',
   `right_model` = '',
@@ -5959,8 +5956,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201007;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201007;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201007,
   `left_model` = '',
   `right_model` = '',
@@ -5987,8 +5984,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201008;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201008;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201008,
   `left_model` = '',
   `right_model` = '',
@@ -6015,8 +6012,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201009;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201009;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201009,
   `left_model` = '',
   `right_model` = '',
@@ -6043,8 +6040,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201010;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201010;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201010,
   `left_model` = '',
   `right_model` = '',
@@ -6071,8 +6068,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201011;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201011;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201011,
   `left_model` = '',
   `right_model` = '',
@@ -6099,8 +6096,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201012;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201012;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201012,
   `left_model` = '',
   `right_model` = '',
@@ -6127,8 +6124,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201013;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201013;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201013,
   `left_model` = '',
   `right_model` = '',
@@ -6155,8 +6152,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201014;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201014;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201014,
   `left_model` = '',
   `right_model` = '',
@@ -6183,8 +6180,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201015;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201015;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201015,
   `left_model` = '',
   `right_model` = '',
@@ -6211,8 +6208,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201016;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201016;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201016,
   `left_model` = '',
   `right_model` = '',
@@ -6239,8 +6236,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201017;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201017;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201017,
   `left_model` = '',
   `right_model` = '',
@@ -6267,8 +6264,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201018;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201018;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201018,
   `left_model` = '',
   `right_model` = '',
@@ -6295,8 +6292,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201019;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201019;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201019,
   `left_model` = '',
   `right_model` = '',
@@ -6323,8 +6320,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201020;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201020;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201020,
   `left_model` = '',
   `right_model` = '',
@@ -6351,8 +6348,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201021;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201021;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201021,
   `left_model` = '',
   `right_model` = '',
@@ -6379,8 +6376,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201022;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201022;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201022,
   `left_model` = '',
   `right_model` = '',
@@ -6407,8 +6404,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201023;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201023;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201023,
   `left_model` = '',
   `right_model` = '',
@@ -6435,8 +6432,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201024;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201024;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201024,
   `left_model` = '',
   `right_model` = '',
@@ -6463,8 +6460,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201025;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201025;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201025,
   `left_model` = '',
   `right_model` = '',
@@ -6491,8 +6488,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201026;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201026;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201026,
   `left_model` = '',
   `right_model` = '',
@@ -6519,8 +6516,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201027;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201027;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201027,
   `left_model` = '',
   `right_model` = '',
@@ -6547,8 +6544,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201028;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201028;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201028,
   `left_model` = '',
   `right_model` = '',
@@ -6575,8 +6572,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201029;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201029;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201029,
   `left_model` = '',
   `right_model` = '',
@@ -6603,8 +6600,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201030;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201030;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201030,
   `left_model` = '',
   `right_model` = '',
@@ -6631,8 +6628,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201031;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201031;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201031,
   `left_model` = '',
   `right_model` = '',
@@ -6659,8 +6656,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201032;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201032;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201032,
   `left_model` = '',
   `right_model` = '',
@@ -6687,8 +6684,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201033;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201033;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201033,
   `left_model` = '',
   `right_model` = '',
@@ -6715,8 +6712,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201034;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201034;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201034,
   `left_model` = '',
   `right_model` = '',
@@ -6743,8 +6740,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201035;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201035;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201035,
   `left_model` = '',
   `right_model` = '',
@@ -6771,8 +6768,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201036;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201036;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201036,
   `left_model` = '',
   `right_model` = '',
@@ -6799,8 +6796,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201037;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201037;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201037,
   `left_model` = '',
   `right_model` = '',
@@ -6827,8 +6824,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201038;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201038;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201038,
   `left_model` = '',
   `right_model` = '',
@@ -6855,8 +6852,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201039;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201039;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201039,
   `left_model` = '',
   `right_model` = '',
@@ -6883,8 +6880,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201040;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201040;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201040,
   `left_model` = '',
   `right_model` = '',
@@ -6911,8 +6908,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201041;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201041;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201041,
   `left_model` = '',
   `right_model` = '',
@@ -6939,8 +6936,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201042;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201042;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201042,
   `left_model` = '',
   `right_model` = '',
@@ -6967,8 +6964,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201043;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201043;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201043,
   `left_model` = '',
   `right_model` = '',
@@ -6995,8 +6992,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201044;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201044;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201044,
   `left_model` = '',
   `right_model` = '',
@@ -7023,8 +7020,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201045;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201045;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201045,
   `left_model` = '',
   `right_model` = '',
@@ -7051,8 +7048,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201046;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201046;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201046,
   `left_model` = '',
   `right_model` = '',
@@ -7079,8 +7076,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201047;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201047;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201047,
   `left_model` = '',
   `right_model` = '',
@@ -7107,8 +7104,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201048;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201048;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201048,
   `left_model` = '',
   `right_model` = '',
@@ -7135,8 +7132,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201049;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201049;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201049,
   `left_model` = '',
   `right_model` = '',
@@ -7163,8 +7160,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201050;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201050;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201050,
   `left_model` = '',
   `right_model` = '',
@@ -7191,8 +7188,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201051;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201051;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201051,
   `left_model` = '',
   `right_model` = '',
@@ -7219,8 +7216,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201052;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201052;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201052,
   `left_model` = '',
   `right_model` = '',
@@ -7247,8 +7244,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201053;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201053;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201053,
   `left_model` = '',
   `right_model` = '',
@@ -7275,8 +7272,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201054;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201054;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201054,
   `left_model` = '',
   `right_model` = '',
@@ -7303,8 +7300,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201055;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201055;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201055,
   `left_model` = '',
   `right_model` = '',
@@ -7331,8 +7328,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201056;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201056;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201056,
   `left_model` = '',
   `right_model` = '',
@@ -7359,8 +7356,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201057;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201057;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201057,
   `left_model` = '',
   `right_model` = '',
@@ -7387,8 +7384,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201058;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201058;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201058,
   `left_model` = '',
   `right_model` = '',
@@ -7415,8 +7412,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201059;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201059;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201059,
   `left_model` = '',
   `right_model` = '',
@@ -7443,8 +7440,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201060;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201060;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201060,
   `left_model` = '',
   `right_model` = '',
@@ -7471,8 +7468,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201061;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201061;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201061,
   `left_model` = '',
   `right_model` = '',
@@ -7499,8 +7496,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201062;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201062;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201062,
   `left_model` = '',
   `right_model` = '',
@@ -7527,8 +7524,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201063;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201063;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201063,
   `left_model` = '',
   `right_model` = '',
@@ -7555,8 +7552,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201064;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201064;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201064,
   `left_model` = '',
   `right_model` = '',
@@ -7583,8 +7580,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201065;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201065;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201065,
   `left_model` = '',
   `right_model` = '',
@@ -7611,8 +7608,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201066;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201066;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201066,
   `left_model` = '',
   `right_model` = '',
@@ -7639,8 +7636,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201067;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201067;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201067,
   `left_model` = '',
   `right_model` = '',
@@ -7667,8 +7664,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201068;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201068;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201068,
   `left_model` = '',
   `right_model` = '',
@@ -7695,8 +7692,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201069;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201069;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201069,
   `left_model` = '',
   `right_model` = '',
@@ -7723,8 +7720,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201070;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201070;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201070,
   `left_model` = '',
   `right_model` = '',
@@ -7751,8 +7748,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201071;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201071;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201071,
   `left_model` = '',
   `right_model` = '',
@@ -7779,8 +7776,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201072;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201072;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201072,
   `left_model` = '',
   `right_model` = '',
@@ -7807,8 +7804,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201073;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201073;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201073,
   `left_model` = '',
   `right_model` = '',
@@ -7835,8 +7832,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201074;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201074;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201074,
   `left_model` = '',
   `right_model` = '',
@@ -7863,8 +7860,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201075;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201075;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201075,
   `left_model` = '',
   `right_model` = '',
@@ -7891,8 +7888,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201076;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201076;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201076,
   `left_model` = '',
   `right_model` = '',
@@ -7919,8 +7916,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201077;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201077;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201077,
   `left_model` = '',
   `right_model` = '',
@@ -7947,8 +7944,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201078;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201078;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201078,
   `left_model` = '',
   `right_model` = '',
@@ -7975,8 +7972,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201079;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201079;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201079,
   `left_model` = '',
   `right_model` = '',
@@ -8003,8 +8000,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201080;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201080;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201080,
   `left_model` = '',
   `right_model` = '',
@@ -8031,8 +8028,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201081;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201081;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201081,
   `left_model` = '',
   `right_model` = '',
@@ -8059,8 +8056,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201082;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201082;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201082,
   `left_model` = '',
   `right_model` = '',
@@ -8087,8 +8084,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201083;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201083;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201083,
   `left_model` = '',
   `right_model` = '',
@@ -8115,8 +8112,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201084;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201084;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201084,
   `left_model` = '',
   `right_model` = '',
@@ -8143,8 +8140,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201085;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201085;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201085,
   `left_model` = '',
   `right_model` = '',
@@ -8171,8 +8168,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201086;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201086;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201086,
   `left_model` = '',
   `right_model` = '',
@@ -8199,8 +8196,8 @@ INSERT INTO itemdisplayinfo SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
-DELETE FROM itemdisplayinfo WHERE id = 201087;
-INSERT INTO itemdisplayinfo SET
+DELETE FROM `itemdisplayinfo` WHERE id = 201087;
+INSERT INTO `itemdisplayinfo` SET
   `id` = 201087,
   `left_model` = '',
   `right_model` = '',
