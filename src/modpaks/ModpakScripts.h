@@ -27,28 +27,42 @@ namespace WHE
         return false;
     }
 
+    // True if a DBC race mask holds the race. The stock core's masks are uint32 (races 1-32), the 256-bit core's are
+    // its RaceMask class (races 1-255), so this compiles against either.
+    inline bool MaskHasRace(uint32 mask, uint32 race)
+    {
+        return race && race <= 32 && ((mask >> (race - 1)) & 1);
+    }
+
+    template <typename Mask>
+    inline auto MaskHasRace(Mask const& mask, uint32 race) -> decltype(mask.HasRace(race))
+    {
+        return mask.HasRace(race);
+    }
+
     // True if a SkillLineAbility row gives the spell to the player's race, i.e. the race the modpak meant it for.
     inline bool IsSpellForPlayerRace(Player const* player, uint32 spellId)
     {
         SkillLineAbilityMapBounds bounds = sSpellMgr->GetSkillLineAbilityMapBounds(spellId);
+        uint8 race = player->getRace(true);
 
         for (auto itr = bounds.first; itr != bounds.second; ++itr)
-            if (itr->second->RaceMask & player->getRaceMask())
+            if (MaskHasRace(itr->second->RaceMask, race))
                 return true;
 
         return false;
     }
 
     // The race whose SkillLineAbility row gives the spell (its racial skill line in the race's modpak), 0 if none, for
-    // scripts that check one race (WHE-256-bit's RacialRace.h, with 32-bit race masks).
+    // scripts that check one race (like WHE-256-bit's RacialRace.h).
     inline uint8 RaceTeaching(uint32 spellId)
     {
         SkillLineAbilityMapBounds bounds = sSpellMgr->GetSkillLineAbilityMapBounds(spellId);
 
         for (auto itr = bounds.first; itr != bounds.second; ++itr)
-            for (uint8 race = 1; race <= 32; ++race)
-                if (itr->second->RaceMask & (1u << (race - 1)))
-                    return race;
+            for (uint32 race = 1; race <= 255; ++race)
+                if (MaskHasRace(itr->second->RaceMask, race))
+                    return uint8(race);
 
         return 0;
     }
