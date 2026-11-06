@@ -232,6 +232,34 @@ else
 fi
 
 ###############################################################################
+# Sync the built md5translate.trs down to the client
+###############################################################################
+
+# build-dbc.sh only writes md5translate.trs when ORIGINAL_TRS is set and a
+# modpak changes the minimap table, and removes it otherwise. A client copy
+# from an earlier build is then left alone, so say so instead of silently
+# keeping it.
+if [[ -n "${LOCAL_MINIMAP_DIR:-}" && -n "${REMOTE_CSV_DIR:-}" ]]; then
+    echo
+    if ssh -o ControlPath="$CONTROL_PATH" "$SSH_HOST" \
+        "test -f '$REMOTE_CSV_DIR/md5translate.trs'"
+    then
+        echo "Syncing md5translate.trs to client..."
+        mkdir -p -- "$LOCAL_MINIMAP_DIR"
+        rsync -avz --progress \
+            -e "ssh -o ControlPath=$CONTROL_PATH" \
+            "$SSH_HOST:$REMOTE_CSV_DIR/md5translate.trs" \
+            "$LOCAL_MINIMAP_DIR/"
+    else
+        echo "No md5translate.trs was built (see the build output above)."
+        if [[ -f "$LOCAL_MINIMAP_DIR/md5translate.trs" ]]; then
+            echo "WARNING: $LOCAL_MINIMAP_DIR/md5translate.trs is from an earlier build." >&2
+            echo "         Delete it if no modpak changes the minimap any more." >&2
+        fi
+    fi
+fi
+
+###############################################################################
 # Clean up the remote export directory
 ###############################################################################
 

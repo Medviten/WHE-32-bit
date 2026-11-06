@@ -28,6 +28,13 @@ REMOTE_CSV_DIR="/path/to/server/data/dbc"
 # Where your game client reads DBCs from, on this machine.
 LOCAL_DBFILES_CLIENT="/mnt/c/Games/WoW/Data/patch-A.MPQ/DBFilesClient"
 
+# Where your game client reads minimap textures from, on this machine. The
+# md5translate.trs that build-dbc.sh writes (MINIMAP_TRS, in REMOTE_CSV_DIR by
+# default) is copied here. Use the patch that loads after every other patch
+# with an md5translate.trs (e.g. Open Azeroth's), since the built file already
+# contains their rows. Leave it empty/unset to skip it.
+LOCAL_MINIMAP_DIR="/mnt/c/Games/WoW/Data/patch-A.MPQ/Textures/Minimap"
+
 # Optional: push your local working copy (modpaks/, integration/,
 # config.sql, the manifest, etc.) to the server before every build, so
 # you don't need to commit/push/pull just to test an SQL edit. Leave

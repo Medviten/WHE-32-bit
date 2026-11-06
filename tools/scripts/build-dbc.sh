@@ -130,6 +130,20 @@ SKIN_COLOR_RACES_CSV="${SKIN_COLOR_RACES_CSV:-$SERVER_DBC/ShapeshiftSkinColorRac
 # 1-31, so a race above that would silently get a wrong or empty mask.
 MAX_RACE_ID="${MAX_RACE_ID:-31}"
 
+# The client's stock Textures\Minimap\md5translate.trs, which maps minimap tile
+# names to texture files. md5translate isn't a DBC, but it's built like one:
+# this file is loaded into the DBC database's md5translate table, the modpaks'
+# dbc/ SQL changes the table, and the result is written to MINIMAP_TRS.
+# Leave it unset to skip that: without the stock rows the written file would
+# hide every stock minimap tile.
+ORIGINAL_TRS="${ORIGINAL_TRS:-}"
+
+# Where the built md5translate.trs goes. It's only written when a modpak
+# changes md5translate, since it replaces the one in every earlier client
+# patch (e.g. Open Azeroth's). deploy-dbc.sh copies it to the client's
+# Textures\Minimap.
+MINIMAP_TRS="${MINIMAP_TRS:-$SERVER_DBC/md5translate.trs}"
+
 # Optional: apply extra per-modpak SQL to additional databases (e.g. your
 # worldserver DB), using the same single-connection + config.sql approach
 # as the DBC build. EXTRA_SQL_DATABASES and EXTRA_SQL_PATTERNS are
@@ -656,6 +670,58 @@ SQL
     apply_sql_file_list "$db" "$db" "$VARIABLES_SNAPSHOT" "${target_files[@]}"
 }
 
+# Creates the DBC database's md5translate table, which modpaks change from
+# their dbc/ SQL like a DBC table, and fills it with ORIGINAL_TRS if set.
+#
+# A .trs file is CRLF text: "dir: <section>" lines, each followed by
+# "<src>\t<dst>" lines. The client keeps the last line for a src, so rows are
+# loaded in file order with REPLACE (src is the key, case-insensitively, as
+# the client compares it). NO_BACKSLASH_ESCAPES keeps the backslashes in the
+# paths literal, so only quotes need escaping.
+load_md5translate() {
+    mysql_cmd "$DBC_DATABASE" <<'SQL'
+CREATE TABLE IF NOT EXISTS `md5translate` (
+    `src` VARCHAR(150) NOT NULL,
+    `dst` VARCHAR(100) NOT NULL,
+    `dir` VARCHAR(150) NOT NULL DEFAULT '',
+    PRIMARY KEY (`src`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+SQL
+
+    [[ -n "$ORIGINAL_TRS" ]] || return 0
+
+    echo "  Loading stock md5translate from $ORIGINAL_TRS..."
+    {
+        echo "SET SESSION sql_mode = CONCAT(@@sql_mode, ',NO_BACKSLASH_ESCAPES');"
+        tr -d '\r' < "$ORIGINAL_TRS" | awk -F'\t' -v sq="'" '
+            function q(s) { gsub(sq, sq sq, s); return sq s sq }
+            /^dir: / { dir = substr($0, 6); next }
+            NF >= 2 {
+                if (n % 500 == 0) {
+                    if (n) print ";"
+                    print "REPLACE INTO `md5translate` (`src`, `dst`, `dir`) VALUES"
+                } else {
+                    print ","
+                }
+                printf "(%s, %s, %s)", q($1), q($2), q(dir)
+                n++
+            }
+            END { if (n) print ";" }'
+    } | mysql_cmd --default-character-set=utf8mb4 "$DBC_DATABASE"
+}
+
+# Writes the md5translate table to MINIMAP_TRS as a .trs file, sorted by
+# section and then src so that rebuilds give the same file.
+export_md5translate() {
+    mysql_cmd --default-character-set=utf8mb4 -N -B --raw "$DBC_DATABASE" \
+        -e "SELECT \`dir\`, \`src\`, \`dst\` FROM \`md5translate\` ORDER BY \`dir\`, BINARY \`dir\`, \`src\`" \
+        | awk -F'\t' '
+            BEGIN { ORS = "\r\n" }
+            NR == 1 || $1 != dir { dir = $1; print "dir: " dir }
+            { print $2 "\t" $3 }' \
+        > "$MINIMAP_TRS"
+}
+
 ###############################################################################
 # Sanity checks
 ###############################################################################
@@ -677,6 +743,9 @@ if [[ "$SKIP_DBC_BUILD" != true ]]; then
 
     [[ -d "$SERVER_DBC" ]] \
         || { echo "ERROR: SERVER_DBC does not exist: $SERVER_DBC" >&2; exit 1; }
+
+    [[ -z "$ORIGINAL_TRS" || -f "$ORIGINAL_TRS" ]] \
+        || { echo "ERROR: ORIGINAL_TRS does not exist: $ORIGINAL_TRS" >&2; exit 1; }
 
     command -v rsync >/dev/null \
         || { echo "ERROR: rsync command not found." >&2; exit 1; }
@@ -750,6 +819,10 @@ SQL
     echo "  Using dump: $DUMP_FILE"
 
     mysql_cmd "$DBC_DATABASE" < "$DUMP_FILE"
+
+    echo
+    echo "Creating md5translate table..."
+    load_md5translate
 fi
 
 ###############################################################################
@@ -871,6 +944,26 @@ echo "Applying DBC SQL files..."
 # individual files no longer need to share a live session with each
 # other -- only the one-time snapshot computation does.
 apply_sql_file_list "dbc" "$DBC_DATABASE" "$VARIABLES_SNAPSHOT" "${SQL_FILES[@]}"
+
+###############################################################################
+# Export md5translate.trs
+###############################################################################
+
+# Only when a modpak changed the table: the built file replaces the one in
+# every earlier client patch, so writing an unchanged stock copy would undo
+# e.g. Open Azeroth's minimaps. An old file is removed instead, so that
+# deploy-dbc.sh doesn't hand out a stale one.
+echo
+if [[ -n "$ORIGINAL_TRS" ]] && grep -qx 'md5translate' "$AFFECTED_TABLES_FILE"; then
+    echo "Exporting md5translate to $MINIMAP_TRS..."
+    export_md5translate
+elif [[ -z "$ORIGINAL_TRS" ]]; then
+    echo "Skipping md5translate.trs: ORIGINAL_TRS is not set."
+    rm -f -- "$MINIMAP_TRS"
+else
+    echo "Skipping md5translate.trs: no modpak changes md5translate."
+    rm -f -- "$MINIMAP_TRS"
+fi
 
 ###############################################################################
 # Export affected DBCs

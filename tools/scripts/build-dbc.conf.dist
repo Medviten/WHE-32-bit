@@ -40,3 +40,10 @@ DBC_BASELINE="/path/to/dbc-baseline.sql"
 
 # build-dbc.sh stops if the manifest assigns race IDs above this.
 #MAX_RACE_ID=31
+
+# The client's stock Textures\Minimap\md5translate.trs (extract it from the
+# client's MPQs). When set, the md5translate rows of the modpaks' dbc/ SQL are
+# added to it and written to MINIMAP_TRS, by default md5translate.trs in
+# SERVER_DBC, for the client's Textures\Minimap. Leave it unset to skip that.
+#ORIGINAL_TRS="/path/to/stock/md5translate.trs"
+#MINIMAP_TRS="/path/to/server/data/dbc/md5translate.trs"
