@@ -23,7 +23,9 @@ its master, 4933d45). List it after every race modpak in the manifest.
 - `patches/individual-progression/tbc-races.patch`: custom races that start in the Draenei or Blood Elf zones (on
   Outland's map, e.g. Naga, Nightborne, Eredar) count as TBC races, like Draenei and Blood Elves: the
   `TbcRacesUnlockProgression` and `tbcRacesStartingProgression` settings apply to them, and they can enter their
-  start zones before TBC progression. Apply it from the mod-individual-progression folder with `git apply`
+  start zones before TBC progression. It adds `IndividualProgression.CustomTbcRaces` to individualProgression.conf
+  (default 1; 0 keeps Individual Progression's own behaviour, Draenei and Blood Elves only). Apply it from the
+  mod-individual-progression folder with `git apply`
 - `patches/individual-progression/naxx40-submerge-visual.patch`: `naxx40_spells.sql` deletes every script on Submerge
   Visual (28819), including AzerothCore's `spell_gen_submerge_visual`; it now deletes only its own. Apply it the same
   way, before the module's SQL runs. On a database where that SQL already ran, add the row back once:
