@@ -121,6 +121,7 @@ F-026_custom-race-support # required for any custom race to function correctly
 #F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended; keep after F-002, which re-adds the Blood Elf and Draenei starts on map 530 for its move scripts to relocate)
 #F-013_zep-goblin-start # Off by default (Kezan and the Lost Isles; requires F-010 and F-023, a core patch + recompile and client assets, see its readme; keep after F-002, whose extra classes it moves to Kezan too)
 #F-101_zep-custom-icons # Off by default (Zeppelin-Craft's custom item and spell icons, for items and spells that use them; needs the icons from WHE-common)
+#F-102_zep-lost-isles-terrain # Off by default (the Lost Isles' phase terrain; requires F-013 and F-010, a core patch + recompile, a client that draws terrain swaps, client assets and server maps, see its readme; keep after F-013)
 #F-087_undead_paladin # Off by default (playable Undead paladins with Forsaken paladin mounts; keep after F-026 and F-002)
 #F-003_mod-faction-free # Off by default (core patch in patches/core)
 #F-088_mod-two-names # Off by default (hooks for the separate mod-two-names module; core patch in patches/core, client patch in patches/client)

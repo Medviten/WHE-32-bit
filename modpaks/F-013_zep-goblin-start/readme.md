@@ -40,7 +40,7 @@ The zpak refers to rows it doesn't have, because Zeppelin's generator drops what
 It also moves the SmartAI positions, SmartAI teleports and quest POIs that Zeppelin left on Cataclysm's map 648 to Kalimdor, and drops or clears what still refers to things neither the zpak nor stock has (see the top of the script).
 
 ### Known Issues
-- No terrain changes between phases: the town and the burning island need `zep-lost-isles-terrain`, core patch 0055 and a client change, none of which are ported. The server keeps using the base island
+- The town and the burning island change the terrain only with F-102_zep-lost-isles-terrain; without it the server and the client keep the base island
 - `FacelessOneAquatic.m2` expects three external animations (sequences 60, 74 and 84) that Zeppelin-Craft's patches don't include either, so those won't play
 - Only tested as SQL so far, on the default modpaks plus F-010: not compiled and not played. Off-by-default modpaks' SQL wasn't tried with it, but their core patches combine with this one
 - Other than the Goblin starts, the only existing rows it changes are 25 stock class quests, which Goblins lose because they get their own versions, and display 26556, whose zero bounding radius and combat reach it fixes. That also affects the stock aircraft sharing the display

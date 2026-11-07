@@ -15,6 +15,6 @@ The icons are in [WHE-common](https://github.com/Medviten/WHE-common), as `patch
 The SQL is the zpak's `dbc/` as it is, except that Zeppelin-Craft's two UPDATEs of stock displays (6098 gets spell visual 228, and 59309 an icon name that is a texture) are left out: they aren't icons.
 
 ### Known Issues
-- The macro icon picker only lists icons whose names start with Ability_ or Spell_ (and INV_ for equipment), as in stock, so most of these can't be picked for a macro. Zeppelin-Craft replaces Blizzard_MacroUI with a list made from its SpellIcon.dbc, which isn't ported
+- The macro icon picker only lists icons whose names start with Ability_ or Spell_ (and INV_ for equipment), as in stock, so most of these can't be picked for a macro. With `SET macroSpellIcons "1"` in `Config.wtf`, this project's client (or Saty's wowdecomp with `patches/client/macro-spell-icons.patch`) also lists every SpellIcon.dbc icon. Zeppelin-Craft's own Blizzard_MacroUI replacement isn't ported
 - `rom_myrma_man_spear`, which one ItemDisplayInfo row names, isn't in Zeppelin-Craft's patches either
 - Seven SpellIcon rows are also in F-023_mod-playable-goblin, with the same icons
