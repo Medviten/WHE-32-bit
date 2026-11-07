@@ -77,6 +77,8 @@ GlueAmbienceTracks["ALLIANCEEARTHEN"] = "GlueScreenDwarfGnome";
 GlueAmbienceTracks["HORDEEARTHEN"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["ALLIANCEHARANIR"] = "GlueScreenNightElf";
 GlueAmbienceTracks["HORDEHARANIR"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["ALLIANCESKYBORNE"] = "GlueScreenHuman";
+GlueAmbienceTracks["HORDESKYBORNE"] = "GlueScreenBloodElf";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -489,6 +491,7 @@ GlueBackgroundFallback = {
 	["FURBOLG"] = "NightElf",
 	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
 	["ALLIANCEHARANIR"] = "NightElf", ["HORDEHARANIR"] = "Orc",
+	["ALLIANCESKYBORNE"] = "Human", ["HORDESKYBORNE"] = "BloodElf",
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the
