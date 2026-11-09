@@ -18,6 +18,8 @@ Zeppelin-Craft doesn't keep its models and textures in git, so these come from i
 
 New Goblin characters play the intro cinematic on their first login, so the client needs `Cameras\FlyByGoblin.m2`. The server also needs it, as `Cameras/FlyByGoblin.m2` in its data directory, to load the area around the camera. Older clients crash without the file, while clients with the camera guard skip the cinematic.
 
+Leaving Kezan plays the goblin cinematic, `Interface\Cinematics\Goblin_1024.avi` (from Zeppelin-Craft's PATCH-X; `dbc/[F-013]_goblin_cinematic.sql` points movie 22 at it). The player lands on the Lost Isles lying down and Doc Zapnozzle's revive scene starts when the client reports the cinematic finished, so a client without the file leaves the player stuck on the beach, unless it is this project's client, which reports a movie it can't play as finished.
+
 Kezan is drawn on Open Azeroth's Kalimdor map but can't be clicked there, and the west half of the Lost Isles opens Durotar or Azshara, because OA's `Interface\WorldMap\Kalimdor.zmp` (the grid of which zone is under the cursor) has no Kezan cells and its Lost Isles cells are off to the east. WHE-common's copy fixes both; `tools/models/kalimdor_zmp.py` in WHE-256-bit makes it from OA's patch.
 
 The Kaja'mite Cavern minimap needs the `md5translate.trs` that build-dbc.sh writes when `ORIGINAL_TRS` is set (see the main readme), plus its four tiles, `Textures\Minimap\lostisles\md_pygmycave1_000_0?_0?.blp`.
