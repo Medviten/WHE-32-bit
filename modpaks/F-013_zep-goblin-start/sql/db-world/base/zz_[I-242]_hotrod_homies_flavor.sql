@@ -92,7 +92,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
   (34890, 0, 3, 4, 54, 0, 100, 0, 0, 0, 0, 0, 28, 49415, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Izzy rider - On Summon - Drop quest invisibility (driver just lost the detect)'),
   (34890, 0, 4, 5, 61, 0, 100, 0, 0, 0, 0, 0, 28, 62165, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Izzy rider - Linked - Drop the spotlight beam (it belongs on the corner)'),
   (34890, 0, 5, 6, 61, 0, 100, 0, 0, 0, 0, 0, 18, 33554432, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Izzy rider - Linked - Not selectable (nobody can Grab Passenger a rider)'),
-  (34890, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 11, 46598, 2, 0, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Izzy rider - Linked - Ride the Hot Rod it was summoned on'),
+  (34890, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 218, 46598, 2, 2, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Izzy rider - Linked - Ride the Hot Rod it was summoned on'),
 
   (34892, 0, 0, 1, 8, 0, 100, 0, 61178, 0, 0, 0, 33, 34892, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Ace - On Spellhit Grab Passenger - Kill credit to driver (invoker vehicle -> charmer)'),
   (34892, 0, 1, 2, 61, 0, 100, 0, 0, 0, 0, 0, 12, 34892, 3, 1800000, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Ace - Linked - Summon the rider copy onto the Hot Rod'),
@@ -100,7 +100,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
   (34892, 0, 3, 4, 54, 0, 100, 0, 0, 0, 0, 0, 28, 49414, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ace rider - On Summon - Drop quest invisibility (driver just lost the detect)'),
   (34892, 0, 4, 5, 61, 0, 100, 0, 0, 0, 0, 0, 28, 62165, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ace rider - Linked - Drop the spotlight beam (it belongs on the corner)'),
   (34892, 0, 5, 6, 61, 0, 100, 0, 0, 0, 0, 0, 18, 33554432, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Ace rider - Linked - Not selectable (nobody can Grab Passenger a rider)'),
-  (34892, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 11, 46598, 2, 0, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Ace rider - Linked - Ride the Hot Rod it was summoned on'),
+  (34892, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 218, 46598, 2, 4, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Ace rider - Linked - Ride the Hot Rod it was summoned on'),
 
   (34954, 0, 0, 1, 8, 0, 100, 0, 61178, 0, 0, 0, 33, 34954, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Gobber - On Spellhit Grab Passenger - Kill credit to driver (invoker vehicle -> charmer)'),
   (34954, 0, 1, 2, 61, 0, 100, 0, 0, 0, 0, 0, 12, 34954, 3, 1800000, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Gobber - Linked - Summon the rider copy onto the Hot Rod'),
@@ -108,7 +108,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
   (34954, 0, 3, 4, 54, 0, 100, 0, 0, 0, 0, 0, 28, 60921, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gobber rider - On Summon - Drop quest invisibility (driver just lost the detect)'),
   (34954, 0, 4, 5, 61, 0, 100, 0, 0, 0, 0, 0, 28, 62165, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gobber rider - Linked - Drop the spotlight beam (it belongs on the corner)'),
   (34954, 0, 5, 6, 61, 0, 100, 0, 0, 0, 0, 0, 18, 33554432, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Gobber rider - Linked - Not selectable (nobody can Grab Passenger a rider)'),
-  (34954, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 11, 46598, 2, 0, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Gobber rider - Linked - Ride the Hot Rod it was summoned on');
+  (34954, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 218, 46598, 2, 3, 0, 0, 0, 19, 34840, 15, 0, 0, 0, 0, 0, 0, 'Gobber rider - Linked - Ride the Hot Rod it was summoned on');
 
 -- ---- reset the pickup markers when the quest is (re)accepted ----
 -- The marker auras are permanent and saved, so an abandon + retake would otherwise
@@ -121,3 +121,10 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
   (34874, 0, 20, 21, 19, 0, 100, 0, 14071, 0, 0, 0, 28, 900901, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'I-242 Megs - On Accept 14071 - Clear the Izzy pickup marker'),
   (34874, 0, 21, 22, 61, 0, 100, 0, 0, 0, 0, 0, 28, 900902, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'I-242 Megs - Linked - Clear the Gobber pickup marker'),
   (34874, 0, 22, 0, 61, 0, 100, 0, 0, 0, 0, 0, 28, 900903, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'I-242 Megs - Linked - Clear the Ace pickup marker');
+
+-- F-013 (zep_goblin_port.py): one pickup per homie and a fixed seat each, see hot_rod_homies()
+DELETE FROM `conditions` WHERE SourceTypeOrReferenceId = 22 AND SourceGroup = 1 AND SourceEntry IN (34890, 34954, 34892) AND SourceId = 0;
+INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
+  (22, 1, 34890, 0, 0, 1, 0, 900901, 0, 0, 1, 0, 0, '', 'Grab Passenger on 34890 only when the Hot Rod doesn''t carry this homie yet (marker 900901)'),
+  (22, 1, 34954, 0, 0, 1, 0, 900902, 0, 0, 1, 0, 0, '', 'Grab Passenger on 34954 only when the Hot Rod doesn''t carry this homie yet (marker 900902)'),
+  (22, 1, 34892, 0, 0, 1, 0, 900903, 0, 0, 1, 0, 0, '', 'Grab Passenger on 34892 only when the Hot Rod doesn''t carry this homie yet (marker 900903)');
