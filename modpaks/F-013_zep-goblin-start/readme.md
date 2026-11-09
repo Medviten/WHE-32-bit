@@ -26,6 +26,12 @@ The Kaja'mite Cavern minimap needs the `md5translate.trs` that build-dbc.sh writ
 
 Trade Prince Gallywix's and Thrall's voiced lines play Cataclysm's recordings, which come from Zeppelin-Craft's PATCH-Z: `Sound\Creature\Gallywix\vo_qe_*.ogg` and `Sound\Creature\Thrall\vo_qe_dt_thrall_lievent0?.ogg` (the full list is in `dbc/[F-013]_cata_soundentries.sql`). Without them the lines are only shown as text.
 
+The goblin NPCs greet, say goodbye and get annoyed with Cataclysm's voices (civilian, guard and vendor, male and female, and Aggra): their displays use Cataclysm's NPCSounds rows 360-371 and 447, which `dbc/[F-013]_cata_npcsounds.sql` adds with their sound entries. The recordings (`Sound\Creature\Goblin*`, `Sound\Creature\Aggra`) are in WHE-common; Zeppelin's client lacks them too, so they were downloaded from retail with `tools/races/zep_goblin_sounds.py`.
+
+Goblin NPCs use F-023's player goblin models: Zeppelin's client puts the Cataclysm goblin models over the stock NPC ones, which have only two hair styles (other styles left NPCs bald or headless) and don't fit the NPCs' textures. The Lost Isles' human, orc, dwarf, night elf and gnome NPCs use the classic textures of the stock NPCs Zeppelin's HD textures were made from, so they wear those NPCs' painted-on clothes.
+
+The Cataclysm icons and armour textures of the zone's items are in WHE-common, copied from Zeppelin-Craft's extracted client files with `tools/checks/f013_item_assets.py --copy`. Without them an item has no icon and draws nothing when worn. Some NPC outfits name textures neither has (a silver goblin mail set, a red plate set, a goblin army tabard), which only matters if an item uses them.
+
 ### Updating
 `tools/races/zep_goblin_port.py <zep-goblin-start> <this folder>` regenerates `dbc/` and `sql/`, so make changes in that script, `variables.sql` or `patches/` rather than in the SQL. To rebuild the patch, apply these patches from Zeppelin-Craft's `zpaks/core-azerothcore/patches` to `whe-patch-base` in order, add the `GoblinStartZone.Enable` checks back, and save the diff: 0031, 0032, 0034-0044, 0047-0050, 0052, 0053.
 
@@ -36,7 +42,8 @@ The zpak refers to rows it doesn't have, because Zeppelin's generator drops what
   python tools/races/cata406_dbc_port.py <Cataclysm 4.0.6a dbc> <stock 3.3.5a dbc> tools/races/zep_goblin_fixes/dbc "[F-013]_cata" \
     --spell 68286,68287,68289,70329,70330,70390,71608,73839,74916 \
     --sound 19555,19567,19580-19586,19588-19594,20140-20142,20144-20146 --focus 1648 --display 29681 \
-    --skip-kit 19510 --sound-map 23819=14884 --sound-map 23820=14336 --sound-ext .wav=.ogg --source "for F-013 (see its readme)"
+    --skip-kit 19510 --sound-map 23819=14884 --sound-map 23820=14336 --sound-ext .wav=.ogg \
+    --npc-sound 360-366,368-371,447 --source "for F-013 (see its readme)"
   ```
 
 It also moves the SmartAI positions, SmartAI teleports and quest POIs that Zeppelin left on Cataclysm's map 648 to Kalimdor, and drops or clears what still refers to things neither the zpak nor stock has (see the top of the script).

@@ -12,7 +12,7 @@
 DELETE FROM `creaturedisplayinfo` WHERE id = 29335;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29335,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19494,
   `creature_model_scale` = 1.1,
@@ -31,7 +31,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29343;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29343,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19496,
   `creature_model_scale` = 1,
@@ -50,7 +50,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29345;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29345,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19498,
   `creature_model_scale` = 1,
@@ -69,7 +69,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29346;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29346,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19500,
   `creature_model_scale` = 1,
@@ -88,7 +88,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29347;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29347,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19497,
   `creature_model_scale` = 1.05,
@@ -107,7 +107,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29349;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29349,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19495,
   `creature_model_scale` = 1,
@@ -145,7 +145,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29383;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29383,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19434,
   `creature_model_scale` = 1,
@@ -164,7 +164,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29384;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29384,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19435,
   `creature_model_scale` = 1,
@@ -183,7 +183,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29385;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29385,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19436,
   `creature_model_scale` = 1,
@@ -202,7 +202,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29386;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29386,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19437,
   `creature_model_scale` = 1,
@@ -221,7 +221,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29450;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29450,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19478,
   `creature_model_scale` = 1,
@@ -240,7 +240,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29464;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29464,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19507,
   `creature_model_scale` = 1,
@@ -259,7 +259,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29471;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29471,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19798,
   `creature_model_scale` = 1,
@@ -278,7 +278,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29472;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29472,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 22822,
   `creature_model_scale` = 1,
@@ -297,7 +297,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29473;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29473,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19511,
   `creature_model_scale` = 1,
@@ -316,7 +316,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29474;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29474,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19512,
   `creature_model_scale` = 0.9,
@@ -335,7 +335,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29482;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29482,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 3132,
   `extended_display_info_id` = 19556,
   `creature_model_scale` = 1,
@@ -354,7 +354,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29495;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29495,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19557,
   `creature_model_scale` = 1,
@@ -373,7 +373,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29554;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29554,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19580,
   `creature_model_scale` = 1,
@@ -392,7 +392,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29555;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29555,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19581,
   `creature_model_scale` = 1.15,
@@ -411,7 +411,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29563;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29563,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19583,
   `creature_model_scale` = 1,
@@ -430,7 +430,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29564;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29564,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19585,
   `creature_model_scale` = 1,
@@ -449,7 +449,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29565;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29565,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19584,
   `creature_model_scale` = 1,
@@ -468,7 +468,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29566;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29566,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19586,
   `creature_model_scale` = 1,
@@ -487,7 +487,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29585;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29585,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19602,
   `creature_model_scale` = 1,
@@ -506,7 +506,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29587;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29587,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19604,
   `creature_model_scale` = 1,
@@ -525,7 +525,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29617;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29617,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19620,
   `creature_model_scale` = 1,
@@ -544,7 +544,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29620;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29620,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19622,
   `creature_model_scale` = 1,
@@ -563,7 +563,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29621;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29621,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19623,
   `creature_model_scale` = 1,
@@ -582,7 +582,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29622;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29622,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20206,
   `creature_model_scale` = 1,
@@ -601,7 +601,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29630;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29630,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19656,
   `creature_model_scale` = 1,
@@ -620,7 +620,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29631;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29631,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19660,
   `creature_model_scale` = 1,
@@ -639,7 +639,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29632;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29632,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19657,
   `creature_model_scale` = 1,
@@ -658,7 +658,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29633;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29633,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19661,
   `creature_model_scale` = 1,
@@ -677,7 +677,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29663;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29663,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19666,
   `creature_model_scale` = 1,
@@ -696,7 +696,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29664;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29664,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19665,
   `creature_model_scale` = 1,
@@ -715,7 +715,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29665;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29665,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19667,
   `creature_model_scale` = 1,
@@ -734,7 +734,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29666;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29666,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19658,
   `creature_model_scale` = 1,
@@ -753,7 +753,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29667;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29667,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19659,
   `creature_model_scale` = 1,
@@ -772,7 +772,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29669;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29669,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19663,
   `creature_model_scale` = 1,
@@ -848,7 +848,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29680;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29680,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19671,
   `creature_model_scale` = 1.2,
@@ -886,7 +886,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29889;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29889,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19771,
   `creature_model_scale` = 1,
@@ -905,7 +905,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29912;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29912,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19404,
   `creature_model_scale` = 1.1,
@@ -924,7 +924,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29913;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29913,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19799,
   `creature_model_scale` = 1,
@@ -943,7 +943,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29916;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29916,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19408,
   `creature_model_scale` = 1,
@@ -962,7 +962,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29917;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29917,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19405,
   `creature_model_scale` = 1,
@@ -981,7 +981,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29918;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29918,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19407,
   `creature_model_scale` = 1.05,
@@ -1000,7 +1000,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29922;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29922,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19406,
   `creature_model_scale` = 1,
@@ -1019,7 +1019,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29923;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29923,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19499,
   `creature_model_scale` = 1,
@@ -1038,7 +1038,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29924;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29924,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19434,
   `creature_model_scale` = 1,
@@ -1057,7 +1057,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29925;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29925,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19436,
   `creature_model_scale` = 1,
@@ -1076,7 +1076,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29926;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29926,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19435,
   `creature_model_scale` = 1,
@@ -1095,7 +1095,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29927;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29927,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19437,
   `creature_model_scale` = 1,
@@ -1323,7 +1323,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 29977;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 29977,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19859,
   `creature_model_scale` = 1,
@@ -1741,7 +1741,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30051;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30051,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19906,
   `creature_model_scale` = 1,
@@ -1760,7 +1760,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30053;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30053,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19911,
   `creature_model_scale` = 1,
@@ -1779,7 +1779,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30098;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30098,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19942,
   `creature_model_scale` = 1,
@@ -1798,7 +1798,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30104;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30104,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19948,
   `creature_model_scale` = 1,
@@ -1817,7 +1817,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30105;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30105,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19949,
   `creature_model_scale` = 1.15,
@@ -1836,7 +1836,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30114;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30114,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19956,
   `creature_model_scale` = 1.05,
@@ -1855,7 +1855,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30115;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30115,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19957,
   `creature_model_scale` = 1.05,
@@ -2007,7 +2007,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30142;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30142,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19961,
   `creature_model_scale` = 1,
@@ -2140,7 +2140,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30219;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30219,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20055,
   `creature_model_scale` = 1,
@@ -2159,7 +2159,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30227;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30227,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20066,
   `creature_model_scale` = 1,
@@ -2311,7 +2311,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30498;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30498,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20258,
   `creature_model_scale` = 1,
@@ -2330,7 +2330,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30499;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30499,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20259,
   `creature_model_scale` = 1,
@@ -2349,7 +2349,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30513;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30513,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20267,
   `creature_model_scale` = 1.2,
@@ -2368,7 +2368,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30622;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30622,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20367,
   `creature_model_scale` = 1,
@@ -2406,7 +2406,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 30703;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30703,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20455,
   `creature_model_scale` = 1,
@@ -2729,7 +2729,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 31090;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 31090,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 22854,
   `creature_model_scale` = 1,
@@ -2862,7 +2862,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 31358;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 31358,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 20892,
   `creature_model_scale` = 1.1,
@@ -2900,7 +2900,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 31423;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 31423,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19949,
   `creature_model_scale` = 1.15,
@@ -2919,7 +2919,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 31448;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 31448,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19948,
   `creature_model_scale` = 1.2,
@@ -2938,7 +2938,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 31477;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 31477,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 19671,
   `creature_model_scale` = 3,
@@ -3601,7 +3601,7 @@ INSERT IGNORE INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 35525;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 35525,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 3173,
   `extended_display_info_id` = 19671,
   `creature_model_scale` = 1.2,
@@ -3658,7 +3658,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36095;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36095,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23888,
   `creature_model_scale` = 1,
@@ -3677,7 +3677,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36096;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36096,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23889,
   `creature_model_scale` = 1,
@@ -3696,7 +3696,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36097;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36097,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23890,
   `creature_model_scale` = 1,
@@ -3715,7 +3715,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36098;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36098,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23891,
   `creature_model_scale` = 1,
@@ -3772,7 +3772,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36244;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36244,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23983,
   `creature_model_scale` = 1,
@@ -3791,7 +3791,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36245;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36245,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23984,
   `creature_model_scale` = 1,
@@ -3810,7 +3810,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36246;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36246,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23985,
   `creature_model_scale` = 1,
@@ -3829,7 +3829,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36247;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36247,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 23986,
   `creature_model_scale` = 1,
@@ -3848,7 +3848,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36346;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36346,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24033,
   `creature_model_scale` = 1,
@@ -3867,7 +3867,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36347;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36347,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24034,
   `creature_model_scale` = 1,
@@ -3886,7 +3886,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36348;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36348,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24035,
   `creature_model_scale` = 1,
@@ -3905,7 +3905,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36349;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36349,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24036,
   `creature_model_scale` = 1,
@@ -3924,7 +3924,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36350;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36350,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24037,
   `creature_model_scale` = 1,
@@ -3943,7 +3943,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36351;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36351,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24038,
   `creature_model_scale` = 1,
@@ -3962,7 +3962,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36352;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36352,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24039,
   `creature_model_scale` = 1,
@@ -3981,7 +3981,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36353;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36353,
-  `model_id` = 832,
+  `model_id` = @GoblinFemaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24040,
   `creature_model_scale` = 1,
@@ -4019,7 +4019,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36759;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36759,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24852,
   `creature_model_scale` = 1,
@@ -4038,7 +4038,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36760;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36760,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24853,
   `creature_model_scale` = 1,
@@ -4057,7 +4057,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36761;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36761,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24854,
   `creature_model_scale` = 1,
@@ -4076,7 +4076,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 36762;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 36762,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24855,
   `creature_model_scale` = 1,
@@ -4114,7 +4114,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE id = 37365;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 37365,
-  `model_id` = 831,
+  `model_id` = @GoblinMaleModel,
   `sound_id` = 0,
   `extended_display_info_id` = 24690,
   `creature_model_scale` = 1,
