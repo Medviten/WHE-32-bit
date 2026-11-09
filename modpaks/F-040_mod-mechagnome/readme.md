@@ -10,10 +10,10 @@
     - Any other client shows the native model with a fixed look: arm upgrade 0, leg upgrade 0, default paint, green eyes
     - Eye slot and paint file set up by `tools/models/mechagnome_prep.py`
     - Male facial hair is geometry only (the retail facial hair textures are not mapped)
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
 - No racial mount
-- No sound yet
 - Racial faction name and description are placeholders
 - Uses Gnome helmet models (client prefix 'Gn'); helmet geosets are not adjusted
 

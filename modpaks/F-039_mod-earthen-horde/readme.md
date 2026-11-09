@@ -9,10 +9,10 @@
     - The retail hair geosets (group 40) are renumbered to group 0, and hair colours are the male files shared by both genders; done by `tools/models/earthen_prep.py` in WHE-256-bit
     - Every skin and gem colour combination is its own skin colour (196, colour index = skin * 14 + gem; the gem is the skin row's texture_3 and needs the client's type 9 support), so the slider steps through all gems before the next skin. All characters show the same gem shapes: the first variant for each body part, always on. Retail makes colour and shapes separate choices, defaulting to none
     - Eye colour and eyesight are not available: all characters have the same eyes
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
 - No racial mount
-- No sound yet
 - Racial faction name and description are placeholders
 - Uses Orc helmet models (client prefix 'Dw'); helmet geosets are not adjusted
 

@@ -5,9 +5,9 @@
 - Playable Zandalari Trolls
     - BfA druid forms
     - BfA racial faction: Zandalari Empire
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
-- Voice may not be working (Darkspear one as placeholder)
 - No racial abilities yet (Darkspear ones as placeholders)
 
 ### CoA Custom 1.9 racials

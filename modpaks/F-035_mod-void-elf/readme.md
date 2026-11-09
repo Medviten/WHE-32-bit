@@ -6,13 +6,13 @@
     - Legion racial mounts:
         - Starcursed Voidstrider
     - Legion racial faction: Argussian Reach
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Appearance
 - Models, textures and customization (CharSections, hair geosets, facial styles) from Kalibro's races package
   (Kalibros_Races_20261012, its race 19), imported with `tools/races/kalibro_races.py`
 
 ### Known Issues
-- No sound yet
 
 ### CoA Custom 1.9 racials
 - Active: learned with the racial skill line

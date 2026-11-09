@@ -6,9 +6,9 @@
     - BfA druid forms
     - ARAC additions: paladin, warlock
     - BfA racial faction: Kul Tiras
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
-- No sound yet
 
 ### CoA Custom 1.9 racials
 - Active: learned with the racial skill line

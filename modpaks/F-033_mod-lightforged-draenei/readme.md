@@ -6,6 +6,7 @@
     - Legion racial mount:
         - Lightforged Felcrusher
     - Legion racial faction: Army of the Light
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Appearance
 - Models, textures and customization (CharSections, hair geosets, facial styles) from Kalibro's races package

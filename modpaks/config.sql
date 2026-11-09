@@ -2393,6 +2393,49 @@ SET @HordeSkyborneCriteria2                                     =   19443; -- Ac
 SET @HordeSkyborneCriteria3                                     =   19444; -- Achievement 291: Check Your Head
 SET @HordeSkyborneCriteria4                                     =   19445; -- @HordeSkyborneAchievement: Realm First! Level 80 Skyborne
 
+-- Retail voices (tools/races/retail_voices.py): CreatureSoundData rows of the races it gives retail voices
+SET @AlliancePandarenMaleSoundData                              =   3201;
+SET @AlliancePandarenFemaleSoundData                            =   3202;
+SET @HordePandarenMaleSoundData                                 =   3203;
+SET @HordePandarenFemaleSoundData                               =   3204;
+SET @NightborneMaleSoundData                                    =   3205;
+SET @NightborneFemaleSoundData                                  =   3206;
+SET @HighmountainTaurenMaleSoundData                            =   3207;
+SET @HighmountainTaurenFemaleSoundData                          =   3208;
+SET @VoidElfMaleSoundData                                       =   3209;
+SET @VoidElfFemaleSoundData                                     =   3210;
+SET @LightforgedDraeneiMaleSoundData                            =   3211;
+SET @LightforgedDraeneiFemaleSoundData                          =   3212;
+SET @ZandalariTrollMaleSoundData                                =   3213;
+SET @ZandalariTrollFemaleSoundData                              =   3214;
+SET @KulTiranMaleSoundData                                      =   3215;
+SET @KulTiranFemaleSoundData                                    =   3216;
+SET @DarkIronDwarfMaleSoundData                                 =   3217;
+SET @DarkIronDwarfFemaleSoundData                               =   3218;
+SET @VulperaMaleSoundData                                       =   3219;
+SET @VulperaFemaleSoundData                                     =   3220;
+SET @MagharOrcMaleSoundData                                     =   3221;
+SET @MagharOrcFemaleSoundData                                   =   3222;
+SET @MechagnomeMaleSoundData                                    =   3223;
+SET @MechagnomeFemaleSoundData                                  =   3224;
+SET @AllianceDracthyrMaleSoundData                              =   3225;
+SET @AllianceDracthyrFemaleSoundData                            =   3226;
+SET @HordeDracthyrMaleSoundData                                 =   3227;
+SET @HordeDracthyrFemaleSoundData                               =   3228;
+SET @AllianceEarthenMaleSoundData                               =   3229;
+SET @AllianceEarthenFemaleSoundData                             =   3230;
+SET @HordeEarthenMaleSoundData                                  =   3231;
+SET @HordeEarthenFemaleSoundData                                =   3232;
+SET @AllianceHaranirMaleSoundData                               =   3233;
+SET @AllianceHaranirFemaleSoundData                             =   3234;
+SET @HordeHaranirMaleSoundData                                  =   3235;
+SET @HordeHaranirFemaleSoundData                                =   3236;
+SET @AllianceSkyborneMaleSoundData                              =   3237;
+SET @AllianceSkyborneFemaleSoundData                            =   3238;
+SET @HordeSkyborneMaleSoundData                                 =   3239;
+SET @HordeSkyborneFemaleSoundData                               =   3240;
+-- End of retail voices
+
 -- Classes
 SET @Warrior                                                   =      1;
 SET @Paladin                                                   =      2;

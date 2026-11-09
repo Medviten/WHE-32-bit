@@ -6,9 +6,9 @@
     - Racial abilities
     - Racial mount: Mag'har Direwolf
 - Racial faction: Mag'har of the Horde
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
-- Voice may not be working
 - Sympathetic Vigor not working
 
 ### CoA Custom 1.9 racials

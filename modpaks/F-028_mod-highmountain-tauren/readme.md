@@ -9,6 +9,7 @@
     - 6 Death Knight skin colours per gender, made with tools/patch_eyes/dk_tint_blp.py: 3 ashen (from the dark,
       brown and light fur) and 3 natural-looking but paler browns (dark, red-brown, light)
     - Skin colour can be changed at the barber shop like the Tauren's
+- Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
 
 ### Known Issues
 - The 3.3.5 client only handles 65535 triangle indices per model, so some retail options are left out: 2 male horn
