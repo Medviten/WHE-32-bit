@@ -6,6 +6,7 @@
 - Unified skill update
 - Unified talent update
 - Unified totem update
+- Removes `playercreateinfo` rows for race/class pairs missing from CharBaseInfo, so the server and bots only use the combinations a race actually offers
 - `patches/core/race-templates.patch` (azerothcore-wotlk): replaces per-race core code with `player_race_template` (see
   F-091_race-setup), so races need no enum entries or recompile
 - `patches/playerbots/race-templates.patch` (mod-playerbots): the same for bots, using `player_race_template` and

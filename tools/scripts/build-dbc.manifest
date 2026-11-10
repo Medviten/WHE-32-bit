@@ -131,4 +131,5 @@ F-093_racial-mount-vendors # Goblin and Worgen racial mount vendors, for the rac
 #F-092_racial-mount-merchant # Off by default (neutral vendor in Booty Bay selling the racial mounts of enabled races; keep after every race modpak)
 #F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
 #F-076_mod-individual-progression_extras # Off by default (mod-individual-progression's optional SQL and DBCs; one file per feature, delete the ones you don't want, see its readme)
+#F-128_hunter-starting-pets # Off by default (hunters start with a Cataclysm-style pet per race; needs a recompile, see its readme)
 # END ADDITIONAL MODS #

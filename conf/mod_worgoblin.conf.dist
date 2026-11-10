@@ -27,3 +27,11 @@ Worgoblin.RunningWild.FreeApprentice = 1
 #        Default:     1
 
 Worgoblin.RunningWild.FreeJourneyman = 1
+
+#
+#    Worgoblin.StartingPet.Enable (bool)
+#        Description: If enabled, new hunters start with a pet (needs modpak F-128). Hunters who already have one keep it
+#                     when this is turned off.
+#        Default:     1
+
+Worgoblin.StartingPet.Enable = 1

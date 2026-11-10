@@ -83,5 +83,5 @@ UPDATE `skilllineability` SET `required_classes` =  0                           
 UPDATE `skilllineability` SET `required_classes` = `required_classes` | (@ManaClassMask & ~@DruidMask) WHERE `id` = @ArcaneTorrentManaSkillLineAbility; -- Spell: 28730 (Arcane Torrent [mana])
 UPDATE `skilllineability` SET `required_classes` = `required_classes` | @RogueMask                     WHERE `id` = @HeroicPresenceMailClassesSkillLineAbility; -- Spell: 6562 (Heroic Presence [Warrior, Paladin, Hunter, Death Knight])
 UPDATE `skilllineability` SET `required_classes` = `required_classes` | @WarlockMask | @DruidMask      WHERE `id` = @HeroicPresenceCasterClassesSkillLineAbility; -- Spell: 28878 (Heroic Presence [Priest, Shaman, Mage])
-UPDATE `skilllineability` SET `required_classes` = `required_classes` | @Priest | @Mage                WHERE `id` = @BloodFuryWarlockSkillLineAbility; -- Spell: 33702 (Blood Fury [Warlock])
-UPDATE `skilllineability` SET `required_classes` = `required_classes` | @Paladin | @Druid              WHERE `id` = @BloodFuryShamanSkillLineAbility; -- Spell: 33697 (Blood Fury [Shaman])
+UPDATE `skilllineability` SET `required_classes` = `required_classes` | @PriestMask | @MageMask                WHERE `id` = @BloodFuryWarlockSkillLineAbility; -- Spell: 33702 (Blood Fury [Warlock])
+UPDATE `skilllineability` SET `required_classes` = `required_classes` | @PaladinMask | @DruidMask              WHERE `id` = @BloodFuryShamanSkillLineAbility; -- Spell: 33697 (Blood Fury [Shaman])

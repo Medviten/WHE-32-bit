@@ -6,7 +6,8 @@ void AddSC_F023_Goblin();
 void AddSC_F024_Worgen();
 void AddSC_kyrian_hover();    // F-068
 void AddSC_kyrian_racials();  // F-068
-void AddSC_venthyr_racials(); // F-069
+void AddSC_venthyr_racials();
+void AddSC_starting_pet(); // F-069
 
 // AzerothCore calls Add<module folder name, '-' as '_'>Scripts(): the repository's own name (WHE-32-bit)...
 void AddWHE_32_bitScripts()
@@ -19,6 +20,7 @@ void AddWHE_32_bitScripts()
     AddSC_kyrian_hover();
     AddSC_kyrian_racials();
     AddSC_venthyr_racials();
+    AddSC_starting_pet();
 }
 
 // ...or the module's former name, for installs whose folder is still called mod-worgoblin-high-elf
