@@ -1,0 +1,59 @@
+diff --git a/Engine/Source/SoundEngine/SoundEngine.cpp b/Engine/Source/SoundEngine/SoundEngine.cpp
+index 91af0b3..e2373c9 100644
+--- a/Engine/Source/SoundEngine/SoundEngine.cpp
++++ b/Engine/Source/SoundEngine/SoundEngine.cpp
+@@ -2810,6 +2810,44 @@ void SE2::StopAllSounds(int32_t restart) {
+     SE2::HeartBeat(nullptr, nullptr);
+ }
+ 
++// Custom: a missing .wav falls back to the same name with .ogg, and the other way round, much as models accept .mdx
++// for .m2. Clients whose sounds were converted to Ogg Vorbis then play them without changing SoundEntries.dbc.
++static bool OpenAlternateSoundFile(const char* filename, SFileImpl** file, FMOD_CREATESOUNDEXINFO* exinfo) {
++    const char* extension = SStrChrR(const_cast<char*>(filename), '.');
++
++    if (!extension) {
++        return false;
++    }
++
++    const char* replacement;
++
++    if (!SStrCmpI(extension, ".wav", STORM_MAX_STR)) {
++        replacement = ".ogg";
++    } else if (!SStrCmpI(extension, ".ogg", STORM_MAX_STR)) {
++        replacement = ".wav";
++    } else {
++        return false;
++    }
++
++    char path[260];
++    size_t stem = static_cast<size_t>(extension - filename);
++
++    if (stem + 5 > sizeof(path)) {
++        return false;
++    }
++
++    memcpy(path, filename, stem);
++    memcpy(path + stem, replacement, 5);
++
++    if (!SFile::OpenEx(nullptr, path, 1, file)) {
++        return false;
++    }
++
++    // The type was suggested from the requested extension; let FMOD detect the real one.
++    exinfo->suggestedsoundtype = FMOD_SOUND_TYPE_UNKNOWN;
++    return true;
++}
++
+ // VERIFY: 675bfdff manual
+ // OFFSET: 0x0087EE60
+ int32_t SE2::CreateWaveData(FMOD::System* system, const char* filename, FMOD_MODE mode, SESound* sound, FMOD::SoundGroup* loadSoundGroup, FMOD::SoundGroup* soundGroup, bool randomStart, int32_t priority, int32_t reverb, bool streaming, uint32_t decodeBufferSize, int32_t software, float coneInsideAngle, float coneOutsideAngle, float coneOutsideVolume, const C3Vector* coneOrientation) {
+@@ -2920,7 +2958,8 @@ int32_t SE2::CreateWaveData(FMOD::System* system, const char* filename, FMOD_MOD
+         }
+     }
+ 
+-    if (!SFile::OpenEx(nullptr, filename, 1, &internal->m_file)) {
++    // Custom: falls back to the other extension when the file is missing (see OpenAlternateSoundFile).
++    if (!SFile::OpenEx(nullptr, filename, 1, &internal->m_file) && !OpenAlternateSoundFile(filename, &internal->m_file, &exinfo)) {
+         SE2::Log_Write(__LINE__, __FILE__, FMOD_ERR_FILE_NOTFOUND, filename);
+         s_soundListCritSect.Enter();
+         goto fail;

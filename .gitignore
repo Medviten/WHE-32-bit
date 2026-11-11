@@ -70,3 +70,5 @@ tools/scripts/combined-*.patch
 # Local settings (build-dbc.conf, deploy-dbc.conf, ...); the .conf.dist files are the tracked templates
 *.conf
 tools/scripts/deploy-dbc.exclude
+
+__pycache__/
