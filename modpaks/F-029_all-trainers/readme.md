@@ -5,6 +5,7 @@
 - All class trainers in all stock capitals
 - Class trainers in the stock starting areas for the classes those zones lack (spawns from mod-uac)
 - Mage and warlock trainers in Teldrassil for Worgen, if F-024 is in the manifest (their displays are in its DBCs)
+- The transmog NPCs it used to spawn are in F-131_transmog-npcs now
 
 ### Known Issues
 - Not yet compatible with the Open Azeroth modpack

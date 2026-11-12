@@ -109,6 +109,7 @@ F-051_mod-playable-ice-troll
 # END EXTRA RACES #
 
 # ADDITIONAL MODS #
+#F-131_transmog-npcs # Off by default (mod-transmog's Warpweavers in the capitals, Dalaran and Shattrath; requires mod-transmog; must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns)
 #F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
 #F-011_mod-druid-forms # Off by default (pseudo-druid forms for ARAC druids; Troll forms are in F-084)
 #F-084_troll_druid # Off by default (playable Troll druids with their Cataclysm forms, without the rest of ARAC)
