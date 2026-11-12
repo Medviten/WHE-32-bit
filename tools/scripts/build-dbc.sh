@@ -20,6 +20,26 @@ fi
 # shellcheck disable=SC1090
 source "$CONFIG_FILE"
 
+# An optional realm name (any argument not starting with -) also sources
+# build-dbc.<realm>.conf after build-dbc.conf, so one script can build
+# several realms: that file only sets what differs, e.g. SERVER_DBC, the
+# world database, its dump and MANIFEST_FILE. deploy-dbc.sh passes it on.
+REALM=""
+for arg in "$@"; do
+    if [[ "$arg" != -* ]]; then
+        [[ -z "$REALM" ]]             || { echo "ERROR: More than one realm given: $REALM, $arg" >&2; exit 1; }
+        REALM="$arg"
+    fi
+done
+
+if [[ -n "$REALM" ]]; then
+    CONFIG_FILE="$SCRIPT_DIR/build-dbc.$REALM.conf"
+    [[ -f "$CONFIG_FILE" ]]         || { echo "ERROR: Realm configuration file not found: $CONFIG_FILE" >&2; exit 1; }
+    echo "Realm: $REALM ($CONFIG_FILE)"
+    # shellcheck disable=SC1090
+    source "$CONFIG_FILE"
+fi
+
 ###############################################################################
 # Command-line arguments
 ###############################################################################
@@ -35,7 +55,10 @@ for arg in "$@"; do
             ;;
         -h|--help)
             cat << USAGE
-Usage: $(basename "$0") [--skip-dbc]
+Usage: $(basename "$0") [realm] [--skip-dbc]
+
+  realm         Also read build-dbc.<realm>.conf, whose settings override
+                build-dbc.conf's (see deploy-dbc.sh).
 
   --skip-dbc    Skip the DBC build entirely (no database recreate, dump
                 load, table detection, export, or deploy) and go straight
@@ -48,10 +71,13 @@ build-patch.sh instead.
 USAGE
             exit 0
             ;;
-        *)
+        -*)
             echo "ERROR: Unknown argument: $arg" >&2
             echo "       Run with --help for usage." >&2
             exit 1
+            ;;
+        *)
+            # The realm, read above.
             ;;
     esac
 done

@@ -170,6 +170,8 @@ The models, textures and interface files are in [WHE-common](https://github.com/
 
 Then copy what the pipeline exported into `patch-A.MPQ/DBFilesClient/`, so the client matches the server: the DBCs, `PlayerShapeshiftModel.csv` and `ShapeshiftSkinColorRaces.csv`. If you build on another machine, `tools/scripts/deploy-dbc.sh` can do this over SSH: it runs build-dbc.sh there and syncs these files to your client (copy `deploy-dbc.conf.dist` to `deploy-dbc.conf` first).
 
+Several realms with different modpaks can each have their own DBCs in one client: run `build-dbc.sh <realm>` / `deploy-dbc.sh <realm>`, with the realm's differences in `build-dbc.<realm>.conf` (and `deploy-dbc.<realm>.conf` if needed). With `LOCAL_DATA_DIR` set, deploy-dbc.sh puts them in `patch-A.<realm>.MPQ`, which the wowdecomp client only loads while `realmName` is that realm, over the shared `patch-A.MPQ`.
+
 Modpaks that change the minimap (F-010, F-013) also need `md5translate.trs`. Set `ORIGINAL_TRS` in `build-dbc.conf` to the client's stock `Textures\Minimap\md5translate.trs`, and the pipeline writes the stock file plus the modpaks' rows next to the CSVs. Copy it to `patch-A.MPQ/Textures/Minimap/`: it replaces Open Azeroth's, whose rows it already contains.
 
 ---

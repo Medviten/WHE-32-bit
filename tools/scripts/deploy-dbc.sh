@@ -20,6 +20,49 @@ fi
 # shellcheck disable=SC1090
 source "$CONFIG_FILE"
 
+# Usage: deploy-dbc.sh [realm]. A realm (DEFAULT_REALM when none is given)
+# also sources deploy-dbc.<realm>.conf, if it exists, to override settings,
+# e.g. REMOTE_BUILD_SCRIPT and LOCAL_SOURCE_DIR for a 32-bit realm. The
+# realm is passed on to build-dbc.sh (BUILD_REALM), which then reads its
+# build-dbc.<realm>.conf, and with LOCAL_DATA_DIR set the client files go
+# to the realm's own patch, patch-<PATCH_STEM>.<CLIENT_TAG>.MPQ, which the
+# client loads only while its realmName equals the tag.
+if [[ $# -gt 1 || "${1:-}" == -* ]]; then
+    echo "Usage: $(basename "$0") [realm]" >&2
+    exit 1
+fi
+
+REALM="${1:-${DEFAULT_REALM:-}}"
+
+if [[ -n "$REALM" ]]; then
+    REALM_CONFIG_FILE="$SCRIPT_DIR/deploy-dbc.$REALM.conf"
+    if [[ -f "$REALM_CONFIG_FILE" ]]; then
+        # shellcheck disable=SC1090
+        source "$REALM_CONFIG_FILE"
+    fi
+fi
+
+# The realm build-dbc.sh is run for; empty runs it with build-dbc.conf only
+# (e.g. a 32-bit build script whose build-dbc.conf is already that realm's).
+BUILD_REALM="${BUILD_REALM-$REALM}"
+
+# The realm tag of the client patch the files go to; the client compares it
+# with realmName, ignoring case. Empty means the untagged patch.
+CLIENT_TAG="${CLIENT_TAG-$REALM}"
+
+# With LOCAL_DATA_DIR (the client's Data folder) set, the client folders
+# follow from the tag; otherwise LOCAL_DBFILES_CLIENT and LOCAL_MINIMAP_DIR
+# are used as configured.
+if [[ -n "${LOCAL_DATA_DIR:-}" ]]; then
+    [[ -d "$LOCAL_DATA_DIR" ]]         || { echo "ERROR: LOCAL_DATA_DIR does not exist: $LOCAL_DATA_DIR" >&2; exit 1; }
+    LOCAL_PATCH_DIR="$LOCAL_DATA_DIR/patch-${PATCH_STEM:-A}${CLIENT_TAG:+.$CLIENT_TAG}.MPQ"
+    LOCAL_DBFILES_CLIENT="$LOCAL_PATCH_DIR/DBFilesClient"
+    LOCAL_MINIMAP_DIR="$LOCAL_PATCH_DIR/Textures/Minimap"
+    mkdir -p -- "$LOCAL_DBFILES_CLIENT"
+fi
+
+echo "Realm: ${REALM:-(none)}, build: ${BUILD_REALM:-(build-dbc.conf)}, client: $LOCAL_DBFILES_CLIENT"
+
 ###############################################################################
 # Derived configuration
 ###############################################################################
@@ -168,7 +211,7 @@ echo "Running remote DBC build on $SSH_HOST..."
 echo "============================================================"
 echo
 
-ssh -o ControlPath="$CONTROL_PATH" "$SSH_HOST" "bash '$REMOTE_BUILD_SCRIPT'"
+ssh -o ControlPath="$CONTROL_PATH" "$SSH_HOST" "bash '$REMOTE_BUILD_SCRIPT' ${BUILD_REALM:+'$BUILD_REALM'}"
 
 ###############################################################################
 # Sync the deployed DBCs down to the client

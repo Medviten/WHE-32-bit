@@ -1,3 +1,7 @@
+# `build-dbc.sh <realm>` reads build-dbc.<realm>.conf after this file, for
+# what that realm does differently (SERVER_DBC, EXTRA_SQL_DATABASES and
+# EXTRA_SQL_DUMPS, WORLD_DATABASE, the CSV paths, MANIFEST_FILE...).
+
 MODPAKS="/path/to/WHE-32-bit/modpaks"
 DBCTOOL="/path/to/dbctool"
 ORIGINAL_DBC="/path/to/dbctool/originaldbc"

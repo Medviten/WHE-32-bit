@@ -28,6 +28,19 @@ REMOTE_CSV_DIR="/path/to/server/data/dbc"
 # Where your game client reads DBCs from, on this machine.
 LOCAL_DBFILES_CLIENT="/mnt/c/Games/WoW/Data/patch-A.MPQ/DBFilesClient"
 
+# Realms: `deploy-dbc.sh <realm>` (or DEFAULT_REALM) also reads
+# deploy-dbc.<realm>.conf, if it exists, for settings that differ (e.g.
+# REMOTE_BUILD_SCRIPT, REMOTE_CSV_DIR, LOCAL_SOURCE_DIR), and runs
+# `build-dbc.sh <realm>` (BUILD_REALM; set it empty in the realm's file when
+# its build script's build-dbc.conf is already that realm's). With
+# LOCAL_DATA_DIR set, LOCAL_DBFILES_CLIENT and LOCAL_MINIMAP_DIR are replaced
+# by the realm's own patch, Data/patch-<PATCH_STEM>.<realm>.MPQ (CLIENT_TAG
+# changes the tag), which the wowdecomp client loads only while realmName is
+# that realm. Without a realm it's the untagged patch-<PATCH_STEM>.MPQ.
+#DEFAULT_REALM="war"
+#LOCAL_DATA_DIR="/path/to/WoW/Data"
+#PATCH_STEM="A"
+
 # Where your game client reads minimap textures from, on this machine. The
 # md5translate.trs that build-dbc.sh writes (MINIMAP_TRS, in REMOTE_CSV_DIR by
 # default) is copied here. Use the patch that loads after every other patch
