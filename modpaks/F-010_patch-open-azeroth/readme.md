@@ -9,3 +9,6 @@
 
 ### Known Issues
 - Minimaps not visible in some places
+
+### Ocean filler tiles
+`dbc/[F-010]_ocean_minimaps.sql` gives the squished client's ocean patch (filler tiles around the continents, byte-copies of OA's open-sea tiles) minimap images: each points at the sea image of the tile it copies. Without them the minimap over those tiles keeps showing the last coast it drew. They only reach the client when the build server's `build-dbc.conf` sets `ORIGINAL_TRS` to the stock `md5translate.trs` (the squished client's `patch-3.mpq` has it); `deploy-dbc.sh` then copies the built file into the realm's patch, over OA's. Made by `tools/models/ocean_minimaps.py`.
