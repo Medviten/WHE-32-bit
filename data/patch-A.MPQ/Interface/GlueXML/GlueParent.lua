@@ -553,11 +553,11 @@ function SetBackgroundModel(model, name, race)
 	end
 
 	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
-		name = "NightElf";
+		name = "Pandaren"; -- MoP's Pandaren scene (UI_Pandaren, in WHE-common), for every Pandaren race
 	end
 
 	if (name == "HordePandaren" or name == "Horde Pandaren" or name == "Horde_Pandaren" or name == "HORDEPANDAREN" or name == "HORDE PANDAREN" or name == "HORDE_PANDAREN") then
-		name = "Tauren";
+		name = "Pandaren"; -- MoP's Pandaren scene (UI_Pandaren, in WHE-common), for every Pandaren race
 	end
 
 	if (name == "DarkIronDwarf" or name == "Dark Iron Dwarf"  or name == "Dark_Iron_Dwarf" or name == "DARKIRONDWARF" or name == "DARK IRON DWARF" or name == "DARK_IRON_DWARF") then
