@@ -20,7 +20,7 @@ New Goblin characters play the intro cinematic on their first login, so the clie
 
 Leaving Kezan plays the goblin cinematic, `Interface\Cinematics\Goblin_1024.avi` (from Zeppelin-Craft's PATCH-X; `dbc/[F-013]_goblin_cinematic.sql` points movie 22 at it). The player lands on the Lost Isles lying down and Doc Zapnozzle's revive scene starts when the client reports the cinematic finished, so a client without the file leaves the player stuck on the beach, unless it is this project's client, which reports a movie it can't play as finished.
 
-Kezan is drawn on Open Azeroth's Kalimdor map but can't be clicked there, and the west half of the Lost Isles opens Durotar or Azshara, because OA's `Interface\WorldMap\Kalimdor.zmp` (the grid of which zone is under the cursor) has no Kezan cells and its Lost Isles cells are off to the east. WHE-common's copy fixes both; `tools/models/kalimdor_zmp.py` in WHE-256-bit makes it from OA's patch.
+Kezan is drawn on Open Azeroth's Kalimdor map but can't be clicked there, and the west half of the Lost Isles opens Durotar or Azshara, because OA's `Interface\WorldMap\Kalimdor.zmp` (the grid of which zone is under the cursor) has no Kezan cells and its Lost Isles cells are off to the east. WHE-common's copy fixes both, with cells set from the terrain's areas; `tools/models/zmp_from_maps.py` in WHE-256-bit makes it from OA's grid and the server map files (command line in the script).
 
 The Kaja'mite Cavern minimap needs the `md5translate.trs` that build-dbc.sh writes when `ORIGINAL_TRS` is set (see the main readme), plus its four tiles, `Textures\Minimap\lostisles\md_pygmycave1_000_0?_0?.blp`.
 
