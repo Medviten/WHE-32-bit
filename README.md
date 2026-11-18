@@ -94,7 +94,7 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
-The default branches of [azerothcore-wotlk-32-bit](https://github.com/Medviten/azerothcore-wotlk-32-bit) (`Playerbot`) and [mod-playerbots-32-bit](https://github.com/Medviten/mod-playerbots-32-bit) (`master`) already include the patches for custom races. **If you use them, skip step 2.** The forks also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088) and F-089's and F-090's changes, and [the client](https://github.com/Medviten/wowdecomp) already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches.
+The default branches of [azerothcore-wotlk-32-bit](https://github.com/Medviten/azerothcore-wotlk-32-bit) (`Playerbot`) and [mod-playerbots-32-bit](https://github.com/Medviten/mod-playerbots-32-bit) (`master`) already include the patches for custom races. **If you use them, skip step 2.** The forks also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088) and F-089's and F-090's changes, and [the client](https://github.com/Medviten/wowdecomp-256-bit) already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches.
 
 The forks don't include [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression). If you want it, install it separately, turn on F-075_mod-individual-progression in the manifest, and apply `combined-individual-progression.patch` to it.
 
@@ -191,7 +191,7 @@ https://www.azerothcore.org/wiki/installing-a-module
 
 Custom races require a WoW 3.3.5a client that allows modified client files. You have three options:
 
-- **[This project's client](https://github.com/Medviten/wowdecomp)** has everything the modpaks use. Build it as its readme describes.
+- **[This project's client](https://github.com/Medviten/wowdecomp-256-bit)** has everything the modpaks use. Build it as its readme describes. It is the 256-bit flavour's client, but it reads these 32-bit DBCs and talks to 32-bit servers as well: it detects the race-mask layout per DBC file (the CVar `raceMaskBits`, default 0, follows the DBCs). The former 32-bit client, wowdecomp-32-bit, is archived.
 - **[moostigre's wowdecomp](https://github.com/moostigre/wowdecomp)** with F-026_custom-race-support's patches applied: `combined-client.patch` from step 2, or see that modpak's readme.
 - **A stock executable** with signature checks disabled, for example with [WoWPatcher335](https://github.com/anzz1/WoWPatcher335) (keep a backup of the original), or one of these [clients](https://drive.google.com/file/d/1M7QVeIaXHV5ru9s7mvo52P-eOjQedSkS/view?usp=sharing) that come with the checks disabled.
 
