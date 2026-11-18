@@ -128,11 +128,11 @@ WHERE `source_type` = 0 AND `entryorguid` IN (44175, 48304) AND `event_type` = 8
 -- row 3 awards credit. Repoint that chain to Lesser Heal rank 2 (2052), which is what Sister
 -- Goldskimmer teaches at level 4.
 --
--- Ranks matter here in a way they do not for the other six quests: a priest already knows Lesser
--- Heal rank 1 (2050) from level 1 and will learn rank 3 (591) at level 6, and AC's SPELLHIT event
+-- Ranks matter most here (the other quests get theirs below): a priest already knows Lesser
+-- Heal rank 1 (2050) from level 1 and will learn rank 3 (2053) at level 10, and AC's SPELLHIT event
 -- matches one exact spell ID. Crediting only 2052 would mean a player casting the rank already on
 -- their bar gets nothing and the quest reads as broken, so parallel chains are added for 2050 and
--- 591. Rows 10-15 are owned by this file, hence DELETE + INSERT.
+-- 2053. Rows 10-15 are owned by this file, hence DELETE + INSERT.
 -- ---------------------------------------------------------------------------
 
 UPDATE `smart_scripts` SET `event_param1` = 2052,
@@ -155,7 +155,35 @@ VALUES
   (48305, 0, 10, 11, 8, 0, 100, 0, 2050, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r1, say0 (I-273)'),
   (48305, 0, 11, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 4000, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - Lesser Heal r1 force despawn (I-273)'),
   (48305, 0, 12, 0, 8, 0, 100, 0, 2050, 0, 0, 0, 0, 0, 33, 48305, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r1 - Quest 14009 Credit 48305 (I-273)'),
-  -- Lesser Heal rank 3 (591) - trained at level 6, in case the player out-levels the quest
-  (48305, 0, 13, 14, 8, 0, 100, 0, 591, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r3, say0 (I-273)'),
+  -- Lesser Heal rank 3 (2053) - trained at level 10, in case the player out-levels the quest
+  (48305, 0, 13, 14, 8, 0, 100, 0, 2053, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r3, say0 (I-273)'),
   (48305, 0, 14, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 41, 4000, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - Lesser Heal r3 force despawn (I-273)'),
-  (48305, 0, 15, 0, 8, 0, 100, 0, 591, 0, 0, 0, 0, 0, 33, 48305, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r3 - Quest 14009 Credit 48305 (I-273)');
+  (48305, 0, 15, 0, 8, 0, 100, 0, 2053, 0, 0, 0, 0, 0, 33, 48305, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Injured Employee - On spell hit Lesser Heal r3 - Quest 14009 Credit 48305 (I-273)');
+
+-- ---------------------------------------------------------------------------
+-- smart_scripts - the other ranks of the Training Dummy's spells
+--
+-- A player who trains a later rank before doing the quest (Frostbolt rank 2 at 8, Eviscerate rank 2 at 8, ...)
+-- casts that one, and SPELLHIT would not match. Every quest credit row on the dummy is copied once per other rank of
+-- its spell (spell_ranks); the copies are ids 2000 + id * 20 + rank, which belong to this file. The Injured
+-- Employee's Lesser Heal chains above already cover all three ranks.
+-- ---------------------------------------------------------------------------
+
+DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` = 48304 AND `id` >= 2000;
+INSERT INTO `smart_scripts`
+  (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
+   `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`,
+   `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`,
+   `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`,
+   `target_x`, `target_y`, `target_z`, `target_o`, `comment`)
+SELECT s.`entryorguid`, s.`source_type`, 2000 + s.`id` * 20 + r.`rank`, 0, s.`event_type`, s.`event_phase_mask`,
+  s.`event_chance`, s.`event_flags`, r.`spell_id`, s.`event_param2`, s.`event_param3`, s.`event_param4`,
+  s.`event_param5`, s.`event_param6`, s.`action_type`, s.`action_param1`, s.`action_param2`, s.`action_param3`,
+  s.`action_param4`, s.`action_param5`, s.`action_param6`, s.`target_type`, s.`target_param1`, s.`target_param2`,
+  s.`target_param3`, s.`target_param4`, s.`target_x`, s.`target_y`, s.`target_z`, s.`target_o`,
+  CONCAT(COALESCE(s.`comment`, ''), ' - rank ', r.`rank`, ' (I-273)')
+FROM `smart_scripts` s
+JOIN `spell_ranks` f ON f.`spell_id` = s.`event_param1`
+JOIN `spell_ranks` r ON r.`first_spell_id` = f.`first_spell_id` AND r.`spell_id` <> s.`event_param1`
+WHERE s.`source_type` = 0 AND s.`entryorguid` = 48304 AND s.`event_type` = 8 AND s.`action_type` = 33
+  AND s.`id` < 2000;

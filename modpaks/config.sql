@@ -1729,6 +1729,8 @@ SET @NightborneManasaberCreatureID                             =   @NextCreature
 SET @StarcursedVoidstriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
 SET @ForsakenWarhorseCreatureID                                 =   @NextCreatureID := @NextCreatureID +1; -- F-087
 SET @ForsakenChargerCreatureID                                  =   @NextCreatureID := @NextCreatureID +1; -- F-087
+SET @KezanPaladinTrainerCreatureID                             =    @NextCreatureID := @NextCreatureID +1; -- 55316; F-013 with F-029
+SET @KezanDruidTrainerCreatureID                               =    @NextCreatureID := @NextCreatureID +1; -- 55317; F-013 with F-029
 
 -- Mount Items
 SET @MechagonMechanostriderItem                                =   174067; -- BfA ID
