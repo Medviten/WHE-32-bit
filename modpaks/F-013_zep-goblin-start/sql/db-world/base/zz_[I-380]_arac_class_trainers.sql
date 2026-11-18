@@ -6,7 +6,8 @@
 -- quests don't gate its main path, so no other change is needed for those classes.
 --
 -- Gossip is stock's (Aurelon's paladin menu 7260, Harene Plainwalker's druid menu 4605), trainer lists are the Horde
--- ones (paladin 6 as Jesthenis Sunstriker, druid 34 as Gart Mistrunner), looks are Kezan Citizen displays.
+-- full lists, as Kezan's own trainers have (paladin 4 as Noellene, druid 33 as Gennia Runetotem; 6 and 34 are the
+-- starting-area lists, which stop at level 6), looks are Kezan Citizen displays.
 --
 -- Loads after zz_[AUTO,F-011]_*.sql ("[I-" sorts after "[AUTO,"). Spawn guids 12009901+ stay clear of the
 -- generator's (Kezan 12000001+, Lost Isles 11000001+).
@@ -26,8 +27,8 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (@KezanPaladinTrainerCreatureID, @KezanDruidTrainerCreatureID);
 INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
-  (@KezanPaladinTrainerCreatureID, 6),
-  (@KezanDruidTrainerCreatureID, 34);
+  (@KezanPaladinTrainerCreatureID, 4),
+  (@KezanDruidTrainerCreatureID, 33);
 
 -- 1.5 yards either side of each Sister Goldskimmer spawn, same phase and facing
 DELETE FROM `creature` WHERE `guid` BETWEEN 12009901 AND 12009920;
