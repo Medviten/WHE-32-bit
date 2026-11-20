@@ -5,6 +5,7 @@
 - No fatigue in deep water (core patch; `DisableFatigue = 0` turns it off)
 - Higher limits on the `.modify speed` commands, `.modify mount` and `.modify scale` (core patch)
 - Up to 255 characters per realm (core patch)
+- Death knight Bloodworms stay defensive instead of pulling every mob in range (core patch)
 - No DBC changes and nothing applied by build-dbc.sh, only the core patches
 
 ### Core patches
@@ -12,3 +13,4 @@ build-patch.sh includes these patches in combined-core.patch while F-089 is in t
 - `patches/core/no-fatigue.patch` adds the worldserver.conf setting `DisableFatigue`, with default 1. Set it to 0 for stock behaviour.
 - `patches/core/gm-command-limits.patch` raises the highest speed from 50 to 100 for `.modify speed all`, `walk`, `backwalk`, `swim` and `fly` and for `.modify mount`, and widens `.modify scale` from 0.1-10 to 0.001-1000.
 - `patches/core/character-limit.patch` raises the highest `CharactersPerRealm` and `HeroicCharactersPerRealm` from 10 to 255. Without it, a higher value is rejected at startup and the default is used. Both settings keep their defaults, so set them in worldserver.conf, along with a `CharactersPerAccount` at least as high. The client must accept more than 10 characters, as [this project's client](https://github.com/Medviten/wowdecomp-256-bit) does.
+- `patches/core/bloodworms-defensive.patch` fixes a stock bug: Bloodworms were meant to be defensive since 2017, but the guardian setup made them aggressive again right after, so they attacked any hostile creature in aggro range. They still attack the death knight's target and whatever attacks them or the death knight. No setting.

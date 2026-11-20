@@ -1,0 +1,15 @@
+diff --git a/src/server/game/Entities/Creature/TemporarySummon.cpp b/src/server/game/Entities/Creature/TemporarySummon.cpp
+index 5eceb9e53..f95cb4e23 100644
+--- a/src/server/game/Entities/Creature/TemporarySummon.cpp
++++ b/src/server/game/Entities/Creature/TemporarySummon.cpp
+@@ -443,7 +443,9 @@ void Guardian::InitStats(uint32 duration)
+             m_charmInfo->InitCharmCreateSpells();
+     }
+ 
+-    SetReactState(REACT_AGGRESSIVE);
++    // Custom: Bloodworms stay defensive. InitStatsForLevel sets that, but this overwrote it, so with AggressorAI they
++    // attacked every hostile creature that came into aggro range and pulled extra mobs.
++    SetReactState(GetEntry() == NPC_BLOODWORM ? REACT_DEFENSIVE : REACT_AGGRESSIVE);
+ }
+ 
+ void Guardian::InitSummon()
