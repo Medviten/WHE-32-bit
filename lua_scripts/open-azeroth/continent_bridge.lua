@@ -51,6 +51,13 @@ local BUFFER         = 75   -- yards of slack given on arrival so the player
 local KAL_EAST_Y       = -9773
 local KAL_EAST_SPLIT_X = 11037   -- south of this -> EK, north of this -> Northrend
 
+-- Open Azeroth's islands east of that edge, on Kalimdor's map: Kezan and the Lost Isles (F-013), each a block of
+-- tiles reaching Y -13333. Across their X band the edge moves out past them, so they can be reached.
+local KAL_EAST_ISLANDS = {
+    { minX = -12800, maxX = -7466, y = -13500 },  -- Kezan
+    { minX = -1600,  maxX = 3733,  y = -13500 },  -- the Lost Isles
+}
+
 -- Eastern Kingdoms' western ocean edge (Y increases going west)
 local EK_WEST_Y        = 12615
 local EK_WEST_SPLIT_X  = 5661    -- south of this -> Kalimdor, north of this -> Northrend
@@ -125,8 +132,18 @@ end
 -- Border checks
 -- ---------------------------------------------------------------------------
 
+-- Kalimdor's eastern edge at latitude X: further out across the islands' bands
+local function kalimdorEastY(x)
+    for _, island in ipairs(KAL_EAST_ISLANDS) do
+        if x >= island.minX and x <= island.maxX then
+            return island.y
+        end
+    end
+    return KAL_EAST_Y
+end
+
 local function checkKalimdor(player, x, y, z, o)
-    if y <= KAL_EAST_Y then
+    if y <= kalimdorEastY(x) then
         -- Eastern edge.
         if x < KAL_EAST_SPLIT_X then
             -- Southern stretch of the edge -> Eastern Kingdoms.
@@ -184,7 +201,9 @@ local function ScanForBorderCrossings()
     local players = GetPlayersInWorld()
 
     for _, player in ipairs(players) do
-        if player and player:IsInWorld() then
+        -- Players on a zeppelin or ship stay put: transports make their own map changes, and a jump would take
+        -- them off the deck
+        if player and player:IsInWorld() and not player:GetTransport() then
             local mapId = player:GetMapId()
 
             if mapId == MAP_KALIMDOR then
