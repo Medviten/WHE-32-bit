@@ -2,10 +2,10 @@
 ## F-064_mod-playable-hozen
 
 ### Features
-- Playable Hozen (Alliance), male only
+- Playable Hozen (Horde, in the Orc/Troll/Tauren reputation group, not the Undercity one), male only
     - CoA Custom 1.9 model and textures (Ilusixn's CoA race files, CoA race 112), prepared by `tools/models/coa_race_prep.py`
     - Customization: the 18 skin colours of CoA's appearance catalog (`EsteriaHozen.bin`); its other options (EsteriaAppearance.dll) are fixed at their first choice
-    - Home: Human (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
+    - Home: Orc (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
       quests and items)
     - Kin: Tauren (voice, emotes and names, copied at build time)
     - Helmet prefix 'Hu' (CoA's)

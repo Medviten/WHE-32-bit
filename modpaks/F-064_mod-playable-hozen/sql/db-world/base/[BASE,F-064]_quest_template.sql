@@ -1,5 +1,5 @@
-/* Ensures that race-restricted quests include Hozen (as Human) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @HozenMask WHERE `AllowableRaces` & @HumanMask AND `AllowableRaces` != -1;
+/* Ensures that race-restricted quests include Hozen (as Orc) */
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @HozenMask WHERE `AllowableRaces` & @OrcMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

@@ -6,8 +6,8 @@ SELECT @Hozen, `a`.`class`, `a`.`button`, `a`.`action`, `a`.`type`
 FROM (
     SELECT `c`.`class`, (
         SELECT `pa`.`race` FROM `playercreateinfo_action` AS `pa`
-        WHERE `pa`.`class` = `c`.`class` AND FIELD(`pa`.`race`, @HozenHome, @Human, @Dwarf, @NightElf, @Gnome, @Draenei) > 0
-        ORDER BY FIELD(`pa`.`race`, @HozenHome, @Human, @Dwarf, @NightElf, @Gnome, @Draenei) LIMIT 1
+        WHERE `pa`.`class` = `c`.`class` AND FIELD(`pa`.`race`, @HozenHome, @Orc, @Troll, @Undead, @Tauren, @BloodElf) > 0
+        ORDER BY FIELD(`pa`.`race`, @HozenHome, @Orc, @Troll, @Undead, @Tauren, @BloodElf) LIMIT 1
     ) AS `source`
     FROM (SELECT DISTINCT `class` FROM `dbc_db`.`charbaseinfo` WHERE `race` = @Hozen) AS `c`
 ) AS `s`

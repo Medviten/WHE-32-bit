@@ -4,20 +4,20 @@ SET @HozenMask                       = 1 << (@Hozen - 1);
 SET @HozenHelmetMask                 = 1 << @Hozen;
 
 -- Important variable updates (Alliance vs. Horde)
-SET @AllianceMask                         = @AllianceMask    | @HozenMask;
+SET @HordeMask                            = @HordeMask         | @HozenMask;
 SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                     = @PlayableRaceMask | @HozenMask;
 SET @BowHunters                           = @BowHunters      | @HozenMask;
-SET @HozenLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @HozenAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @HozenKnowThyEnemy                  = @KnowThyEnemyAlliance;
+SET @HozenLanguage                      = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HozenAlliance                      = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HozenKnowThyEnemy                  = @KnowThyEnemyHorde;
 
 -- Miscellaneous
-SET @HozenHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @HozenHome = @Orc; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
 SET @HozenKin = @Tauren; -- voice, emotes and names are copied from this race
-SET @HozenFlags = @HumanFlags;
-SET @HozenExplorationSound = @HumanExplorationSound;
-SET @HozenCinematicSequence = @HumanCinematicSequence;
+SET @HozenFlags = @OrcFlags;
+SET @HozenExplorationSound = @OrcExplorationSound;
+SET @HozenCinematicSequence = @OrcCinematicSequence;
 SET @HozenBlood = 1;
 SET @HozenMaleModelPath = 'custom\\hozen\\unknown\\536927.m2'; -- CoA Custom 1.9 model (retail, prepared by coa_race_prep.py)
 SET @HozenFaction = 1243; -- vacant slot
