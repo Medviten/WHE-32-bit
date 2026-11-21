@@ -17,7 +17,7 @@
 
 ### Flight paths
 - `dbc/[I-391]_flight_path_fixes.sql` drops points from Open Azeroth's flight paths (`tools/races/flight_path_fixes.py`): the node points its new paths repeat at takeoff and landing (2000-2009: Hyjal, Astranaar, Rut'theran and Auberdine to the Exodar, Light's Hope Chapel to Tranquillien), a kink at Astranaar, a hook around Light's Hope Chapel, and two Vashj'ir paths that ran past their end and back (2010, 2016)
-- Open Azeroth's TaxiPathNode ids start at 50000 (paths 2000-2025 and 503), where F-076's Northspear path (50000-50048) writes over Hyjal - Talrendis Point; don't run both
+- Open Azeroth's TaxiPathNode ids start at 50000 (paths 2000-2025 and 503). New points elsewhere (F-006, F-076, F-139, the boat fixes here) take ids after the highest one when their SQL runs, so they don't land on these
 
 ### Ocean filler tiles
 `dbc/[F-010]_ocean_minimaps.sql` gives the squished client's ocean patch (filler tiles around the continents, byte-copies of OA's open-sea tiles) minimap images: each points at the sea image of the tile it copies. Without them the minimap over those tiles keeps showing the last coast it drew. They only reach the client when the build server's `build-dbc.conf` sets `ORIGINAL_TRS` to the stock `md5translate.trs` (the squished client's `patch-3.mpq` has it); `deploy-dbc.sh` then copies the built file into the realm's patch, over OA's. Made by `tools/models/ocean_minimaps.py`.
