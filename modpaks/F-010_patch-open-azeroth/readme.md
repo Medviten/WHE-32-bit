@@ -12,7 +12,7 @@
 
 ### Boats
 - Elune's Blessing (Auberdine - Valaar's Berth): Open Azeroth's path doubled back 400 yards before Auberdine and zig-zagged off Darkshore. `dbc/[I-389]_azuremyst_boat_path.sql` smooths it (docks unchanged)
-- Open Azeroth's Keel Harbor (Gilneas) - Havenswood route (taxi path 2044) gets a ship, The Bravery's model (`sql/db-world/base/[I-390]_gilneas_havenswood_boat.sql`, gameobject 1390001, transport guid 13901); `dbc/[I-390]_gilneas_havenswood_boat_path.sql` drops the path's repeated end points, which made the boat dock twice and back up
+- Open Azeroth's Keel Harbor (Gilneas) - Havenswood route (taxi path 2044) gets a ship, the night elf ship's model (display 7087; `sql/db-world/base/[I-390]_gilneas_havenswood_boat.sql`, gameobject 1390001, transport guid 13901); `dbc/[I-390]_gilneas_havenswood_boat_path.sql` drops the path's repeated end points, which made the boat dock twice and back up
 - Both made by `tools/races/transport_paths.py` (command line at the top of each file), which also checks the new paths stay on water deep enough for a hull
 
 ### Flight paths
